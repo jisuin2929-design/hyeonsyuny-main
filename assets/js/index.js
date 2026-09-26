@@ -136,7 +136,7 @@ function playRustlePageSound() {
     filter.connect(gain);
     gain.connect(ctx.destination);
     noise.start();
-  } catch (e) {}
+  } catch (e) { }
 }
 
 // 루모스 주문 효과음 (바람 + 크리스탈 벨)
@@ -182,7 +182,7 @@ function playLumosSpellSound() {
       osc.start(startTime);
       osc.stop(startTime + 0.58);
     });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 // 녹스 주문 효과음 (불꽃 꺼지는 하강 톤)
@@ -206,7 +206,7 @@ function playNoxSpellSound() {
       osc.start(startTime);
       osc.stop(startTime + 0.38);
     });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 // 플레이리스트 차임벨 효과음
@@ -227,7 +227,7 @@ function playMusicChime() {
       osc.start(ctx.currentTime + idx * 0.07);
       osc.stop(ctx.currentTime + idx * 0.07 + 0.35);
     });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 // -------------------------------------------------------------
@@ -341,7 +341,7 @@ function toggleSoundState() {
   if (mapFrame && mapFrame.contentWindow) {
     try {
       mapFrame.contentWindow.postMessage({ type: "MAP_SOUND_TOGGLE", isSoundOn }, "*");
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -359,7 +359,7 @@ function unlockOnFirstGesture() {
   }
   const ctx = getAudioCtx();
   if (ctx && ctx.state === "suspended") {
-    ctx.resume().catch(() => {});
+    ctx.resume().catch(() => { });
   }
 }
 
@@ -437,7 +437,7 @@ function castLumosSpell() {
   playLumosSpellSound();
 
   if (navigator.vibrate) {
-    try { navigator.vibrate(40); } catch (e) {}
+    try { navigator.vibrate(40); } catch (e) { }
   }
 
   if (lumosFlashEffect) {
@@ -641,7 +641,7 @@ function pausePlaylistTrack() {
   if (playlistIframe && playlistIframe.contentWindow) {
     try {
       playlistIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
