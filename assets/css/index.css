@@ -1,0 +1,129 @@
+    /* 신문 앤틱 배경 질감 */
+    body {
+      background-color: #120b05;
+      background-image: 
+        radial-gradient(#2d1c0e 1.5px, transparent 1.5px),
+        radial-gradient(#1e130a 1.5px, #120b05 1.5px);
+      background-size: 28px 28px;
+      color: #1f1409;
+      font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 바랜 양피지 신문 본문 시트 */
+    .newsprint-sheet {
+      background-color: #f5eedb;
+      background-image: 
+        radial-gradient(ellipse at 50% 25%, rgba(255, 255, 255, 0.45) 0%, rgba(220, 198, 154, 0.3) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(50, 30, 15, 0.02) 2px, rgba(50, 30, 15, 0.02) 4px);
+      box-shadow: 
+        0 0 0 1px rgba(60, 36, 14, 0.7),
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        inset 0 0 100px rgba(90, 55, 20, 0.25);
+    }
+
+    /* 신문 특유의 이중 실선 구분선 */
+    .news-rule-double {
+      border-top: 3px double #2b1a0d;
+      border-bottom: 1px solid #2b1a0d;
+    }
+
+    /* 살아 숨쉬는 마법 사진 (Moving Portrait) */
+    @keyframes magicalGrainSepia {
+      0% { filter: grayscale(90%) sepia(50%) contrast(1.15) brightness(0.96); }
+      30% { filter: grayscale(50%) sepia(35%) contrast(1.25) brightness(1.05); }
+      70% { filter: grayscale(70%) sepia(45%) contrast(1.2) brightness(0.98); }
+      100% { filter: grayscale(90%) sepia(50%) contrast(1.15) brightness(0.96); }
+    }
+    
+    .magical-portrait {
+      animation: magicalGrainSepia 6s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .magical-portrait::after {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: linear-gradient(
+        115deg,
+        transparent 40%,
+        rgba(255, 245, 200, 0.3) 50%,
+        transparent 60%
+      );
+      animation: wandGleam 7s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes wandGleam {
+      0% { transform: translateY(-35%) rotate(25deg); }
+      100% { transform: translateY(35%) rotate(25deg); }
+    }
+
+    /* 고전 빅토리아 양식 붉은 드롭캡 */
+    .drop-cap::first-letter {
+      float: left;
+      font-family: 'Cinzel', serif;
+      font-size: 3.4rem;
+      line-height: 0.8;
+      padding-top: 6px;
+      padding-right: 8px;
+      padding-bottom: 2px;
+      color: #7a1717;
+      font-weight: 900;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    }
+
+    /* 부엉이 속보 마키 텍스트 스크롤 */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .marquee-track {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marqueeScroll 26s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* 발자국 걷는 애니메이션 */
+    @keyframes footstepWalk {
+      0%, 100% { opacity: 0.15; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 2px #7a1717); }
+    }
+    .footstep-anim-1 { animation: footstepWalk 1.8s infinite 0s ease-in-out; }
+    .footstep-anim-2 { animation: footstepWalk 1.8s infinite 0.45s ease-in-out; }
+    .footstep-anim-3 { animation: footstepWalk 1.8s infinite 0.9s ease-in-out; }
+    .footstep-anim-4 { animation: footstepWalk 1.8s infinite 1.35s ease-in-out; }
+
+    /* 수정구슬 신비로운 발광 */
+    @keyframes crystalGlow {
+      0%, 100% { box-shadow: 0 0 25px rgba(122, 23, 23, 0.4), inset 0 0 20px rgba(255, 230, 160, 0.5); }
+      50% { box-shadow: 0 0 45px rgba(180, 83, 9, 0.7), inset 0 0 35px rgba(255, 255, 255, 0.8); }
+    }
+    .crystal-ball {
+      animation: crystalGlow 4s ease-in-out infinite;
+    }
+
+    /* 잉크 피어오르는 인트로 */
+    @keyframes inkBloom {
+      0% { opacity: 0; transform: scale(0.95) translateY(6px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .incantation-bloom {
+      animation: inkBloom 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .highway-timeline-track::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: #7a1717;
+    }

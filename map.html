@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>호그와트 비밀지도 & 예언자 일보 특별판 (The Marauder's Map)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- D3.js and TopoJSON -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Noto+Serif+KR:wght@400;600;700;900&family=UnifrakturMaguntia&family=IM+Fell+DW+Pica:ital@0;1&family=MedievalSharp&display=swap" rel="stylesheet">
+
+  <script src="assets/js/map-tailwind.js"></script>
+
+  <link rel="stylesheet" href="assets/css/map.css">
+</head>
+
+<body class="h-screen w-screen flex flex-col overflow-hidden bg-[#120c06]">
+
+  <!-- ============================================================ -->
+  <!-- 🪄 HOGWARTS MARAUDER'S MAP FULL-SCREEN OVERLAY               -->
+  <!-- ============================================================ -->
+  <div id="maraudersOverlay" class="fixed inset-0 z-[100] marauders-paper flex flex-col items-center justify-center p-4 cursor-pointer select-none transition-all duration-[2000ms] ease-in-out">
+    <div class="relative max-w-xl w-full border-4 border-[#3b2513] p-6 sm:p-10 text-center shadow-[0_0_50px_rgba(20,10,5,0.8)] bg-[#ede0c4]/85 rounded-sm pointer-events-none">
+      
+      <div class="absolute -top-3 -left-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
+      <div class="absolute -top-3 -right-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
+      <div class="absolute -bottom-3 -left-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
+      <div class="absolute -bottom-3 -right-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
+
+      <!-- State 1: Teaser -->
+      <div id="marauderTeaser" class="flex flex-col items-center gap-3">
+        <div class="w-16 h-16 rounded-full border-2 border-[#543b22] bg-[#dfcaa5] flex items-center justify-center text-3xl shadow-inner mb-1">🪄</div>
+        <p class="font-cinzel text-xs tracking-widest text-[#735334] uppercase font-bold">
+          Messrs Moony, Wormtail, Padfoot & Prongs
+        </p>
+        <h2 class="font-prophet text-3xl sm:text-5xl text-[#24170d] tracking-wide leading-tight">
+          The Marauder's Map
+        </h2>
+        <div class="w-24 h-0.5 bg-[#841c1c] mx-auto my-1"></div>
+        <p class="font-serif italic text-xs sm:text-sm text-[#4d3520] max-w-md leading-relaxed">
+          “낡은 마법 양피지가 굳게 접혀 있습니다.<br>
+          지팡이 끝을 대고 양피지를 가볍게 터치하세요.”
+        </p>
+        <div class="mt-4 px-4 py-2 border-2 border-dashed border-[#841c1c] bg-[#fbf5e6]/80 rounded-sm animate-pulse flex items-center gap-2">
+          <span class="text-sm">👆</span>
+          <span class="font-headline font-bold text-xs text-[#841c1c]">화면을 터치하여 마법 지도를 펼치세요</span>
+        </div>
+      </div>
+
+      <!-- State 2: Active Spell -->
+      <div id="marauderSpell" class="hidden flex flex-col items-center gap-2 incantation-reveal">
+        <div class="flex items-center justify-center gap-3 text-2xl text-[#841c1c] my-1">
+          <span>🐾</span><span>👣</span><span>🐾</span><span>👣</span>
+        </div>
+        <p class="font-cinzel text-xs tracking-widest text-[#841c1c] font-black uppercase">
+          ✦ 마법의 주문이 잉크로 피어오릅니다 ✦
+        </p>
+        <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-snug">
+          “나는 천하의 멍텅구리임을 엄숙하게 선언합니다”
+        </h3>
+        <p class="font-cinzel text-[11px] sm:text-xs text-[#4d3520] font-bold tracking-wider">
+          “I solemnly swear that I am up to no good.”
+        </p>
+        <div class="mt-2 text-[10px] text-[#785b3f] font-serif animate-bounce">
+          📜 국내와 해외의 비밀 발자국들이 모습을 드러냅니다...
+        </div>
+      </div>
+
+      <!-- State 3: Mischief Managed -->
+      <div id="marauderCloseSpell" class="hidden flex flex-col items-center gap-2 incantation-reveal">
+        <div class="text-3xl text-[#841c1c] my-1">✨ 📜 ✨</div>
+        <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-snug">
+          “마법의 장난 끝!”
+        </h3>
+        <p class="font-cinzel text-[11px] sm:text-xs text-[#4d3520] font-bold tracking-wider">
+          “Mischief Managed.”
+        </p>
+        <div class="mt-2 text-[10px] text-[#785b3f] font-serif">
+          양피지가 다시 백지로 봉인되었습니다.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 📰 DAILY PROPHET NEWSPAPER HEADER                            -->
+  <!-- ============================================================ -->
+  <header class="bg-[#e9dac0] border-b-4 border-[#2b1b0e] px-3 sm:px-6 py-2 shadow-2xl relative z-30 shrink-0">
+    <div class="flex items-center justify-between text-[10px] sm:text-xs font-serif font-bold text-[#5a4128] border-b border-[#3b2513]/40 pb-1 mb-1 tracking-wider uppercase">
+      <div class="flex items-center gap-2">
+        <span class="text-[#841c1c] font-black">✦ 마법부 공인 특보 ✦</span>
+        <span class="hidden sm:inline">|</span>
+        <span id="headerSubNotice" class="hidden sm:inline">국제 포트키 원정대 해외 특파 일지</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span id="headerChronicleTag">1000일간의 연대기</span>
+        <span class="px-1.5 py-0.2 bg-[#841c1c] text-[#fbf7ee] text-[9px] font-bold rounded-sm tracking-widest">11 GALLEONS</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-2 py-1">
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-10 h-10 rounded-full border-2 border-[#3b2513] bg-[#3b2513] text-[#f4ecd8] flex items-center justify-center font-prophet text-2xl shadow-md">
+          <span>𝕸</span>
+        </div>
+        <div>
+          <h1 class="font-prophet text-2xl sm:text-3xl md:text-4xl text-[#1a1106] tracking-tighter leading-none">
+            The Marauder's Map
+          </h1>
+          <p class="font-headline italic text-[11px] sm:text-xs text-[#523d27] font-semibold tracking-wide">
+            호그와트 비밀지도: 머글 세계 방랑 일지와 마법 발자국
+          </p>
+        </div>
+      </div>
+
+      <!-- Realm Switching Tabs (Overseas first on left, Domestic second on right) -->
+      <div class="flex items-center gap-1.5 bg-[#dfcaa5] p-1 border-2 border-[#543b22] rounded-sm shadow-inner shrink-0">
+        <button id="tabOverseasBtn" class="realm-tab-btn px-3 py-1 text-xs font-black rounded-sm bg-[#3b2513] text-[#fbf7ee] shadow transition flex items-center gap-1.5 whitespace-nowrap shrink-0">
+          <span>🧹</span>
+          <span class="whitespace-nowrap">국제 포트키 원정</span>
+        </button>
+        <button id="tabDomesticBtn" class="realm-tab-btn px-3 py-1 text-xs font-bold rounded-sm text-[#4a331c] hover:bg-[#cbaf80] transition flex items-center gap-1.5 whitespace-nowrap shrink-0">
+          <span>🚂</span>
+          <span class="whitespace-nowrap">호그와트 근교</span>
+        </button>
+      </div>
+
+      <!-- Controls & Search -->
+      <div class="flex items-center gap-1.5 sm:gap-2 w-full md:w-auto justify-end flex-wrap sm:flex-nowrap">
+        <div class="relative w-36 sm:w-48 shrink-0">
+          <input 
+            id="spotSearch" 
+            type="text" 
+            placeholder="명소·도시·기록 검색..." 
+            class="w-full pl-6 pr-5 py-1 text-xs bg-[#fdf9f0] border-2 border-[#543b22] text-[#24170d] placeholder-[#8c745c] rounded-sm focus:outline-none focus:border-[#841c1c] transition font-serif"
+          />
+          <span class="absolute left-1.5 top-1 text-xs">📜</span>
+          <button id="clearSearchBtn" class="hidden absolute right-1.5 top-1 text-[#543b22] hover:text-[#841c1c] text-xs font-bold">✕</button>
+          <div id="searchDropdown" class="hidden absolute left-0 right-0 top-full mt-1 bg-[#f4ecd8] border-2 border-[#3b2513] shadow-2xl max-h-56 overflow-y-auto parchment-scrollbar z-50 text-xs"></div>
+        </div>
+
+        <!-- Discretely sized lock-only Admin toggle button -->
+        <button id="adminToggleBtn" class="w-6 h-6 rounded-full bg-[#3b2513]/15 hover:bg-[#841c1c]/80 text-[#543b22] hover:text-[#fbf7ee] border border-[#543b22]/30 flex items-center justify-center transition shrink-0 opacity-40 hover:opacity-100" title="특파원 권한 인증">
+          <span id="adminToggleIcon" class="text-[11px] leading-none">🔒</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- 🗺️ INTERACTIVE MAP CANVAS CONTAINER                          -->
+  <!-- ============================================================ -->
+  <div class="relative flex-1 w-full h-[calc(100vh-4.5rem)] overflow-hidden bg-[#150f08] flex items-center justify-center p-0">
+    
+    <div id="mapContainer" class="w-full h-full overflow-hidden prophet-paper relative">
+      
+      <!-- D3 Interactive SVG Canvas -->
+      <svg id="mapSvg" class="w-full h-full cursor-grab active:cursor-grabbing block"></svg>
+
+      <!-- Scratchable Ink Parchment Veil Canvas -->
+      <canvas id="inkVeilCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-10 transition-opacity duration-1000 hidden touch-none"></canvas>
+      <div id="inkVeilHint" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none bg-[#fbf5e6]/95 border-2 border-[#841c1c] px-4 py-2.5 rounded-sm shadow-2xl text-[#841c1c] font-headline text-xs font-bold transition-opacity duration-700 hidden flex items-center gap-2">
+        <span class="text-base animate-bounce">🪄</span>
+        <span>손가락(터치)이나 마우스로 양피지를 문질러 숨겨진 지도를 밝혀내세요!</span>
+      </div>
+
+      <!-- Prominent "Mischief Managed" Floating Stamp Button -->
+      <button id="hideMapBtn" class="absolute top-3 right-3 z-20 group flex items-center gap-1.5 px-3 py-1.5 bg-[#841c1c] hover:bg-[#661111] text-[#fbf7ee] rounded-sm border-2 border-[#4a0d0d] shadow-[0_4px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_4px_16px_rgba(132,28,28,0.6)] transition-all transform hover:scale-105 active:scale-95 font-headline font-black text-xs tracking-wider" title="지도를 다시 백지로 봉인합니다 (Mischief Managed)">
+        <span class="text-sm transition-transform group-hover:rotate-12">📜</span>
+        <span class="font-bold">마법의 장난 끝!</span>
+      </button>
+
+      <!-- View Controls (2D vs 3D Globe - Overseas Mode) -->
+      <div id="viewControls" class="absolute top-3 left-3 z-20 flex items-center gap-1 bg-[#ede0c4]/90 border-2 border-[#3b2513] p-1 shadow-xl rounded-sm">
+        <span class="text-[10px] font-bold text-[#5c3e21] px-1 font-cinzel">VIEW:</span>
+        <button data-proj="2d" class="proj-btn px-2.5 py-1 text-xs font-black rounded-sm bg-[#3b2513] text-[#fbf7ee] shadow transition">
+          2D 지도
+        </button>
+        <button data-proj="3d" id="globeBtn" class="proj-btn px-2.5 py-1 text-xs font-bold rounded-sm bg-[#dfcaa5] hover:bg-[#cbaf80] text-[#342211] transition">
+          3D 지구본
+        </button>
+        <div class="h-4 w-px bg-[#8a6843] mx-0.5"></div>
+        <button id="autoRotateBtn" class="hidden flex items-center gap-1 px-2 py-1 text-xs font-bold rounded-sm bg-[#dfcaa5] hover:bg-[#cbaf80] text-[#841c1c] transition" title="마법 자전 회전">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#841c1c] animate-ping"></span>
+          <span id="rotateBtnLabel">자전 ON</span>
+        </button>
+      </div>
+
+      <!-- Zoom & Recenter Buttons -->
+      <div class="absolute bottom-16 sm:bottom-28 right-3 sm:right-4 z-20 flex flex-col gap-1 bg-[#ede0c4] border-2 border-[#3b2513] p-1 shadow-2xl rounded-sm">
+        <button id="zoomInBtn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-sm bg-[#dfcaa5] hover:bg-[#3b2513] text-[#2b1809] hover:text-[#fbf7ee] flex items-center justify-center transition text-sm font-black border border-[#8a6843]" title="지도 확대">+</button>
+        <button id="zoomOutBtn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-sm bg-[#dfcaa5] hover:bg-[#3b2513] text-[#2b1809] hover:text-[#fbf7ee] flex items-center justify-center transition text-sm font-black border border-[#8a6843]" title="지도 축소">-</button>
+        <button id="resetViewBtn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-sm bg-[#dfcaa5] hover:bg-[#3b2513] text-[#2b1809] hover:text-[#fbf7ee] flex items-center justify-center transition text-xs font-black border border-[#8a6843]" title="초기 시점 ↺">↺</button>
+      </div>
+
+      <!-- Bottom Destinations Index Carousel -->
+      <div class="absolute bottom-1 sm:bottom-3 inset-x-1 sm:inset-x-4 z-20">
+        <div class="bg-[#2b1a0e] text-[#e8d5b5] px-2 py-0.5 text-[8.5px] sm:text-[10px] font-bold uppercase tracking-wider flex items-center justify-between border-t-2 border-x-2 border-[#543b22] rounded-t-sm shadow-md">
+          <span class="flex items-center gap-1 truncate">
+            <span>✦</span>
+            <span id="carouselHeaderTitle" class="truncate">국제 포트키 대원정 해외 여정 전면 색인</span>
+          </span>
+          <div class="flex items-center gap-2 shrink-0 ml-1">
+            <span class="text-[#c4a47c] text-[8px] sm:text-[9.5px] font-serif hidden xs:inline opacity-80 select-none">↔ 마우스 드래그 이동</span>
+            <span id="carouselCountBadge" class="hidden text-[#d97706] text-[8px] sm:text-[10px] font-mono shrink-0"></span>
+          </div>
+        </div>
+        <div id="destCarousel" class="flex overflow-x-auto gap-1 sm:gap-1.5 p-1 sm:p-2 bg-[#ede0c4]/98 border-2 border-[#2b1a0e] shadow-2xl parchment-scrollbar select-none">
+          <!-- Dynamic cards populated here -->
+        </div>
+      </div>
+
+      <!-- Hover Tooltip -->
+      <div id="mapTooltip" class="pointer-events-none absolute z-40 hidden -translate-x-1/2 -translate-y-full px-3 py-1.5 bg-[#fdfaf3] text-[#1c1209] border-2 border-[#3b2513] shadow-[4px_4px_0px_#3b2513] text-xs transition-opacity duration-150">
+        <div class="font-headline font-bold text-xs text-[#841c1c] flex items-center gap-1.5 border-b border-[#3b2513]/20 pb-0.5 mb-1">
+          <span id="tooltipIcon">🪶</span>
+          <span id="tooltipTitle">스팟 명칭</span>
+        </div>
+        <div id="tooltipSub" class="text-[#4f3c2b] text-[10px] font-serif">상세 요약</div>
+      </div>
+
+      <!-- Travel Drawer Backdrop (Click outside to close) -->
+      <div id="drawerBackdrop" class="fixed inset-0 z-25 bg-[#1a0f07]/25 backdrop-blur-[0.5px] transition-opacity duration-300 opacity-0 pointer-events-none cursor-pointer"></div>
+
+      <!-- Detailed Travel Dossier Drawer -->
+      <div id="travelDrawer" class="absolute top-12 left-2 sm:left-4 z-30 max-w-sm w-[94%] sm:w-[410px] max-h-[calc(100%-4.5rem)] overflow-y-auto parchment-scrollbar bg-[#fbf5e6] rounded-sm p-3.5 sm:p-4 shadow-[8px_8px_0px_rgba(20,10,5,0.7)] border-4 border-[#2b1a0e] transition-all duration-300 transform -translate-x-full opacity-0 pointer-events-none flex flex-col gap-2.5">
+        
+        <!-- Header -->
+        <div class="flex items-start justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-12 h-12 rounded-sm border-2 border-[#3b2513] bg-[#e4cfad] p-1 flex items-center justify-center text-3xl shadow-inner magical-moving-frame shrink-0">
+              <span id="drawerFlag">🚂</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span id="drawerBadge" class="text-[9px] px-1.5 py-0.2 bg-[#841c1c] text-[#fbf7ee] font-bold tracking-wider">
+                  호그와트 공인
+                </span>
+                <span id="drawerMilestone" class="text-[10px] text-[#6d4d2f] font-bold">기록</span>
+              </div>
+              <h3 id="drawerNameKo" class="font-headline font-black text-base sm:text-lg text-[#1f1309] leading-tight mt-0.5">명소 명칭</h3>
+              <p id="drawerNameEn" class="font-cinzel text-[10px] text-[#63482f] tracking-wide">Place English Subtitle</p>
+            </div>
+          </div>
+          <button id="closeDrawerBtn" class="text-[#3b2513] hover:text-[#841c1c] font-black text-base p-1" title="닫기">✕</button>
+        </div>
+
+        <!-- Ministry Stamp -->
+        <div class="flex items-center justify-between text-[9px] text-[#735334] font-bold border-t border-b border-[#3b2513]/30 py-1">
+          <span>마법부 인가 특파원 수첩</span>
+          <span class="text-[#841c1c]">✦ OFFICIAL GAZETTE ✦</span>
+        </div>
+
+        <!-- Visited Details / Course -->
+        <div class="bg-[#f0e3c8] p-2 sm:p-2.5 border-2 border-[#543b22]">
+          <span class="text-[10px] font-black text-[#841c1c] uppercase tracking-wider block mb-1 flex items-center gap-1 font-headline">
+            <span>📜</span> 마법 탐방 성격 및 코스
+          </span>
+          <p id="drawerDesc" class="text-xs text-[#352518] leading-relaxed font-serif drop-cap bg-[#f7efdc] p-2 border border-[#806342]/40">
+            <!-- Narrative story -->
+          </p>
+        </div>
+
+        <!-- Spots Tags -->
+        <div>
+          <span class="text-[10px] font-black text-[#5c4026] block mb-1 font-headline">핵심 잠입 거점 & 키워드</span>
+          <div id="drawerSpots" class="flex flex-wrap gap-1">
+            <!-- Badges -->
+          </div>
+        </div>
+
+        <!-- Travel Letter Section -->
+        <div class="border-2 border-[#543b22] bg-[#fbf3dc] p-2.5 rounded-sm">
+          <div class="flex items-center justify-between border-b border-[#3b2513]/25 pb-1 mb-1.5">
+            <span class="text-[10px] font-black text-[#841c1c] flex items-center gap-1 font-headline">
+              <span>✉️</span> 현장에서 띄운 양피지 편지 & 일기
+            </span>
+            <button id="editLetterBtn" class="hidden px-1.5 py-0.5 text-[9px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-sm transition">
+              편지 쓰기/수정
+            </button>
+          </div>
+          <p id="drawerLetterContent" class="text-xs text-[#3d2a19] leading-relaxed font-serif italic bg-[#f4ecd8] p-2 border border-[#8b6b44]/30 rounded-xs">
+            <!-- Letter text -->
+          </p>
+        </div>
+
+        <!-- Moving Photo Gallery -->
+        <div class="border-2 border-[#3b2513] bg-[#f4ebd7] p-2 sm:p-2.5">
+          <div class="flex items-center justify-between border-b border-[#3b2513]/30 pb-1 mb-2">
+            <span class="text-[10px] font-black text-[#841c1c] flex items-center gap-1 font-headline">
+              <span>📸</span> 움직이는 마법 보도 사진첩 (<span id="photoCountBadge">0</span>)
+            </span>
+            <div class="flex items-center gap-1">
+              <button id="openAllPhotosBtn" class="px-1.5 py-0.5 text-[9px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer" title="사진첩 열람">
+                <span>⊞ 사진첩 열람</span>
+              </button>
+              <button id="addMediaPromptBtn" class="hidden px-1.5 py-0.5 text-[9px] bg-[#3b2513] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-sm flex items-center gap-0.5 transition">
+                <span>+ 사진 추가</span>
+              </button>
+            </div>
+          </div>
+          <!-- Sub-Albums Container (for spots with photo albums) -->
+          <div id="drawerSubAlbumsContainer" class="hidden space-y-1.5">
+            <!-- Dynamic Album Cards -->
+          </div>
+          <div id="drawerGalleryGrid" class="hidden">
+            <!-- Hidden: Photos are only displayed in the modal when clicking '열람' -->
+          </div>
+          <p class="text-[9px] text-[#785b3f] mt-1.5 text-center italic font-serif">
+            * [열람 ➔]을 클릭하면 전체 사진들을 모아보고 큰 화면으로 감상할 수 있습니다.
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-2 pt-1 border-t-2 border-[#2b1a0e]">
+          <button id="flySimBtn" class="flex-1 py-1.5 px-3 bg-[#3b2513] hover:bg-[#841c1c] text-[#fbf7ee] rounded-sm text-xs font-bold flex items-center justify-center gap-1.5 shadow transition active:scale-95">
+            <span>🧹</span>
+            <span>마법 이동 궤적 추적</span>
+          </button>
+          <button id="copyTripBtn" class="py-1.5 px-3 bg-[#e8d7b7] hover:bg-[#d8c199] text-[#2b1a0e] border border-[#523820] rounded-sm text-xs font-bold transition">
+            기록 복사
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 1. Photo Overview Grid Modal (작은 사진 한눈에 보기 모달) -->
+    <div id="photoOverviewModal" class="fixed inset-0 z-50 bg-[#171109]/85 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4">
+      <div class="relative bg-[#fbf5e6] border-4 border-[#2b1a0e] max-w-3xl sm:max-w-4xl w-full shadow-[10px_10px_0px_#1a1106] rounded-sm flex flex-col max-h-[92vh] overflow-hidden">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b-2 border-[#3b2513] bg-[#f0e3c8] px-3.5 py-2.5">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">📸</span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 id="overviewModalTitle" class="font-headline font-black text-sm sm:text-base text-[#1f1309] leading-tight">
+                  여행지 마법 보도 사진첩
+                </h4>
+                <span id="overviewModalCount" class="text-[10px] px-2 py-0.5 bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs font-cinzel">
+                  전체 0장
+                </span>
+              </div>
+              <p class="text-[10px] text-[#6d4d2f] font-serif mt-0.5">
+                ✦ 작은 사진을 클릭하면 마법 확대 팝업에서 좌우로 스크롤하며 감상할 수 있습니다 ✦
+              </p>
+            </div>
+          </div>
+          <button id="closePhotoOverviewBtn" class="w-7 h-7 sm:w-8 sm:h-8 bg-[#841c1c] hover:bg-[#6b1414] text-[#fbf7ee] font-black rounded-full border-2 border-[#fbf7ee] flex items-center justify-center shadow transition active:scale-95 text-xs sm:text-sm cursor-pointer" title="닫기">✕</button>
+        </div>
+
+        <!-- Category Tabs (For Bali and grouped albums) -->
+        <div id="overviewCategoryTabs" class="hidden flex items-center gap-1.5 px-3 py-1.5 border-b border-[#3b2513]/25 bg-[#e8d7b7] overflow-x-auto parchment-scrollbar">
+          <!-- Dynamic Category Filter Buttons -->
+        </div>
+
+        <!-- Small Photos Grid Body -->
+        <div id="overviewGalleryGrid" class="overflow-y-auto parchment-scrollbar p-3 sm:p-4 bg-[#f4ebd7] flex-1">
+          <!-- Dynamic Small Photo Cards & Section Dividers -->
+        </div>
+
+        <!-- Footer -->
+        <div class="px-3.5 py-1.5 border-t border-[#3b2513]/30 bg-[#fbf5e6] flex items-center justify-between text-[10px] text-[#735334] font-serif">
+          <span>예언자 일보 특별 시청각 아카이브</span>
+          <span>✦ 사진을 누르면 큰 화면으로 스크롤 감상 ✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Scrollable Photo Lightbox Modal (사진 스크롤 팝업) -->
+    <div id="photoLightbox" class="fixed inset-0 z-50 bg-[#120b06]/92 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4 select-none">
+      <div class="relative bg-[#fbf5e6] border-4 border-[#2b1a0e] p-2.5 sm:p-3.5 max-w-4xl w-full shadow-[12px_12px_0px_#140b04] rounded-sm flex flex-col max-h-[96vh] overflow-hidden">
+        
+        <!-- Lightbox Top Bar -->
+        <div class="flex items-center justify-between border-b-2 border-[#3b2513] pb-2 mb-2">
+          <!-- Return to Small Photos Grid -->
+          <button id="lightboxBackToGridBtn" class="px-2.5 py-1 text-[11px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-1 transition shadow cursor-pointer">
+            <span>⊞</span>
+            <span>작은 사진 한눈에 보기</span>
+          </button>
+
+          <!-- Current Place & Photo Counter -->
+          <div class="flex items-center gap-1.5 text-center">
+            <span id="lightboxPlaceTitle" class="font-headline font-black text-xs sm:text-sm text-[#1f1309] truncate max-w-[140px] sm:max-w-[260px]">
+              여행지 명칭
+            </span>
+            <span id="lightboxCounterBadge" class="text-[10px] sm:text-xs font-mono font-bold bg-[#841c1c] text-[#fbf7ee] px-2 py-0.5 rounded-xs shadow-inner">
+              1 / 1
+            </span>
+          </div>
+
+          <!-- Close Lightbox -->
+          <button id="closeLightboxBtn" class="w-7 h-7 sm:w-8 sm:h-8 bg-[#841c1c] hover:bg-[#6b1414] text-[#fbf7ee] font-black rounded-full border-2 border-[#fbf7ee] flex items-center justify-center shadow-lg transition active:scale-95 text-xs sm:text-sm cursor-pointer" title="닫기">
+            ✕
+          </button>
+        </div>
+
+        <!-- Main Photo Slider / Scroll Track Area -->
+        <div class="relative w-full flex-1 flex items-center justify-center bg-[#170f08] border-2 border-[#3b2513] rounded-xs overflow-hidden">
+          
+          <!-- Prev Button -->
+          <button id="lightboxPrevBtn" class="absolute left-2 sm:left-3 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#3b2513]/85 hover:bg-[#841c1c] text-[#fbf7ee] border-2 border-[#fbf7ee]/70 shadow-lg flex items-center justify-center transition active:scale-95 hover:scale-105 cursor-pointer" title="이전 사진 (←)">
+            <span class="text-xs sm:text-sm font-bold">◀</span>
+          </button>
+
+          <!-- Next Button -->
+          <button id="lightboxNextBtn" class="absolute right-2 sm:right-3 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#3b2513]/85 hover:bg-[#841c1c] text-[#fbf7ee] border-2 border-[#fbf7ee]/70 shadow-lg flex items-center justify-center transition active:scale-95 hover:scale-105 cursor-pointer" title="다음 사진 (→)">
+            <span class="text-xs sm:text-sm font-bold">▶</span>
+          </button>
+
+          <!-- Scroll Track -->
+          <div id="lightboxScrollTrack" class="w-full h-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar py-2">
+            <!-- Dynamic Slides (Images & Videos) -->
+          </div>
+
+        </div>
+
+        <!-- Bottom Thumbnail Strip (작은 사진 스크롤 레일) -->
+        <div class="mt-2 pt-1.5 border-t border-[#3b2513]/25 flex items-center gap-2">
+          <span class="text-[9px] font-bold text-[#6d4d2f] font-serif shrink-0 hidden sm:inline">스크롤 탐색:</span>
+          <div id="lightboxThumbRail" class="flex items-center gap-1.5 overflow-x-auto parchment-scrollbar py-1 px-1 flex-1">
+            <!-- Dynamic Mini Thumbnails -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Admin Authentication Modal -->
+    <div id="adminAuthModal" class="fixed inset-0 z-50 bg-[#171109]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-[#fbf5e6] border-4 border-[#2b1a0e] p-4 max-w-xs w-full shadow-2xl rounded-sm">
+        <div class="flex items-center justify-between border-b border-[#3b2513]/30 pb-1.5 mb-2.5">
+          <div class="flex items-center gap-1.5">
+            <span>🗝️</span>
+            <h4 class="font-headline font-black text-sm text-[#1f1309]">특파원 권한 인증</h4>
+          </div>
+          <button id="closeAdminAuthModalBtn" class="text-xs font-bold text-[#543b22] hover:text-[#841c1c]">✕</button>
+        </div>
+        <p class="text-[11px] text-[#6d4d2f] font-serif mb-2 leading-relaxed">
+          예언자 일보 수석 특파원 마법 암호(alohomora)를 입력하시면 사진 대량 추가 및 편지 작성 권한이 활성화됩니다.
+        </p>
+        <div class="space-y-1.5">
+          <input 
+            id="adminPasswordInput" 
+            type="password" 
+            placeholder="마법 주문을 입력하세요" 
+            class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-1.5 text-xs outline-none font-serif text-[#24170d] focus:border-[#841c1c]"
+          />
+          <p id="adminAuthError" class="text-[10px] text-[#841c1c] font-bold hidden">✦ 주문이 일치하지 않습니다.</p>
+        </div>
+        <div class="flex items-center justify-end gap-2 mt-3.5 pt-2 border-t border-[#3b2513]/20">
+          <button id="cancelAdminAuthBtn" class="px-2.5 py-1 text-xs border border-[#543b22] bg-[#e8d7b7] text-[#2b1809] font-bold">취소</button>
+          <button id="submitAdminAuthBtn" class="px-3 py-1 text-xs bg-[#841c1c] text-[#fbf7ee] font-bold shadow">봉인 해제</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Add Media Custom Modal -->
+    <div id="addMediaModal" class="fixed inset-0 z-50 bg-[#171109]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-[#fbf5e6] border-4 border-[#2b1a0e] p-4 max-w-md w-full shadow-2xl rounded-sm">
+        <div class="flex items-center justify-between border-b border-[#3b2513]/30 pb-1.5 mb-2.5">
+          <h4 class="font-headline font-black text-sm text-[#1f1309]">보도 미디어 등록 보관소</h4>
+          <button id="closeAddMediaModalBtn" class="text-xs font-bold text-[#543b22] hover:text-[#841c1c]">✕</button>
+        </div>
+        <div class="flex border-b border-[#543b22] mb-3">
+          <button id="tabLocalFileBtn" class="flex-1 py-1.5 text-xs font-black text-[#841c1c] border-b-2 border-[#841c1c] bg-[#ede0c4]">
+            📂 내 기기 사진 대량 업로드
+          </button>
+          <button id="tabWebUrlBtn" class="flex-1 py-1.5 text-xs font-bold text-[#5c4026] hover:bg-[#ede0c4]/60 transition">
+            🔗 웹 주소(URL) 링크 등록
+          </button>
+        </div>
+        <div id="bulkUploadView" class="space-y-2.5">
+          <div id="dropZone" class="border-2 border-dashed border-[#8a6843] bg-[#f7efdc] p-5 text-center cursor-pointer hover:bg-[#ebd9b6] hover:border-[#841c1c] transition rounded-xs">
+            <span class="text-3xl block mb-1">📸</span>
+            <p class="text-xs font-headline font-bold text-[#2e1d0f]">이곳을 클릭하거나 사진 파일들을 끌어다 놓으세요</p>
+            <p class="text-[10px] text-[#6d4d2f] font-serif mt-0.5">여러 장을 한 번에 선택하여 보관할 수 있습니다.</p>
+            <input id="bulkFileInput" type="file" accept="image/*" multiple class="hidden"/>
+          </div>
+          <p id="uploadStatusMsg" class="text-[11px] font-bold text-[#841c1c] text-center hidden animate-pulse font-serif"></p>
+        </div>
+        <div id="urlUploadView" class="hidden space-y-2 text-xs font-serif">
+          <div>
+            <label class="block text-[11px] font-bold text-[#523d27] mb-0.5">웹 주소 (URL)</label>
+            <input id="newMediaUrl" type="text" placeholder="https://..." class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-1.5 text-xs outline-none font-mono"/>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-[#523d27] mb-0.5">보도 설명 (캡션)</label>
+            <input id="newMediaCaption" type="text" placeholder="현장 취재 설명..." class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-1.5 text-xs outline-none"/>
+          </div>
+          <div class="flex items-center justify-end gap-2 pt-2">
+            <button id="saveNewMediaBtn" class="px-3 py-1 text-xs bg-[#841c1c] text-[#fbf7ee] font-bold shadow">URL 등록</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-2 mt-3.5 pt-2 border-t border-[#3b2513]/20">
+          <button id="cancelAddMediaBtn" class="px-2.5 py-1 text-xs border border-[#543b22] bg-[#e8d7b7] text-[#2b1809] font-bold">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letter Edit Modal -->
+    <div id="letterModal" class="fixed inset-0 z-50 bg-[#171109]/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-[#fbf5e6] border-4 border-[#2b1a0e] p-4 max-w-md w-full shadow-2xl rounded-sm">
+        <div class="flex items-center justify-between border-b border-[#3b2513]/30 pb-1.5 mb-2.5">
+          <h4 class="font-headline font-black text-sm text-[#1f1309]">현장 양피지 편지 작성 & 수정</h4>
+          <button id="closeLetterModalBtn" class="text-xs font-bold text-[#543b22] hover:text-[#841c1c]">✕</button>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-[#523d27] mb-1">여행에서 느낀 소중한 감상을 남겨보세요</label>
+          <textarea id="letterInputText" rows="6" class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-2 text-xs outline-none font-serif leading-relaxed" placeholder="“그곳에서 보낸 시간은 마치 마법 같았어...”"></textarea>
+        </div>
+        <div class="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-[#3b2513]/20">
+          <button id="cancelLetterBtn" class="px-2.5 py-1 text-xs border border-[#543b22] bg-[#e8d7b7] text-[#2b1809] font-bold">취소</button>
+          <button id="saveLetterBtn" class="px-3 py-1 text-xs bg-[#841c1c] text-[#fbf7ee] font-bold shadow">봉인 및 저장</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="absolute bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#3b2513] text-[#fbf7ee] border-2 border-[#c9933b] px-4 py-2 rounded-sm text-xs shadow-2xl opacity-0 transition-opacity pointer-events-none font-serif font-bold">
+      속보 전달 완료
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 📜 JAVASCRIPT LOGIC                                          -->
+  <!-- ============================================================ -->
+  <script src="assets/js/map-data.js"></script>
+  <script src="assets/js/map.js"></script>
+</body>
+</html>
