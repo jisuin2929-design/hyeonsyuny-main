@@ -233,6 +233,48 @@ const DOMESTIC_SPOTS = [
 ];
 
 // ============================================================
+// 🛠️ 미디어 아이템 생성 헬퍼 함수
+// 파일명 배열만 입력하면 확장자(.mp4, .mov 등)를 파악해 type을 자동 지정하고,
+// 카테고리(category) 및 폴더(folder)를 일괄 매핑하여 코드 길이를 대폭 압축합니다.
+// ============================================================
+function createMediaItems(input, defaultCategory, defaultFolder) {
+  var list = [];
+  if (Array.isArray(input)) {
+    input.forEach(function (entry) {
+      if (typeof entry === "string") {
+        var isVid = /\.(mp4|mov)$/i.test(entry);
+        list.push({
+          type: isVid ? "video" : "image",
+          name: entry,
+          category: defaultCategory || "",
+          folder: defaultFolder || ""
+        });
+      } else if (entry && Array.isArray(entry.files)) {
+        var cat = entry.category || defaultCategory || "";
+        var fol = entry.folder || defaultFolder || "";
+        entry.files.forEach(function (fileName) {
+          var isVid = /\.(mp4|mov)$/i.test(fileName);
+          list.push({
+            type: isVid ? "video" : "image",
+            name: fileName,
+            category: cat,
+            folder: fol
+          });
+        });
+      } else if (entry && entry.name) {
+        if (!entry.type) {
+          entry.type = /\.(mp4|mov)$/i.test(entry.name) ? "video" : "image";
+        }
+        if (!entry.category && defaultCategory) entry.category = defaultCategory;
+        if (!entry.folder && defaultFolder) entry.folder = defaultFolder;
+        list.push(entry);
+      }
+    });
+  }
+  return list;
+}
+
+// ============================================================
 // 🌐 DATASET 2: OVERSEAS DESTINATIONS (7 SPOTS)
 // ============================================================
 const OVERSEAS_SPOTS = [
@@ -274,77 +316,41 @@ const OVERSEAS_SPOTS = [
     ],
     photos: (function () {
       var NISEKO_BASE = "images/여행지/일본_니세코_오타루_삿포로/";
-      var raw = [
-        { type: "image", name: "IMG_8368.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8448.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8470.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8483.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8526.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8532.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8537.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8542.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8544.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8546.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8569.JPG", category: "niseko" },
-        { type: "image", name: "IMG_8597.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8606.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8620.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8626.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8678.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8685.JPEG", category: "niseko" },
-        { type: "video", name: "IMG_4140.MP4", category: "niseko" },
-        { type: "image", name: "IMG_8696.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_4238.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8727.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8731.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8744.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_4284.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8760.JPG", category: "niseko" },
-        { type: "image", name: "IMG_8765.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8773.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8785.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8790.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8814.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8837.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_4328.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_4351.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_8974.JPG", category: "niseko" },
-        { type: "image", name: "IMG_8999.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_9002.JPEG", category: "niseko" },
-        { type: "image", name: "IMG_9020.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9053.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_4388.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_4402.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_4413.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9126.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9135.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_4434.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9138.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9150.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9151.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9162.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9173.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9179.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_4515.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_9217.JPEG", category: "otaru" },
-        { type: "image", name: "IMG_4557.JPG", category: "otaru" },
-        { type: "image", name: "IMG_9237.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9260.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9275.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9284.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9286.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9292.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9303.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9342.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9361.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_4667.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_4717.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9422.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_4782.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_4918.JPEG", category: "sapporo" },
-        { type: "image", name: "IMG_9508.JPEG", category: "sapporo" },
-
-      ];
+      var raw = createMediaItems([
+        {
+          category: "niseko",
+          files: [
+            "IMG_8368.JPEG", "IMG_8448.JPEG", "IMG_8470.JPEG", "IMG_8483.JPEG",
+            "IMG_8526.JPEG", "IMG_8532.JPEG", "IMG_8537.JPEG", "IMG_8542.JPEG",
+            "IMG_8544.JPEG", "IMG_8546.JPEG", "IMG_8569.JPG", "IMG_8597.JPEG",
+            "IMG_8606.JPEG", "IMG_8620.JPEG", "IMG_8626.JPEG", "IMG_8678.JPEG",
+            "IMG_8685.JPEG", "IMG_4140.MP4", "IMG_8696.JPEG", "IMG_4238.JPEG",
+            "IMG_8727.JPEG", "IMG_8731.JPEG", "IMG_8744.JPEG", "IMG_4284.JPEG",
+            "IMG_8760.JPG", "IMG_8765.JPEG", "IMG_8773.JPEG", "IMG_8785.JPEG",
+            "IMG_8790.JPEG", "IMG_8814.JPEG", "IMG_8837.JPEG", "IMG_4328.JPEG",
+            "IMG_4351.JPEG", "IMG_8974.JPG", "IMG_8999.JPEG", "IMG_9002.JPEG"
+          ]
+        },
+        {
+          category: "otaru",
+          files: [
+            "IMG_9020.JPEG", "IMG_9053.JPEG", "IMG_4388.JPEG", "IMG_4402.JPEG",
+            "IMG_4413.JPEG", "IMG_9126.JPEG", "IMG_9135.JPEG", "IMG_4434.JPEG",
+            "IMG_9138.JPEG", "IMG_9150.JPEG", "IMG_9151.JPEG", "IMG_9162.JPEG",
+            "IMG_9173.JPEG", "IMG_9179.JPEG", "IMG_4515.JPEG", "IMG_9217.JPEG",
+            "IMG_4557.JPG"
+          ]
+        },
+        {
+          category: "sapporo",
+          files: [
+            "IMG_9237.JPEG", "IMG_9260.JPEG", "IMG_9275.JPEG", "IMG_9284.JPEG",
+            "IMG_9286.JPEG", "IMG_9292.JPEG", "IMG_9303.JPEG", "IMG_9342.JPEG",
+            "IMG_9361.JPEG", "IMG_4667.JPEG", "IMG_4717.JPEG", "IMG_9422.JPEG",
+            "IMG_4782.JPEG", "IMG_4918.JPEG", "IMG_9508.JPEG"
+          ]
+        }
+      ]);
 
       var customCaptions = {};
       var nCount = 0, oCount = 0, sCount = 0;
@@ -408,29 +414,15 @@ const OVERSEAS_SPOTS = [
     letter: "“사파리 기린이랑 인사하던 현수. 망고스틴에 폭 빠져버린 현수. 동남아를 좋아하는 수인. 즈엉동 야시장에서 먹던 가리비 구이와 망고의 달콤함.”",
     photos: (function () {
       var PHUQUOC_BASE = "images/여행지/베트남_푸꾸옥/";
-      var raw = [
-        { type: "image", name: "IMG_6149.JPEG" },
-        { type: "image", name: "IMG_6153.JPEG" },
-        { type: "image", name: "IMG_4907.JPG" },
-        { type: "image", name: "IMG_3096.JPEG" },
-        { type: "image", name: "IMG_4903.JPG" },
-        { type: "image", name: "IMG_2984.jpeg" },
-        { type: "image", name: "IMG_3062.jpeg" },
-        { type: "image", name: "IMG_3300.jpeg" },
-        { type: "image", name: "IMG_3585.JPEG" },
-        { type: "image", name: "IMG_3609.JPEG" },
-        { type: "image", name: "IMG_3645.JPEG" },
-        { type: "image", name: "IMG_3664.JPEG" },
-        { type: "image", name: "IMG_6385.JPEG" },
-        { type: "image", name: "IMG_6391.JPEG" },
-        { type: "image", name: "IMG_4926.JPG" },
-        { type: "image", name: "IMG_4923.JPG" },
-        { type: "image", name: "IMG_4563.JPG" },
-        { type: "video", name: "dji_fly_0_0_0_1721367542267_video_cache.MP4" },
-        { type: "video", name: "dji_fly_0_0_0_1721367542272_video_cache.mp4" },
-        { type: "video", name: "IMG_7070.MP4" },
-        { type: "image", name: "IMG_7186.JPEG" },
-      ];
+      var raw = createMediaItems([
+        "IMG_6149.JPEG", "IMG_6153.JPEG", "IMG_4907.JPG", "IMG_3096.JPEG",
+        "IMG_4903.JPG", "IMG_2984.jpeg", "IMG_3062.jpeg", "IMG_3300.jpeg",
+        "IMG_3585.JPEG", "IMG_3609.JPEG", "IMG_3645.JPEG", "IMG_3664.JPEG",
+        "IMG_6385.JPEG", "IMG_6391.JPEG", "IMG_4926.JPG", "IMG_4923.JPG",
+        "IMG_4563.JPG", "dji_fly_0_0_0_1721367542267_video_cache.MP4",
+        "dji_fly_0_0_0_1721367542272_video_cache.mp4", "IMG_7070.MP4",
+        "IMG_7186.JPEG"
+      ]);
 
       var customCaptions = {};
       var count = 0;
@@ -536,144 +528,78 @@ const OVERSEAS_SPOTS = [
     ],
     photos: (function () {
       var SWISS_BASE = "images/여행지/스위스/";
-      var raw = [
-        { type: "video", name: "IMG_2981.MP4", folder: "그린델발트", category: "grindelwald" },
-        { type: "video", name: "IMG_3037.MP4", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_2985.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1453.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_2995.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3002.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3017.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3024.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1460.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3045.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3053.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3078.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3096.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3153.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1533.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3171.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1555.JPG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3193.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3212.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3215.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3329.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1579.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3357.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3411.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3446.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3476.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1636.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1679.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3540.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3603.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_1703.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_4037.JPG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3689.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_3812.JPEG", folder: "그린델발트", category: "grindelwald" },
-        { type: "image", name: "IMG_2464.JPG", folder: "그린델발트", category: "grindelwald" },
-        { type: "video", name: "IMG_0900.MP4", folder: "융프라우", category: "jungfrau" },
-        { type: "video", name: "IMG_0940.MP4", folder: "융프라우", category: "jungfrau" },
-        { type: "video", name: "IMG_2846.MP4", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0850.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0863.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0873.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0879.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0880.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0894.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0914.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0934.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_0999.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1050.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1057.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1169.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1223.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1267.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1376.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1389.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1432.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1435.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_2939.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_2949.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_2954.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_2958.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_2970.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_2998.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_3017.JPEG", folder: "융프라우", category: "jungfrau" },
-        { type: "image", name: "IMG_1858.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1861.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1864.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1866.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1893.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1895.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1898.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1903.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1908.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0617.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0642.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0668.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0675.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_1950.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2006.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2016.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2024.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2030.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2049.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2050.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0706.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0710.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "video", name: "IMG_2073.MP4", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2152.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2188.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_7663.JPG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2205.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_7661.JPG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2219.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2227.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2231.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2236.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2263.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2277.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2318.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2375.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2381.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2392.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2426.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2430.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2470.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2473.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0742.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0746.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_7662.JPG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0757.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_7664.JPG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2554.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2558.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_0767.JPEG", folder: "체르마트", category: "zermatt" },
-        { type: "image", name: "IMG_2636.JPEG", folder: "체르마트", category: "zermatt" },
-
-        // 🏞️ [인터라켄 (Interlaken)]
-        { type: "image", name: "GOPR1561.JPG", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "GOPR4574.JPG", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "GOPR4587.JPG", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "IMG_1846.jpeg", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "IMG_3914.jpeg", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "IMG_3919.jpeg", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "IMG_3923.jpeg", folder: "인터라켄", category: "interlaken" },
-        { type: "image", name: "IMG_3941.jpeg", folder: "인터라켄", category: "interlaken" },
-
-        // 🌉 [루체른 (Lucerne)]
-        { type: "image", name: "IMG_1945.jpeg", folder: "루체른", category: "lucerne" },
-        { type: "image", name: "IMG_4179.jpg", folder: "루체른", category: "lucerne" },
-        { type: "image", name: "IMG_4229.jpeg", folder: "루체른", category: "lucerne" },
-        { type: "image", name: "IMG_4302.jpeg", folder: "루체른", category: "lucerne" },
-        { type: "image", name: "IMG_4429.jpeg", folder: "루체른", category: "lucerne" },
-        { type: "image", name: "IMG_4469.jpeg", folder: "루체른", category: "lucerne" },
-
-        // 🏛️ [취리히 (Zurich)]
-        { type: "image", name: "IMG_2017.jpeg", folder: "취리히", category: "zurich" },
-        { type: "image", name: "IMG_5130.jpg", folder: "취리히", category: "zurich" }
-      ];
+      var raw = createMediaItems([
+        {
+          folder: "그린델발트",
+          category: "grindelwald",
+          files: [
+            "IMG_2981.MP4", "IMG_3037.MP4", "IMG_2985.JPEG", "IMG_1453.JPEG",
+            "IMG_2995.JPEG", "IMG_3002.JPEG", "IMG_3017.JPEG", "IMG_3024.JPEG",
+            "IMG_1460.JPEG", "IMG_3045.JPEG", "IMG_3053.JPEG", "IMG_3078.JPEG",
+            "IMG_3096.JPEG", "IMG_3153.JPEG", "IMG_1533.JPEG", "IMG_3171.JPEG",
+            "IMG_1555.JPG", "IMG_3193.JPEG", "IMG_3212.JPEG", "IMG_3215.JPEG",
+            "IMG_3329.JPEG", "IMG_1579.JPEG", "IMG_3357.JPEG", "IMG_3411.JPEG",
+            "IMG_3446.JPEG", "IMG_3476.JPEG", "IMG_1636.JPEG", "IMG_1679.JPEG",
+            "IMG_3540.JPEG", "IMG_3603.JPEG", "IMG_1703.JPEG", "IMG_4037.JPG",
+            "IMG_3689.JPEG", "IMG_3812.JPEG", "IMG_2464.JPG"
+          ]
+        },
+        {
+          folder: "융프라우",
+          category: "jungfrau",
+          files: [
+            "IMG_0900.MP4", "IMG_0940.MP4", "IMG_2846.MP4", "IMG_0850.JPEG",
+            "IMG_0863.JPEG", "IMG_0873.JPEG", "IMG_0879.JPEG", "IMG_0880.JPEG",
+            "IMG_0894.JPEG", "IMG_0914.JPEG", "IMG_0934.JPEG", "IMG_0999.JPEG",
+            "IMG_1050.JPEG", "IMG_1057.JPEG", "IMG_1169.JPEG", "IMG_1223.JPEG",
+            "IMG_1267.JPEG", "IMG_1376.JPEG", "IMG_1389.JPEG", "IMG_1432.JPEG",
+            "IMG_1435.JPEG", "IMG_2939.JPEG", "IMG_2949.JPEG", "IMG_2954.JPEG",
+            "IMG_2958.JPEG", "IMG_2970.JPEG", "IMG_2998.JPEG", "IMG_3017.JPEG"
+          ]
+        },
+        {
+          folder: "체르마트",
+          category: "zermatt",
+          files: [
+            "IMG_1858.JPEG", "IMG_1861.JPEG", "IMG_1864.JPEG", "IMG_1866.JPEG",
+            "IMG_1893.JPEG", "IMG_1895.JPEG", "IMG_1898.JPEG", "IMG_1903.JPEG",
+            "IMG_1908.JPEG", "IMG_0617.JPEG", "IMG_0642.JPEG", "IMG_0668.JPEG",
+            "IMG_0675.JPEG", "IMG_1950.JPEG", "IMG_2006.JPEG", "IMG_2016.JPEG",
+            "IMG_2024.JPEG", "IMG_2030.JPEG", "IMG_2049.JPEG", "IMG_2050.JPEG",
+            "IMG_0706.JPEG", "IMG_0710.JPEG", "IMG_2073.MP4", "IMG_2152.JPEG",
+            "IMG_2188.JPEG", "IMG_7663.JPG", "IMG_2205.JPEG", "IMG_7661.JPG",
+            "IMG_2219.JPEG", "IMG_2227.JPEG", "IMG_2231.JPEG", "IMG_2236.JPEG",
+            "IMG_2263.JPEG", "IMG_2277.JPEG", "IMG_2318.JPEG", "IMG_2375.JPEG",
+            "IMG_2381.JPEG", "IMG_2392.JPEG", "IMG_2426.JPEG", "IMG_2430.JPEG",
+            "IMG_2470.JPEG", "IMG_2473.JPEG", "IMG_0742.JPEG", "IMG_0746.JPEG",
+            "IMG_7662.JPG", "IMG_0757.JPEG", "IMG_7664.JPG", "IMG_2554.JPEG",
+            "IMG_2558.JPEG", "IMG_0767.JPEG", "IMG_2636.JPEG"
+          ]
+        },
+        {
+          folder: "인터라켄",
+          category: "interlaken",
+          files: [
+            "GOPR1561.JPG", "GOPR4574.JPG", "GOPR4587.JPG", "IMG_1846.jpeg",
+            "IMG_3914.jpeg", "IMG_3919.jpeg", "IMG_3923.jpeg", "IMG_3941.jpeg"
+          ]
+        },
+        {
+          folder: "루체른",
+          category: "lucerne",
+          files: [
+            "IMG_1945.jpeg", "IMG_4179.jpg", "IMG_4229.jpeg", "IMG_4302.jpeg",
+            "IMG_4429.jpeg", "IMG_4469.jpeg"
+          ]
+        },
+        {
+          folder: "취리히",
+          category: "zurich",
+          files: [
+            "IMG_2017.jpeg", "IMG_5130.jpg"
+          ]
+        }
+      ]);
 
       var customCaptions = {};
       var zCount = 0, gCount = 0, jCount = 0, inCount = 0, lCount = 0, zuCount = 0;
@@ -755,34 +681,15 @@ const OVERSEAS_SPOTS = [
     letter: "“글리코상 앞에서 익살맞게 포즈도 취하고, USJ 호그와트 성에서 마시던 버터맥주와 마리오 카트 레이싱! 고베 바닷바람을 맞으며 바라본 붉은 노을까지 잊지 못할 봄날의 시간들.”",
     photos: (function () {
       var OSAKA_BASE = "images/여행지/일본_오사카/";
-      var raw = [
-        { type: "image", name: "IMG_8359.JPEG" },
-        { type: "image", name: "IMG_8385.JPEG" },
-        { type: "image", name: "IMG_8445.JPEG" },
-        { type: "image", name: "IMG_8550.JPEG" },
-        { type: "image", name: "IMG_2608.JPEG" },
-        { type: "image", name: "IMG_8659.JPEG" },
-        { type: "image", name: "IMG_2622.JPEG" },
-        { type: "image", name: "IMG_8826.JPEG" },
-        { type: "image", name: "IMG_8899.JPEG" },
-        { type: "image", name: "IMG_2654.JPEG" },
-        { type: "image", name: "IMG_2684.JPEG" },
-        { type: "image", name: "IMG_8991.JPEG" },
-        { type: "image", name: "IMG_9064.JPEG" },
-        { type: "image", name: "IMG_2760.JPEG" },
-        { type: "image", name: "IMG_9242.JPEG" },
-        { type: "image", name: "IMG_9296.JPEG" },
-        { type: "image", name: "IMG_9348.JPEG" },
-        { type: "image", name: "IMG_9358.JPEG" },
-        { type: "image", name: "IMG_9405.JPEG" },
-        { type: "image", name: "IMG_9428.JPEG" },
-        { type: "image", name: "IMG_9437.JPEG" },
-        { type: "image", name: "IMG_2835.JPEG" },
-        { type: "image", name: "IMG_9517.JPEG" },
-        { type: "image", name: "IMG_9552.JPEG" },
-        { type: "image", name: "IMG_9570.JPEG" },
-        { type: "image", name: "IMG_9665.JPEG" }
-      ];
+      var raw = createMediaItems([
+        "IMG_8359.JPEG", "IMG_8385.JPEG", "IMG_8445.JPEG", "IMG_8550.JPEG",
+        "IMG_2608.JPEG", "IMG_8659.JPEG", "IMG_2622.JPEG", "IMG_8826.JPEG",
+        "IMG_8899.JPEG", "IMG_2654.JPEG", "IMG_2684.JPEG", "IMG_8991.JPEG",
+        "IMG_9064.JPEG", "IMG_2760.JPEG", "IMG_9242.JPEG", "IMG_9296.JPEG",
+        "IMG_9348.JPEG", "IMG_9358.JPEG", "IMG_9405.JPEG", "IMG_9428.JPEG",
+        "IMG_9437.JPEG", "IMG_2835.JPEG", "IMG_9517.JPEG", "IMG_9552.JPEG",
+        "IMG_9570.JPEG", "IMG_9665.JPEG"
+      ]);
 
       var customCaptions = {
         "IMG_8359.JPEG": "간사이 국제공항 도착 & 설레는 오사카 여행의 시작",
@@ -841,10 +748,7 @@ const OVERSEAS_SPOTS = [
     letter: "“붉은 도쿄타워 아래서 마신 시원한 음료와, 끝없이 교차하는 시부야 스크램블 속에서 느꼈던 도쿄만의 두근거리는 에너지!”",
     photos: (function () {
       var TOKYO_BASE = "images/여행지/일본_도쿄/";
-      var raw = [
-        { type: "image", name: "IMG_5660.jpeg" },
-        { type: "image", name: "IMG_5680.jpeg" }
-      ];
+      var raw = createMediaItems(["IMG_5660.jpeg", "IMG_5680.jpeg"]);
 
       var customCaptions = {
         "IMG_5660.jpeg": "도쿄 전통 장어덮밥(우나쥬) & 갓 구운 계란말이 만찬",
