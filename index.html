@@ -1,10 +1,35 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Daily Prophet - 1000일 기념 마법 특별판</title>
+  <meta name="description" content="✦ 마법부 공식 인가 호외 제 1000호 ✦ 호그와트 마법학교 & 사랑의 고대마법 연구소 공식 인증, 1000일 기념 특별판">
+
+  <!-- Open Graph / KakaoTalk / Facebook (링크 공유 시 메인 썸네일) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.hyeonsyuny.com/">
+  <meta property="og:title" content="The Daily Prophet - 1000일 기념 마법 특별판">
+  <meta property="og:description" content="✦ 마법부 공식 인가 호외 제 1000호 ✦ 사랑의 고대마법 연구소 공식 인증, 1000일 기념 마법 특별판">
+  <meta property="og:image" content="https://www.hyeonsyuny.com/images/thumbnail.jpg">
+  <meta property="og:image:secure_url" content="https://www.hyeonsyuny.com/images/thumbnail.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="1500">
+  <meta property="og:image:alt" content="The Daily Prophet 1000일 특별판 메인 썸네일">
+
+  <!-- 동영상 메타데이터 (main.mov 영상 지원 플랫폼용) -->
+  <meta property="og:video" content="https://www.hyeonsyuny.com/images/main.mov">
+  <meta property="og:video:secure_url" content="https://www.hyeonsyuny.com/images/main.mov">
+  <meta property="og:video:type" content="video/quicktime">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Daily Prophet - 1000일 기념 마법 특별판">
+  <meta name="twitter:description" content="✦ 마법부 공식 인가 호외 제 1000호 ✦ 사랑의 고대마법 연구소 공식 인증, 1000일 기념 마법 특별판">
+  <meta name="twitter:image" content="https://www.hyeonsyuny.com/images/thumbnail.jpg">
+  <meta name="twitter:player" content="https://www.hyeonsyuny.com/images/main.mov">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -316,9 +341,9 @@
         <div class="flex flex-col gap-1.5 shrink-0 w-full sm:w-40">
           <button id="mapSoundBtn" type="button"
             class="w-full px-2.5 py-1.5 bg-[#3b2513] hover:bg-ink-crimson text-parchment-50 font-cinzel font-bold text-xs rounded-xs border border-ink shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer"
-            title="마법 배경음 및 효과음 토글">
-            <span>🔔</span>
-            <span id="mapSoundLabel">마법 음향 ON</span>
+            title="해리포터 오프닝 BGM & 마법 음향 토글">
+            <span id="mapSoundIcon">🎵</span>
+            <span id="mapSoundLabel">해리포터 BGM ON</span>
           </button>
 
           <button id="toggleMapFullscreenBtn" type="button"
@@ -1727,6 +1752,19 @@
       </button>
     </div>
   </div>
+
+  <!-- ============================================================ -->
+  <!-- 🎵 플로팅 해리포터 테마 BGM 플레이어 위젯                       -->
+  <!-- ============================================================ -->
+  <aside id="floatingBgmWidget" class="fixed bottom-4 right-4 z-40 flex items-center shadow-lg transition-transform hover:scale-105">
+    <button id="floatingBgmBtn" type="button"
+      class="flex items-center gap-2 px-3 py-2 bg-[#231407] hover:bg-[#38200c] text-amber-300 border-2 border-amber-600/80 rounded-full font-serif text-xs font-bold shadow-[0_4px_16px_rgba(0,0,0,0.6)] cursor-pointer transition-all"
+      title="해리포터 오프닝 BGM 재생 / 일시정지">
+      <span id="floatingBgmIcon" class="inline-block text-sm animate-spin" style="animation-duration: 5s;">🎶</span>
+      <span id="floatingBgmLabel">해리포터 BGM ON</span>
+      <span id="floatingBgmIndicator" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    </button>
+  </aside>
 
   <!-- ============================================================ -->
   <!-- 🪄 SCRIPT: Daily Prophet Interaction & Sound Engine          -->

@@ -113,7 +113,7 @@ input {
 .marquee-track {
   display: inline-block;
   white-space: nowrap;
-  animation: marqueeScroll 28s linear infinite;
+  animation: marqueeScroll 55s linear infinite;
 }
 
 .marquee-track:hover {

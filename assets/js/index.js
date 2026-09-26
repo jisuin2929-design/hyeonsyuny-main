@@ -94,12 +94,16 @@ if (highwayTimelineTrack) {
 // 2. Web Audio Synthesizer (외부 오디오 의존 없는 순수 사운드 생성)
 // -------------------------------------------------------------
 let audioCtx = null;
+let bgmMasterGain = null;
 let isSoundOn = true;
 let cachedNoiseBuffer = null;
 
 function getAudioCtx() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    bgmMasterGain = audioCtx.createGain();
+    bgmMasterGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+    bgmMasterGain.connect(audioCtx.destination);
   }
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -231,6 +235,239 @@ function playMusicChime() {
 }
 
 // -------------------------------------------------------------
+// 2.5 해리포터 오프닝 테마 BGM (Hedwig's Theme) 웹 오디오 합성기
+// -------------------------------------------------------------
+const NOTE_FREQS = {
+  B3: 246.94, C4: 261.63, D4: 293.66, "D#4": 311.13, Eb4: 311.13, E4: 329.63,
+  F4: 349.23, "F#4": 369.99, G4: 392.00, "G#4": 415.30, A4: 440.00, "A#4": 466.16,
+  Bb4: 466.16, B4: 493.88, C5: 523.25, "C#5": 554.37, D5: 587.33, "D#5": 622.25,
+  Eb5: 622.25, E5: 659.25, F5: 698.46, "F#5": 739.99, G5: 783.99, "G#5": 830.61,
+  A5: 880.00, "A#5": 932.33, Bb5: 932.33, B5: 987.77, C6: 1046.50, "C#6": 1108.73,
+  D6: 1174.66, "D#6": 1244.51, E6: 1318.51, F6: 1396.91, "F#6": 1479.98, G6: 1567.98,
+  REST: 0
+};
+
+const BEAT_UNIT = 0.28; // 8분음표 단위 시간 (초)
+
+// 해리포터 시그니처 오프닝 멜로디 (Hedwig's Theme)
+const HEDWIG_MELODY = [
+  // 1부: 신비로운 호그와트의 서막
+  { n: "B4", b: 2 },
+  { n: "E5", b: 3 },
+  { n: "G5", b: 1 },
+  { n: "F#5", b: 2 },
+  { n: "E5", b: 4 },
+  { n: "B5", b: 2 },
+  { n: "A5", b: 5.5 },
+  { n: "F#5", b: 5.5 },
+  { n: "E5", b: 3 },
+  { n: "G5", b: 1 },
+  { n: "F#5", b: 2 },
+  { n: "D#5", b: 3.5 },
+  { n: "F5", b: 2 },
+  { n: "B4", b: 5.5 },
+  { n: "REST", b: 1 },
+
+  // 2부: 고음 도약 및 반음계 하강 테마
+  { n: "B4", b: 2 },
+  { n: "E5", b: 3 },
+  { n: "G5", b: 1 },
+  { n: "F#5", b: 2 },
+  { n: "E5", b: 4 },
+  { n: "B5", b: 2 },
+  { n: "D6", b: 3.5 },
+  { n: "C#6", b: 2 },
+  { n: "C6", b: 3.5 },
+  { n: "G#5", b: 2 },
+  { n: "C6", b: 2.5 },
+  { n: "B5", b: 1 },
+  { n: "Bb5", b: 2 },
+  { n: "Bb4", b: 2 },
+  { n: "G5", b: 2 },
+  { n: "E5", b: 6 },
+  { n: "REST", b: 2 },
+
+  // 3부: 마법 왈츠 변주 (오르골 첼레스타 시머링)
+  { n: "G5", b: 1.5 },
+  { n: "B5", b: 3 },
+  { n: "G5", b: 1.5 },
+  { n: "B5", b: 3 },
+  { n: "G5", b: 1.5 },
+  { n: "C6", b: 3 },
+  { n: "B5", b: 1.5 },
+  { n: "Bb5", b: 3 },
+  { n: "F#5", b: 2 },
+  { n: "G5", b: 2.5 },
+  { n: "B5", b: 1 },
+  { n: "Bb5", b: 2 },
+  { n: "Bb4", b: 2 },
+  { n: "B4", b: 2 },
+  { n: "B5", b: 6 },
+  { n: "REST", b: 3 }
+];
+
+// 은은한 오케스트라 배경 현악 화음 (Em - Am - B7 패드)
+const HEDWIG_PADS = [
+  { chords: [164.81, 246.94], startBeat: 0, beats: 17 }, // Em
+  { chords: [110.00, 164.81, 220.00], startBeat: 17, beats: 11 }, // Am
+  { chords: [123.47, 185.00], startBeat: 28, beats: 13 }, // B7
+  { chords: [164.81, 246.94], startBeat: 41, beats: 18 }, // Em
+  { chords: [130.81, 196.00, 246.94], startBeat: 59, beats: 11 }, // Cmaj7
+  { chords: [103.83, 155.56, 207.65], startBeat: 70, beats: 8 }, // G#dim
+  { chords: [164.81, 246.94, 329.63], startBeat: 78, beats: 15 }, // Em
+  { chords: [164.81, 246.94], startBeat: 93, beats: 12 }, // Em waltz
+  { chords: [130.81, 196.00], startBeat: 105, beats: 6 }, // C
+  { chords: [123.47, 185.00], startBeat: 111, beats: 6 }, // B7
+  { chords: [164.81, 246.94, 329.63], startBeat: 117, beats: 16 } // Em
+];
+
+// 영롱한 오르골 첼레스타 음색 합성기
+function playCelestaNote(ctx, dest, freq, time, duration) {
+  if (!freq || freq <= 0) return;
+
+  const osc1 = ctx.createOscillator();
+  const gain1 = ctx.createGain();
+  osc1.type = "sine";
+  osc1.frequency.setValueAtTime(freq, time);
+
+  // 첼레스타 메탈릭 벨 배음 (2.76배 배음)
+  const osc2 = ctx.createOscillator();
+  const gain2 = ctx.createGain();
+  osc2.type = "sine";
+  osc2.frequency.setValueAtTime(freq * 2.76, time);
+
+  // 따뜻한 몸체 울림 삼각파
+  const osc3 = ctx.createOscillator();
+  const gain3 = ctx.createGain();
+  osc3.type = "triangle";
+  osc3.frequency.setValueAtTime(freq, time);
+
+  const filter = ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(3400, time);
+  filter.Q.setValueAtTime(1.2, time);
+
+  const attack = 0.006;
+  const decay = Math.max(duration * 1.35, 0.75);
+
+  gain1.gain.setValueAtTime(0.0001, time);
+  gain1.gain.linearRampToValueAtTime(0.18, time + attack);
+  gain1.gain.exponentialRampToValueAtTime(0.065, time + attack + 0.12);
+  gain1.gain.exponentialRampToValueAtTime(0.0001, time + attack + decay);
+
+  gain2.gain.setValueAtTime(0.0001, time);
+  gain2.gain.linearRampToValueAtTime(0.05, time + attack);
+  gain2.gain.exponentialRampToValueAtTime(0.0001, time + attack + (decay * 0.45));
+
+  gain3.gain.setValueAtTime(0.0001, time);
+  gain3.gain.linearRampToValueAtTime(0.035, time + attack);
+  gain3.gain.exponentialRampToValueAtTime(0.0001, time + attack + (decay * 0.85));
+
+  osc1.connect(gain1);
+  osc2.connect(gain2);
+  osc3.connect(gain3);
+
+  gain1.connect(filter);
+  gain2.connect(filter);
+  gain3.connect(filter);
+
+  filter.connect(dest);
+
+  osc1.start(time);
+  osc2.start(time);
+  osc3.start(time);
+
+  const stopTime = time + attack + decay + 0.05;
+  osc1.stop(stopTime);
+  osc2.stop(stopTime);
+  osc3.stop(stopTime);
+}
+
+// 은은한 저음 패드 화음 합성기
+function playWarmPadChord(ctx, dest, chordFreqs, time, duration) {
+  if (!chordFreqs || !chordFreqs.length) return;
+
+  const padFilter = ctx.createBiquadFilter();
+  padFilter.type = "lowpass";
+  padFilter.frequency.setValueAtTime(450, time);
+  padFilter.connect(dest);
+
+  const attack = 0.4;
+  const release = 0.6;
+  const noteDuration = Math.max(duration, 1.0);
+
+  chordFreqs.forEach((freq) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(freq, time);
+
+    gain.gain.setValueAtTime(0.0001, time);
+    gain.gain.linearRampToValueAtTime(0.022, time + attack);
+    gain.gain.setValueAtTime(0.022, time + noteDuration - release);
+    gain.gain.exponentialRampToValueAtTime(0.0001, time + noteDuration);
+
+    osc.connect(gain);
+    gain.connect(padFilter);
+
+    osc.start(time);
+    osc.stop(time + noteDuration + 0.1);
+  });
+}
+
+let bgmTimer = null;
+let isBgmRunning = false;
+
+function scheduleHedwigLoop() {
+  if (!isSoundOn) return;
+  const ctx = getAudioCtx();
+  if (!ctx || ctx.state !== "running") return;
+
+  const startTime = ctx.currentTime + 0.08;
+  let cursorTime = startTime;
+
+  // 1. 첼레스타 멜로디 스케줄링
+  HEDWIG_MELODY.forEach((item) => {
+    const dur = item.b * BEAT_UNIT;
+    if (item.n !== "REST") {
+      const f = NOTE_FREQS[item.n];
+      if (f) playCelestaNote(ctx, bgmMasterGain, f, cursorTime, dur);
+    }
+    cursorTime += dur;
+  });
+
+  // 2. 배경 화음 패드 스케줄링
+  HEDWIG_PADS.forEach((pad) => {
+    const pTime = startTime + pad.startBeat * BEAT_UNIT;
+    const pDur = pad.beats * BEAT_UNIT;
+    playWarmPadChord(ctx, bgmMasterGain, pad.chords, pTime, pDur);
+  });
+
+  const totalLoopDuration = cursorTime - startTime;
+
+  if (bgmTimer) clearTimeout(bgmTimer);
+  bgmTimer = setTimeout(() => {
+    if (isSoundOn && ctx.state === "running") {
+      scheduleHedwigLoop();
+    }
+  }, Math.max((totalLoopDuration - 0.25) * 1000, 2000));
+}
+
+function startBgm() {
+  if (isBgmRunning) return;
+  isBgmRunning = true;
+  scheduleHedwigLoop();
+}
+
+function stopBgm() {
+  isBgmRunning = false;
+  if (bgmTimer) {
+    clearTimeout(bgmTimer);
+    bgmTimer = null;
+  }
+}
+
+// -------------------------------------------------------------
 // 3. 커스텀 알림 메시지 모달
 // -------------------------------------------------------------
 function showMessageBox(text, icon = "🪄") {
@@ -253,19 +490,116 @@ document.getElementById("msgModalCloseBtn")?.addEventListener("click", () => {
 // -------------------------------------------------------------
 const mapSoundBtn = document.getElementById("mapSoundBtn");
 const mapSoundLabel = document.getElementById("mapSoundLabel");
-if (mapSoundBtn) {
-  mapSoundBtn.addEventListener("click", () => {
-    isSoundOn = !isSoundOn;
-    if (mapSoundLabel) mapSoundLabel.textContent = isSoundOn ? "마법 음향 ON" : "마법 음향 OFF";
-    mapSoundBtn.classList.toggle("opacity-60", !isSoundOn);
-    if (isSoundOn) playLumosSpellSound();
-    const mapFrame = document.getElementById("maraudersMapFrame");
-    if (mapFrame && mapFrame.contentWindow) {
-      try {
-        mapFrame.contentWindow.postMessage({ type: "MAP_SOUND_TOGGLE", isSoundOn }, "*");
-      } catch (e) {}
+const mapSoundIcon = document.getElementById("mapSoundIcon");
+
+const floatingBgmBtn = document.getElementById("floatingBgmBtn");
+const floatingBgmLabel = document.getElementById("floatingBgmLabel");
+const floatingBgmIcon = document.getElementById("floatingBgmIcon");
+const floatingBgmIndicator = document.getElementById("floatingBgmIndicator");
+
+function updateSoundUI(isOn) {
+  if (mapSoundLabel) mapSoundLabel.textContent = isOn ? "해리포터 BGM ON" : "해리포터 BGM OFF";
+  if (mapSoundBtn) mapSoundBtn.classList.toggle("opacity-60", !isOn);
+  if (mapSoundIcon) mapSoundIcon.textContent = isOn ? "🎵" : "🔇";
+
+  if (floatingBgmLabel) floatingBgmLabel.textContent = isOn ? "해리포터 BGM ON" : "해리포터 BGM OFF";
+  if (floatingBgmBtn) {
+    floatingBgmBtn.classList.toggle("opacity-70", !isOn);
+    floatingBgmBtn.classList.toggle("border-amber-600/80", isOn);
+    floatingBgmBtn.classList.toggle("border-ink/50", !isOn);
+  }
+  if (floatingBgmIcon) {
+    floatingBgmIcon.style.animationPlayState = isOn ? "running" : "paused";
+  }
+  if (floatingBgmIndicator) {
+    floatingBgmIndicator.className = isOn
+      ? "inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+      : "inline-block w-2 h-2 rounded-full bg-amber-700";
+  }
+}
+
+function toggleSoundState() {
+  isSoundOn = !isSoundOn;
+  const ctx = getAudioCtx();
+
+  if (isSoundOn) {
+    if (ctx && ctx.state === "suspended") {
+      ctx.resume();
     }
-  });
+    if (bgmMasterGain && ctx) {
+      bgmMasterGain.gain.cancelScheduledValues(ctx.currentTime);
+      bgmMasterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      bgmMasterGain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.3);
+    }
+    if (!isBgmRunning) {
+      startBgm();
+    }
+    playMusicChime();
+  } else {
+    if (bgmMasterGain && ctx) {
+      bgmMasterGain.gain.cancelScheduledValues(ctx.currentTime);
+      bgmMasterGain.gain.setValueAtTime(bgmMasterGain.gain.value, ctx.currentTime);
+      bgmMasterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
+    }
+    stopBgm();
+  }
+
+  updateSoundUI(isSoundOn);
+
+  const mapFrame = document.getElementById("maraudersMapFrame");
+  if (mapFrame && mapFrame.contentWindow) {
+    try {
+      mapFrame.contentWindow.postMessage({ type: "MAP_SOUND_TOGGLE", isSoundOn }, "*");
+    } catch (e) {}
+  }
+}
+
+if (mapSoundBtn) mapSoundBtn.addEventListener("click", toggleSoundState);
+if (floatingBgmBtn) floatingBgmBtn.addEventListener("click", toggleSoundState);
+
+// 페이지 접속 시 즉시 자동재생 시도 & 브라우저 제스처 해제 리스너
+function tryAutoplayHedwig() {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+
+  if (ctx.state === "running") {
+    startBgm();
+    updateSoundUI(true);
+  } else {
+    ctx.resume().then(() => {
+      if (ctx.state === "running" && isSoundOn) {
+        startBgm();
+        updateSoundUI(true);
+      }
+    }).catch(() => {});
+  }
+}
+
+function unlockOnFirstGesture() {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+
+  if (ctx.state === "suspended") {
+    ctx.resume().then(() => {
+      if (isSoundOn && !isBgmRunning) {
+        startBgm();
+      }
+      updateSoundUI(isSoundOn);
+    });
+  } else if (isSoundOn && !isBgmRunning) {
+    startBgm();
+    updateSoundUI(isSoundOn);
+  }
+}
+
+["click", "touchstart", "scroll", "keydown", "pointerdown"].forEach((evt) => {
+  window.addEventListener(evt, unlockOnFirstGesture, { once: true, passive: true });
+});
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", tryAutoplayHedwig);
+} else {
+  tryAutoplayHedwig();
 }
 
 const toggleMapFullscreenBtn = document.getElementById("toggleMapFullscreenBtn");
