@@ -15,6 +15,7 @@ body {
 
 /* 바랜 양피지 신문 본문 시트 (텍스트 간섭을 줄여 선명도 극대화) */
 .newsprint-sheet {
+  max-width: 1600px;
   background-color: #f7f0df;
   background-image:
     radial-gradient(ellipse at 50% 25%, rgba(255, 255, 255, 0.6) 0%, rgba(225, 207, 172, 0.4) 100%);

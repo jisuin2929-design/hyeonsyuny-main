@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -33,17 +33,17 @@
   <!-- 📜 메인 예언자 일보 본문 컨테이너                            -->
   <!-- ============================================================ -->
   <main
-    class="newsprint-sheet w-full max-w-5xl p-4 sm:p-8 rounded-sm text-ink flex flex-col relative border-4 border-ink">
+    class="newsprint-sheet w-full max-w-[1600px] p-4 sm:p-8 rounded-sm text-ink flex flex-col relative border-4 border-ink">
 
     <!-- 신문 최상단 유틸리티 메타 바 -->
     <div
-      class="flex flex-wrap items-center justify-between text-[11px] sm:text-xs font-serif border-b-2 border-ink pb-1.5 mb-2 font-bold tracking-tight">
-      <div class="flex items-center gap-2">
+      class="flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-serif border-b-2 border-ink pb-1.5 mb-2 font-bold tracking-tight gap-1 sm:gap-2 sm:whitespace-nowrap">
+      <div class="flex items-center gap-2 shrink-0">
         <span class="text-ink-crimson font-black tracking-tight">✦ 마법부 공식 인가 호외 제 1000호 ✦</span>
         <span class="hidden sm:inline">|</span>
         <span class="hidden sm:inline">호그와트 마법학교 & 사랑의 고대마법 연구소 공식 인증</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <span>설원 활강 지수: 최상 • 훠궈 국물 흡입 지수: 1000% 폭발</span>
         <span
           class="px-2 py-0.5 bg-ink-crimson text-parchment-50 rounded-xs text-xs font-cinzel font-black tracking-widest shadow-xs">
@@ -54,7 +54,8 @@
 
     <!-- 신문 상단 마스트헤드 (The Daily Prophet) -->
     <header class="text-center py-2 sm:py-4 border-b-4 border-ink relative">
-      <div class="text-xs sm:text-[11px] font-cinzel font-black tracking-[0.35em] text-[#241508] font-bold uppercase mb-1">
+      <div
+        class="text-xs sm:text-[11px] font-cinzel font-black tracking-[0.35em] text-[#241508] font-bold uppercase mb-1">
         THE DAILY PROPHET • 1000-DAY ANNIVERSARY SPECIAL BROADCAST
       </div>
 
@@ -67,11 +68,11 @@
       </div>
 
       <div
-        class="flex items-center justify-between text-xs sm:text-xs font-myeongjo italic font-bold text-[#241508] font-medium mt-2 px-2 border-t border-b border-ink/40 py-1">
-        <span>발행인: 지수인 (JI SUIN, Chief Editor)</span>
-        <span class="text-ink-crimson font-black tracking-wider not-italic uppercase">“진실만을 마법 양피지에 각인하는 유일한 사랑의
-          기록”</span>
-        <span>정가: 1,000 갈레온 (1,000 Galleons)</span>
+        class="flex flex-col sm:flex-row items-center justify-between text-xs sm:text-xs font-myeongjo italic font-bold text-[#241508] font-medium mt-2 px-2 border-t border-b border-ink/40 py-1 gap-1 sm:whitespace-nowrap">
+        <span class="shrink-0">발행인: 지수인 (JI SUIN, Chief Editor)</span>
+        <span class="text-ink-crimson font-black tracking-wider not-italic uppercase shrink-0">“진실만을 마법 양피지에 각인하는 유일한
+          사랑의 기록”</span>
+        <span class="shrink-0">정가: 1,000 갈레온 (1,000 Galleons)</span>
       </div>
     </header>
 
@@ -104,7 +105,7 @@
           <br><span class="text-ink-crimson">1000일</span> 스토리: 역사적 동행의 전말”
         </h2>
         <p
-          class="font-myeongjo italic text-xs sm:text-[13px] md:text-sm text-[#241508] font-semibold mt-1.5 w-full max-w-4xl mx-auto tracking-tight whitespace-normal sm:whitespace-nowrap">
+          class="font-myeongjo italic text-xs sm:text-[13px] md:text-sm text-[#241508] font-semibold mt-1.5 w-full max-w-6xl mx-auto tracking-tight whitespace-normal sm:whitespace-nowrap">
           ‘오러국의 추적을 피해 이어온 달콤한 여정, 마법부도 연상 약사 수인과 연하 예비의사 현수의 영구 결속을 공식 승인하다’
         </p>
       </div>
@@ -191,7 +192,8 @@
       </div>
 
       <!-- 본문: 기사 텍스트(좌) + 사진 프레임(우) 2컬럼 레이아웃 -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 font-serif text-xs leading-relaxed text-[#140c04] font-medium items-start">
+      <div
+        class="grid grid-cols-1 md:grid-cols-12 gap-4 font-serif text-xs leading-relaxed text-[#140c04] font-medium items-start">
 
         <!-- 좌측: 취재 기사 및 목격자 증언 (7 컬럼) -->
         <div class="md:col-span-7 space-y-2.5">
@@ -344,12 +346,12 @@
 
       <!-- 지도 하단 캡션 안내줄 -->
       <div
-        class="flex flex-col sm:flex-row items-center justify-between text-xs font-serif text-[#241508] font-semibold font-bold pt-2 mt-1 gap-1">
-        <span class="flex items-center gap-1">
+        class="flex flex-col sm:flex-row items-center justify-between text-xs font-serif text-[#241508] font-semibold font-bold pt-2 mt-1 gap-2 sm:whitespace-nowrap">
+        <span class="flex items-center gap-1 shrink-0">
           <i class="fa-solid fa-compass text-ink-crimson"></i>
           <span>사건 파일: #01 비운의 정면 추돌 사건 • #02 극과 극 라이딩(절벽파 vs 오솔길파) 탑재</span>
         </span>
-        <span class="text-ink-crimson">
+        <span class="text-ink-crimson shrink-0">
           ✦ “나는 엄숙하게 맹세합니다, 내가 장난을 꾸미고 있음을” 터치 시 지도 봉인 해제 ✦
         </span>
       </div>
@@ -373,21 +375,20 @@
             </p>
           </div>
         </div>
-        <span
-          class="px-2 py-0.5 bg-ink-crimson text-parchment-50 font-cinzel text-xs font-bold rounded-xs shrink-0">
+        <span class="px-2 py-0.5 bg-ink-crimson text-parchment-50 font-cinzel text-xs font-bold rounded-xs shrink-0">
           HIGHWAY PATROL
         </span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-3.5 items-stretch">
-        <!-- 드라이브 플레이리스트 UI (콤팩트 가로폭) -->
+        <!-- 드라이브 플레이리스트 UI (콤팩트 가로폭 & 알찬 구성) -->
         <div
-          class="md:col-span-5 lg:col-span-4 bg-parchment-50 p-2.5 sm:p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
+          class="md:col-span-5 lg:col-span-5 bg-parchment-50 p-2.5 sm:p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2">
-              <span class="font-headline font-bold text-xs sm:text-[13px] text-ink flex items-center gap-1.5 truncate">
-                <i class="fa-solid fa-compact-disc text-ink-crimson"></i>
-                <span class="truncate">[1] 설원행 & 심야 플레이리스트</span>
+            <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2 gap-1.5">
+              <span class="font-headline font-bold text-xs sm:text-[13px] text-ink flex items-center gap-1.5 min-w-0">
+                <i class="fa-solid fa-compact-disc text-ink-crimson shrink-0"></i>
+                <span class="break-keep font-black">[1] 설원행 & 심야 플레이리스트</span>
               </span>
               <span id="playlistStatusBadge"
                 class="text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0">
@@ -411,7 +412,8 @@
                     <div id="playlistProgressBar" class="h-full bg-ink-crimson transition-all duration-300"
                       style="width: 55%;"></div>
                   </div>
-                  <span id="currentTrackTime" class="font-mono text-xs text-[#241508] font-medium shrink-0">02:35 / 04:40</span>
+                  <span id="currentTrackTime" class="font-mono text-xs text-[#241508] font-medium shrink-0">02:35 /
+                    04:40</span>
                 </div>
               </div>
               <button id="playlistPlayBtn" type="button"
@@ -462,25 +464,54 @@
                 <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
               </button>
             </div>
+
+            <!-- 🚗 드라이브 필수 수칙 & 간식 팁 (하단 여백을 아기자기하게 채워주는 미니 카드) -->
+            <div class="mt-2 p-2 bg-[#f4ebd6] border border-ink/25 rounded-xs text-[11px] font-serif text-[#2b1a0d]">
+              <div
+                class="flex items-center justify-between border-b border-ink/20 pb-1 mb-1.5 font-bold text-ink-crimson">
+                <span class="flex items-center gap-1">
+                  <i class="fa-solid fa-car-side"></i>
+                  <span>DJ 수인 & 깅깅이의 주행 규칙</span>
+                </span>
+                <span class="font-mono text-[10px] text-ink/60">VOL. 1000</span>
+              </div>
+              <div class="grid grid-cols-2 gap-1.5">
+                <div class="bg-parchment-50 p-1.5 border border-ink/15 rounded-xs">
+                  <span class="font-bold text-ink text-[10.5px] block"><i
+                      class="fa-solid fa-mug-hot text-amber-700"></i> 필수 수혈템</span>
+                  <span class="text-[#4a2e16] text-[10px]">얼죽아 바닐라라떼</span>
+                </div>
+                <div class="bg-parchment-50 p-1.5 border border-ink/15 rounded-xs">
+                  <span class="font-bold text-ink text-[10.5px] block"><i
+                      class="fa-solid fa-cookie-bite text-amber-700"></i> 조수석 당 충전</span>
+                  <span class="text-[#4a2e16] text-[10px]">홈런볼 & 달콤 젤리</span>
+                </div>
+              </div>
+              <p class="text-[10px] text-ink/75 italic mt-1.5 text-center">
+                “신나는 노래 떼창으로 졸음운전 원천 차단 중 🎤”
+              </p>
+            </div>
           </div>
 
-          <p class="text-[11px] font-serif text-[#241508] font-bold italic mt-2 text-center border-t border-ink/20 pt-1">
+          <p
+            class="text-[11px] font-serif text-[#241508] font-bold italic mt-2 text-center border-t border-ink/20 pt-1">
             * 차창 밖으로 눈보라가 쳐도 둘만의 목청껏 부르는 이동 콘서트장
           </p>
         </div>
 
         <!-- [2] 미식 마법 암행 평가단(수인 & 현수)의 월드 와이드 맛집 미슐랭 가이드 (가로 확장 & 2열 배치 & 스크롤 없음) -->
         <div
-          class="md:col-span-7 lg:col-span-8 bg-parchment-50 p-2.5 sm:p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
+          class="md:col-span-7 lg:col-span-7 bg-parchment-50 p-2.5 sm:p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2">
-              <span class="font-headline font-bold text-xs sm:text-sm text-ink flex items-center gap-1.5 truncate">
-                <i class="fa-solid fa-utensils text-ink-crimson"></i>
-                <span class="truncate">[2] 미식 마법 암행 평가단(수인 & 현수)의 맛집 미슐랭 가이드</span>
+            <div
+              class="flex flex-wrap sm:flex-nowrap items-center justify-between border-b border-ink/30 pb-1.5 mb-2 gap-1.5">
+              <span class="font-headline font-bold text-xs sm:text-sm text-ink flex items-center gap-1.5 min-w-0">
+                <i class="fa-solid fa-utensils text-ink-crimson shrink-0"></i>
+                <span class="break-keep font-black">[2] 미식 마법 암행 평가단(수인 & 현수)의 맛집 미슐랭 가이드</span>
               </span>
               <span
-                class="px-2 py-0.5 bg-ink-crimson text-amber-300 font-cinzel text-xs font-bold rounded-xs tracking-wider shrink-0">
-                ★ ALL 5-STAR MICHELIN
+                class="px-2 py-0.5 bg-ink-crimson text-amber-300 font-cinzel text-[10.5px] sm:text-xs leading-tight font-bold rounded-xs tracking-wider shrink-0 text-center">
+                ★ ALL 5-STAR<br>MICHELIN
               </span>
             </div>
 
@@ -584,856 +615,903 @@
             </div>
           </div>
 
-          <p class="text-[11px] font-serif text-[#241508] font-bold italic mt-2 text-center border-t border-ink/20 pt-1">
+          <p
+            class="text-[11px] font-serif text-[#241508] font-bold italic mt-2 text-center border-t border-ink/20 pt-1">
             * 특파원 코멘트: "하늘을 나는 자동차가 고장 나도, 빗자루 연료가 떨어져도 맛있는 것만 먹으면 즉시 HP 100% 완충되는 두 마법사의 위대한 미식 비행."
           </p>
         </div>
       </div>
+    </section>
 
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- ⛓️ SECTION 2: 오늘의 수배자 (WANTED: 아즈카반 2인 지명수배)    -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-[#e4d1a9] p-3 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="text-center border-b-2 border-ink pb-2 mb-3">
+        <span class="font-cinzel text-xs font-black text-ink-crimson tracking-[0.2em] uppercase block">
+          ✦ AZKABAN PRISON SPECIAL APPREHENSION NOTICE ✦
+        </span>
+        <h3 class="font-headline font-black text-xl sm:text-2xl text-ink">
+          WANTED: 심장 무단 점거 및 설원 과실치상 혐의자들
+        </h3>
+        <p class="font-serif text-[11px] text-[#241508] font-medium mt-0.5">
+          * 행동 수칙: “발견 시 즉시 따뜻한 포옹과 맛있는 음식으로 제압할 것”
+        </p>
+      </div>
+
+      <!-- 2인 나란히 배치되는 수배자 카드 그리드 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-3">
+
+        <!-- 수배자 1: 수인 (누나 / 전담 약사) -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink flex flex-col items-center shadow-xs">
+          <div class="w-4/5 aspect-[4/5] border border-ink bg-ink magical-portrait shadow-inner mb-2 relative">
+            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
+              <source src="images/메인페이지/wanted1.mov" type="video/quicktime">
+              <source src="images/메인페이지/wanted1.mov" type="video/mp4">
+            </video>
+            <div
+              class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-xs py-0.5 text-center z-10">
+              PRISONER NO: #1000-PHARMACIST-SUIN
+            </div>
+          </div>
+
+          <h4 class="font-headline font-black text-sm sm:text-base text-ink mb-0.5">
+            [수배범 1: 멋쟁이 누나 두니]
+          </h4>
+          <span class="text-[12px] font-bold text-ink-crimson bg-parchment-200 px-1.5 py-0.2 border border-ink/40 mb-2">
+            주요 혐의: 상습 미식 탐방 및 뱃살 시위죄
+          </span>
+
+          <div
+            class="text-left text-[11px] font-serif leading-snug space-y-2 w-full bg-[#f8f1de] p-2.5 border border-ink/30">
+            <div>
+              <strong class="text-ink-crimson">1. 세상 모든 맛있는 걸 너무 사랑하여 끊임없이 진상(상납)하게 만든 죄:</strong> 산본닭발, 간장게장, 엽떡,
+              요아정, 리조 젤라또 등을 쉴 새 없이 요구하여 지갑을 마비시키고 훠궈 냄비를 영구 점거한 중범죄.
+            </div>
+            <div>
+              <strong class="text-ink-crimson">2. 많이 먹고 살쪘다고 혼자 심각하게 우울해하다가, 눈앞에 맛있는 거 주면 또 무장 해제되는 이중생활 죄:</strong>
+              거울 보고 살쪘다며 호들갑을 떨면서도, 막상 최애 음식이 눈앞에 나타나면 언제 그랬냐는 듯 싹 비워버려 주변 사람의 다이어트 결심까지 무너뜨린 파렴치함.
+            </div>
+            <div>
+              <strong class="text-ink-crimson">3. 슬로프 무차별 정면 추돌죄:</strong> 스키장에서 엣지 제어 실패로 직진 돌진, 현수를 들이받아 뇌진탕 유발 및
+              의무실
+              투어를 시킨 과실치상 혐의. (본인 진술: <em>"일부러 박은 게 아니라 진짜 멈출 수가 없었음!"</em>)
+            </div>
+          </div>
+        </div>
+
+        <!-- 수배자 2: 현수 (연하 / 예비 의사) -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink flex flex-col items-center shadow-xs">
+          <div class="w-4/5 aspect-[4/5] border border-ink bg-ink magical-portrait shadow-inner mb-2 relative">
+            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
+              <source src="images/메인페이지/wanted2.mov" type="video/quicktime">
+              <source src="images/메인페이지/wanted2.mov" type="video/mp4">
+            </video>
+            <div
+              class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-xs py-0.5 text-center z-10">
+              PRISONER NO: #1000-DOCTOR-HYEONSOO
+            </div>
+          </div>
+
+          <h4 class="font-headline font-black text-sm sm:text-base text-ink mb-0.5">
+            [수배범 2: 깜찍한 연하남 핸두]
+          </h4>
+          <span class="text-[12px] font-bold text-ink-crimson bg-parchment-200 px-1.5 py-0.2 border border-ink/40 mb-2">
+            주요 혐의: 위계질서 파괴 및 '듬직한 척' 과잉 근육 자랑죄
+          </span>
+
+          <div
+            class="text-left text-[11px] font-serif leading-snug space-y-2 w-full bg-[#f8f1de] p-2.5 border border-ink/30">
+            <div>
+              <strong class="text-ink-crimson">1. 연하 주제에 '누나' 호칭을 영구 누락하고, 귀여워 죽겠는데 자꾸 굳이 팔에 힘주고 듬직해 보이고 싶어 안달난 혐의
+                :</strong> 누나 마음 살살 녹이는 귀여운 얼굴을 해놓고선, 은근슬쩍 알통을 과시하거나 쓸데없이 상남자 스태프를 장착하려다 결국 수인 누나의 광대만 승천하게 만든 중대
+              사안.
+            </div>
+            <div>
+              <strong class="text-ink-crimson">2. 급경사 단독 질주 및 오솔길 유기죄:</strong> 스키장에서 본인 보드 잘 탄다고 상급자 절벽 코스로 슝 날아가
+              버리고, 쫄아있는 누나를 초급 오솔길에 홀로 방치한 죄.
+            </div>
+            <div>
+              <strong class="text-ink-crimson">3. 세상에서 제일 똑똑하면서 바보인 척하는 죄:</strong> 수인이가 아는 사람 중 세상에서 제일 똑똑하면서 자꾸
+              바보인 척 엄살부린 혐의. 어차피 마음먹고 하면 다 잘하는 거 이미 다 알고 있으니 쓸데없는 걱정 금지! 수인이가 세상에서 제일 믿고 응원한다는 중대 사안.
+            </div>
+          </div>
+        </div>
 
       </div>
 
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- ⛓️ SECTION 2: 오늘의 수배자 (WANTED: 아즈카반 2인 지명수배)    -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-[#e4d1a9] p-3 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="text-center border-b-2 border-ink pb-2 mb-3">
-          <span class="font-cinzel text-xs font-black text-ink-crimson tracking-[0.2em] uppercase block">
-            ✦ AZKABAN PRISON SPECIAL APPREHENSION NOTICE ✦
-          </span>
-          <h3 class="font-headline font-black text-xl sm:text-2xl text-ink">
-            WANTED: 심장 무단 점거 및 설원 과실치상 혐의자들
-          </h3>
-          <p class="font-serif text-[11px] text-[#241508] font-medium mt-0.5">
-            * 행동 수칙: “발견 시 즉시 따뜻한 포옹과 맛있는 음식으로 제압할 것”
-          </p>
+      <!-- 공동 종신형 선고문 -->
+      <div
+        class="border-t-2 border-ink pt-2 text-center text-xs font-serif font-bold text-[#3e2912] bg-[#ebd7af] p-2.5">
+        <span class="text-ink-crimson font-headline">✦ 마법사 최고법원 최종 공동 판결 ✦</span><br>
+        “피고인 수인 누나는 평생 현수의 머리를 쓰다듬으며 간호해야 하며, 피고인 연하남 현수는 슬로프에서 누나를 버려두지 않고 속도를 맞추어야 함.
+        <br>둘을 마주 보게 세워두고 헬멧 착용 상태에서 딱밤 1회씩
+        교환 후
+        <strong>'앞으로 100년간 매 끼니 반찬과 훠궈 고기를 나눠 먹는 사랑의 공동 종신형'</strong>에 처함.”
+        <div class="mt-1 text-xs text-[#241508] font-medium">
+          현상금: 1,000 Galleons • 야식 평생 무료 제공권 & 삐쳤을 때 30초 내로 달래주는 긴급 쿠폰
         </div>
+      </div>
+    </section>
 
-        <!-- 2인 나란히 배치되는 수배자 카드 그리드 -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-3">
-
-          <!-- 수배자 1: 수인 (누나 / 전담 약사) -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink flex flex-col items-center shadow-xs">
-            <div class="w-4/5 aspect-[4/5] border border-ink bg-ink magical-portrait shadow-inner mb-2 relative">
-              <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
-                <source src="images/메인페이지/wanted1.mov" type="video/quicktime">
-                <source src="images/메인페이지/wanted1.mov" type="video/mp4">
-              </video>
-              <div
-                class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-xs py-0.5 text-center z-10">
-                PRISONER NO: #1000-PHARMACIST-SUIN
-              </div>
-            </div>
-
-            <h4 class="font-headline font-black text-sm sm:text-base text-ink mb-0.5">
-              [수배범 1: 멋쟁이 누나 두니]
-            </h4>
-            <span
-              class="text-[12px] font-bold text-ink-crimson bg-parchment-200 px-1.5 py-0.2 border border-ink/40 mb-2">
-              주요 혐의: 상습 미식 탐방 및 뱃살 시위죄
-            </span>
-
-            <div
-              class="text-left text-[11px] font-serif leading-snug space-y-2 w-full bg-[#f8f1de] p-2.5 border border-ink/30">
-              <div>
-                <strong class="text-ink-crimson">1. 세상 모든 맛있는 걸 너무 사랑하여 끊임없이 진상(상납)하게 만든 죄:</strong> 산본닭발, 간장게장, 엽떡,
-                요아정, 리조 젤라또 등을 쉴 새 없이 요구하여 지갑을 마비시키고 훠궈 냄비를 영구 점거한 중범죄.
-              </div>
-              <div>
-                <strong class="text-ink-crimson">2. 많이 먹고 살쪘다고 혼자 심각하게 우울해하다가, 눈앞에 맛있는 거 주면 또 무장 해제되는 이중생활 죄:</strong>
-                거울 보고 살쪘다며 호들갑을 떨면서도, 막상 최애 음식이 눈앞에 나타나면 언제 그랬냐는 듯 싹 비워버려 주변 사람의 다이어트 결심까지 무너뜨린 파렴치함.
-              </div>
-              <div>
-                <strong class="text-ink-crimson">3. 슬로프 무차별 정면 추돌죄:</strong> 스키장에서 엣지 제어 실패로 직진 돌진, 현수를 들이받아 뇌진탕 유발 및
-                의무실
-                투어를 시킨 과실치상 혐의. (본인 진술: <em>"일부러 박은 게 아니라 진짜 멈출 수가 없었음!"</em>)
-              </div>
-            </div>
-          </div>
-
-          <!-- 수배자 2: 현수 (연하 / 예비 의사) -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink flex flex-col items-center shadow-xs">
-            <div class="w-4/5 aspect-[4/5] border border-ink bg-ink magical-portrait shadow-inner mb-2 relative">
-              <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
-                <source src="images/메인페이지/wanted2.mov" type="video/quicktime">
-                <source src="images/메인페이지/wanted2.mov" type="video/mp4">
-              </video>
-              <div
-                class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-xs py-0.5 text-center z-10">
-                PRISONER NO: #1000-DOCTOR-HYEONSOO
-              </div>
-            </div>
-
-            <h4 class="font-headline font-black text-sm sm:text-base text-ink mb-0.5">
-              [수배범 2: 깜찍한 연하남 핸두]
-            </h4>
-            <span
-              class="text-[12px] font-bold text-ink-crimson bg-parchment-200 px-1.5 py-0.2 border border-ink/40 mb-2">
-              주요 혐의: 위계질서 파괴 및 '듬직한 척' 과잉 근육 자랑죄
-            </span>
-
-            <div
-              class="text-left text-[11px] font-serif leading-snug space-y-2 w-full bg-[#f8f1de] p-2.5 border border-ink/30">
-              <div>
-                <strong class="text-ink-crimson">1. 연하 주제에 '누나' 호칭을 영구 누락하고, 귀여워 죽겠는데 자꾸 굳이 팔에 힘주고 듬직해 보이고 싶어 안달난 혐의
-                  :</strong> 누나 마음 살살 녹이는 귀여운 얼굴을 해놓고선, 은근슬쩍 알통을 과시하거나 쓸데없이 상남자 스태프를 장착하려다 결국 수인 누나의 광대만 승천하게 만든 중대
-                사안.
-              </div>
-              <div>
-                <strong class="text-ink-crimson">2. 급경사 단독 질주 및 오솔길 유기죄:</strong> 스키장에서 본인 보드 잘 탄다고 상급자 절벽 코스로 슝 날아가
-                버리고, 쫄아있는 누나를 초급 오솔길에 홀로 방치한 죄.
-              </div>
-              <div>
-                <strong class="text-ink-crimson">3. 세상에서 제일 똑똑하면서 바보인 척하는 죄:</strong> 수인이가 아는 사람 중 세상에서 제일 똑똑하면서 자꾸
-                바보인 척 엄살부린 혐의. 어차피 마음먹고 하면 다 잘하는 거 이미 다 알고 있으니 쓸데없는 걱정 금지! 수인이가 세상에서 제일 믿고 응원한다는 중대 사안.
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- 공동 종신형 선고문 -->
-        <div
-          class="border-t-2 border-ink pt-2 text-center text-xs font-serif font-bold text-[#3e2912] bg-[#ebd7af] p-2.5">
-          <span class="text-ink-crimson font-headline">✦ 마법사 최고법원 최종 공동 판결 ✦</span><br>
-          “피고인 수인 누나는 평생 현수의 머리를 쓰다듬으며 간호해야 하며, 피고인 연하남 현수는 슬로프에서 누나를 버려두지 않고 속도를 맞추어야 함.
-          <br>둘을 마주 보게 세워두고 헬멧 착용 상태에서 딱밤 1회씩
-          교환 후
-          <strong>'앞으로 100년간 매 끼니 반찬과 훠궈 고기를 나눠 먹는 사랑의 공동 종신형'</strong>에 처함.”
-          <div class="mt-1 text-xs text-[#241508] font-medium">
-            현상금: 1,000 Galleons • 야식 평생 무료 제공권 & 삐쳤을 때 30초 내로 달래주는 긴급 쿠폰
-          </div>
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
+    <div class="news-rule-double my-5"></div>
 
 
-      <!-- ============================================================ -->
-      <!-- 🧪 SECTION 2.7: 마법약학 조제 일지 & 성 뭉고 차트 (Pharmacy of Love) -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-[#f3e9d2] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl text-emerald-800"><i class="fa-solid fa-flask-vial"></i></span>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                마법약학 특별 조제 일지 & 성 뭉고 의무기록 (SOAP Chart)
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 성 뭉고 병원 인증: NST 전문 약사 수인 누나 & Student Doctor 현수의 전담 임상 차트
-              </p>
-            </div>
-          </div>
-          <span class="px-2 py-0.5 bg-emerald-900 text-parchment-50 font-cinzel text-xs font-bold rounded-xs">
-            OFFICIAL RX
-          </span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-          <!-- 물약 1: 평화와 분노 진정 물약 -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-bold text-ink-crimson font-cinzel mb-1">
-                <span>POTION NO. 01</span>
-                <i class="fa-solid fa-peace"></i>
-              </div>
-              <h5 class="font-headline font-bold text-sm text-ink mb-1">평화와 분노 진정 물약 (Draught of Peace)</h5>
-              <p class="text-[11px] font-myeongjo text-[#3e2912] leading-relaxed mb-2">
-                당직 후 피곤해서 예민해지거나 토라졌을 때 0.1초 만에 평온을 되찾아주는 특효 진정제.
-              </p>
-            </div>
-            <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
-              <div class="text-[11px] leading-relaxed">
-                <strong>• 유효 성분:</strong> 조용한 드라이브 30분 + 따뜻한 머리 쓰다듬기 300회.
-              </div>
-              <div class="pt-1 border-t border-ink/20 text-[11px] leading-relaxed">
-                <strong>• 주의 사항:</strong> 공복 상태에서 잔소리 시 약효 즉시 소멸 및 대형 싸움 발생 우려 (반드시 아래 포션 02 [미식 테라피] 선행 투여 필수).
-              </div>
-            </div>
-          </div>
-
-          <!-- 물약 2: 미식 치유계 아모텐시아 -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-bold text-pink-700 font-cinzel mb-1">
-                <span>POTION NO. 02</span>
-                <i class="fa-solid fa-heart-pulse"></i>
-              </div>
-              <h5 class="font-headline font-bold text-sm text-ink mb-1">미식 치유계 아모텐시아 (Amortentia &amp; Food Therapy)
-              </h5>
-              <p class="text-[11px] font-myeongjo text-[#3e2912] leading-relaxed mb-2">
-                세상에서 가장 강력한 사랑의 묘약이자, 두 사람의 위장을 완벽하게 지배하는 힐링 푸드 처방.
-              </p>
-            </div>
-            <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
-              <div class="text-[11px] leading-tight">
-                <strong>• 수인용 맞춤 처방:</strong> 아이스 아메리카노(아아) 원샷 + 달달한 초코 또는 요거트 아이스크림(요아정) / 리조 젤라또로 도파민 충전.
-              </div>
-              <div class="text-[11px] leading-tight">
-                <strong>• 현수용 맞춤 처방:</strong> 제순식당 제육볶음 + 바삭한 돈까스 또는 세종한우 &amp; 육회비빔밥으로 든든한 뚝심 충전.
-              </div>
-              <div class="pt-1 border-t border-ink/20 text-[11px] leading-tight">
-                <strong>• 공통 향기:</strong> 훠궈 토마토탕/마라 홍탕 냄새, 산본닭발, 간장게장, 엽떡의 만족스러운 잔향. (영구 내성 판정!)
-              </div>
-            </div>
-          </div>
-
-          <!-- 물약 3: TPN 기반 버터비어 숙취/피로 정화 수액 -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-bold text-amber-700 font-cinzel mb-1">
-                <span>POTION NO. 03</span>
-                <i class="fa-solid fa-beer-mug-empty"></i>
-              </div>
-              <h5 class="font-headline font-bold text-sm text-ink mb-1">TPN 기반 버터비어 숙취/피로 정화 수액</h5>
-              <p class="text-[11px] font-myeongjo text-[#3e2912] leading-relaxed mb-2">
-                과음이나 과로 후 바닥난 체력을 30분 만에 100% 회복시키는 NST 수석 약사 수인 누나의 특효 수액.
-              </p>
-            </div>
-            <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
-              <div class="text-[11px] leading-relaxed">
-                <strong>• 처방 비율:</strong> 얼큰한 국물 또는 엽떡 착한맛(매운맛 진정용 쿨피스 포함) + 이온음료 1병 + 등 토닥임 100회.
-              </div>
-              <div class="pt-1 border-t border-ink/20 text-[11px] leading-relaxed">
-                <strong>• 복약 지도:</strong> 침대에 눕혀 이불 덮어주고 푹 재울 것.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 성 뭉고 병원 입퇴원 차트 요약 (실제 사건 SOAP 노트) -->
-        <div class="border-2 border-ink p-3.5 bg-parchment-100 text-xs font-serif space-y-2 shadow-inner">
-          <div
-            class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-ink/30 pb-1.5 font-bold text-ink gap-1">
-            <span class="flex items-center gap-1.5">
-              <i class="fa-solid fa-notes-medical text-ink-crimson"></i>
-              <span>📋 성 뭉고 의무기록 경과지 [차트 번호: #1000-MD-PHARM] • 전담 약사: 수인 누나</span>
-            </span>
-            <span
-              class="text-xs font-mono text-emerald-900 bg-emerald-100 px-2 py-0.5 border border-emerald-800 rounded-xs font-bold self-start sm:self-auto">생존
-              본능 1000% 확인 완료</span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[11px] leading-relaxed">
-            <div class="bg-parchment-50 p-2.5 border border-ink/20 flex flex-col justify-between">
-              <div>
-                <strong class="text-ink-crimson font-bold block mb-1">[S (주관적 호소 - 환자: 현수)]</strong>
-                <blockquote
-                  class="italic text-[#3e2912] pl-2 border-l-2 border-ink-crimson/50 bg-[#f7f0e1] py-1.5 pr-1.5 text-[11.5px] leading-relaxed">
-                  “선생님, 슬로프에서 뒤를 돌아본 순간 하얀 눈보라와 함께 수인이가 정면으로 날아왔습니다. 쿵 소리와 함께 잠깐 호그와트 천장이 보였던 것 같아요... 아 그리고 다음 해외 원정 때는
-                  체르마트 가야 하니까 제발 뇌 손상만은 없게 해주세요.”
-                </blockquote>
-              </div>
-            </div>
-            <div class="bg-parchment-50 p-2.5 border border-ink/20 space-y-1.5 text-xs">
-              <strong class="text-emerald-800 font-bold block mb-0.5">[O (객관적 관찰 - 전담 약사: 수인)]</strong>
-              <div><strong>• 진단명:</strong> 급성 보드 추돌성 경미한 뇌진탕 (Commotio Cerebri by Girlfriend) 및 슬로프 실력 격차 스트레스.</div>
-              <div><strong>• 신경학적 검사:</strong> “내가 누구야?” 질문에 0.1초 만에 <em>“세상에서 제일 예쁜 수인이 누나”</em>라고 정상 답변 완료. 덕크니컬 마스터
-                현수의
-                현란한 덕크니컬 실력과, 맨날 전향 보드 연습하다가 꽈당 넘어지는 수인의 극단적인 실력 차이 객관적 지표로 재확인.</div>
-              <div><strong>• 미래 예방 조치:</strong> 두 사람이 나이 살짝 더 먹으면 무릎 관절 보호를 위해 <strong>'스노우보드에서 스키로 우아하게 전향하기'</strong>
-                조항
-                양해각서 체결 완료.</div>
-            </div>
-          </div>
-
-          <div class="bg-[#ebd9b4] p-2.5 border border-ink/20 text-xs space-y-1.5">
-            <div><strong class="text-ink">[A (임상 평가)]:</strong> 물리적 충격은 상당했으나 사랑의 고대 마법 결계 및 간장게장/육회비빔밥 파워 덕분에 두개골 내 심각한
-              이상 없음 판정.</div>
-            <div class="space-y-0.5">
-              <div><strong class="text-ink">[P (치료 계획)]:</strong></div>
-              <div class="pl-2 space-y-0.5 text-xs">
-                <div>• 절대 안정 및 뇌세포 재생용 특급 야식(산본 닭발 또는 세종한우) 긴급 점적 투여.</div>
-                <div>• 추돌 가해자(수인)가 앞으로 평생 밥 먹을 때 현수 앞접시에 고기 놔주고 머리를 쓰다듬어주며 간호할 것. 해외 원정 보드 타러 갈 때 핫팩과 간식을 상시 조달할 것.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- 🏆 SECTION 2.8: 호그와트 기숙사 점수판 & 1000일 벌점 장부 (House Points) -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-[#e8dcbe] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-hourglass-half text-amber-800 text-xl"></i>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                호그와트 기숙사 점수판 & 1000일 벌점 장부 (House Points)
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 지난 1000일 동안 누적된 다정함의 가산점과 얄미운 벌점 총결산 (기숙사 우승 공동 확정)
-              </p>
-            </div>
-          </div>
-          <div
-            class="flex items-center gap-1.5 bg-ink text-amber-300 font-mono text-xs px-2.5 py-1 border border-ink font-bold rounded-xs">
-            <span>TOTAL: 10,000,000 PTS</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- 그리핀도르 가산점 장부 -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs">
-            <div
-              class="flex items-center justify-between border-b border-emerald-800/40 pb-1.5 mb-2 text-emerald-800 font-headline font-black text-xs sm:text-sm">
-              <span><i class="fa-solid fa-circle-plus"></i> 🦁 GRYFFINDOR (+POINTS: 현수의 맛집 조사 & 든든한 응원)</span>
-              <span class="text-[11px] font-mono text-emerald-700">GRYFFINDOR PRIDE</span>
-            </div>
-            <ul class="text-xs font-serif space-y-2 text-[#140c04] font-medium">
-              <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
-                <span>• 맛있는 거 먹으러 갈 때 데이트 코스와 미식 정보를 밤새워 꼼꼼히 조사하고 골라온 철저한 사전 준비성</span>
-                <span class="font-mono font-bold text-emerald-700 shrink-0">+150 PTS</span>
-              </li>
-              <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
-                <span>• 쉴 틈 없이 쏟아지는 의대 공부와 실습 일정 속에서도 치열하게 미래를 준비하며 멋진 모습을 보여준 열정</span>
-                <span class="font-mono font-bold text-emerald-700 shrink-0">+100 PTS</span>
-              </li>
-              <li class="flex items-start justify-between gap-2">
-                <span>• 늘 피곤해하는 누나를 위해 따뜻하게 위로해 주고, 바쁜 와중에도 열심히 공부하는 현수를 묵묵히 응원해 주는 수인의 대인배 면모</span>
-                <span class="font-mono font-bold text-emerald-700 shrink-0">+1000 PTS</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- 슬리데린 감점 장부 -->
-          <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs">
-            <div
-              class="flex items-center justify-between border-b border-ink-crimson/40 pb-1.5 mb-2 text-ink-crimson font-headline font-black text-xs sm:text-sm">
-              <span><i class="fa-solid fa-circle-minus"></i> 🐍 SLYTHERIN (-DEMERITS: 운전 전담 & 디저트 누락 사태)</span>
-              <span class="text-[11px] font-mono text-ink-crimson">SLYTHERIN MISCHIEF</span>
-            </div>
-            <ul class="text-xs font-serif space-y-2 text-[#140c04] font-medium">
-              <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
-                <span>• "운전은 원래 누나가 짱이지!"라며 장거리 이동 시에도 운전대를 싹 맡겨버린 면허 소지자의 슬리데린식 잔머리</span>
-                <span class="font-mono font-bold text-ink-crimson shrink-0">-80 PTS</span>
-              </li>
-              <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
-                <span>• 당 떨어져서 디저트 사 오라고 신호를 보냈건만, 공부하느라 바쁘다는 핑계로 빈손으로 나타난 디저트 미꾸라지 탈출 혐의</span>
-                <span class="font-mono font-bold text-ink-crimson shrink-0">-50 PTS</span>
-              </li>
-              <li class="flex items-start justify-between gap-2">
-                <span>• 연하 주제에 누나 놀리면서 자꾸 팔에 힘주고 듬직해 보이고 싶어 안달 낸 귀여운 뻔뻔함</span>
-                <span class="font-mono font-bold text-ink-crimson shrink-0">-30 PTS</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 호그와트 기숙사 최종 판정 -->
-        <div class="mt-3 p-2 bg-[#dfcea6] border border-ink text-center text-xs font-serif text-[#3e2912]">
-          <strong class="text-ink-crimson font-headline">✦ 호그와트 덤블도어 교장 최종 심사평 ✦</strong><br>
-          “운전 전담과 디저트 누락이라는 소소한 과실이 있었으나, 현수가 열심히 조사해 온 맛집들의 위대함과, 지칠 때마다 서로를 든든하게 응원해 주는 깊은 신뢰로 인해 <strong>'호그와트 1000일
-            기숙사 우승컵' 공동 수여</strong>를 선언함!”
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- ⚔️ SECTION 2.9: 마법 결투 클럽: 평화 협정 조약문 (Peace Treaty) -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-parchment-100 p-4 sm:p-5 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-handshake text-ink-crimson text-xl"></i>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                마법 결투 클럽: 평화 협정 조약문 (Duelling Club Peace Treaty)
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 지팡이를 내려놓고 영구 평화를 선포하는 3대 절대 불가침 연애 규칙
-              </p>
-            </div>
-          </div>
-          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
-            RATIFIED 1000
-          </span>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-serif">
-          <div class="bg-parchment-50 p-3 border border-ink shadow-xs">
-            <div class="font-cinzel font-bold text-ink-crimson text-[11px] mb-1">ARTICLE I</div>
-            <h5 class="font-headline font-bold text-xs text-ink mb-1">공복 선제공격 금지령</h5>
-            <p class="text-[#3e2912] leading-relaxed">
-              인간은 배가 고프면 이성이 마비된다. 혈당이 떨어졌을 때는 어떠한 중대 협상이나 진지한 대화도 금하며, <strong>반드시 음식물을 입에 넣은 후</strong> 부드러운 목소리로
-              대화한다.
-            </p>
-          </div>
-
-          <div class="bg-parchment-50 p-3 border border-ink shadow-xs">
-            <div class="font-cinzel font-bold text-ink-crimson text-[11px] mb-1">ARTICLE II</div>
-            <h5 class="font-headline font-bold text-xs text-ink mb-1">3초 포옹 즉시 사면권</h5>
-            <p class="text-[#3e2912] leading-relaxed">
-              누구의 잘못이든 "미안해" 한마디와 함께 <strong>3초 이상 꼭 껴안으면</strong> 상대방의 모든 삐짐 저주와 심술 마법은 그 즉시 연기처럼 무효화된다.
-            </p>
-          </div>
-
-          <div class="bg-parchment-50 p-3 border border-ink shadow-xs">
-            <div class="font-cinzel font-bold text-ink-crimson text-[11px] mb-1">ARTICLE III</div>
-            <h5 class="font-headline font-bold text-xs text-ink mb-1">5분 간식 쿨타임 보장</h5>
-            <p class="text-[#3e2912] leading-relaxed">
-              의견 차이로 언성이 높아지려 할 때는 즉시 <strong>'타임!'</strong>을 외치고 각자 아이스크림이나 과자를 먹으며 5분간 숨을 고른 뒤 미소로 재협상에 돌입한다.
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="mt-3 pt-2 border-t border-ink/30 flex items-center justify-between text-[11px] font-serif text-[#241508] font-bold">
-          <span>비준: 마법 법률 자문관 공인</span>
-          <span class="font-bold text-ink">공동 서명: 수인 누나 ✍️ & Student Doctor 현수 ✍️</span>
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- 🔮 SECTION 3: 사이빌 트릴로니 교수의 주간 점술 & 타로         -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-parchment-100 p-4 sm:p-5 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-eye text-ink-crimson text-xl"></i>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                사이빌 트릴로니 교수의 주간 점술 & 타로 (Horoscope)
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 내 수정구슬이 다음 1000일의 영롱한 미래를 환하게 비추고 있다...
-              </p>
-            </div>
-          </div>
-          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
-            FUTURE PROPHECY
-          </span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-          <!-- 수정구슬 UI -->
-          <div class="md:col-span-4 flex flex-col items-center justify-center p-3 text-center">
-            <div
-              class="crystal-ball w-24 h-24 rounded-full bg-gradient-to-tr from-[#381a1a] via-[#852a2a] to-[#f4d084] flex items-center justify-center text-4xl shadow-inner border-2 border-ink mb-2">
-              🔮
-            </div>
-            <span class="font-cinzel text-[11px] font-bold text-ink-crimson uppercase tracking-wider">
-              ORB OF DESTINY
-            </span>
-            <p class="font-serif italic text-xs text-[#241508] font-medium mt-0.5">
-              “1000일의 빛줄기가 춤추며 다음 모험을 가리킨다.”
-            </p>
-          </div>
-
-          <!-- 타로 카드 예언 3종 -->
-          <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-serif">
-
-            <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
-              <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT I: THE MOUNTAIN</span>
-              <h5 class="font-headline font-bold text-xs text-ink mb-1">설원 정복의 운명</h5>
-              <p class="text-[#3b2513] text-[11px] leading-relaxed">
-                가까운 시일 내에 새로운 설원과 블랙 다이아몬드 코스를 가뿐히 정복할 기운이 감지됩니다.
-              </p>
-            </div>
-
-            <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
-              <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT II: THE FEAST</span>
-              <h5 class="font-headline font-bold text-xs text-ink mb-1">미식 탐방의 길</h5>
-              <p class="text-[#3b2513] text-[11px] leading-relaxed">
-                다음 여행지에서 길을 잃더라도, 둘이 함께 훠궈나 디저트 맛집을 찾아내면 행운으로 반전될 운명입니다.
-              </p>
-            </div>
-
-            <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
-              <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT III: THE SUN</span>
-              <h5 class="font-headline font-bold text-xs text-ink mb-1">영구 행복의 서약</h5>
-              <p class="text-[#3b2513] text-[11px] leading-relaxed">
-                1000일 이후에도 마법 같은 행복과 배꼽 빠지는 웃음이 영구 지속될 것이니 어떤 역경도 두렵지 않습니다.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- 🪄 SECTION 4: 예언자 일보 특별 마법 퀴즈 (Daily Prophet Poll)  -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-[#ede0c4] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-graduation-cap text-ink-crimson text-xl"></i>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                예언자 일보 특별 마법 퀴즈: O.W.L. 사랑 능력 평가 시험
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 방문자(Student Doctor 현수)가 직접 풀어보는 인터랙티브 마법 퀴즈
-              </p>
-            </div>
-          </div>
-          <div id="quizScoreBadge" class="bg-ink text-amber-300 font-mono text-xs px-2.5 py-0.5 rounded-xs font-bold">
-            점수: 0 / 4
-          </div>
-        </div>
-
-        <!-- 퀴즈 문항 렌더링 컨테이너 -->
-        <div id="quizContainer" class="space-y-3 font-serif text-xs">
-          <!-- JS로 동적 생성 -->
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- 🧩 SECTION 4.5: 1000일 기념 마법 낱말 퍼즐 (Crossword Puzzle) -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-[#ede0c4] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-puzzle-piece text-ink-crimson text-xl"></i>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                예언자 일보 스페셜 부록: 1000일 기념 마법 낱말 퍼즐 (Crossword)
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 둘만의 추억이 담긴 열쇠를 읽고 빈칸을 완성하세요. 완성 시 숨겨진 마법 메시지가 해금됩니다!
-              </p>
-            </div>
-          </div>
-          <button id="checkCrosswordBtn"
-            class="px-3 py-1 bg-ink-crimson hover:bg-[#961e1e] text-parchment-50 font-cinzel font-bold text-xs rounded-xs border border-ink shadow-sm transition flex items-center gap-1 cursor-pointer">
-            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
-            <span>정답 주문 시전</span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
-          <!-- 좌측: 인터랙티브 낱말 퍼즐 격자판 (Crossword Board) -->
-          <div class="md:col-span-6 bg-parchment-50 p-3 sm:p-4 border-2 border-ink shadow-inner">
-            <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2.5">
-              <h5 class="font-headline font-bold text-xs text-ink flex items-center gap-1.5">
-                <i class="fa-solid fa-table-cells text-ink-crimson"></i> 십자말풀이 격자판 (Crossword Board)
-              </h5>
-              <button type="button" id="resetCrosswordBtn"
-                class="text-[11px] font-serif text-ink/70 hover:text-ink-crimson underline cursor-pointer">
-                <i class="fa-solid fa-rotate-left"></i> 지우기
-              </button>
-            </div>
-
-            <!-- 7x5 퍼즐 격자판 -->
-            <div class="flex justify-center my-2">
-              <div class="cw-board" id="crosswordBoard">
-                <!-- ROW 0 -->
-                <div class="cw-cell cw-cell-active" data-r="0" data-c="0">
-                  <span class="cw-num">1</span>
-                  <input type="text" class="cw-input-letter" data-r="0" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="0" data-c="1">
-                  <input type="text" class="cw-input-letter" data-r="0" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="0" data-c="2">
-                  <input type="text" class="cw-input-letter" data-r="0" data-c="2" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-
-                <!-- ROW 1 -->
-                <div class="cw-cell cw-cell-active" data-r="1" data-c="0">
-                  <input type="text" class="cw-input-letter" data-r="1" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="1" data-c="1">
-                  <span class="cw-num">4</span>
-                  <input type="text" class="cw-input-letter" data-r="1" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-
-                <!-- ROW 2 -->
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="0">
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="1">
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="2">
-                  <span class="cw-num">2</span>
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="2" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="3">
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="3" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="4">
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="4" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="5">
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="5" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="2" data-c="6">
-                  <input type="text" class="cw-input-letter" data-r="2" data-c="6" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-
-                <!-- ROW 3 -->
-                <div class="cw-cell cw-cell-active" data-r="3" data-c="0">
-                  <input type="text" class="cw-input-letter" data-r="3" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="3" data-c="1">
-                  <input type="text" class="cw-input-letter" data-r="3" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-
-                <!-- ROW 4 -->
-                <div class="cw-cell cw-cell-active" data-r="4" data-c="0">
-                  <input type="text" class="cw-input-letter" data-r="4" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-active" data-r="4" data-c="1">
-                  <input type="text" class="cw-input-letter" data-r="4" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
-                </div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-                <div class="cw-cell cw-cell-block"></div>
-              </div>
-            </div>
-            <p class="text-[11px] font-serif text-[#4d3520] text-center mt-2">
-              <i class="fa-solid fa-wand-magic text-ink-crimson"></i> 빈칸을 누르고 글자를 입력하세요. 1번 칸의 <strong>'스'</strong>는 가로/세로가 공유합니다!
-            </p>
-          </div>
-
-          <!-- 우측: 퍼즐 열쇠 & 완성 메시지 패널 -->
-          <div class="md:col-span-6 flex flex-col justify-between h-full bg-[#f4ebd6] p-3 border-2 border-ink">
-            <div class="space-y-3">
-              <!-- 가로 열쇠 -->
-              <div>
-                <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-wider block mb-1.5 border-b border-ink/20 pb-0.5">
-                  ✦ 가로 열쇠 (ACROSS) ✦
-                </span>
-                <div class="space-y-1.5 text-xs font-serif">
-                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="0,0" data-dir="across">
-                    <span class="font-bold text-ink-crimson">1.</span> <span class="font-bold text-ink">겨울만 되면 둘이 홀린 듯 달려가는 새하얀 그곳?</span> <span class="text-ink/60 font-semibold">(3글자)</span>
-                  </div>
-                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="2,2" data-dir="across">
-                    <span class="font-bold text-ink-crimson">2.</span> <span class="font-bold text-ink">마법약 솥 대신 4칸 냄비에 토마토탕과 마라탕을 끓여 먹는 두 사람의 최애 성지?</span> <span class="text-ink/60 font-semibold">(5글자)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 세로 열쇠 -->
-              <div>
-                <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-wider block mb-1.5 border-b border-ink/20 pb-0.5">
-                  ✦ 세로 열쇠 (DOWN) ✦
-                </span>
-                <div class="space-y-1.5 text-xs font-serif">
-                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="0,0" data-dir="down">
-                    <span class="font-bold text-ink-crimson">1.</span> <span class="font-bold text-ink">빗자루 대신 은빛 설원을 80km/h로 활강하는 겨울 스포츠?</span> <span class="text-ink/60 font-semibold">(5글자, 1번 '스'에서 교차)</span>
-                  </div>
-                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="1,1" data-dir="down">
-                    <span class="font-bold text-ink-crimson">4.</span> <span class="font-bold text-ink">오늘 우리가 함께 축하하며 마법부로부터 공인받은 기적 같은 기념일의 숫자?</span> <span class="text-ink/60 font-semibold">(4자리)</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-[11.5px] font-serif text-[#4d3520] bg-parchment-50 p-2 border border-ink/20 rounded-xs">
-                💡 <strong>마법 힌트:</strong> 스키장, 하이디라오, 스노우보드, 1000
-              </div>
-            </div>
-
-            <div id="cwSuccessBox"
-              class="hidden mt-3 p-3 bg-parchment-50 border-2 border-ink-crimson rounded-xs text-center shadow-md">
-              <i class="fa-solid fa-crown text-amber-600 text-xl mb-1"></i>
-              <h6 class="font-headline font-black text-sm text-ink-crimson">마법 퍼즐 완성!</h6>
-              <p class="font-myeongjo text-xs text-[#140c04] font-medium mt-1 font-bold leading-normal">
-                “1000일 동안 누나 곁에 있어줘서 진심으로 고마웠고, 앞으로 맞이할 수많은 내일도 평생 잘 부탁해 현수야!”
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- 💌 SECTION 5: 독자 투고란 (Letter to the Editor: 수인의 사설)-->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-parchment-100 p-4 sm:p-6 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-4">
+    <!-- ============================================================ -->
+    <!-- 🧪 SECTION 2.7: 마법약학 조제 일지 & 성 뭉고 차트 (Pharmacy of Love) -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-[#f3e9d2] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl text-emerald-800"><i class="fa-solid fa-flask-vial"></i></span>
           <div>
-            <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-widest block">
-              ✦ SPECIAL EDITORIAL ESSAY ✦
-            </span>
-            <h3 class="font-headline font-black text-xl sm:text-2xl text-ink">
-              [특별 사설] 깅깅이에게 보내는 편지 (두니 記)
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              마법약학 특별 조제 일지 & 성 뭉고 의무기록 (SOAP Chart)
             </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 성 뭉고 병원 인증: NST 전문 약사 수인 누나 & Student Doctor 현수의 전담 임상 차트
+            </p>
           </div>
-          <div class="text-right text-xs sm:text-[11px] font-serif text-[#6d4b28]">
-            <span>발신: 멋쟁이 누나 두니!!♥</span><br>
-            <span>수신: 내사랑 애깅깅 현수♥</span>
+        </div>
+        <span class="px-2 py-0.5 bg-emerald-900 text-parchment-50 font-cinzel text-xs font-bold rounded-xs">
+          OFFICIAL RX
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+        <!-- 물약 1: 평화와 분노 진정 물약 -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-bold text-ink-crimson font-cinzel mb-1">
+              <span>POTION NO. 01</span>
+              <i class="fa-solid fa-peace"></i>
+            </div>
+            <h5 class="font-headline font-bold text-sm text-ink mb-1">평화와 분노 진정 물약 (Draught of Peace)</h5>
+            <p class="text-[11px] font-myeongjo text-[#3e2912] leading-relaxed mb-2">
+              당직 후 피곤해서 예민해지거나 토라졌을 때 0.1초 만에 평온을 되찾아주는 특효 진정제.
+            </p>
+          </div>
+          <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
+            <div class="text-[11px] leading-relaxed">
+              <strong>• 유효 성분:</strong> 조용한 드라이브 30분 + 따뜻한 머리 쓰다듬기 300회.
+            </div>
+            <div class="pt-1 border-t border-ink/20 text-[11px] leading-relaxed">
+              <strong>• 주의 사항:</strong> 공복 상태에서 잔소리 시 약효 즉시 소멸 및 대형 싸움 발생 우려 (반드시 아래 포션 02 [미식 테라피] 선행 투여 필수).
+            </div>
           </div>
         </div>
 
-        <!-- 정갈한 양피지 에디토리얼 편지 본문 -->
+        <!-- 물약 2: 미식 치유계 아모텐시아 -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-bold text-pink-700 font-cinzel mb-1">
+              <span>POTION NO. 02</span>
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h5 class="font-headline font-bold text-sm text-ink mb-1">미식 치유계 아모텐시아 (Amortentia &amp; Food Therapy)
+            </h5>
+            <p class="text-[11px] font-myeongjo text-[#3e2912] leading-relaxed mb-2">
+              세상에서 가장 강력한 사랑의 묘약이자, 두 사람의 위장을 완벽하게 지배하는 힐링 푸드 처방.
+            </p>
+          </div>
+          <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
+            <div class="text-[11px] leading-tight">
+              <strong>• 수인용 맞춤 처방:</strong> 아이스 아메리카노(아아) 원샷 + 달달한 초코 또는 요거트 아이스크림(요아정) / 리조 젤라또로 도파민 충전.
+            </div>
+            <div class="text-[11px] leading-tight">
+              <strong>• 현수용 맞춤 처방:</strong> 제순식당 제육볶음 + 바삭한 돈까스 또는 세종한우 &amp; 육회비빔밥으로 든든한 뚝심 충전.
+            </div>
+            <div class="pt-1 border-t border-ink/20 text-[11px] leading-tight">
+              <strong>• 공통 향기:</strong> 훠궈 토마토탕/마라 홍탕 냄새, 산본닭발, 간장게장, 엽떡의 만족스러운 잔향. (영구 내성 판정!)
+            </div>
+          </div>
+        </div>
+
+        <!-- 물약 3: TPN 기반 버터비어 숙취/피로 정화 수액 -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-bold text-amber-700 font-cinzel mb-1">
+              <span>POTION NO. 03</span>
+              <i class="fa-solid fa-beer-mug-empty"></i>
+            </div>
+            <h5 class="font-headline font-bold text-sm text-ink mb-1">TPN 기반 버터비어 숙취/피로 정화 수액</h5>
+            <p class="text-[11px] font-myeongjo text-[#3e2912] leading-relaxed mb-2">
+              과음이나 과로 후 바닥난 체력을 30분 만에 100% 회복시키는 NST 수석 약사 수인 누나의 특효 수액.
+            </p>
+          </div>
+          <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
+            <div class="text-[11px] leading-relaxed">
+              <strong>• 처방 비율:</strong> 얼큰한 국물 또는 엽떡 착한맛(매운맛 진정용 쿨피스 포함) + 이온음료 1병 + 등 토닥임 100회.
+            </div>
+            <div class="pt-1 border-t border-ink/20 text-[11px] leading-relaxed">
+              <strong>• 복약 지도:</strong> 침대에 눕혀 이불 덮어주고 푹 재울 것.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 성 뭉고 병원 입퇴원 차트 요약 (실제 사건 SOAP 노트) -->
+      <div class="border-2 border-ink p-3.5 bg-parchment-100 text-xs font-serif space-y-2 shadow-inner">
         <div
-          class="text-xs sm:text-[13px] leading-relaxed font-myeongjo text-left space-y-3.5 text-[#2c1a0c] bg-parchment-50 p-4 sm:p-5 border border-ink/40">
-          <div class="font-headline font-black text-sm sm:text-base text-ink-crimson border-b border-ink/20 pb-1 mb-2">
-            깅깅이에게!!! ♥
-          </div>
-          <p>
-            깅깅아 안뇽 두니가 왔어&gt;_&lt;<br>
-            여기까지 읽어주느라 아주 고생이 많았오.... 헤헤헤
-          </p>
-          <p>
-            이번에는 내가 추억을 잔뜩 담은 예언자일보를 만들어보았어~! 눈이 좀 터질 것 같긴 한데 구래도 만들어보긴 했어...<br>
-            히히히 근데 보다보니까 고칠게 너무 많다아 내가 차차 고치고 있을테니까 애기는 시험끝나고나서 더 자세히 보도록 해!!
-          </p>
-          <p>
-            애기가 요즘 공부하느라 너무 고생이 많아. 내가 해줄 수 있는게 그저 응원과 옆에서 묵묵히 기다려주는거밖에 없다는게 참 슬프다..!<br>
-            그래도 내과 턴말이 이제 2주밖에 남지 않았어. 너무 힘들다는거 알지만 조금만 더 힘내고 끝나면 아주 후련할거야!!!<br>
-            가끔가다 챗지피티보면 넘 귀엽기도 하면서 멋져. 글구 항생제 물어보는 파트에서는 내가 아는거 나와서 또 뿌듯해&gt;_&lt;<br>
-            열심히 하는 만큼 남는것도 많고 훌륭한 의사선생님이 될고야♥
-          </p>
-          <p>
-            나도 열심히 기다리고 있으니까 힘든거 다 끝나고 다시 나에게로 도라와~!~!<br>
-            우리가 지금은 안만나는거에도 익숙해졌지만, 이게 디폴트가 되지만은 않았으면 좋겠어...!<br>
-            다시 서로 함께하는 시간이 늘어날 때 까지 바쁘게 살면서 지내고 있을게에♥
-          </p>
-          <p class="font-bold text-ink">
-            1000일동안 우린 정말 많은 곳에 다녀왔고 정말 많은 경험을 했다 그치이?? 앞으로 10000일이 넘도록 더 많이 행복하자♥<br>
-            평생 내가 같이 놀아주고 행복하게 해줄게.<br>
-            <span class="text-ink-crimson text-sm sm:text-[15px] font-black block mt-2">세상에서 제일로 사랑해 내사랑 애기현수♥♥♥</span>
-          </p>
-        </div>
-
-        <!-- 붉은색 밀랍 인장 (Wax Seal) 서명 -->
-        <div class="border-t border-ink/40 pt-3 mt-4 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div
-              class="w-11 h-11 rounded-full bg-ink-crimson flex items-center justify-center text-parchment-50 font-cinzel font-black text-sm shadow-md border-2 border-[#540f0f]">
-              1000
-            </div>
-            <div class="text-[11px] font-serif">
-              <span class="font-bold text-ink">공식 밀랍 인장 날인 완료</span><br>
-              <span class="text-[#694825] text-[11px]">Seal of Eternal Companionship</span>
-            </div>
-          </div>
-
-          <div class="text-right font-headline text-sm font-bold text-ink">
-            <span class="text-xs font-serif block text-[#694825]">예언자 일보 수석 편집장</span>
-            <span class="font-myeongjo italic text-base">지두니 (JI SUIN) 드림</span>
-          </div>
-        </div>
-      </section>
-
-      <div class="news-rule-double my-5"></div>
-
-      <!-- ============================================================ -->
-      <!-- 🏦 SECTION 6: 그린고트 711호 비밀 금고 (Secret Vault)         -->
-      <!-- ============================================================ -->
-      <section class="my-3 bg-[#e0d0b0] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
-        <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-vault text-ink-crimson text-xl"></i>
-            <div>
-              <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
-                그린고트 마법 은행: 제 711호 비밀 금고 (Secret Vault)
-              </h3>
-              <p class="text-xs font-serif text-[#241508] font-medium">
-                * 금고를 열려면 4자리 마법 비밀번호를 입력하시오
-              </p>
-            </div>
-          </div>
-          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
-            HIGH SECURITY
+          class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-ink/30 pb-1.5 font-bold text-ink gap-1">
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-notes-medical text-ink-crimson"></i>
+            <span>📋 성 뭉고 의무기록 경과지 [차트 번호: #1000-MD-PHARM] • 전담 약사: 수인 누나</span>
           </span>
+          <span
+            class="text-xs font-mono text-emerald-900 bg-emerald-100 px-2 py-0.5 border border-emerald-800 rounded-xs font-bold self-start sm:self-auto">생존
+            본능 1000% 확인 완료</span>
         </div>
 
-        <div class="bg-parchment-50 p-4 border-2 border-ink text-center flex flex-col items-center">
-          <div id="vaultDial"
-            class="w-20 h-20 rounded-full border-4 border-ink bg-[#c8b288] flex items-center justify-center text-3xl shadow-inner my-2 transition-transform duration-700">
-            🔒
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[11px] leading-relaxed">
+          <div class="bg-parchment-50 p-2.5 border border-ink/20 flex flex-col justify-between">
+            <div>
+              <strong class="text-ink-crimson font-bold block mb-1">[S (주관적 호소 - 환자: 현수)]</strong>
+              <blockquote
+                class="italic text-[#3e2912] pl-2 border-l-2 border-ink-crimson/50 bg-[#f7f0e1] py-1.5 pr-1.5 text-[11.5px] leading-relaxed">
+                “선생님, 슬로프에서 뒤를 돌아본 순간 하얀 눈보라와 함께 수인이가 정면으로 날아왔습니다. 쿵 소리와 함께 잠깐 호그와트 천장이 보였던 것 같아요... 아 그리고 다음 해외 원정 때는
+                체르마트 가야 하니까 제발 뇌 손상만은 없게 해주세요.”
+              </blockquote>
+            </div>
+          </div>
+          <div class="bg-parchment-50 p-2.5 border border-ink/20 space-y-1.5 text-xs">
+            <strong class="text-emerald-800 font-bold block mb-0.5">[O (객관적 관찰 - 전담 약사: 수인)]</strong>
+            <div><strong>• 진단명:</strong> 급성 보드 추돌성 경미한 뇌진탕 (Commotio Cerebri by Girlfriend) 및 슬로프 실력 격차 스트레스.</div>
+            <div><strong>• 신경학적 검사:</strong> “내가 누구야?” 질문에 0.1초 만에 <em>“세상에서 제일 예쁜 수인이 누나”</em>라고 정상 답변 완료. 덕크니컬 마스터
+              현수의
+              현란한 덕크니컬 실력과, 맨날 전향 보드 연습하다가 꽈당 넘어지는 수인의 극단적인 실력 차이 객관적 지표로 재확인.</div>
+            <div><strong>• 미래 예방 조치:</strong> 두 사람이 나이 살짝 더 먹으면 무릎 관절 보호를 위해 <strong>'스노우보드에서 스키로 우아하게 전향하기'</strong>
+              조항
+              양해각서 체결 완료.</div>
+          </div>
+        </div>
+
+        <div class="bg-[#ebd9b4] p-2.5 border border-ink/20 text-xs space-y-1.5">
+          <div><strong class="text-ink">[A (임상 평가)]:</strong> 물리적 충격은 상당했으나 사랑의 고대 마법 결계 및 간장게장/육회비빔밥 파워 덕분에 두개골 내 심각한
+            이상 없음 판정.</div>
+          <div class="space-y-0.5">
+            <div><strong class="text-ink">[P (치료 계획)]:</strong></div>
+            <div class="pl-2 space-y-0.5 text-xs">
+              <div>• 절대 안정 및 뇌세포 재생용 특급 야식(산본 닭발 또는 세종한우) 긴급 점적 투여.</div>
+              <div>• 추돌 가해자(수인)가 앞으로 평생 밥 먹을 때 현수 앞접시에 고기 놔주고 머리를 쓰다듬어주며 간호할 것. 해외 원정 보드 타러 갈 때 핫팩과 간식을 상시 조달할 것.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- 🏆 SECTION 2.8: 호그와트 기숙사 점수판 & 1000일 벌점 장부 (House Points) -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-[#e8dcbe] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-hourglass-half text-amber-800 text-xl"></i>
+          <div>
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              호그와트 기숙사 점수판 & 1000일 벌점 장부 (House Points)
+            </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 지난 1000일 동안 누적된 다정함의 가산점과 얄미운 벌점 총결산 (기숙사 우승 공동 확정)
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex items-center gap-1.5 bg-ink text-amber-300 font-mono text-xs px-2.5 py-1 border border-ink font-bold rounded-xs">
+          <span>TOTAL: 10,000,000 PTS</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- 그리핀도르 가산점 장부 -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs">
+          <div
+            class="flex items-center justify-between border-b border-emerald-800/40 pb-1.5 mb-2 text-emerald-800 font-headline font-black text-xs sm:text-sm">
+            <span><i class="fa-solid fa-circle-plus"></i> 🦁 GRYFFINDOR (+POINTS: 현수의 맛집 조사 & 든든한 응원)</span>
+            <span class="text-[11px] font-mono text-emerald-700">GRYFFINDOR PRIDE</span>
+          </div>
+          <ul class="text-xs font-serif space-y-2 text-[#140c04] font-medium">
+            <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
+              <span>• 맛있는 거 먹으러 갈 때 데이트 코스와 미식 정보를 밤새워 꼼꼼히 조사하고 골라온 철저한 사전 준비성</span>
+              <span class="font-mono font-bold text-emerald-700 shrink-0">+150 PTS</span>
+            </li>
+            <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
+              <span>• 쉴 틈 없이 쏟아지는 의대 공부와 실습 일정 속에서도 치열하게 미래를 준비하며 멋진 모습을 보여준 열정</span>
+              <span class="font-mono font-bold text-emerald-700 shrink-0">+100 PTS</span>
+            </li>
+            <li class="flex items-start justify-between gap-2">
+              <span>• 늘 피곤해하는 누나를 위해 따뜻하게 위로해 주고, 바쁜 와중에도 열심히 공부하는 현수를 묵묵히 응원해 주는 수인의 대인배 면모</span>
+              <span class="font-mono font-bold text-emerald-700 shrink-0">+1000 PTS</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 슬리데린 감점 장부 -->
+        <div class="bg-parchment-50 p-3 border-2 border-ink shadow-xs">
+          <div
+            class="flex items-center justify-between border-b border-ink-crimson/40 pb-1.5 mb-2 text-ink-crimson font-headline font-black text-xs sm:text-sm">
+            <span><i class="fa-solid fa-circle-minus"></i> 🐍 SLYTHERIN (-DEMERITS: 운전 전담 & 디저트 누락 사태)</span>
+            <span class="text-[11px] font-mono text-ink-crimson">SLYTHERIN MISCHIEF</span>
+          </div>
+          <ul class="text-xs font-serif space-y-2 text-[#140c04] font-medium">
+            <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
+              <span>• "운전은 원래 누나가 짱이지!"라며 장거리 이동 시에도 운전대를 싹 맡겨버린 면허 소지자의 슬리데린식 잔머리</span>
+              <span class="font-mono font-bold text-ink-crimson shrink-0">-80 PTS</span>
+            </li>
+            <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
+              <span>• 당 떨어져서 디저트 사 오라고 신호를 보냈건만, 공부하느라 바쁘다는 핑계로 빈손으로 나타난 디저트 미꾸라지 탈출 혐의</span>
+              <span class="font-mono font-bold text-ink-crimson shrink-0">-50 PTS</span>
+            </li>
+            <li class="flex items-start justify-between gap-2">
+              <span>• 연하 주제에 누나 놀리면서 자꾸 팔에 힘주고 듬직해 보이고 싶어 안달 낸 귀여운 뻔뻔함</span>
+              <span class="font-mono font-bold text-ink-crimson shrink-0">-30 PTS</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 호그와트 기숙사 최종 판정 -->
+      <div class="mt-3 p-2 bg-[#dfcea6] border border-ink text-center text-xs font-serif text-[#3e2912]">
+        <strong class="text-ink-crimson font-headline">✦ 호그와트 덤블도어 교장 최종 심사평 ✦</strong><br>
+        “운전 전담과 디저트 누락이라는 소소한 과실이 있었으나, 현수가 열심히 조사해 온 맛집들의 위대함과, 지칠 때마다 서로를 든든하게 응원해 주는 깊은 신뢰로 인해 <strong>'호그와트 1000일
+          기숙사 우승컵' 공동 수여</strong>를 선언함!”
+      </div>
+    </section>
+
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- ⚔️ SECTION 2.9: 마법 결투 클럽: 평화 협정 조약문 (Peace Treaty) -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-parchment-100 p-4 sm:p-5 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-handshake text-ink-crimson text-xl"></i>
+          <div>
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              마법 결투 클럽: 평화 협정 조약문 (Duelling Club Peace Treaty)
+            </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 지팡이를 내려놓고 영구 평화를 선포하는 3대 절대 불가침 연애 규칙
+            </p>
+          </div>
+        </div>
+        <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
+          RATIFIED 1000
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-serif">
+        <div class="bg-parchment-50 p-3 border border-ink shadow-xs">
+          <div class="font-cinzel font-bold text-ink-crimson text-[11px] mb-1">ARTICLE I</div>
+          <h5 class="font-headline font-bold text-xs text-ink mb-1">공복 선제공격 금지령</h5>
+          <p class="text-[#3e2912] leading-relaxed">
+            인간은 배가 고프면 이성이 마비된다. 혈당이 떨어졌을 때는 어떠한 중대 협상이나 진지한 대화도 금하며, <strong>반드시 음식물을 입에 넣은 후</strong> 부드러운 목소리로
+            대화한다.
+          </p>
+        </div>
+
+        <div class="bg-parchment-50 p-3 border border-ink shadow-xs">
+          <div class="font-cinzel font-bold text-ink-crimson text-[11px] mb-1">ARTICLE II</div>
+          <h5 class="font-headline font-bold text-xs text-ink mb-1">3초 포옹 즉시 사면권</h5>
+          <p class="text-[#3e2912] leading-relaxed">
+            누구의 잘못이든 "미안해" 한마디와 함께 <strong>3초 이상 꼭 껴안으면</strong> 상대방의 모든 삐짐 저주와 심술 마법은 그 즉시 연기처럼 무효화된다.
+          </p>
+        </div>
+
+        <div class="bg-parchment-50 p-3 border border-ink shadow-xs">
+          <div class="font-cinzel font-bold text-ink-crimson text-[11px] mb-1">ARTICLE III</div>
+          <h5 class="font-headline font-bold text-xs text-ink mb-1">5분 간식 쿨타임 보장</h5>
+          <p class="text-[#3e2912] leading-relaxed">
+            의견 차이로 언성이 높아지려 할 때는 즉시 <strong>'타임!'</strong>을 외치고 각자 아이스크림이나 과자를 먹으며 5분간 숨을 고른 뒤 미소로 재협상에 돌입한다.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="mt-3 pt-2 border-t border-ink/30 flex items-center justify-between text-[11px] font-serif text-[#241508] font-bold">
+        <span>비준: 마법 법률 자문관 공인</span>
+        <span class="font-bold text-ink">공동 서명: 수인 누나 ✍️ & Student Doctor 현수 ✍️</span>
+      </div>
+    </section>
+
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- 🔮 SECTION 3: 사이빌 트릴로니 교수의 주간 점술 & 타로         -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-parchment-100 p-4 sm:p-5 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-eye text-ink-crimson text-xl"></i>
+          <div>
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              사이빌 트릴로니 교수의 주간 점술 & 타로 (Horoscope)
+            </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 내 수정구슬이 다음 1000일의 영롱한 미래를 환하게 비추고 있다...
+            </p>
+          </div>
+        </div>
+        <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
+          FUTURE PROPHECY
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <!-- 수정구슬 UI -->
+        <div class="md:col-span-4 flex flex-col items-center justify-center p-3 text-center">
+          <div
+            class="crystal-ball w-24 h-24 rounded-full bg-gradient-to-tr from-[#381a1a] via-[#852a2a] to-[#f4d084] flex items-center justify-center text-4xl shadow-inner border-2 border-ink mb-2">
+            🔮
+          </div>
+          <span class="font-cinzel text-[11px] font-bold text-ink-crimson uppercase tracking-wider">
+            ORB OF DESTINY
+          </span>
+          <p class="font-serif italic text-xs text-[#241508] font-medium mt-0.5">
+            “1000일의 빛줄기가 춤추며 다음 모험을 가리킨다.”
+          </p>
+        </div>
+
+        <!-- 타로 카드 예언 3종 -->
+        <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-serif">
+
+          <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
+            <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT I: THE MOUNTAIN</span>
+            <h5 class="font-headline font-bold text-xs text-ink mb-1">설원 정복의 운명</h5>
+            <p class="text-[#3b2513] text-[11px] leading-relaxed">
+              가까운 시일 내에 새로운 설원과 블랙 다이아몬드 코스를 가뿐히 정복할 기운이 감지됩니다.
+            </p>
           </div>
 
-          <div class="flex items-center gap-2 my-2">
-            <input type="password" id="vaultPasscode" maxlength="4" placeholder="••••"
-              class="w-28 text-center text-lg font-mono tracking-widest bg-[#f7efdc] border-2 border-ink py-1 rounded-xs focus:outline-none focus:border-ink-crimson" />
-            <button id="openVaultBtn"
-              class="px-4 py-2 bg-ink-crimson hover:bg-[#961e1e] text-parchment-50 font-cinzel font-bold text-xs tracking-wider rounded-xs border border-ink shadow-sm transition flex items-center gap-1 cursor-pointer">
-              <i class="fa-solid fa-key text-amber-300"></i>
-              <span>알로호모라!</span>
+          <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
+            <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT II: THE FEAST</span>
+            <h5 class="font-headline font-bold text-xs text-ink mb-1">미식 탐방의 길</h5>
+            <p class="text-[#3b2513] text-[11px] leading-relaxed">
+              다음 여행지에서 길을 잃더라도, 둘이 함께 훠궈나 디저트 맛집을 찾아내면 행운으로 반전될 운명입니다.
+            </p>
+          </div>
+
+          <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
+            <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT III: THE SUN</span>
+            <h5 class="font-headline font-bold text-xs text-ink mb-1">영구 행복의 서약</h5>
+            <p class="text-[#3b2513] text-[11px] leading-relaxed">
+              1000일 이후에도 마법 같은 행복과 배꼽 빠지는 웃음이 영구 지속될 것이니 어떤 역경도 두렵지 않습니다.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- 🪄 SECTION 4: 예언자 일보 특별 마법 퀴즈 (Daily Prophet Poll)  -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-[#ede0c4] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-graduation-cap text-ink-crimson text-xl"></i>
+          <div>
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              예언자 일보 특별 마법 퀴즈: O.W.L. 사랑 능력 평가 시험
+            </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 방문자(Student Doctor 현수)가 직접 풀어보는 인터랙티브 마법 퀴즈
+            </p>
+          </div>
+        </div>
+        <div id="quizScoreBadge" class="bg-ink text-amber-300 font-mono text-xs px-2.5 py-0.5 rounded-xs font-bold">
+          점수: 0 / 4
+        </div>
+      </div>
+
+      <!-- 퀴즈 문항 렌더링 컨테이너 -->
+      <div id="quizContainer" class="space-y-3 font-serif text-xs">
+        <!-- JS로 동적 생성 -->
+      </div>
+    </section>
+
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- 🧩 SECTION 4.5: 1000일 기념 마법 낱말 퍼즐 (Crossword Puzzle) -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-[#ede0c4] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-puzzle-piece text-ink-crimson text-xl"></i>
+          <div>
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              예언자 일보 스페셜 부록: 1000일 기념 마법 낱말 퍼즐 (Crossword)
+            </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 둘만의 추억이 담긴 열쇠를 읽고 빈칸을 완성하세요. 완성 시 숨겨진 마법 메시지가 해금됩니다!
+            </p>
+          </div>
+        </div>
+        <button id="checkCrosswordBtn"
+          class="px-3 py-1 bg-ink-crimson hover:bg-[#961e1e] text-parchment-50 font-cinzel font-bold text-xs rounded-xs border border-ink shadow-sm transition flex items-center gap-1 cursor-pointer">
+          <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+          <span>정답 주문 시전</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+        <!-- 좌측: 인터랙티브 낱말 퍼즐 격자판 (Crossword Board) -->
+        <div class="md:col-span-6 bg-parchment-50 p-3 sm:p-4 border-2 border-ink shadow-inner">
+          <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2.5">
+            <h5 class="font-headline font-bold text-xs text-ink flex items-center gap-1.5">
+              <i class="fa-solid fa-table-cells text-ink-crimson"></i> 십자말풀이 격자판 (Crossword Board)
+            </h5>
+            <button type="button" id="resetCrosswordBtn"
+              class="text-[11px] font-serif text-ink/70 hover:text-ink-crimson underline cursor-pointer">
+              <i class="fa-solid fa-rotate-left"></i> 지우기
             </button>
           </div>
 
-          <p class="text-[11px] font-serif text-[#241508] font-medium">
-            * 힌트: 오늘은 우리의 0000일 기념일
+          <!-- 7x5 퍼즐 격자판 -->
+          <div class="flex justify-center my-2">
+            <div class="cw-board" id="crosswordBoard">
+              <!-- ROW 0 -->
+              <div class="cw-cell cw-cell-active" data-r="0" data-c="0">
+                <span class="cw-num">1</span>
+                <input type="text" class="cw-input-letter" data-r="0" data-c="0" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="0" data-c="1">
+                <input type="text" class="cw-input-letter" data-r="0" data-c="1" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="0" data-c="2">
+                <input type="text" class="cw-input-letter" data-r="0" data-c="2" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+
+              <!-- ROW 1 -->
+              <div class="cw-cell cw-cell-active" data-r="1" data-c="0">
+                <input type="text" class="cw-input-letter" data-r="1" data-c="0" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="1" data-c="1">
+                <span class="cw-num">4</span>
+                <input type="text" class="cw-input-letter" data-r="1" data-c="1" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+
+              <!-- ROW 2 -->
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="0">
+                <input type="text" class="cw-input-letter" data-r="2" data-c="0" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="1">
+                <input type="text" class="cw-input-letter" data-r="2" data-c="1" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="2">
+                <span class="cw-num">2</span>
+                <input type="text" class="cw-input-letter" data-r="2" data-c="2" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="3">
+                <input type="text" class="cw-input-letter" data-r="2" data-c="3" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="4">
+                <input type="text" class="cw-input-letter" data-r="2" data-c="4" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="5">
+                <input type="text" class="cw-input-letter" data-r="2" data-c="5" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="2" data-c="6">
+                <input type="text" class="cw-input-letter" data-r="2" data-c="6" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+
+              <!-- ROW 3 -->
+              <div class="cw-cell cw-cell-active" data-r="3" data-c="0">
+                <input type="text" class="cw-input-letter" data-r="3" data-c="0" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="3" data-c="1">
+                <input type="text" class="cw-input-letter" data-r="3" data-c="1" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+
+              <!-- ROW 4 -->
+              <div class="cw-cell cw-cell-active" data-r="4" data-c="0">
+                <input type="text" class="cw-input-letter" data-r="4" data-c="0" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-active" data-r="4" data-c="1">
+                <input type="text" class="cw-input-letter" data-r="4" data-c="1" maxlength="2" autocomplete="off"
+                  autocorrect="off">
+              </div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+              <div class="cw-cell cw-cell-block"></div>
+            </div>
+          </div>
+          <p class="text-[11px] font-serif text-[#4d3520] text-center mt-2">
+            <i class="fa-solid fa-wand-magic text-ink-crimson"></i> 빈칸을 누르고 글자를 입력하세요. 1번 칸의 <strong>'스'</strong>는
+            가로/세로가 공유합니다!
           </p>
         </div>
-      </section>
 
-      <!-- ============================================================ -->
-      <!-- 🛒 SECTION 7: 빈티지 광고란 & 신문 하단 바닥글                 -->
-      <!-- ============================================================ -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
-        <!-- 위즐리 형제 장난감 가게 -->
-        <div class="border-2 border-dashed border-ink p-2.5 bg-[#ebd7af] text-center">
-          <div class="font-prophet text-xl text-ink-crimson mb-0.5">Weasleys' Wizard Wheezes</div>
-          <span class="font-headline font-black text-xs text-ink uppercase tracking-wider block mb-1">
-            위즐리 형제의 장난감 가게 • 1000일 특별 할인
-          </span>
-          <p class="text-xs font-serif text-[#422c15] leading-tight">
-            “장거리 비행과 설원 라이딩 피로를 한 방에 날려주는 <strong>'꾀병용 과자 세트'</strong> 50% 반값 특가! <br>다이애건 앨리 93번지 부엉이 특급 발송.”
-          </p>
+        <!-- 우측: 퍼즐 열쇠 & 답변 입력 패널 -->
+        <div class="md:col-span-6 flex flex-col justify-between h-full bg-[#f4ebd6] p-3 border-2 border-ink">
+          <div class="space-y-3">
+            <!-- 가로 열쇠 -->
+            <div>
+              <span
+                class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-wider block mb-1.5 border-b border-ink/20 pb-0.5">
+                ✦ 가로 열쇠 (ACROSS) ✦
+              </span>
+              <div class="space-y-2 text-xs font-serif">
+                <div class="cw-clue-item p-2 bg-parchment-50 border border-ink/30 rounded-xs space-y-1">
+                  <div class="flex items-start justify-between gap-1">
+                    <span class="font-bold text-ink">
+                      <span class="text-ink-crimson font-black">1.</span> 겨울만 되면 둘이 홀린 듯 달려가는 새하얀 그곳?
+                    </span>
+                    <span class="text-ink/60 font-semibold text-[11px] shrink-0">(3글자)</span>
+                  </div>
+                  <input type="text" id="cwWord1" maxlength="3" placeholder="정답 3글자 입력"
+                    class="cw-word-input w-full px-2 py-1 bg-white border border-ink/40 text-xs font-bold text-ink rounded-xs focus:border-ink-crimson focus:ring-1 focus:ring-ink-crimson/30 focus:outline-none">
+                </div>
+
+                <div class="cw-clue-item p-2 bg-parchment-50 border border-ink/30 rounded-xs space-y-1">
+                  <div class="flex items-start justify-between gap-1">
+                    <span class="font-bold text-ink">
+                      <span class="text-ink-crimson font-black">2.</span> 마법약 솥 대신 4칸 냄비에 토마토탕과 마라탕을 끓여 먹는 두 사람의 최애
+                      성지?
+                    </span>
+                    <span class="text-ink/60 font-semibold text-[11px] shrink-0">(5글자)</span>
+                  </div>
+                  <input type="text" id="cwWord2" maxlength="5" placeholder="정답 5글자 입력"
+                    class="cw-word-input w-full px-2 py-1 bg-white border border-ink/40 text-xs font-bold text-ink rounded-xs focus:border-ink-crimson focus:ring-1 focus:ring-ink-crimson/30 focus:outline-none">
+                </div>
+              </div>
+            </div>
+
+            <!-- 세로 열쇠 -->
+            <div>
+              <span
+                class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-wider block mb-1.5 border-b border-ink/20 pb-0.5">
+                ✦ 세로 열쇠 (DOWN) ✦
+              </span>
+              <div class="space-y-2 text-xs font-serif">
+                <div class="cw-clue-item p-2 bg-parchment-50 border border-ink/30 rounded-xs space-y-1">
+                  <div class="flex items-start justify-between gap-1">
+                    <span class="font-bold text-ink">
+                      <span class="text-ink-crimson font-black">1.</span> 빗자루 대신 은빛 설원을 80km/h로 활강하는 겨울 스포츠?
+                    </span>
+                    <span class="text-ink/60 font-semibold text-[11px] shrink-0">(5글자, 1번 '스'에서 교차)</span>
+                  </div>
+                  <input type="text" id="cwWord3" maxlength="5" placeholder="정답 5글자 입력"
+                    class="cw-word-input w-full px-2 py-1 bg-white border border-ink/40 text-xs font-bold text-ink rounded-xs focus:border-ink-crimson focus:ring-1 focus:ring-ink-crimson/30 focus:outline-none">
+                </div>
+
+                <div class="cw-clue-item p-2 bg-parchment-50 border border-ink/30 rounded-xs space-y-1">
+                  <div class="flex items-start justify-between gap-1">
+                    <span class="font-bold text-ink">
+                      <span class="text-ink-crimson font-black">4.</span> 오늘 우리가 함께 축하하며 마법부로부터 공인받은 기적 같은 기념일의 숫자?
+                    </span>
+                    <span class="text-ink/60 font-semibold text-[11px] shrink-0">(4자리)</span>
+                  </div>
+                  <input type="text" id="cwWord4" maxlength="4" placeholder="정답 4자리 숫자 입력"
+                    class="cw-word-input w-full px-2 py-1 bg-white border border-ink/40 text-xs font-bold text-ink rounded-xs focus:border-ink-crimson focus:ring-1 focus:ring-ink-crimson/30 focus:outline-none">
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[11.5px] font-serif text-[#4d3520] bg-parchment-50 p-2 border border-ink/20 rounded-xs">
+              💡 <strong>마법 힌트:</strong> 스키장, 하이디라오, 스노우보드, 1000 (입력 시 퍼즐판에 글자가 실시간으로 채워집니다!)
+            </div>
+          </div>
+
+          <div id="cwSuccessBox"
+            class="hidden mt-3 p-3 bg-parchment-50 border-2 border-ink-crimson rounded-xs text-center shadow-md">
+            <i class="fa-solid fa-crown text-amber-600 text-xl mb-1"></i>
+            <h6 class="font-headline font-black text-sm text-ink-crimson">마법 퍼즐 완성!</h6>
+            <p class="font-myeongjo text-xs text-[#140c04] font-medium mt-1 font-bold leading-normal">
+              “1000일 동안 ~~~~ 힘들어썻나요오~~~~ 사랑한다 깅깅쓴~!”
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- 올리밴더 지팡이 가게 -->
-        <div class="border-2 border-dashed border-ink p-2.5 bg-[#ebd7af] text-center">
-          <div class="font-prophet text-xl text-ink-crimson mb-0.5">Ollivanders Wands</div>
-          <span class="font-headline font-black text-xs text-ink uppercase tracking-wider block mb-1">
-            기원전 382년부터 이어진 최고의 지팡이 장인
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- 💌 SECTION 5: 독자 투고란 (Letter to the Editor: 수인의 사설)-->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-parchment-100 p-4 sm:p-6 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-4">
+        <div>
+          <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-widest block">
+            ✦ SPECIAL EDITORIAL ESSAY ✦
           </span>
-          <p class="text-xs font-serif text-[#422c15] leading-tight">
-            “1000일간 축적된 사랑과 추억을 심재로 한 커플 맞춤 지팡이 제작 접수 중. <br>지팡이가 주인을 선택합니다.”
-          </p>
+          <h3 class="font-headline font-black text-xl sm:text-2xl text-ink">
+            [특별 사설] 깅깅이에게 보내는 편지 (두니 記)
+          </h3>
+        </div>
+        <div class="text-right text-xs sm:text-[11px] font-serif text-[#6d4b28]">
+          <span>발신: 멋쟁이 누나 두니!!♥</span><br>
+          <span>수신: 내사랑 애깅깅 현수♥</span>
         </div>
       </div>
 
-      <!-- 신문 바닥글 -->
-      <footer
-        class="mt-4 pt-3 border-t-4 border-ink flex flex-col sm:flex-row items-center justify-between text-[11px] font-serif text-[#543b22] gap-2">
-        <div class="flex items-center gap-2">
-          <span class="font-prophet text-xl text-ink">𝕯</span>
-          <span>© The Daily Prophet 1000-Day Special Edition. All Magical Love Reserved.</span>
+      <!-- 정갈한 양피지 에디토리얼 편지 본문 -->
+      <div
+        class="text-xs sm:text-[13px] leading-relaxed font-myeongjo text-left space-y-3.5 text-[#2c1a0c] bg-parchment-50 p-4 sm:p-5 border border-ink/40">
+        <div class="font-headline font-black text-sm sm:text-base text-ink-crimson border-b border-ink/20 pb-1 mb-2">
+          깅깅이에게!!! ♥
         </div>
-        <div class="flex items-center gap-3 font-cinzel text-xs font-bold">
-          <span>SEOUL</span>
-          <span>•</span>
-          <span>SLOPES</span>
-          <span>•</span>
-          <span>HAIDILAO</span>
-          <span>•</span>
-          <span>HOGWARTS</span>
-          <span>•</span>
-          <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-            class="text-ink-crimson hover:underline cursor-pointer">
-            맨 위로 이동 ▲
+        <p>
+          깅깅아 안뇽 두니가 왔어&gt;_&lt;<br>
+          여기까지 읽어주느라 아주 고생이 많았오.... 헤헤헤
+        </p>
+        <p>
+          이번에는 내가 추억을 잔뜩 담은 예언자일보를 만들어보았어~! 눈이 좀 터질 것 같긴 한데 구래도 만들어보긴 했어...<br>
+          히히히 근데 보다보니까 고칠게 너무 많다아 내가 차차 고치고 있을테니까 애기는 시험끝나고나서 더 자세히 보도록 해!!
+        </p>
+        <p>
+          애기가 요즘 공부하느라 너무 고생이 많아. 내가 해줄 수 있는게 그저 응원과 옆에서 묵묵히 기다려주는거밖에 없다는게 참 슬프다..!<br>
+          그래도 내과 턴말이 이제 2주밖에 남지 않았어. 너무 힘들다는거 알지만 조금만 더 힘내고 끝나면 아주 후련할거야!!!<br>
+          가끔가다 챗지피티보면 넘 귀엽기도 하면서 멋져. 글구 항생제 물어보는 파트에서는 내가 아는거 나와서 또 뿌듯해&gt;_&lt;<br>
+          열심히 하는 만큼 남는것도 많고 훌륭한 의사선생님이 될고야♥
+        </p>
+        <p>
+          나도 열심히 기다리고 있으니까 힘든거 다 끝나고 다시 나에게로 도라와~!~!<br>
+          우리가 지금은 안만나는거에도 익숙해졌지만, 이게 디폴트가 되지만은 않았으면 좋겠어...!<br>
+          다시 서로 함께하는 시간이 늘어날 때 까지 바쁘게 살면서 지내고 있을게에♥
+        </p>
+        <p class="font-bold text-ink">
+          1000일동안 우린 정말 많은 곳에 다녀왔고 정말 많은 경험을 했다 그치이?? 앞으로 10000일이 넘도록 더 많이 행복하자♥<br>
+          평생 내가 같이 놀아주고 행복하게 해줄게.<br>
+          <span class="text-ink-crimson text-sm sm:text-[15px] font-black block mt-2">세상에서 제일로 사랑해 내사랑 애기현수♥♥♥</span>
+        </p>
+      </div>
+
+      <!-- 붉은색 밀랍 인장 (Wax Seal) 서명 -->
+      <div class="border-t border-ink/40 pt-3 mt-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-11 h-11 rounded-full bg-ink-crimson flex items-center justify-center text-parchment-50 font-cinzel font-black text-sm shadow-md border-2 border-[#540f0f]">
+            1000
+          </div>
+          <div class="text-[11px] font-serif">
+            <span class="font-bold text-ink">공식 밀랍 인장 날인 완료</span><br>
+            <span class="text-[#694825] text-[11px]">Seal of Eternal Companionship</span>
+          </div>
+        </div>
+
+        <div class="text-right font-headline text-sm font-bold text-ink">
+          <span class="text-xs font-serif block text-[#694825]">예언자 일보 수석 편집장</span>
+          <span class="font-myeongjo italic text-base">지두니 (JI SUIN) 드림</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="news-rule-double my-5"></div>
+
+    <!-- ============================================================ -->
+    <!-- 🏦 SECTION 6: 그린고트 711호 비밀 금고 (Secret Vault)         -->
+    <!-- ============================================================ -->
+    <section class="my-3 bg-[#e0d0b0] p-4 sm:p-5 border-4 border-ink shadow-[4px_4px_0_#2b1a0d]">
+      <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-vault text-ink-crimson text-xl"></i>
+          <div>
+            <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
+              그린고트 마법 은행: 제 711호 비밀 금고 (Secret Vault)
+            </h3>
+            <p class="text-xs font-serif text-[#241508] font-medium">
+              * 금고를 열려면 4자리 마법 비밀번호를 입력하시오
+            </p>
+          </div>
+        </div>
+        <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
+          HIGH SECURITY
+        </span>
+      </div>
+
+      <div class="bg-parchment-50 p-4 border-2 border-ink text-center flex flex-col items-center">
+        <div id="vaultDial"
+          class="w-20 h-20 rounded-full border-4 border-ink bg-[#c8b288] flex items-center justify-center text-3xl shadow-inner my-2 transition-transform duration-700">
+          🔒
+        </div>
+
+        <div class="flex items-center gap-2 my-2">
+          <input type="password" id="vaultPasscode" maxlength="4" placeholder="••••"
+            class="w-28 text-center text-lg font-mono tracking-widest bg-[#f7efdc] border-2 border-ink py-1 rounded-xs focus:outline-none focus:border-ink-crimson" />
+          <button id="openVaultBtn"
+            class="px-4 py-2 bg-ink-crimson hover:bg-[#961e1e] text-parchment-50 font-cinzel font-bold text-xs tracking-wider rounded-xs border border-ink shadow-sm transition flex items-center gap-1 cursor-pointer">
+            <i class="fa-solid fa-key text-amber-300"></i>
+            <span>알로호모라!</span>
           </button>
         </div>
-      </footer>
+
+        <p class="text-[11px] font-serif text-[#241508] font-medium">
+          * 힌트: 오늘은 우리의 0000일 기념일
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 🛒 SECTION 7: 빈티지 광고란 & 신문 하단 바닥글                 -->
+    <!-- ============================================================ -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
+      <!-- 위즐리 형제 장난감 가게 -->
+      <div class="border-2 border-dashed border-ink p-2.5 bg-[#ebd7af] text-center">
+        <div class="font-prophet text-xl text-ink-crimson mb-0.5">Weasleys' Wizard Wheezes</div>
+        <span class="font-headline font-black text-xs text-ink uppercase tracking-wider block mb-1">
+          위즐리 형제의 장난감 가게 • 1000일 특별 할인
+        </span>
+        <p class="text-xs font-serif text-[#422c15] leading-tight">
+          “장거리 비행과 설원 라이딩 피로를 한 방에 날려주는 <strong>'꾀병용 과자 세트'</strong> <br>50% 반값 특가! 다이애건 앨리 93번지 부엉이 특급 발송.”
+        </p>
+      </div>
+
+      <!-- 올리밴더 지팡이 가게 -->
+      <div class="border-2 border-dashed border-ink p-2.5 bg-[#ebd7af] text-center">
+        <div class="font-prophet text-xl text-ink-crimson mb-0.5">Ollivanders Wands</div>
+        <span class="font-headline font-black text-xs text-ink uppercase tracking-wider block mb-1">
+          기원전 382년부터 이어진 최고의 지팡이 장인
+        </span>
+        <p class="text-xs font-serif text-[#422c15] leading-tight">
+          “1000일간 축적된 사랑과 추억을 심재로 한 커플 맞춤 지팡이 제작 접수 중. <br>지팡이가 주인을 선택합니다.”
+        </p>
+      </div>
+    </div>
+
+    <!-- 신문 바닥글 -->
+    <footer
+      class="mt-4 pt-3 border-t-4 border-ink flex flex-col sm:flex-row items-center justify-between text-[11px] font-serif text-[#543b22] gap-2">
+      <div class="flex items-center gap-2">
+        <span class="font-prophet text-xl text-ink">𝕯</span>
+        <span>© The Daily Prophet 1000-Day Special Edition. All Magical Love Reserved.</span>
+      </div>
+      <div class="flex items-center gap-3 font-cinzel text-xs font-bold">
+        <span>SEOUL</span>
+        <span>•</span>
+        <span>SLOPES</span>
+        <span>•</span>
+        <span>HAIDILAO</span>
+        <span>•</span>
+        <span>HOGWARTS</span>
+        <span>•</span>
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+          class="text-ink-crimson hover:underline cursor-pointer">
+          맨 위로 이동 ▲
+        </button>
+      </div>
+    </footer>
 
   </main>
 
@@ -1540,7 +1618,8 @@
             </span>
           </div>
           <p id="calModalLetterText"
-            class="font-myeongjo text-xs sm:text-[13px] leading-relaxed text-[#140c04] font-medium text-justify font-medium"></p>
+            class="font-myeongjo text-xs sm:text-[13px] leading-relaxed text-[#140c04] font-medium text-justify font-medium">
+          </p>
         </div>
 
         <!-- 하단 액션 버튼 바 -->

@@ -591,107 +591,108 @@ function renderQuiz() {
 // -------------------------------------------------------------
 // 8. Crossword Puzzle (가로세로 낱말퍼즐 인터랙티브 로직)
 // -------------------------------------------------------------
+// -------------------------------------------------------------
+// 8. Crossword Puzzle (가로세로 낱말퍼즐 - 실시간 양방향 연동)
+// -------------------------------------------------------------
 const checkCrosswordBtn = document.getElementById("checkCrosswordBtn");
 const resetCrosswordBtn = document.getElementById("resetCrosswordBtn");
 const cwSuccessBox = document.getElementById("cwSuccessBox");
 const cwBoard = document.getElementById("crosswordBoard");
 
-let activeCwDir = "across"; // 'across' or 'down'
+const cwWord1 = document.getElementById("cwWord1");
+const cwWord2 = document.getElementById("cwWord2");
+const cwWord3 = document.getElementById("cwWord3");
+const cwWord4 = document.getElementById("cwWord4");
 
 function getCwInput(r, c) {
   return document.querySelector(`.cw-input-letter[data-r="${r}"][data-c="${c}"]`);
 }
 
+// 1. 우측 입력창 ➔ 좌측 퍼즐판 실시간 반영
+function syncWordsToBoard() {
+  const w1 = (cwWord1?.value || "").trim();
+  const w2 = (cwWord2?.value || "").trim();
+  const w3 = (cwWord3?.value || "").trim();
+  const w4 = (cwWord4?.value || "").trim();
+
+  // 가로 1: (0,0), (0,1), (0,2)
+  const c00 = getCwInput(0, 0);
+  const c01 = getCwInput(0, 1);
+  const c02 = getCwInput(0, 2);
+  if (c00) c00.value = w1[0] || w3[0] || "";
+  if (c01) c01.value = w1[1] || "";
+  if (c02) c02.value = w1[2] || "";
+
+  // 세로 1: (0,0), (1,0), (2,0), (3,0), (4,0)
+  const c10 = getCwInput(1, 0);
+  const c20 = getCwInput(2, 0);
+  const c30 = getCwInput(3, 0);
+  const c40 = getCwInput(4, 0);
+  if (c10) c10.value = w3[1] || "";
+  if (c20) c20.value = w3[2] || "";
+  if (c30) c30.value = w3[3] || "";
+  if (c40) c40.value = w3[4] || "";
+
+  // 가로 2: (2,2) ~ (2,6)
+  for (let i = 0; i < 5; i++) {
+    const cell = getCwInput(2, 2 + i);
+    if (cell) cell.value = w2[i] || "";
+  }
+
+  // 세로 4: (1,1) ~ (4,1)
+  for (let i = 0; i < 4; i++) {
+    const cell = getCwInput(1 + i, 1);
+    if (cell) cell.value = w4[i] || "";
+  }
+}
+
+// 2. 좌측 퍼즐판 ➔ 우측 입력창 동기화
+function syncBoardToWords() {
+  const val = (r, c) => (getCwInput(r, c)?.value || "").trim();
+
+  const w1 = val(0, 0) + val(0, 1) + val(0, 2);
+  const w2 = val(2, 2) + val(2, 3) + val(2, 4) + val(2, 5) + val(2, 6);
+  const w3 = val(0, 0) + val(1, 0) + val(2, 0) + val(3, 0) + val(4, 0);
+  const w4 = val(1, 1) + val(2, 1) + val(3, 1) + val(4, 1);
+
+  if (cwWord1 && w1) cwWord1.value = w1;
+  if (cwWord2 && w2) cwWord2.value = w2;
+  if (cwWord3 && w3) cwWord3.value = w3;
+  if (cwWord4 && w4) cwWord4.value = w4;
+}
+
+// 우측 입력창 이벤트 등록 (타이핑 시 퍼즐판 즉시 갱신)
+[cwWord1, cwWord2, cwWord3, cwWord4].forEach(input => {
+  if (input) {
+    input.addEventListener("input", syncWordsToBoard);
+    input.addEventListener("compositionend", syncWordsToBoard);
+  }
+});
+
+// 퍼즐판 타일 클릭 시 우측의 해당 질문 입력창으로 포커스 & 직접 입력 지원
 if (cwBoard) {
   const allCwInputs = Array.from(cwBoard.querySelectorAll(".cw-input-letter"));
 
-  allCwInputs.forEach((input) => {
-    const r = parseInt(input.dataset.r, 10);
-    const c = parseInt(input.dataset.c, 10);
+  allCwInputs.forEach((cellInput) => {
+    const r = parseInt(cellInput.dataset.r, 10);
+    const c = parseInt(cellInput.dataset.c, 10);
 
-    // 포커스 시 방향 추론 (교차점 외에는 고유 방향 자동 결정)
-    input.addEventListener("focus", () => {
-      if (r === 0 && c === 0) {
-        // (0,0)은 교차점이므로 현재 설정된 activeCwDir 유지
-      } else if (r === 0) {
-        activeCwDir = "across";
-      } else if (c === 0 || c === 1) {
-        activeCwDir = "down";
+    // 타일 클릭 시 우측 관련 문제 입력창으로 부드럽게 안내
+    cellInput.addEventListener("click", () => {
+      if (r === 0) {
+        cwWord1?.focus();
+      } else if (c === 0) {
+        cwWord3?.focus();
+      } else if (c === 1) {
+        cwWord4?.focus();
       } else if (r === 2 && c >= 2) {
-        activeCwDir = "across";
+        cwWord2?.focus();
       }
     });
 
-    // 한 글자 입력 시 다음 칸 자동 이동
-    const handleNext = () => {
-      const val = input.value.trim();
-      if (!val) return;
-      input.value = val.slice(-1); // 마지막 글자 1자만 유지
-
-      let nextInput = null;
-      if (r === 0 && c === 0) {
-        nextInput = activeCwDir === "across" ? getCwInput(0, 1) : getCwInput(1, 0);
-      } else if (r === 0 && c < 2) {
-        nextInput = getCwInput(0, c + 1);
-      } else if (c === 0 && r < 4) {
-        nextInput = getCwInput(r + 1, 0);
-      } else if (c === 1 && r < 4) {
-        nextInput = getCwInput(r + 1, 1);
-      } else if (r === 2 && c >= 2 && c < 6) {
-        nextInput = getCwInput(2, c + 1);
-      }
-
-      if (nextInput) {
-        nextInput.focus();
-        nextInput.select();
-      }
-    };
-
-    input.addEventListener("input", handleNext);
-    input.addEventListener("compositionend", handleNext);
-
-    // 키보드 네비게이션 (Backspace & 화살표)
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Backspace" && !input.value) {
-        let prevInput = null;
-        if (r === 0 && c === 1) prevInput = getCwInput(0, 0);
-        else if (r === 0 && c === 2) prevInput = getCwInput(0, 1);
-        else if (c === 0 && r > 0) prevInput = getCwInput(r - 1, 0);
-        else if (c === 1 && r > 1) prevInput = getCwInput(r - 1, 1);
-        else if (r === 2 && c > 2) prevInput = getCwInput(2, c - 1);
-
-        if (prevInput) {
-          prevInput.focus();
-          prevInput.value = "";
-          e.preventDefault();
-        }
-      } else if (e.key === "ArrowRight") {
-        const next = getCwInput(r, c + 1);
-        if (next) { next.focus(); e.preventDefault(); }
-      } else if (e.key === "ArrowLeft") {
-        const prev = getCwInput(r, c - 1);
-        if (prev) { prev.focus(); e.preventDefault(); }
-      } else if (e.key === "ArrowDown") {
-        const next = getCwInput(r + 1, c);
-        if (next) { next.focus(); e.preventDefault(); }
-      } else if (e.key === "ArrowUp") {
-        const prev = getCwInput(r - 1, c);
-        if (prev) { prev.focus(); e.preventDefault(); }
-      }
-    });
-  });
-
-  // 열쇠 카드 클릭 시 해당 시작 칸으로 포커스
-  const clueCards = document.querySelectorAll(".cw-clue-card");
-  clueCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const [tr, tc] = card.dataset.target.split(",").map(Number);
-      activeCwDir = card.dataset.dir || "across";
-      const targetInput = getCwInput(tr, tc);
-      if (targetInput) {
-        targetInput.focus();
-        targetInput.select();
-      }
+    // 타일에서 직접 한 글자 입력 시
+    cellInput.addEventListener("input", () => {
+      syncBoardToWords();
     });
   });
 }
@@ -699,6 +700,9 @@ if (cwBoard) {
 // 지우기(초기화) 버튼
 if (resetCrosswordBtn) {
   resetCrosswordBtn.addEventListener("click", () => {
+    [cwWord1, cwWord2, cwWord3, cwWord4].forEach(input => {
+      if (input) input.value = "";
+    });
     document.querySelectorAll(".cw-input-letter").forEach((input) => {
       input.value = "";
     });
@@ -706,20 +710,21 @@ if (resetCrosswordBtn) {
       cell.classList.remove("cw-cell-correct");
     });
     if (cwSuccessBox) cwSuccessBox.classList.add("hidden");
-    const first = getCwInput(0, 0);
-    if (first) first.focus();
+    if (cwWord1) cwWord1.focus();
   });
 }
 
 // 정답 주문 시전 (검증)
 if (checkCrosswordBtn) {
   checkCrosswordBtn.addEventListener("click", () => {
+    syncWordsToBoard();
+
     const val = (r, c) => (getCwInput(r, c)?.value || "").trim();
 
-    const w1Across = val(0, 0) + val(0, 1) + val(0, 2);
-    const w1Down = val(0, 0) + val(1, 0) + val(2, 0) + val(3, 0) + val(4, 0);
-    const w2Across = val(2, 2) + val(2, 3) + val(2, 4) + val(2, 5) + val(2, 6);
-    const w4Down = val(1, 1) + val(2, 1) + val(3, 1) + val(4, 1);
+    const w1Across = (cwWord1?.value || (val(0, 0) + val(0, 1) + val(0, 2))).trim();
+    const w2Across = (cwWord2?.value || (val(2, 2) + val(2, 3) + val(2, 4) + val(2, 5) + val(2, 6))).trim();
+    const w1Down = (cwWord3?.value || (val(0, 0) + val(1, 0) + val(2, 0) + val(3, 0) + val(4, 0))).trim();
+    const w4Down = (cwWord4?.value || (val(1, 1) + val(2, 1) + val(3, 1) + val(4, 1))).trim();
 
     const isC1 = w1Across === "스키장";
     const isC2 = w2Across === "하이디라오";
