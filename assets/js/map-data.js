@@ -806,51 +806,33 @@ const OVERSEAS_SPOTS = [
     ],
     photos: (function () {
       var CANADA_BASE = "images/여행지/캐나다_옐로나이프_휘슬러/";
-      var raw = [
-        // 🌌 [옐로나이프 (Yellowknife)]
-        { type: "image", name: "DSC01996.JPEG", category: "yellowknife" },
-        { type: "image", name: "DSC02007.JPEG", category: "yellowknife" },
-        { type: "image", name: "DSC02011.JPG", category: "yellowknife" },
-        { type: "image", name: "IMG_5807.JPG", category: "yellowknife" },
-        { type: "image", name: "IMG_5808.JPG", category: "yellowknife" },
-        { type: "image", name: "IMG_5836.JPG", category: "yellowknife" },
-        { type: "image", name: "IMG_5872.JPG", category: "yellowknife" },
-
-        // 🏂 [휘슬러 (Whistler)]
-        { type: "image", name: "IMG_5691.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5696.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5699.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5704.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5710.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5721.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5736.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5739.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5744.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5746.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5747.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5748.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5749.JPEG", category: "whistler" },
-        { type: "image", name: "IMG_5754.JPEG", category: "whistler" },
-        { type: "video", name: "IMG_5763.MOV", category: "whistler" },
-
-        // 🇨🇦 [밴쿠버 & 빅토리아 (Vancouver & Victoria)]
-        { type: "image", name: "IMG_4544.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_4939.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_6351.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_6410-1.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_6410.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_6594.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_6887-1.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_6887.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_7149.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_7535.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_7688.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_7734.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_7738.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_8081.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_8144.JPEG", category: "vancouver" },
-        { type: "image", name: "IMG_8173.JPEG", category: "vancouver" }
-      ];
+      var raw = createMediaItems([
+        {
+          category: "yellowknife",
+          files: [
+            "DSC01996.JPEG", "DSC02007.JPEG", "DSC02011.JPG", "IMG_5807.JPG",
+            "IMG_5808.JPG", "IMG_5836.JPG", "IMG_5872.JPG"
+          ]
+        },
+        {
+          category: "whistler",
+          files: [
+            "IMG_5691.JPEG", "IMG_5696.JPEG", "IMG_5699.JPEG", "IMG_5704.JPEG",
+            "IMG_5710.JPEG", "IMG_5721.JPEG", "IMG_5736.JPEG", "IMG_5739.JPEG",
+            "IMG_5744.JPEG", "IMG_5746.JPEG", "IMG_5747.JPEG", "IMG_5748.JPEG",
+            "IMG_5749.JPEG", "IMG_5754.JPEG", "IMG_5763.MOV"
+          ]
+        },
+        {
+          category: "vancouver",
+          files: [
+            "IMG_4544.JPEG", "IMG_4939.JPEG", "IMG_6351.JPEG", "IMG_6410-1.JPEG",
+            "IMG_6410.JPEG", "IMG_6594.JPEG", "IMG_6887-1.JPEG", "IMG_6887.JPEG",
+            "IMG_7149.JPEG", "IMG_7535.JPEG", "IMG_7688.JPEG", "IMG_7734.JPEG",
+            "IMG_7738.JPEG", "IMG_8081.JPEG", "IMG_8144.JPEG", "IMG_8173.JPEG"
+          ]
+        }
+      ]);
 
       var customCaptions = {};
       var yCount = 0, wCount = 0, vCount = 0;
@@ -934,129 +916,55 @@ const OVERSEAS_SPOTS = [
     ],
     photos: (function () {
       var BALI_BASE = "images/여행지/인도네시아_발리/";
-      var raw = [
-        // 🌿 [우붓 (Ubud)] 시간 순서 정렬
-        { type: "image", name: "SN209992.jpeg", category: "ubud" },
-        { type: "image", name: "SN200063.jpeg", category: "ubud" },
-        { type: "image", name: "IMG_0988.jpeg", category: "ubud" },
-        { type: "image", name: "IMG_7761.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7828.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7902.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7324.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_1413.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_1451.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_1495.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7374.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_1638.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_1732.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7434.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7450.JPEG", category: "ubud" },
-        { type: "image", name: "KNK06346.jpeg", category: "ubud" },
-        { type: "video", name: "GX017995.MP4", category: "ubud" },
-        { type: "image", name: "IMG_7517.JPEG", category: "ubud" },
-        { type: "video", name: "IMG_1941.MP4", category: "ubud" },
-        { type: "image", name: "IMG_1978.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7739.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_7766.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_2020.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_2028.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_2039.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_2054.JPEG", category: "ubud" },
-        { type: "image", name: "IMG_2147.JPEG", category: "ubud" },
-
-        // 🦕 [누사페니다 (Nusa Penida)] 시간 순서 정렬
-        { type: "image", name: "IMG_2180.JPEG", category: "nusa_penida" },
-        { type: "image", name: "DJI_20260720130535_0009_D.jpeg", category: "nusa_penida" },
-        { type: "video", name: "DJI_20260720131128_0022_D.mp4", category: "nusa_penida" },
-        { type: "image", name: "IMG_2203.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2273.JPEG", category: "nusa_penida" },
-        { type: "video", name: "DJI_20260720141141_0030_D.mp4", category: "nusa_penida" },
-        { type: "video", name: "DJI_20260720141546_0032_D.mp4", category: "nusa_penida" },
-        { type: "video", name: "DJI_20260720141713_0033_D.mp4", category: "nusa_penida" },
-        { type: "image", name: "DJI_20260720151049_0058_D.jpeg", category: "nusa_penida" },
-        { type: "image", name: "IMG_7798.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_7806.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_7826.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_7829.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_7846.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_7855.JPEG", category: "nusa_penida" },
-        { type: "video", name: "IMG_8027.MP4", category: "nusa_penida" },
-        { type: "image", name: "IMG_8082.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8092.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8141.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8216.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8255.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2345.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2360.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8285.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8286.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2378.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2393.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2421.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2439.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2444.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2496.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8329.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2518.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_8391.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2538.JPEG", category: "nusa_penida" },
-        { type: "image", name: "IMG_2545.JPEG", category: "nusa_penida" },
-
-        // 🌅 [스미냑 (Seminyak)] 시간 순서 정렬
-        { type: "image", name: "IMG_2550.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2579.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2589.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2614.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2620.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2640.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2652.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2767.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_2827.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8546.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8552.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3015.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3016.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3038.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3043.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3071.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3088.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3125.JPEG", category: "seminyak" },
-        { type: "video", name: "IMG_3143.MP4", category: "seminyak" },
-        { type: "image", name: "IMG_3151.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8586.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3175.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3180.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3194.JPEG", category: "seminyak" },
-        { type: "video", name: "IMG_3221.MP4", category: "seminyak" },
-        { type: "image", name: "IMG_3248.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3263.JPEG", category: "seminyak" },
-        { type: "video", name: "IMG_3275.MP4", category: "seminyak" },
-        { type: "image", name: "IMG_3283.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3312.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3324.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3335.JPEG", category: "seminyak" },
-        { type: "video", name: "IMG_3346.MP4", category: "seminyak" },
-        { type: "image", name: "IMG_3358.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3375.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8652.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3418.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3438.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3466.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8662.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3491.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3541.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8703.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3570.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3581.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_8744.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3597.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3608.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3621.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3624.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3627.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3641.JPEG", category: "seminyak" },
-        { type: "image", name: "IMG_3651.JPEG", category: "seminyak" }
-      ];
+      var raw = createMediaItems([
+        {
+          category: "ubud",
+          files: [
+            "SN209992.jpeg", "SN200063.jpeg", "IMG_0988.jpeg", "IMG_7761.JPEG",
+            "IMG_7828.JPEG", "IMG_7902.JPEG", "IMG_7324.JPEG", "IMG_1413.JPEG",
+            "IMG_1451.JPEG", "IMG_1495.JPEG", "IMG_7374.JPEG", "IMG_1638.JPEG",
+            "IMG_1732.JPEG", "IMG_7434.JPEG", "IMG_7450.JPEG", "KNK06346.jpeg",
+            "GX017995.MP4", "IMG_7517.JPEG", "IMG_1941.MP4", "IMG_1978.JPEG",
+            "IMG_7739.JPEG", "IMG_7766.JPEG", "IMG_2020.JPEG", "IMG_2028.JPEG",
+            "IMG_2039.JPEG", "IMG_2054.JPEG", "IMG_2147.JPEG"
+          ]
+        },
+        {
+          category: "nusa_penida",
+          files: [
+            "IMG_2180.JPEG", "DJI_20260720130535_0009_D.jpeg", "DJI_20260720131128_0022_D.mp4",
+            "IMG_2203.JPEG", "IMG_2273.JPEG", "DJI_20260720141141_0030_D.mp4",
+            "DJI_20260720141546_0032_D.mp4", "DJI_20260720141713_0033_D.mp4",
+            "DJI_20260720151049_0058_D.jpeg", "IMG_7798.JPEG", "IMG_7806.JPEG",
+            "IMG_7826.JPEG", "IMG_7829.JPEG", "IMG_7846.JPEG", "IMG_7855.JPEG",
+            "IMG_8027.MP4", "IMG_8082.JPEG", "IMG_8092.JPEG", "IMG_8141.JPEG",
+            "IMG_8216.JPEG", "IMG_8255.JPEG", "IMG_2345.JPEG", "IMG_2360.JPEG",
+            "IMG_8285.JPEG", "IMG_8286.JPEG", "IMG_2378.JPEG", "IMG_2393.JPEG",
+            "IMG_2421.JPEG", "IMG_2439.JPEG", "IMG_2444.JPEG", "IMG_2496.JPEG",
+            "IMG_8329.JPEG", "IMG_2518.JPEG", "IMG_8391.JPEG", "IMG_2538.JPEG",
+            "IMG_2545.JPEG"
+          ]
+        },
+        {
+          category: "seminyak",
+          files: [
+            "IMG_2550.JPEG", "IMG_2579.JPEG", "IMG_2589.JPEG", "IMG_2614.JPEG",
+            "IMG_2620.JPEG", "IMG_2640.JPEG", "IMG_2652.JPEG", "IMG_2767.JPEG",
+            "IMG_2827.JPEG", "IMG_8546.JPEG", "IMG_8552.JPEG", "IMG_3015.JPEG",
+            "IMG_3016.JPEG", "IMG_3038.JPEG", "IMG_3043.JPEG", "IMG_3071.JPEG",
+            "IMG_3088.JPEG", "IMG_3125.JPEG", "IMG_3143.MP4", "IMG_3151.JPEG",
+            "IMG_8586.JPEG", "IMG_3175.JPEG", "IMG_3180.JPEG", "IMG_3194.JPEG",
+            "IMG_3221.MP4", "IMG_3248.JPEG", "IMG_3263.JPEG", "IMG_3275.MP4",
+            "IMG_3283.JPEG", "IMG_3312.JPEG", "IMG_3324.JPEG", "IMG_3335.JPEG",
+            "IMG_3346.MP4", "IMG_3358.JPEG", "IMG_3375.JPEG", "IMG_8652.JPEG",
+            "IMG_3418.JPEG", "IMG_3438.JPEG", "IMG_3466.JPEG", "IMG_8662.JPEG",
+            "IMG_3491.JPEG", "IMG_3541.JPEG", "IMG_8703.JPEG", "IMG_3570.JPEG",
+            "IMG_3581.JPEG", "IMG_8744.JPEG", "IMG_3597.JPEG", "IMG_3608.JPEG",
+            "IMG_3621.JPEG", "IMG_3624.JPEG", "IMG_3627.JPEG", "IMG_3641.JPEG",
+            "IMG_3651.JPEG"
+          ]
+        }
+      ]);
 
       // 📝 특정 사진의 설명을 직접 바꾸고 싶을 때 여기에 등록하면 바로 반영됩니다!
       // 형식: "파일명": "원하는 한 줄 설명"

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -421,7 +421,7 @@
               </button>
             </div>
 
-            <!-- 트랙 목록 (6곡 - 스크롤 없이 한눈에 표출) -->
+            <!-- 트랙 목록 (3곡 - 스크롤 없이 한눈에 표출) -->
             <div id="playlistTracks" class="space-y-1 text-xs font-serif">
               <button type="button"
                 class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none ring-1 ring-ink-crimson/50"
@@ -431,7 +431,6 @@
                   <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">박효신 - Gift</span>
-                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(드라이브 힐링곡)</span>
                   </div>
                 </div>
                 <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
@@ -445,7 +444,6 @@
                   <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">로제 - Messy</span>
-                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(힙한 그루브)</span>
                   </div>
                 </div>
                 <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
@@ -459,52 +457,9 @@
                   <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">샤키라 - Waka Waka</span>
-                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(졸음번쩍 댄스)</span>
                   </div>
                 </div>
                 <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
-              </button>
-
-              <button type="button"
-                class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                data-track-index="4" data-title="성시경 - 너의 모든 순간" data-duration="04:02" data-current="02:05"
-                data-progress="51">
-                <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">04</span>
-                  <div class="truncate">
-                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">성시경 - 너의 모든 순간</span>
-                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(심야 낭만 떼창)</span>
-                  </div>
-                </div>
-                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:02</span>
-              </button>
-
-              <button type="button"
-                class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                data-track-index="5" data-title="아이유 - 밤편지" data-duration="04:13" data-current="01:30"
-                data-progress="35">
-                <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">05</span>
-                  <div class="truncate">
-                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">아이유 - 밤편지</span>
-                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(감성 자장가)</span>
-                  </div>
-                </div>
-                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:13</span>
-              </button>
-
-              <button type="button"
-                class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                data-track-index="6" data-title="데이식스 - 한 페이지가 될 수 있게" data-duration="03:04" data-current="02:10"
-                data-progress="70">
-                <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">06</span>
-                  <div class="truncate">
-                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">데이식스 - 한 페이지</span>
-                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(도착 5분 전 텐션 폭발)</span>
-                  </div>
-                </div>
-                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:04</span>
               </button>
             </div>
           </div>
@@ -1161,49 +1116,142 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
-          <!-- 좌측: 인터랙티브 낱말 퍼즐 입력 폼 -->
-          <div class="md:col-span-7 bg-parchment-50 p-3 sm:p-4 border-2 border-ink shadow-inner">
-            <h5 class="font-headline font-bold text-xs text-ink mb-2 border-b border-ink/30 pb-1">
-              <i class="fa-solid fa-pen-nib text-ink-crimson"></i> 낱말 입력 양피지
-            </h5>
-            <div class="space-y-2.5 text-xs font-serif">
-              <div
-                class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 bg-[#f6edd9] border border-ink/30 rounded-xs">
-                <span class="font-bold text-ink">1. [가로] 겨울만 되면 둘이 홀린 듯 달려가는 새하얀 그곳? (3글자)</span>
-                <input type="text" id="cw1" maxlength="3" placeholder="OOO"
-                  class="cw-input w-24 text-center bg-white border border-ink font-bold tracking-widest text-ink py-0.5 rounded-xs uppercase">
-              </div>
-              <div
-                class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 bg-[#f6edd9] border border-ink/30 rounded-xs">
-                <span class="font-bold text-ink">2. [세로] 수인이가 당직 후 피곤할 때 무조건 찾는 달콤한 생명수? (3글자)</span>
-                <input type="text" id="cw2" maxlength="3" placeholder="OOO"
-                  class="cw-input w-24 text-center bg-white border border-ink font-bold tracking-widest text-ink py-0.5 rounded-xs uppercase">
-              </div>
-              <div
-                class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 bg-[#f6edd9] border border-ink/30 rounded-xs">
-                <span class="font-bold text-ink">3. [가로] 빗자루 대신 은빛 설원을 80km/h로 활강하는 겨울 스포츠? (5글자)</span>
-                <input type="text" id="cw3" maxlength="5" placeholder="OOOOO"
-                  class="cw-input w-28 text-center bg-white border border-ink font-bold tracking-widest text-ink py-0.5 rounded-xs uppercase">
-              </div>
-              <div
-                class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-2 bg-[#f6edd9] border border-ink/30 rounded-xs">
-                <span class="font-bold text-ink">4. [세로] 오늘 우리가 맞이한 경이롭고 마법 같은 기념일의 숫자? (4자리)</span>
-                <input type="text" id="cw4" maxlength="4" placeholder="1000"
-                  class="cw-input w-24 text-center bg-white border border-ink font-bold tracking-widest text-ink py-0.5 rounded-xs uppercase">
+          <!-- 좌측: 인터랙티브 낱말 퍼즐 격자판 (Crossword Board) -->
+          <div class="md:col-span-6 bg-parchment-50 p-3 sm:p-4 border-2 border-ink shadow-inner">
+            <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2.5">
+              <h5 class="font-headline font-bold text-xs text-ink flex items-center gap-1.5">
+                <i class="fa-solid fa-table-cells text-ink-crimson"></i> 십자말풀이 격자판 (Crossword Board)
+              </h5>
+              <button type="button" id="resetCrosswordBtn"
+                class="text-[11px] font-serif text-ink/70 hover:text-ink-crimson underline cursor-pointer">
+                <i class="fa-solid fa-rotate-left"></i> 지우기
+              </button>
+            </div>
+
+            <!-- 7x5 퍼즐 격자판 -->
+            <div class="flex justify-center my-2">
+              <div class="cw-board" id="crosswordBoard">
+                <!-- ROW 0 -->
+                <div class="cw-cell cw-cell-active" data-r="0" data-c="0">
+                  <span class="cw-num">1</span>
+                  <input type="text" class="cw-input-letter" data-r="0" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="0" data-c="1">
+                  <input type="text" class="cw-input-letter" data-r="0" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="0" data-c="2">
+                  <input type="text" class="cw-input-letter" data-r="0" data-c="2" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+
+                <!-- ROW 1 -->
+                <div class="cw-cell cw-cell-active" data-r="1" data-c="0">
+                  <input type="text" class="cw-input-letter" data-r="1" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="1" data-c="1">
+                  <span class="cw-num">4</span>
+                  <input type="text" class="cw-input-letter" data-r="1" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+
+                <!-- ROW 2 -->
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="0">
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="1">
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="2">
+                  <span class="cw-num">2</span>
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="2" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="3">
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="3" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="4">
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="4" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="5">
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="5" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="2" data-c="6">
+                  <input type="text" class="cw-input-letter" data-r="2" data-c="6" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+
+                <!-- ROW 3 -->
+                <div class="cw-cell cw-cell-active" data-r="3" data-c="0">
+                  <input type="text" class="cw-input-letter" data-r="3" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="3" data-c="1">
+                  <input type="text" class="cw-input-letter" data-r="3" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+
+                <!-- ROW 4 -->
+                <div class="cw-cell cw-cell-active" data-r="4" data-c="0">
+                  <input type="text" class="cw-input-letter" data-r="4" data-c="0" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-active" data-r="4" data-c="1">
+                  <input type="text" class="cw-input-letter" data-r="4" data-c="1" maxlength="2" autocomplete="off" autocorrect="off">
+                </div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
+                <div class="cw-cell cw-cell-block"></div>
               </div>
             </div>
+            <p class="text-[11px] font-serif text-[#4d3520] text-center mt-2">
+              <i class="fa-solid fa-wand-magic text-ink-crimson"></i> 빈칸을 누르고 글자를 입력하세요. 1번 칸의 <strong>'스'</strong>는 가로/세로가 공유합니다!
+            </p>
           </div>
 
-          <!-- 우측: 퍼즐 힌트 & 완성 메시지 패널 -->
-          <div class="md:col-span-5 flex flex-col justify-between h-full bg-[#f4ebd6] p-3 border-2 border-ink">
-            <div>
-              <span class="font-cinzel text-xs font-bold text-ink-crimson uppercase tracking-wider block mb-1">
-                ✦ CLUES & HIDDEN REVELATION ✦
-              </span>
-              <div
-                class="text-[11.5px] font-serif text-[#4d3520] space-y-1.5 leading-relaxed bg-parchment-50 p-2.5 border border-ink/20">
-                <p>💡 <strong>힌트:</strong> 스키장, 디저트, 스노우보드, 그리고 오늘 우리가 축하하는 가장 특별한 숫자!</p>
-                <p>정답을 모두 적고 상단의 <strong>[정답 주문 시전]</strong>을 누르면 마법 메시지가 나타납니다.</p>
+          <!-- 우측: 퍼즐 열쇠 & 완성 메시지 패널 -->
+          <div class="md:col-span-6 flex flex-col justify-between h-full bg-[#f4ebd6] p-3 border-2 border-ink">
+            <div class="space-y-3">
+              <!-- 가로 열쇠 -->
+              <div>
+                <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-wider block mb-1.5 border-b border-ink/20 pb-0.5">
+                  ✦ 가로 열쇠 (ACROSS) ✦
+                </span>
+                <div class="space-y-1.5 text-xs font-serif">
+                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="0,0" data-dir="across">
+                    <span class="font-bold text-ink-crimson">1.</span> <span class="font-bold text-ink">겨울만 되면 둘이 홀린 듯 달려가는 새하얀 그곳?</span> <span class="text-ink/60 font-semibold">(3글자)</span>
+                  </div>
+                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="2,2" data-dir="across">
+                    <span class="font-bold text-ink-crimson">2.</span> <span class="font-bold text-ink">마법약 솥 대신 4칸 냄비에 토마토탕과 마라탕을 끓여 먹는 두 사람의 최애 성지?</span> <span class="text-ink/60 font-semibold">(5글자)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 세로 열쇠 -->
+              <div>
+                <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-wider block mb-1.5 border-b border-ink/20 pb-0.5">
+                  ✦ 세로 열쇠 (DOWN) ✦
+                </span>
+                <div class="space-y-1.5 text-xs font-serif">
+                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="0,0" data-dir="down">
+                    <span class="font-bold text-ink-crimson">1.</span> <span class="font-bold text-ink">빗자루 대신 은빛 설원을 80km/h로 활강하는 겨울 스포츠?</span> <span class="text-ink/60 font-semibold">(5글자, 1번 '스'에서 교차)</span>
+                  </div>
+                  <div class="cw-clue-card p-2 bg-parchment-50 border border-ink/30 rounded-xs" data-target="1,1" data-dir="down">
+                    <span class="font-bold text-ink-crimson">4.</span> <span class="font-bold text-ink">오늘 우리가 함께 축하하며 마법부로부터 공인받은 기적 같은 기념일의 숫자?</span> <span class="text-ink/60 font-semibold">(4자리)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-[11.5px] font-serif text-[#4d3520] bg-parchment-50 p-2 border border-ink/20 rounded-xs">
+                💡 <strong>마법 힌트:</strong> 스키장, 하이디라오, 스노우보드, 1000
               </div>
             </div>
 
