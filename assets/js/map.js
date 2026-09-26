@@ -589,10 +589,11 @@
       selectedSpot = spot;
       playWandWoosh();
 
-      // Highlight card in carousel
+      // Highlight card in carousel & scroll into view
       document.querySelectorAll(".dest-card").forEach(card => {
         if (card.getAttribute("data-id") === spot.id) {
           card.classList.add("ring-2", "ring-[#841c1c]", "bg-[#fffcf5]", "shadow-md");
+          card.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         } else {
           card.classList.remove("ring-2", "ring-[#841c1c]", "bg-[#fffcf5]", "shadow-md");
         }
@@ -1135,6 +1136,21 @@
       });
     }
 
+    const overviewEditPhotosBtn = document.getElementById("overviewEditPhotosBtn");
+    if (overviewEditPhotosBtn) {
+      overviewEditPhotosBtn.addEventListener("click", () => {
+        if (isAdminMode) {
+          openAddMediaModal();
+        } else {
+          pendingAdminAction = 'addMedia';
+          document.getElementById("adminPasswordInput").value = "";
+          document.getElementById("adminAuthError").classList.add("hidden");
+          document.getElementById("adminAuthModal").classList.remove("hidden");
+          document.getElementById("adminPasswordInput").focus();
+        }
+      });
+    }
+
     // Keyboard Navigation for Lightbox & Overview
     window.addEventListener("keydown", (e) => {
       const lb = document.getElementById("photoLightbox");
@@ -1227,7 +1243,8 @@
       `).join("");
 
       carousel.querySelectorAll(".dest-card").forEach(c => {
-        c.addEventListener("click", () => {
+        c.addEventListener("click", (e) => {
+          e.stopPropagation();
           const target = dataset.find(d => d.id === c.getAttribute("data-id"));
           if (target) selectSpot(target);
         });
@@ -1258,7 +1275,7 @@
         const x = e.pageX - carousel.offsetLeft;
         const walk = x - startX;
 
-        if (Math.abs(walk) > 5) {
+        if (Math.abs(walk) > 10) {
           isDragging = true;
           hasDragged = true;
           carousel.classList.add("is-dragging");
@@ -1714,7 +1731,8 @@
         }).join("");
 
         searchDropdown.querySelectorAll(".search-item").forEach(item => {
-          item.addEventListener("click", () => {
+          item.addEventListener("click", (e) => {
+            e.stopPropagation();
             const destId = item.getAttribute("data-id");
             const realm = item.getAttribute("data-realm");
 
@@ -1747,6 +1765,12 @@
       const drawer = document.getElementById("travelDrawer");
       if (drawer && !drawer.classList.contains("-translate-x-full") && !drawer.contains(e.target)) {
         if (
+          e.target.closest("#destCarouselContainer") ||
+          e.target.closest("#destCarousel") ||
+          e.target.closest(".dest-card") ||
+          e.target.closest("#spotSearch") ||
+          e.target.closest("#searchDropdown") ||
+          e.target.closest("#adminToggleBtn") ||
           e.target.closest("#photoLightbox") ||
           e.target.closest("#photoOverviewModal") ||
           e.target.closest("#adminAuthModal") ||
@@ -1760,22 +1784,56 @@
       }
     });
 
+    let pendingAdminAction = null;
+
+    function openAddMediaModal() {
+      if (!selectedSpot) {
+        showToast("먼저 여행지를 선택해주세요.");
+        return;
+      }
+      const categorySelectWrap = document.getElementById("mediaCategorySelectWrap");
+      const categorySelect = document.getElementById("mediaCategorySelect");
+      if (categorySelectWrap && categorySelect) {
+        if (selectedSpot.subAlbums && selectedSpot.subAlbums.length > 0) {
+          categorySelectWrap.classList.remove("hidden");
+          categorySelect.innerHTML = selectedSpot.subAlbums.map(a => `
+            <option value="${a.id}">${a.name} (${a.tag})</option>
+          `).join("");
+        } else {
+          categorySelectWrap.classList.add("hidden");
+          categorySelect.innerHTML = `<option value="">기본 앨범</option>`;
+        }
+      }
+      document.getElementById("uploadStatusMsg").classList.add("hidden");
+      document.getElementById("addMediaModal").classList.remove("hidden");
+    }
+
     function updateAdminUI() {
       const adminBtn = document.getElementById("adminToggleBtn");
       const icon = document.getElementById("adminToggleIcon");
       const addMediaBtn = document.getElementById("addMediaPromptBtn");
-      const editLetterBtn = document.getElementById("editLetterBtn");
+      const addMediaBtnIcon = document.getElementById("addMediaBtnIcon");
+      const addMediaBtnText = document.getElementById("addMediaBtnText");
+      const overviewAdminBadge = document.getElementById("overviewAdminBadge");
 
       if (isAdminMode) {
-        adminBtn.className = "w-6 h-6 rounded-full bg-[#1e3a24] hover:bg-[#2d5234] text-[#a7f3d0] border border-[#064e3b] flex items-center justify-center transition shrink-0 opacity-90 shadow-sm";
-        icon.textContent = "🔓";
-        addMediaBtn.classList.remove("hidden");
-        editLetterBtn.classList.remove("hidden");
+        if (adminBtn) adminBtn.className = "w-6 h-6 rounded-full bg-[#1e3a24] hover:bg-[#2d5234] text-[#a7f3d0] border border-[#064e3b] flex items-center justify-center transition shrink-0 opacity-90 shadow-sm";
+        if (icon) icon.textContent = "🔓";
+        if (addMediaBtn) {
+          addMediaBtn.className = "px-1.5 py-0.5 text-[9px] bg-[#1e3a24] hover:bg-[#2d5234] text-[#a7f3d0] border border-[#064e3b] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer";
+        }
+        if (addMediaBtnIcon) addMediaBtnIcon.textContent = "🔓";
+        if (addMediaBtnText) addMediaBtnText.textContent = "사진 추가/관리";
+        if (overviewAdminBadge) overviewAdminBadge.classList.remove("hidden");
       } else {
-        adminBtn.className = "w-6 h-6 rounded-full bg-[#3b2513]/15 hover:bg-[#841c1c]/80 text-[#543b22] hover:text-[#fbf7ee] border border-[#543b22]/30 flex items-center justify-center transition shrink-0 opacity-40 hover:opacity-100";
-        icon.textContent = "🔒";
-        addMediaBtn.classList.add("hidden");
-        editLetterBtn.classList.add("hidden");
+        if (adminBtn) adminBtn.className = "w-6 h-6 rounded-full bg-[#3b2513]/15 hover:bg-[#841c1c]/80 text-[#543b22] hover:text-[#fbf7ee] border border-[#543b22]/30 flex items-center justify-center transition shrink-0 opacity-40 hover:opacity-100";
+        if (icon) icon.textContent = "🔒";
+        if (addMediaBtn) {
+          addMediaBtn.className = "px-1.5 py-0.5 text-[9px] bg-[#841c1c] hover:bg-[#6b1414] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer";
+        }
+        if (addMediaBtnIcon) addMediaBtnIcon.textContent = "✏️";
+        if (addMediaBtnText) addMediaBtnText.textContent = "사진첩 편집";
+        if (overviewAdminBadge) overviewAdminBadge.classList.add("hidden");
       }
 
       document.querySelectorAll(".delete-photo-btn").forEach(b => {
@@ -1790,6 +1848,7 @@
         updateAdminUI();
         showToast("🔒 방문자 모드로 전환되었습니다.");
       } else {
+        pendingAdminAction = null;
         document.getElementById("adminPasswordInput").value = "";
         document.getElementById("adminAuthError").classList.add("hidden");
         document.getElementById("adminAuthModal").classList.remove("hidden");
@@ -1804,6 +1863,16 @@
         document.getElementById("adminAuthModal").classList.add("hidden");
         playMagicChime();
         showToast("🔓 특파원 편집 권한이 승인되었습니다!");
+        if (pendingAdminAction === 'addMedia') {
+          pendingAdminAction = null;
+          openAddMediaModal();
+        } else if (pendingAdminAction === 'editLetter') {
+          pendingAdminAction = null;
+          if (selectedSpot) {
+            document.getElementById("letterInputText").value = selectedSpot.letter || "";
+            document.getElementById("letterModal").classList.remove("hidden");
+          }
+        }
       } else {
         document.getElementById("adminAuthError").classList.remove("hidden");
       }
@@ -1818,8 +1887,15 @@
 
     const addMediaModal = document.getElementById("addMediaModal");
     document.getElementById("addMediaPromptBtn").addEventListener("click", () => {
-      document.getElementById("uploadStatusMsg").classList.add("hidden");
-      addMediaModal.classList.remove("hidden");
+      if (isAdminMode) {
+        openAddMediaModal();
+      } else {
+        pendingAdminAction = 'addMedia';
+        document.getElementById("adminPasswordInput").value = "";
+        document.getElementById("adminAuthError").classList.add("hidden");
+        document.getElementById("adminAuthModal").classList.remove("hidden");
+        document.getElementById("adminPasswordInput").focus();
+      }
     });
     document.getElementById("closeAddMediaModalBtn").addEventListener("click", () => addMediaModal.classList.add("hidden"));
     document.getElementById("cancelAddMediaBtn").addEventListener("click", () => addMediaModal.classList.add("hidden"));
@@ -1834,18 +1910,23 @@
       status.classList.remove("hidden");
       status.textContent = `사진 ${e.target.files.length}장을 저장 중...`;
 
+      const categorySelect = document.getElementById("mediaCategorySelect");
+      const category = (categorySelect && !categorySelect.parentElement.classList.contains("hidden")) ? categorySelect.value : undefined;
+
       let count = 0;
       for (const file of Array.from(e.target.files)) {
         if (!file.type.startsWith("image/")) continue;
         await new Promise((resolve) => {
           const reader = new FileReader();
           reader.onload = async (evt) => {
-            await savePhotoToDB({
+            const photoData = {
               destId: selectedSpot.id,
               type: "image",
               url: evt.target.result,
               caption: file.name.replace(/\.[^/.]+$/, "")
-            });
+            };
+            if (category) photoData.category = category;
+            await savePhotoToDB(photoData);
             count++;
             resolve();
           };
@@ -1854,6 +1935,10 @@
       }
       status.textContent = `${count}장의 사진이 보관소에 저장되었습니다!`;
       await renderDrawerPhotos(selectedSpot);
+      const overviewModal = document.getElementById("photoOverviewModal");
+      if (overviewModal && !overviewModal.classList.contains("hidden")) {
+        openPhotoOverviewModal(selectedSpot, category || 'all');
+      }
       setTimeout(() => {
         addMediaModal.classList.add("hidden");
         showToast(`${count}장의 사진이 성공적으로 등록되었습니다!`);
@@ -1892,17 +1977,27 @@
         return;
       }
 
-      await savePhotoToDB({
+      const categorySelect = document.getElementById("mediaCategorySelect");
+      const category = (categorySelect && !categorySelect.parentElement.classList.contains("hidden")) ? categorySelect.value : undefined;
+
+      const photoData = {
         destId: selectedSpot.id,
         type: "image",
         url: url,
         caption: caption
-      });
+      };
+      if (category) photoData.category = category;
+
+      await savePhotoToDB(photoData);
 
       urlInput.value = "";
       captionInput.value = "";
       addMediaModal.classList.add("hidden");
       await renderDrawerPhotos(selectedSpot);
+      const overviewModal = document.getElementById("photoOverviewModal");
+      if (overviewModal && !overviewModal.classList.contains("hidden")) {
+        openPhotoOverviewModal(selectedSpot, category || 'all');
+      }
       showToast("새로운 보도 사진 링크가 등록되었습니다!");
     });
 
@@ -1910,8 +2005,16 @@
     const letterModal = document.getElementById("letterModal");
     document.getElementById("editLetterBtn").addEventListener("click", () => {
       if (!selectedSpot) return;
-      document.getElementById("letterInputText").value = selectedSpot.letter || "";
-      letterModal.classList.remove("hidden");
+      if (isAdminMode) {
+        document.getElementById("letterInputText").value = selectedSpot.letter || "";
+        letterModal.classList.remove("hidden");
+      } else {
+        pendingAdminAction = 'editLetter';
+        document.getElementById("adminPasswordInput").value = "";
+        document.getElementById("adminAuthError").classList.add("hidden");
+        document.getElementById("adminAuthModal").classList.remove("hidden");
+        document.getElementById("adminPasswordInput").focus();
+      }
     });
     document.getElementById("closeLetterModalBtn").addEventListener("click", () => letterModal.classList.add("hidden"));
     document.getElementById("cancelLetterBtn").addEventListener("click", () => letterModal.classList.add("hidden"));
