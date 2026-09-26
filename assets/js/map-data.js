@@ -411,9 +411,12 @@ const OVERSEAS_SPOTS = [
       var raw = [
         { type: "image", name: "IMG_6149.JPEG" },
         { type: "image", name: "IMG_6153.JPEG" },
-        { type: "image", name: "IMG_4907.JPG" },
+        { type: "image", name: "IMG_4907.JPG" }, 0ㅐㅣ,
         { type: "image", name: "IMG_3096.JPEG" },
         { type: "image", name: "IMG_4903.JPG" },
+        { type: "image", name: "IMG_2984.jpeg" },
+        { type: "image", name: "IMG_3062.jpeg" },
+        { type: "image", name: "IMG_3300.jpeg" },
         { type: "image", name: "IMG_3585.JPEG" },
         { type: "image", name: "IMG_3609.JPEG" },
         { type: "image", name: "IMG_3645.JPEG" },
@@ -424,10 +427,9 @@ const OVERSEAS_SPOTS = [
         { type: "image", name: "IMG_4923.JPG" },
         { type: "image", name: "IMG_4563.JPG" },
         { type: "video", name: "dji_fly_0_0_0_1721367542267_video_cache.MP4" },
-        { type: "video", name: "dji_fly_0_0_0_1721367542272_video_cache.MP4" },
+        { type: "video", name: "dji_fly_0_0_0_1721367542272_video_cache.mp4" },
         { type: "video", name: "IMG_7070.MP4" },
         { type: "image", name: "IMG_7186.JPEG" },
-
       ];
 
       var customCaptions = {};
@@ -440,6 +442,12 @@ const OVERSEAS_SPOTS = [
           cap = customCaptions[name];
         } else if (/6149|6153|4907|3096|4903/.test(name)) {
           cap = "푸꾸옥 도착 & 풀사이드 힐링";
+        } else if (/2984/.test(name)) {
+          cap = "빈펄 사파리 아기 코끼리와의 교감";
+        } else if (/3062/.test(name)) {
+          cap = "기린 레스토랑에서 기린에게 당근 간식 주기";
+        } else if (/3300/.test(name)) {
+          cap = "푸꾸옥 빈원더스 워터파크 물놀이";
         } else if (/3585|3609|3645|3664/.test(name)) {
           cap = "200일 기념 선셋타운 최고급 레스토랑!!";
         } else if (/6385|6391|4926|4923/.test(name)) {
@@ -501,29 +509,29 @@ const OVERSEAS_SPOTS = [
         id: "grindelwald",
         name: "그린델발트",
         tag: "🏡 그린델발트",
-        desc: "아이거 북벽 아래 동화 같은 통나무 샬레 마을",
+        desc: "아이거 북벽을 보며 보드타기",
         cover: "images/여행지/스위스/그린델발트/IMG_4037.JPEG"
       },
       {
         id: "interlaken",
         name: "인터라켄",
         tag: "🏞️ 인터라켄",
-        desc: "에메랄드빛 호수와 알프스 영봉을 잇는 낭만의 관문",
-        cover: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=600&auto=format&fit=crop"
+        desc: "하늘에서 바라보는 예쁜 호수와 인터라켄",
+        cover: "images/여행지/스위스/인터라켄/IMG_3914.jpeg"
       },
       {
         id: "lucerne",
         name: "루체른",
         tag: "🌉 루체른",
-        desc: "카펠교와 백조가 노니는 호반 도시의 낭만",
-        cover: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&auto=format&fit=crop"
+        desc: "카펠교와 명품의 거리",
+        cover: "images/여행지/스위스/루체른/IMG_4229.jpeg"
       },
       {
         id: "zurich",
         name: "취리히",
         tag: "🏛️ 취리히",
         desc: "취리히 호수와 품격 있는 유럽 구시가지 산책",
-        cover: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop"
+        cover: "images/여행지/스위스/취리히/IMG_5130.jpg"
       }
     ],
     photos: (function () {
@@ -644,16 +652,31 @@ const OVERSEAS_SPOTS = [
         { type: "image", name: "IMG_0767.JPEG", folder: "체르마트", category: "zermatt" },
         { type: "image", name: "IMG_2636.JPEG", folder: "체르마트", category: "zermatt" },
 
-        // 🌉 [루체른 (Lucerne)] 기본 전시 사진 (사진 추가 시 자동 반영)
-        { type: "image", name: "lucerne_chapel_bridge.jpg", category: "lucerne", url: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=1200&auto=format&fit=crop", caption: "루체른 카펠교의 고풍스러운 목조 다리 풍경" },
-        { type: "image", name: "lucerne_lake_swans.jpg", category: "lucerne", url: "https://images.unsplash.com/photo-1574044955621-e0f498c8c516?w=1200&auto=format&fit=crop", caption: "루체른 호수와 알프스를 배경으로 노니는 백조들" },
-        // 🏛️ [취리히 (Zurich)] 기본 전시 사진 (사진 추가 시 자동 반영)
-        { type: "image", name: "zurich_altstadt.jpg", category: "zurich", url: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1200&auto=format&fit=crop", caption: "취리히 구시가지와 리마트 강의 운치 있는 야경" },
-        { type: "image", name: "zurich_lake_promenade.jpg", category: "zurich", url: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&auto=format&fit=crop", caption: "취리히 호반 산책로의 여유로운 오후" }
+        // 🏞️ [인터라켄 (Interlaken)]
+        { type: "image", name: "GOPR1561.JPG", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "GOPR4574.JPG", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "GOPR4587.JPG", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "IMG_1846.jpeg", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "IMG_3914.jpeg", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "IMG_3919.jpeg", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "IMG_3923.jpeg", folder: "인터라켄", category: "interlaken" },
+        { type: "image", name: "IMG_3941.jpeg", folder: "인터라켄", category: "interlaken" },
+
+        // 🌉 [루체른 (Lucerne)]
+        { type: "image", name: "IMG_1945.jpeg", folder: "루체른", category: "lucerne" },
+        { type: "image", name: "IMG_4179.jpg", folder: "루체른", category: "lucerne" },
+        { type: "image", name: "IMG_4229.jpeg", folder: "루체른", category: "lucerne" },
+        { type: "image", name: "IMG_4302.jpeg", folder: "루체른", category: "lucerne" },
+        { type: "image", name: "IMG_4429.jpeg", folder: "루체른", category: "lucerne" },
+        { type: "image", name: "IMG_4469.jpeg", folder: "루체른", category: "lucerne" },
+
+        // 🏛️ [취리히 (Zurich)]
+        { type: "image", name: "IMG_2017.jpeg", folder: "취리히", category: "zurich" },
+        { type: "image", name: "IMG_5130.jpg", folder: "취리히", category: "zurich" }
       ];
 
       var customCaptions = {};
-      var zCount = 0, gCount = 0, jCount = 0, lCount = 0, zuCount = 0;
+      var zCount = 0, gCount = 0, jCount = 0, inCount = 0, lCount = 0, zuCount = 0;
       return raw.map(function (item, idx) {
         var catIdx = 0;
         var cap = "";
@@ -687,12 +710,23 @@ const OVERSEAS_SPOTS = [
           else if (/2939|2949|2954|2958|2970|2998/.test(name)) cap = "융프라우 만년설 고원 설경 & 빙하 하산길";
           else if (item.type === "video") cap = "융프라우요흐 만년설 영상 기록";
           else cap = "만년설 융프라우요흐 No." + catIdx;
+        } else if (item.category === "interlaken") {
+          catIdx = ++inCount;
+          if (/GOPR/.test(name)) cap = "인터라켄 상공 패러글라이딩 액티비티";
+          else if (/1846|3914|3919/.test(name)) cap = "인터라켄 마을 풍경 & 에메랄드빛 툰·브리엔츠 호수";
+          else if (/3923|3941/.test(name)) cap = "인터라켄 알프스 산책로의 맑은 공기";
+          else cap = "인터라켄 호수와 알프스 No." + catIdx;
         } else if (item.category === "lucerne") {
           catIdx = ++lCount;
-          cap = item.caption || ("루체른 카펠교와 호반 낭만 No." + catIdx);
+          if (/1945|4179/.test(name)) cap = "루체른 구시가지 골목과 아름다운 호반";
+          else if (/4229|4302/.test(name)) cap = "유럽에서 가장 오래된 목조 다리 카펠교";
+          else if (/4429|4469/.test(name)) cap = "루체른 호수의 백조들과 낭만적인 오후";
+          else cap = "루체른 카펠교와 호반 낭만 No." + catIdx;
         } else {
           catIdx = ++zuCount;
-          cap = item.caption || ("취리히 구시가지와 호반 산책 No." + catIdx);
+          if (/2017/.test(name)) cap = "취리히 구시가지 리마트 강변 산책";
+          else if (/5130/.test(name)) cap = "취리히 시내와 낭만적인 기념품 탐방";
+          else cap = "취리히 구시가지와 호반 산책 No." + catIdx;
         }
 
         var itemUrl = item.url ? item.url : (SWISS_BASE + item.folder + "/" + item.name);
@@ -805,9 +839,30 @@ const OVERSEAS_SPOTS = [
     spots: ["시부야 스크램블", "도쿄타워 야경", "신주쿠", "긴자"],
     desc: "도쿄의 화려한 여름밤 야경과 트렌디한 골목길, 다채로운 도심 문화를 탐방했던 여행.",
     letter: "“붉은 도쿄타워 아래서 마신 시원한 음료와, 끝없이 교차하는 시부야 스크램블 속에서 느꼈던 도쿄만의 두근거리는 에너지!”",
-    photos: [
-      { type: "image", url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop", caption: "도쿄타워의 붉은 야경" }
-    ]
+    photos: (function () {
+      var TOKYO_BASE = "images/여행지/일본_도쿄/";
+      var raw = [
+        { type: "image", name: "IMG_5660.jpeg" },
+        { type: "image", name: "IMG_5680.jpeg" }
+      ];
+
+      var customCaptions = {
+        "IMG_5660.jpeg": "도쿄 전통 장어덮밥(우나쥬) & 갓 구운 계란말이 만찬",
+        "IMG_5680.jpeg": "시부야 스크램블 교차로 뷰 & 시원한 음료 타임"
+      };
+
+      var count = 0;
+      return raw.map(function (item) {
+        count++;
+        var cap = customCaptions[item.name] || ("도쿄 도심 탐방 No." + count);
+        return {
+          type: item.type,
+          url: TOKYO_BASE + item.name,
+          caption: cap,
+          name: item.name
+        };
+      });
+    })()
   },
   {
     id: "canada",
@@ -822,9 +877,120 @@ const OVERSEAS_SPOTS = [
     spots: ["옐로나이프 오로라 빌리지", "휘슬러 블랙콤 스키", "밴쿠버 개스타운"],
     desc: "북극권 밤하늘에서 초록빛 커튼을 흔드는 오로라와 세계적인 설산 휘슬러, 밴쿠버까지 누빈 캐나다 윈터 대탐험.",
     letter: "“영하 30도 혹한 속에서 밤하늘 전체가 초록빛 물결로 춤추던 옐로나이프의 오로라... 평생 잊지 못할 가슴 벅찬 마법의 순간.”",
-    photos: [
-      { type: "image", url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&auto=format&fit=crop", caption: "옐로나이프 춤추는 오로라" }
-    ]
+    subAlbums: [
+      {
+        id: "yellowknife",
+        name: "옐로나이프",
+        tag: "🌌 옐로나이프",
+        desc: "영하 30도 혹한 속 초록빛 오로라 춤의 향연",
+        cover: "images/여행지/캐나다_옐로나이프_휘슬러/DSC01996.JPEG"
+      },
+      {
+        id: "whistler",
+        name: "휘슬러",
+        tag: "🏂 휘슬러",
+        desc: "세계 최고 수준의 휘슬러 블랙콤 파우더 라이딩",
+        cover: "images/여행지/캐나다_옐로나이프_휘슬러/IMG_5710.JPEG"
+      },
+      {
+        id: "vancouver",
+        name: "밴쿠버 & 빅토리아",
+        tag: "🇨🇦 밴쿠버",
+        desc: "밴쿠버 개스타운 & 태평양 연안의 아름다운 항구",
+        cover: "images/여행지/캐나다_옐로나이프_휘슬러/IMG_7149.JPEG"
+      }
+    ],
+    photos: (function () {
+      var CANADA_BASE = "images/여행지/캐나다_옐로나이프_휘슬러/";
+      var raw = [
+        // 🌌 [옐로나이프 (Yellowknife)]
+        { type: "image", name: "DSC01996.JPEG", category: "yellowknife" },
+        { type: "image", name: "DSC02007.JPEG", category: "yellowknife" },
+        { type: "image", name: "DSC02011.JPG", category: "yellowknife" },
+        { type: "image", name: "IMG_5807.JPG", category: "yellowknife" },
+        { type: "image", name: "IMG_5808.JPG", category: "yellowknife" },
+        { type: "image", name: "IMG_5836.JPG", category: "yellowknife" },
+        { type: "image", name: "IMG_5872.JPG", category: "yellowknife" },
+
+        // 🏂 [휘슬러 (Whistler)]
+        { type: "image", name: "IMG_5691.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5696.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5699.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5704.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5710.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5721.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5736.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5739.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5744.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5746.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5747.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5748.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5749.JPEG", category: "whistler" },
+        { type: "image", name: "IMG_5754.JPEG", category: "whistler" },
+        { type: "video", name: "IMG_5763.MOV", category: "whistler" },
+
+        // 🇨🇦 [밴쿠버 & 빅토리아 (Vancouver & Victoria)]
+        { type: "image", name: "IMG_4544.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_4939.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_6351.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_6410-1.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_6410.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_6594.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_6887-1.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_6887.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_7149.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_7535.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_7688.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_7734.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_7738.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_8081.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_8144.JPEG", category: "vancouver" },
+        { type: "image", name: "IMG_8173.JPEG", category: "vancouver" }
+      ];
+
+      var customCaptions = {};
+      var yCount = 0, wCount = 0, vCount = 0;
+      return raw.map(function (item, idx) {
+        var catIdx = 0;
+        var cap = "";
+        var name = item.name;
+
+        if (customCaptions[name]) {
+          cap = customCaptions[name];
+        } else if (item.category === "yellowknife") {
+          catIdx = ++yCount;
+          if (/1996|2007|2011/.test(name)) cap = "밤하늘을 수놓은 신비로운 초록빛 오로라 폭풍";
+          else if (/5807|5808/.test(name)) cap = "영하 30도의 밤, 둘만의 오로라 헌팅 기념";
+          else if (/5836|5872/.test(name)) cap = "눈 덮인 북극 숲과 춤추는 오로라 커튼";
+          else cap = "옐로나이프 오로라 비경 No." + catIdx;
+        } else if (item.category === "whistler") {
+          catIdx = ++wCount;
+          if (/5691|5696|5699/.test(name)) cap = "휘슬러 빌리지 도착 & 알프스 스타일 설산 리조트";
+          else if (/5704|5710|5721/.test(name)) cap = "휘슬러 블랙콤 곤돌라 등반과 광활한 설원 뷰";
+          else if (/5736|5739|5744/.test(name)) cap = "최고의 설질을 자랑하는 블랙콤 파우더 슬로프";
+          else if (/5746|5747|5748|5749|5754/.test(name)) cap = "눈부신 설산 파노라마와 휘슬러 정상에서의 한 컷";
+          else if (item.type === "video" || /5763/.test(name)) cap = "휘슬러 눈부신 설원 라이딩 현장 영상";
+          else cap = "휘슬러 블랙콤 설원 No." + catIdx;
+        } else {
+          catIdx = ++vCount;
+          if (/4544|4939/.test(name)) cap = "밴쿠버 도착 & 태평양 연안의 상쾌한 겨울 공기";
+          else if (/6351|6410/.test(name)) cap = "밴쿠버 개스타운의 고풍스러운 붉은 벽돌과 증기시계";
+          else if (/6594|6887/.test(name)) cap = "다운타운 워터프론트와 항구의 아름다운 풍경";
+          else if (/7149|7535|7688/.test(name)) cap = "캐나다 감성 가득한 도심 산책과 미식 탐방";
+          else if (/7734|7738|8081/.test(name)) cap = "빅토리아 페리와 태평양 바다의 탁 트인 전망";
+          else if (/8144|8173/.test(name)) cap = "캐나다 겨울 대탐험을 기억하는 소중한 순간들";
+          else cap = "밴쿠버 & 빅토리아 명소 No." + catIdx;
+        }
+
+        return {
+          type: item.type,
+          url: CANADA_BASE + item.name,
+          caption: cap,
+          category: item.category,
+          name: item.name
+        };
+      });
+    })()
   },
   {
     id: "bali",
