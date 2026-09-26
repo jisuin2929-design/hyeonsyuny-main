@@ -498,11 +498,11 @@ const floatingBgmIcon = document.getElementById("floatingBgmIcon");
 const floatingBgmIndicator = document.getElementById("floatingBgmIndicator");
 
 function updateSoundUI(isOn) {
-  if (mapSoundLabel) mapSoundLabel.textContent = isOn ? "해리포터 BGM ON" : "해리포터 BGM OFF";
+  if (mapSoundLabel) mapSoundLabel.textContent = isOn ? "마법 BGM 정지" : "마법 BGM 재생";
   if (mapSoundBtn) mapSoundBtn.classList.toggle("opacity-60", !isOn);
   if (mapSoundIcon) mapSoundIcon.textContent = isOn ? "🎵" : "🔇";
 
-  if (floatingBgmLabel) floatingBgmLabel.textContent = isOn ? "해리포터 BGM ON" : "해리포터 BGM OFF";
+  if (floatingBgmLabel) floatingBgmLabel.textContent = isOn ? "마법 BGM 정지" : "마법 BGM 재생";
   if (floatingBgmBtn) {
     floatingBgmBtn.classList.toggle("opacity-70", !isOn);
     floatingBgmBtn.classList.toggle("border-amber-600/80", isOn);
@@ -523,6 +523,11 @@ function toggleSoundState() {
   const ctx = getAudioCtx();
 
   if (isSoundOn) {
+    // 플레이리스트 곡이 재생 중이었다면 충돌 방지를 위해 일시정지
+    if (typeof pausePlaylistTrack === "function" && isPlaylistPlaying) {
+      pausePlaylistTrack();
+    }
+
     if (ctx && ctx.state === "suspended") {
       ctx.resume();
     }
@@ -760,7 +765,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 // -------------------------------------------------------------
-// 6. 설원행 심야 드라이브 플레이리스트 인터랙션
+// 6. 설원행 심야 드라이브 플레이리스트 인터랙션 (실제 음악 오디오 연동)
 // -------------------------------------------------------------
 const playlistPlayBtn = document.getElementById("playlistPlayBtn");
 const playlistPlayIcon = document.getElementById("playlistPlayIcon");
@@ -770,49 +775,131 @@ const currentTrackTitle = document.getElementById("currentTrackTitle");
 const currentTrackTime = document.getElementById("currentTrackTime");
 const playlistProgressBar = document.getElementById("playlistProgressBar");
 const playlistTrackItems = document.querySelectorAll(".playlist-track-item");
+const playlistPlayerContainer = document.getElementById("playlistPlayerContainer");
+const playlistIframe = document.getElementById("playlistIframe");
 
+let currentActiveTrackBtn = playlistTrackItems[0] || null;
 let isPlaylistPlaying = false;
+let playlistProgressTimer = null;
+let currentTrackSeconds = 0;
+
+function parseDurationToSeconds(str) {
+  if (!str) return 240;
+  const parts = str.split(":").map(Number);
+  if (parts.length === 2) return parts[0] * 60 + parts[1];
+  return 240;
+}
+
+function formatSeconds(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
+}
+
+function startPlaylistProgress(totalDurationStr) {
+  if (playlistProgressTimer) clearInterval(playlistProgressTimer);
+  const totalSec = parseDurationToSeconds(totalDurationStr);
+  currentTrackSeconds = 0;
+
+  playlistProgressTimer = setInterval(() => {
+    if (!isPlaylistPlaying) return;
+    currentTrackSeconds += 1;
+    if (currentTrackSeconds > totalSec) {
+      currentTrackSeconds = 0;
+    }
+    const percent = Math.min((currentTrackSeconds / totalSec) * 100, 100);
+    if (playlistProgressBar) playlistProgressBar.style.width = `${percent}%`;
+    if (currentTrackTime) currentTrackTime.textContent = `${formatSeconds(currentTrackSeconds)} / ${totalDurationStr}`;
+  }, 1000);
+}
+
+function playTrack(btn) {
+  if (!btn) return;
+  currentActiveTrackBtn = btn;
+
+  playlistTrackItems.forEach(b => {
+    b.classList.remove("ring-1", "ring-ink-crimson/50", "bg-[#ebd9b4]");
+    b.classList.add("bg-[#f5ebd6]");
+  });
+  btn.classList.add("ring-1", "ring-ink-crimson/50", "bg-[#ebd9b4]");
+  btn.classList.remove("bg-[#f5ebd6]");
+
+  const idx = btn.getAttribute("data-track-index");
+  const title = btn.getAttribute("data-title");
+  const duration = btn.getAttribute("data-duration") || "04:00";
+  const ytId = btn.getAttribute("data-yt");
+
+  if (currentTrackIndex) currentTrackIndex.textContent = `TRACK 0${idx}`;
+  if (currentTrackTitle) currentTrackTitle.textContent = title;
+  if (currentTrackTime) currentTrackTime.textContent = `00:00 / ${duration}`;
+  if (playlistProgressBar) playlistProgressBar.style.width = `0%`;
+
+  // 1. 실제 음악 오디오 영상 스트림 로드 & 재생
+  if (playlistIframe && ytId) {
+    if (playlistPlayerContainer) playlistPlayerContainer.classList.remove("hidden");
+    playlistIframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&enablejsapi=1`;
+  }
+
+  // 2. 배경 오르골 테마(Hedwig's Theme)는 노래와 겹치지 않도록 자동 일시정지
+  if (isSoundOn) {
+    const ctx = getAudioCtx();
+    if (bgmMasterGain && ctx) {
+      bgmMasterGain.gain.cancelScheduledValues(ctx.currentTime);
+      bgmMasterGain.gain.setValueAtTime(bgmMasterGain.gain.value, ctx.currentTime);
+      bgmMasterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
+    }
+    stopBgm();
+    updateSoundUI(false);
+  }
+
+  // 3. UI 상태 업데이트
+  isPlaylistPlaying = true;
+  if (playlistPlayIcon) {
+    playlistPlayIcon.classList.remove("fa-play");
+    playlistPlayIcon.classList.add("fa-pause");
+  }
+  if (playlistStatusBadge) {
+    playlistStatusBadge.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span><span>PLAYING NOW</span>`;
+    playlistStatusBadge.className = "text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0";
+  }
+
+  startPlaylistProgress(duration);
+}
+
+function pausePlaylistTrack() {
+  isPlaylistPlaying = false;
+  if (playlistProgressTimer) clearInterval(playlistProgressTimer);
+
+  if (playlistPlayIcon) {
+    playlistPlayIcon.classList.remove("fa-pause");
+    playlistPlayIcon.classList.add("fa-play");
+  }
+  if (playlistStatusBadge) {
+    playlistStatusBadge.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-600"></span><span>PAUSED</span>`;
+    playlistStatusBadge.className = "text-xs font-mono text-amber-800 font-bold flex items-center gap-1 shrink-0";
+  }
+
+  if (playlistIframe && playlistIframe.contentWindow) {
+    try {
+      playlistIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
+    } catch (e) {}
+  }
+}
 
 playlistTrackItems.forEach((btn) => {
   btn.addEventListener("click", () => {
-    playlistTrackItems.forEach(b => {
-      b.classList.remove("ring-1", "ring-ink-crimson/50", "bg-[#ebd9b4]");
-      b.classList.add("bg-[#f5ebd6]");
-    });
-    btn.classList.add("ring-1", "ring-ink-crimson/50", "bg-[#ebd9b4]");
-    btn.classList.remove("bg-[#f5ebd6]");
-
-    const idx = btn.getAttribute("data-track-index");
-    const title = btn.getAttribute("data-title");
-    const duration = btn.getAttribute("data-duration");
-    const current = btn.getAttribute("data-current") || "00:00";
-    const progress = btn.getAttribute("data-progress") || "0";
-
-    if (currentTrackIndex) currentTrackIndex.textContent = `TRACK 0${idx}`;
-    if (currentTrackTitle) currentTrackTitle.textContent = title;
-    if (currentTrackTime) currentTrackTime.textContent = `${current} / ${duration}`;
-    if (playlistProgressBar) playlistProgressBar.style.width = `${progress}%`;
-
-    playMusicChime();
+    playTrack(btn);
   });
 });
 
 playlistPlayBtn?.addEventListener("click", () => {
-  isPlaylistPlaying = !isPlaylistPlaying;
   if (isPlaylistPlaying) {
-    playlistPlayIcon?.classList.remove("fa-play");
-    playlistPlayIcon?.classList.add("fa-pause");
-    if (playlistStatusBadge) {
-      playlistStatusBadge.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span><span>PLAYING NOW</span>`;
-      playlistStatusBadge.className = "text-[11px] font-mono text-emerald-800 font-bold flex items-center gap-1";
-    }
-    playMusicChime();
+    pausePlaylistTrack();
   } else {
-    playlistPlayIcon?.classList.remove("fa-pause");
-    playlistPlayIcon?.classList.add("fa-play");
-    if (playlistStatusBadge) {
-      playlistStatusBadge.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-600"></span><span>PAUSED</span>`;
-      playlistStatusBadge.className = "text-[11px] font-mono text-amber-800 font-bold flex items-center gap-1";
+    if (currentActiveTrackBtn) {
+      playTrack(currentActiveTrackBtn);
+    } else if (playlistTrackItems.length > 0) {
+      playTrack(playlistTrackItems[0]);
     }
   }
 });

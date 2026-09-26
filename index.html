@@ -127,7 +127,7 @@
         </p>
         <h2 class="font-headline font-black text-2xl sm:text-4xl md:text-5xl text-ink leading-tight">
           “머글 세계를 뒤흔든 두 마법사의
-          <br><span class="text-ink-crimson">1000일</span> 스토리: 역사적 동행의 전말”
+          <span class="text-ink-crimson">1000일</span> 스토리<br>: 역사적 동행의 전말”
         </h2>
         <p
           class="font-myeongjo italic text-xs sm:text-[13px] md:text-sm text-[#241508] font-semibold mt-1.5 w-full max-w-6xl mx-auto tracking-tight whitespace-normal sm:whitespace-nowrap">
@@ -343,7 +343,7 @@
             class="w-full px-2.5 py-1.5 bg-[#3b2513] hover:bg-ink-crimson text-parchment-50 font-cinzel font-bold text-xs rounded-xs border border-ink shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer"
             title="해리포터 오프닝 BGM & 마법 음향 토글">
             <span id="mapSoundIcon">🎵</span>
-            <span id="mapSoundLabel">해리포터 BGM ON</span>
+            <span id="mapSoundLabel">마법 BGM 재생 / 정지</span>
           </button>
 
           <button id="toggleMapFullscreenBtn" type="button"
@@ -448,46 +448,79 @@
               </button>
             </div>
 
+            <!-- 📻 실제 음악 플레이어 화면 (곡 재생 시 등장) -->
+            <div id="playlistPlayerContainer"
+              class="hidden mb-2 rounded-xs overflow-hidden border-2 border-ink bg-black aspect-video relative shadow-md">
+              <iframe id="playlistIframe" class="w-full h-full" src="" title="고속도로 드라이브 음악 플레이어"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
             <!-- 트랙 목록 (3곡 - 스크롤 없이 한눈에 표출) -->
-            <div id="playlistTracks" class="space-y-1 text-xs font-serif">
-              <button type="button"
-                class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none ring-1 ring-ink-crimson/50"
-                data-track-index="1" data-title="박효신 - Gift" data-duration="04:40" data-current="02:35"
-                data-progress="55">
-                <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
-                  <div class="truncate">
-                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">박효신 - Gift</span>
+            <div id="playlistTracks" class="space-y-1.5 text-xs font-serif">
+              <div class="flex items-center gap-1">
+                <button type="button"
+                  class="playlist-track-item flex-1 text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none ring-1 ring-ink-crimson/50"
+                  data-track-index="1" data-title="박효신 - Gift" data-duration="04:40" data-current="00:00"
+                  data-progress="0" data-yt="s5_21jE4kNo">
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
+                    <div class="truncate">
+                      <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">박효신 - Gift</span>
+                      <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(드라이브 힐링곡)</span>
+                    </div>
                   </div>
-                </div>
-                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
-              </button>
+                  <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
+                </button>
+                <a href="https://www.youtube.com/watch?v=s5_21jE4kNo" target="_blank" rel="noopener noreferrer"
+                  class="shrink-0 px-2 py-1 bg-[#f5ebd6] hover:bg-ink-crimson hover:text-white border border-ink/20 text-ink-crimson rounded-xs text-xs transition flex items-center gap-1"
+                  title="YouTube에서 원곡 열기">
+                  <i class="fa-brands fa-youtube text-red-600 group-hover:text-white"></i>
+                </a>
+              </div>
 
-              <button type="button"
-                class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                data-track-index="2" data-title="로제 - Messy" data-duration="02:45" data-current="01:10"
-                data-progress="42">
-                <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
-                  <div class="truncate">
-                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">로제 - Messy</span>
+              <div class="flex items-center gap-1">
+                <button type="button"
+                  class="playlist-track-item flex-1 text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
+                  data-track-index="2" data-title="로제 - Messy" data-duration="02:45" data-current="00:00"
+                  data-progress="0" data-yt="ia2Ph61bYzc">
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
+                    <div class="truncate">
+                      <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">로제 - Messy</span>
+                      <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(힙한 그루브)</span>
+                    </div>
                   </div>
-                </div>
-                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
-              </button>
+                  <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
+                </button>
+                <a href="https://www.youtube.com/watch?v=ia2Ph61bYzc" target="_blank" rel="noopener noreferrer"
+                  class="shrink-0 px-2 py-1 bg-[#f5ebd6] hover:bg-ink-crimson hover:text-white border border-ink/20 text-ink-crimson rounded-xs text-xs transition flex items-center gap-1"
+                  title="YouTube에서 원곡 열기">
+                  <i class="fa-brands fa-youtube text-red-600 group-hover:text-white"></i>
+                </a>
+              </div>
 
-              <button type="button"
-                class="playlist-track-item w-full text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                data-track-index="3" data-title="샤키라 - Waka Waka" data-duration="03:22" data-current="01:45"
-                data-progress="52">
-                <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
-                  <div class="truncate">
-                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">샤키라 - Waka Waka</span>
+              <div class="flex items-center gap-1">
+                <button type="button"
+                  class="playlist-track-item flex-1 text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
+                  data-track-index="3" data-title="샤키라 - Waka Waka" data-duration="03:22" data-current="00:00"
+                  data-progress="0" data-yt="pRpeEdMmmQ0">
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
+                    <div class="truncate">
+                      <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">샤키라 - Waka Waka</span>
+                      <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(졸음번쩍 댄스)</span>
+                    </div>
                   </div>
-                </div>
-                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
-              </button>
+                  <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
+                </button>
+                <a href="https://www.youtube.com/watch?v=pRpeEdMmmQ0" target="_blank" rel="noopener noreferrer"
+                  class="shrink-0 px-2 py-1 bg-[#f5ebd6] hover:bg-ink-crimson hover:text-white border border-ink/20 text-ink-crimson rounded-xs text-xs transition flex items-center gap-1"
+                  title="YouTube에서 원곡 열기">
+                  <i class="fa-brands fa-youtube text-red-600 group-hover:text-white"></i>
+                </a>
+              </div>
             </div>
 
             <!-- 🚗 드라이브 필수 수칙 & 간식 팁 (하단 여백을 아기자기하게 채워주는 미니 카드) -->
@@ -1762,7 +1795,7 @@
       class="flex items-center gap-2 px-3 py-2 bg-[#231407] hover:bg-[#38200c] text-amber-300 border-2 border-amber-600/80 rounded-full font-serif text-xs font-bold shadow-[0_4px_16px_rgba(0,0,0,0.6)] cursor-pointer transition-all"
       title="해리포터 오프닝 BGM 재생 / 일시정지">
       <span id="floatingBgmIcon" class="inline-block text-sm animate-spin" style="animation-duration: 5s;">🎶</span>
-      <span id="floatingBgmLabel">해리포터 BGM ON</span>
+      <span id="floatingBgmLabel">마법 BGM 재생 / 정지</span>
       <span id="floatingBgmIndicator" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
     </button>
   </aside>
