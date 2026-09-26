@@ -411,7 +411,7 @@ const OVERSEAS_SPOTS = [
       var raw = [
         { type: "image", name: "IMG_6149.JPEG" },
         { type: "image", name: "IMG_6153.JPEG" },
-        { type: "image", name: "IMG_4907.JPG" }, 0ㅐㅣ,
+        { type: "image", name: "IMG_4907.JPG" },
         { type: "image", name: "IMG_3096.JPEG" },
         { type: "image", name: "IMG_4903.JPG" },
         { type: "image", name: "IMG_2984.jpeg" },
