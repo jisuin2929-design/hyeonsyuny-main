@@ -91,21 +91,17 @@ if (highwayTimelineTrack) {
 }
 
 // -------------------------------------------------------------
-// 2. Web Audio Synthesizer (외부 오디오 의존 없는 순수 사운드 생성)
+// 2. Web Audio Synthesizer (효과음 전용)
 // -------------------------------------------------------------
 let audioCtx = null;
-let bgmMasterGain = null;
 let isSoundOn = true;
 let cachedNoiseBuffer = null;
 
 function getAudioCtx() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    bgmMasterGain = audioCtx.createGain();
-    bgmMasterGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-    bgmMasterGain.connect(audioCtx.destination);
   }
-  if (audioCtx.state === 'suspended') {
+  if (audioCtx && audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
   return audioCtx;
@@ -235,236 +231,47 @@ function playMusicChime() {
 }
 
 // -------------------------------------------------------------
-// 2.5 해리포터 오프닝 테마 BGM (Hedwig's Theme) 웹 오디오 합성기
+// 2.5 해리포터 오프닝 테마 BGM (hedwig's theme.mp3 오디오 플레이어)
 // -------------------------------------------------------------
-const NOTE_FREQS = {
-  B3: 246.94, C4: 261.63, D4: 293.66, "D#4": 311.13, Eb4: 311.13, E4: 329.63,
-  F4: 349.23, "F#4": 369.99, G4: 392.00, "G#4": 415.30, A4: 440.00, "A#4": 466.16,
-  Bb4: 466.16, B4: 493.88, C5: 523.25, "C#5": 554.37, D5: 587.33, "D#5": 622.25,
-  Eb5: 622.25, E5: 659.25, F5: 698.46, "F#5": 739.99, G5: 783.99, "G#5": 830.61,
-  A5: 880.00, "A#5": 932.33, Bb5: 932.33, B5: 987.77, C6: 1046.50, "C#6": 1108.73,
-  D6: 1174.66, "D#6": 1244.51, E6: 1318.51, F6: 1396.91, "F#6": 1479.98, G6: 1567.98,
-  REST: 0
-};
-
-const BEAT_UNIT = 0.28; // 8분음표 단위 시간 (초)
-
-// 해리포터 시그니처 오프닝 멜로디 (Hedwig's Theme)
-const HEDWIG_MELODY = [
-  // 1부: 신비로운 호그와트의 서막
-  { n: "B4", b: 2 },
-  { n: "E5", b: 3 },
-  { n: "G5", b: 1 },
-  { n: "F#5", b: 2 },
-  { n: "E5", b: 4 },
-  { n: "B5", b: 2 },
-  { n: "A5", b: 5.5 },
-  { n: "F#5", b: 5.5 },
-  { n: "E5", b: 3 },
-  { n: "G5", b: 1 },
-  { n: "F#5", b: 2 },
-  { n: "D#5", b: 3.5 },
-  { n: "F5", b: 2 },
-  { n: "B4", b: 5.5 },
-  { n: "REST", b: 1 },
-
-  // 2부: 고음 도약 및 반음계 하강 테마
-  { n: "B4", b: 2 },
-  { n: "E5", b: 3 },
-  { n: "G5", b: 1 },
-  { n: "F#5", b: 2 },
-  { n: "E5", b: 4 },
-  { n: "B5", b: 2 },
-  { n: "D6", b: 3.5 },
-  { n: "C#6", b: 2 },
-  { n: "C6", b: 3.5 },
-  { n: "G#5", b: 2 },
-  { n: "C6", b: 2.5 },
-  { n: "B5", b: 1 },
-  { n: "Bb5", b: 2 },
-  { n: "Bb4", b: 2 },
-  { n: "G5", b: 2 },
-  { n: "E5", b: 6 },
-  { n: "REST", b: 2 },
-
-  // 3부: 마법 왈츠 변주 (오르골 첼레스타 시머링)
-  { n: "G5", b: 1.5 },
-  { n: "B5", b: 3 },
-  { n: "G5", b: 1.5 },
-  { n: "B5", b: 3 },
-  { n: "G5", b: 1.5 },
-  { n: "C6", b: 3 },
-  { n: "B5", b: 1.5 },
-  { n: "Bb5", b: 3 },
-  { n: "F#5", b: 2 },
-  { n: "G5", b: 2.5 },
-  { n: "B5", b: 1 },
-  { n: "Bb5", b: 2 },
-  { n: "Bb4", b: 2 },
-  { n: "B4", b: 2 },
-  { n: "B5", b: 6 },
-  { n: "REST", b: 3 }
-];
-
-// 은은한 오케스트라 배경 현악 화음 (Em - Am - B7 패드)
-const HEDWIG_PADS = [
-  { chords: [164.81, 246.94], startBeat: 0, beats: 17 }, // Em
-  { chords: [110.00, 164.81, 220.00], startBeat: 17, beats: 11 }, // Am
-  { chords: [123.47, 185.00], startBeat: 28, beats: 13 }, // B7
-  { chords: [164.81, 246.94], startBeat: 41, beats: 18 }, // Em
-  { chords: [130.81, 196.00, 246.94], startBeat: 59, beats: 11 }, // Cmaj7
-  { chords: [103.83, 155.56, 207.65], startBeat: 70, beats: 8 }, // G#dim
-  { chords: [164.81, 246.94, 329.63], startBeat: 78, beats: 15 }, // Em
-  { chords: [164.81, 246.94], startBeat: 93, beats: 12 }, // Em waltz
-  { chords: [130.81, 196.00], startBeat: 105, beats: 6 }, // C
-  { chords: [123.47, 185.00], startBeat: 111, beats: 6 }, // B7
-  { chords: [164.81, 246.94, 329.63], startBeat: 117, beats: 16 } // Em
-];
-
-// 영롱한 오르골 첼레스타 음색 합성기
-function playCelestaNote(ctx, dest, freq, time, duration) {
-  if (!freq || freq <= 0) return;
-
-  const osc1 = ctx.createOscillator();
-  const gain1 = ctx.createGain();
-  osc1.type = "sine";
-  osc1.frequency.setValueAtTime(freq, time);
-
-  // 첼레스타 메탈릭 벨 배음 (2.76배 배음)
-  const osc2 = ctx.createOscillator();
-  const gain2 = ctx.createGain();
-  osc2.type = "sine";
-  osc2.frequency.setValueAtTime(freq * 2.76, time);
-
-  // 따뜻한 몸체 울림 삼각파
-  const osc3 = ctx.createOscillator();
-  const gain3 = ctx.createGain();
-  osc3.type = "triangle";
-  osc3.frequency.setValueAtTime(freq, time);
-
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(3400, time);
-  filter.Q.setValueAtTime(1.2, time);
-
-  const attack = 0.006;
-  const decay = Math.max(duration * 1.35, 0.75);
-
-  gain1.gain.setValueAtTime(0.0001, time);
-  gain1.gain.linearRampToValueAtTime(0.18, time + attack);
-  gain1.gain.exponentialRampToValueAtTime(0.065, time + attack + 0.12);
-  gain1.gain.exponentialRampToValueAtTime(0.0001, time + attack + decay);
-
-  gain2.gain.setValueAtTime(0.0001, time);
-  gain2.gain.linearRampToValueAtTime(0.05, time + attack);
-  gain2.gain.exponentialRampToValueAtTime(0.0001, time + attack + (decay * 0.45));
-
-  gain3.gain.setValueAtTime(0.0001, time);
-  gain3.gain.linearRampToValueAtTime(0.035, time + attack);
-  gain3.gain.exponentialRampToValueAtTime(0.0001, time + attack + (decay * 0.85));
-
-  osc1.connect(gain1);
-  osc2.connect(gain2);
-  osc3.connect(gain3);
-
-  gain1.connect(filter);
-  gain2.connect(filter);
-  gain3.connect(filter);
-
-  filter.connect(dest);
-
-  osc1.start(time);
-  osc2.start(time);
-  osc3.start(time);
-
-  const stopTime = time + attack + decay + 0.05;
-  osc1.stop(stopTime);
-  osc2.stop(stopTime);
-  osc3.stop(stopTime);
+const BGM_SRC = "images/메인페이지/hedwig's%20theme.mp3";
+let bgmAudio = document.getElementById("mainBgmAudio");
+if (!bgmAudio) {
+  bgmAudio = new Audio(BGM_SRC);
+  bgmAudio.id = "mainBgmAudio";
+  bgmAudio.loop = true;
+  bgmAudio.preload = "auto";
+  document.body.appendChild(bgmAudio);
+} else {
+  bgmAudio.loop = true;
 }
+bgmAudio.volume = 0.45;
 
-// 은은한 저음 패드 화음 합성기
-function playWarmPadChord(ctx, dest, chordFreqs, time, duration) {
-  if (!chordFreqs || !chordFreqs.length) return;
-
-  const padFilter = ctx.createBiquadFilter();
-  padFilter.type = "lowpass";
-  padFilter.frequency.setValueAtTime(450, time);
-  padFilter.connect(dest);
-
-  const attack = 0.4;
-  const release = 0.6;
-  const noteDuration = Math.max(duration, 1.0);
-
-  chordFreqs.forEach((freq) => {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(freq, time);
-
-    gain.gain.setValueAtTime(0.0001, time);
-    gain.gain.linearRampToValueAtTime(0.022, time + attack);
-    gain.gain.setValueAtTime(0.022, time + noteDuration - release);
-    gain.gain.exponentialRampToValueAtTime(0.0001, time + noteDuration);
-
-    osc.connect(gain);
-    gain.connect(padFilter);
-
-    osc.start(time);
-    osc.stop(time + noteDuration + 0.1);
-  });
-}
-
-let bgmTimer = null;
-let isBgmRunning = false;
-
-function scheduleHedwigLoop() {
-  if (!isSoundOn) return;
-  const ctx = getAudioCtx();
-  if (!ctx || ctx.state !== "running") return;
-
-  const startTime = ctx.currentTime + 0.08;
-  let cursorTime = startTime;
-
-  // 1. 첼레스타 멜로디 스케줄링
-  HEDWIG_MELODY.forEach((item) => {
-    const dur = item.b * BEAT_UNIT;
-    if (item.n !== "REST") {
-      const f = NOTE_FREQS[item.n];
-      if (f) playCelestaNote(ctx, bgmMasterGain, f, cursorTime, dur);
-    }
-    cursorTime += dur;
-  });
-
-  // 2. 배경 화음 패드 스케줄링
-  HEDWIG_PADS.forEach((pad) => {
-    const pTime = startTime + pad.startBeat * BEAT_UNIT;
-    const pDur = pad.beats * BEAT_UNIT;
-    playWarmPadChord(ctx, bgmMasterGain, pad.chords, pTime, pDur);
-  });
-
-  const totalLoopDuration = cursorTime - startTime;
-
-  if (bgmTimer) clearTimeout(bgmTimer);
-  bgmTimer = setTimeout(() => {
-    if (isSoundOn && ctx.state === "running") {
-      scheduleHedwigLoop();
-    }
-  }, Math.max((totalLoopDuration - 0.25) * 1000, 2000));
-}
-
+// 해리포터 테마곡 재생
 function startBgm() {
-  if (isBgmRunning) return;
-  isBgmRunning = true;
-  scheduleHedwigLoop();
+  if (!bgmAudio) return;
+
+  // 플레이리스트 곡이 재생 중이었다면 충돌 방지를 위해 일시정지
+  if (typeof isPlaylistPlaying !== "undefined" && isPlaylistPlaying && typeof pausePlaylistTrack === "function") {
+    pausePlaylistTrack();
+  }
+
+  const playPromise = bgmAudio.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      isSoundOn = true;
+      updateSoundUI(true);
+    }).catch((err) => {
+      console.log("BGM 자동재생 대기 (사용자 첫 터치/클릭 시 자동 시작):", err);
+    });
+  }
 }
 
+// 해리포터 테마곡 정지
 function stopBgm() {
-  isBgmRunning = false;
-  if (bgmTimer) {
-    clearTimeout(bgmTimer);
-    bgmTimer = null;
-  }
+  if (!bgmAudio) return;
+  bgmAudio.pause();
+  isSoundOn = false;
+  updateSoundUI(false);
 }
 
 // -------------------------------------------------------------
@@ -519,37 +326,16 @@ function updateSoundUI(isOn) {
 }
 
 function toggleSoundState() {
-  isSoundOn = !isSoundOn;
-  const ctx = getAudioCtx();
-
-  if (isSoundOn) {
-    // 플레이리스트 곡이 재생 중이었다면 충돌 방지를 위해 일시정지
-    if (typeof pausePlaylistTrack === "function" && isPlaylistPlaying) {
-      pausePlaylistTrack();
-    }
-
-    if (ctx && ctx.state === "suspended") {
-      ctx.resume();
-    }
-    if (bgmMasterGain && ctx) {
-      bgmMasterGain.gain.cancelScheduledValues(ctx.currentTime);
-      bgmMasterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      bgmMasterGain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.3);
-    }
-    if (!isBgmRunning) {
-      startBgm();
-    }
-    playMusicChime();
-  } else {
-    if (bgmMasterGain && ctx) {
-      bgmMasterGain.gain.cancelScheduledValues(ctx.currentTime);
-      bgmMasterGain.gain.setValueAtTime(bgmMasterGain.gain.value, ctx.currentTime);
-      bgmMasterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
-    }
-    stopBgm();
+  if (!bgmAudio) {
+    bgmAudio = document.getElementById("mainBgmAudio") || new Audio(BGM_SRC);
   }
 
-  updateSoundUI(isSoundOn);
+  if (bgmAudio.paused) {
+    startBgm();
+    playMusicChime();
+  } else {
+    stopBgm();
+  }
 
   const mapFrame = document.getElementById("maraudersMapFrame");
   if (mapFrame && mapFrame.contentWindow) {
@@ -564,36 +350,16 @@ if (floatingBgmBtn) floatingBgmBtn.addEventListener("click", toggleSoundState);
 
 // 페이지 접속 시 즉시 자동재생 시도 & 브라우저 제스처 해제 리스너
 function tryAutoplayHedwig() {
-  const ctx = getAudioCtx();
-  if (!ctx) return;
-
-  if (ctx.state === "running") {
-    startBgm();
-    updateSoundUI(true);
-  } else {
-    ctx.resume().then(() => {
-      if (ctx.state === "running" && isSoundOn) {
-        startBgm();
-        updateSoundUI(true);
-      }
-    }).catch(() => {});
-  }
+  startBgm();
 }
 
 function unlockOnFirstGesture() {
-  const ctx = getAudioCtx();
-  if (!ctx) return;
-
-  if (ctx.state === "suspended") {
-    ctx.resume().then(() => {
-      if (isSoundOn && !isBgmRunning) {
-        startBgm();
-      }
-      updateSoundUI(isSoundOn);
-    });
-  } else if (isSoundOn && !isBgmRunning) {
+  if (bgmAudio && bgmAudio.paused && isSoundOn) {
     startBgm();
-    updateSoundUI(isSoundOn);
+  }
+  const ctx = getAudioCtx();
+  if (ctx && ctx.state === "suspended") {
+    ctx.resume().catch(() => {});
   }
 }
 
@@ -840,16 +606,9 @@ function playTrack(btn) {
     playlistIframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&enablejsapi=1`;
   }
 
-  // 2. 배경 오르골 테마(Hedwig's Theme)는 노래와 겹치지 않도록 자동 일시정지
-  if (isSoundOn) {
-    const ctx = getAudioCtx();
-    if (bgmMasterGain && ctx) {
-      bgmMasterGain.gain.cancelScheduledValues(ctx.currentTime);
-      bgmMasterGain.gain.setValueAtTime(bgmMasterGain.gain.value, ctx.currentTime);
-      bgmMasterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
-    }
+  // 2. 배경 마법 BGM(Hedwig's Theme MP3)은 노래와 겹치지 않도록 자동 일시정지
+  if (bgmAudio && !bgmAudio.paused) {
     stopBgm();
-    updateSoundUI(false);
   }
 
   // 3. UI 상태 업데이트
