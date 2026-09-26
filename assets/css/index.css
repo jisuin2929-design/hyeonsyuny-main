@@ -1,129 +1,213 @@
-    /* 신문 앤틱 배경 질감 */
-    body {
-      background-color: #120b05;
-      background-image: 
-        radial-gradient(#2d1c0e 1.5px, transparent 1.5px),
-        radial-gradient(#1e130a 1.5px, #120b05 1.5px);
-      background-size: 28px 28px;
-      color: #1f1409;
-      font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-      -webkit-font-smoothing: antialiased;
-    }
+/* 신문 앤틱 배경 질감 */
+body {
+  background-color: #120b05;
+  background-image: 
+    radial-gradient(#2d1c0e 1.5px, transparent 1.5px),
+    radial-gradient(#1e130a 1.5px, #120b05 1.5px);
+  background-size: 24px 24px;
+  color: #140c04;
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+  font-weight: 500;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+}
 
-    /* 바랜 양피지 신문 본문 시트 */
-    .newsprint-sheet {
-      background-color: #f5eedb;
-      background-image: 
-        radial-gradient(ellipse at 50% 25%, rgba(255, 255, 255, 0.45) 0%, rgba(220, 198, 154, 0.3) 100%),
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(50, 30, 15, 0.02) 2px, rgba(50, 30, 15, 0.02) 4px);
-      box-shadow: 
-        0 0 0 1px rgba(60, 36, 14, 0.7),
-        0 30px 80px rgba(0, 0, 0, 0.9),
-        inset 0 0 100px rgba(90, 55, 20, 0.25);
-    }
+/* 바랜 양피지 신문 본문 시트 (텍스트 간섭을 줄여 선명도 극대화) */
+.newsprint-sheet {
+  background-color: #f7f0df;
+  background-image: 
+    radial-gradient(ellipse at 50% 25%, rgba(255, 255, 255, 0.6) 0%, rgba(225, 207, 172, 0.4) 100%);
+  box-shadow: 
+    0 0 0 1px rgba(60, 36, 14, 0.7),
+    0 25px 65px rgba(0, 0, 0, 0.85),
+    inset 0 0 90px rgba(84, 52, 20, 0.22);
+}
 
-    /* 신문 특유의 이중 실선 구분선 */
-    .news-rule-double {
-      border-top: 3px double #2b1a0d;
-      border-bottom: 1px solid #2b1a0d;
-    }
+/* 모든 텍스트의 획 선명도 보장 */
+p, span, div, h1, h2, h3, h4, h5, h6, button, input {
+  text-rendering: optimizeLegibility;
+}
 
-    /* 살아 숨쉬는 마법 사진 (Moving Portrait) */
-    @keyframes magicalGrainSepia {
-      0% { filter: grayscale(90%) sepia(50%) contrast(1.15) brightness(0.96); }
-      30% { filter: grayscale(50%) sepia(35%) contrast(1.25) brightness(1.05); }
-      70% { filter: grayscale(70%) sepia(45%) contrast(1.2) brightness(0.98); }
-      100% { filter: grayscale(90%) sepia(50%) contrast(1.15) brightness(0.96); }
-    }
-    
-    .magical-portrait {
-      animation: magicalGrainSepia 6s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    }
-    .magical-portrait::after {
-      content: "";
-      position: absolute;
-      top: -100%;
-      left: -60%;
-      width: 220%;
-      height: 220%;
-      background: linear-gradient(
-        115deg,
-        transparent 40%,
-        rgba(255, 245, 200, 0.3) 50%,
-        transparent 60%
-      );
-      animation: wandGleam 7s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes wandGleam {
-      0% { transform: translateY(-35%) rotate(25deg); }
-      100% { transform: translateY(35%) rotate(25deg); }
-    }
+/* 신문 특유의 이중 실선 구분선 */
+.news-rule-double {
+  border-top: 3px double #2b1a0d;
+  border-bottom: 1px solid #2b1a0d;
+}
 
-    /* 고전 빅토리아 양식 붉은 드롭캡 */
-    .drop-cap::first-letter {
-      float: left;
-      font-family: 'Cinzel', serif;
-      font-size: 3.4rem;
-      line-height: 0.8;
-      padding-top: 6px;
-      padding-right: 8px;
-      padding-bottom: 2px;
-      color: #7a1717;
-      font-weight: 900;
-      text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
-    }
+/* 살아 숨쉬는 마법 사진 (Moving Portrait) */
+@keyframes magicalGrainSepia {
+  0%, 100% { filter: grayscale(35%) sepia(40%) contrast(1.15) brightness(0.96); }
+  50% { filter: grayscale(10%) sepia(20%) contrast(1.2) brightness(1.04); }
+}
 
-    /* 부엉이 속보 마키 텍스트 스크롤 */
-    @keyframes marqueeScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .marquee-track {
-      display: inline-block;
-      white-space: nowrap;
-      animation: marqueeScroll 26s linear infinite;
-    }
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
+.magical-portrait {
+  animation: magicalGrainSepia 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
 
-    /* 발자국 걷는 애니메이션 */
-    @keyframes footstepWalk {
-      0%, 100% { opacity: 0.15; transform: scale(0.9); }
-      50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 2px #7a1717); }
-    }
-    .footstep-anim-1 { animation: footstepWalk 1.8s infinite 0s ease-in-out; }
-    .footstep-anim-2 { animation: footstepWalk 1.8s infinite 0.45s ease-in-out; }
-    .footstep-anim-3 { animation: footstepWalk 1.8s infinite 0.9s ease-in-out; }
-    .footstep-anim-4 { animation: footstepWalk 1.8s infinite 1.35s ease-in-out; }
+.magical-portrait::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -80%;
+  width: 260%;
+  height: 260%;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 250, 220, 0.25) 50%, transparent 65%);
+  animation: wandGleam 6.5s infinite linear;
+  pointer-events: none;
+}
 
-    /* 수정구슬 신비로운 발광 */
-    @keyframes crystalGlow {
-      0%, 100% { box-shadow: 0 0 25px rgba(122, 23, 23, 0.4), inset 0 0 20px rgba(255, 230, 160, 0.5); }
-      50% { box-shadow: 0 0 45px rgba(180, 83, 9, 0.7), inset 0 0 35px rgba(255, 255, 255, 0.8); }
-    }
-    .crystal-ball {
-      animation: crystalGlow 4s ease-in-out infinite;
-    }
+@keyframes wandGleam {
+  0% { transform: translateY(-40%) rotate(22deg); }
+  100% { transform: translateY(40%) rotate(22deg); }
+}
 
-    /* 잉크 피어오르는 인트로 */
-    @keyframes inkBloom {
-      0% { opacity: 0; transform: scale(0.95) translateY(6px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .incantation-bloom {
-      animation: inkBloom 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
+/* 고전 빅토리아 양식 붉은 드롭캡 */
+.drop-cap::first-letter {
+  float: left;
+  font-family: 'Cinzel', serif;
+  font-size: 3.4rem;
+  line-height: 0.82;
+  padding: 4px 8px 2px 0;
+  color: #7f1d1d;
+  font-weight: 900;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
 
-    .highway-timeline-track::before {
-      content: "";
-      position: absolute;
-      top: 40px;
-      left: 10px;
-      right: 10px;
-      height: 2px;
-      background: #7a1717;
-    }
+/* 부엉이 속보 마키 텍스트 스크롤 */
+@keyframes marqueeScroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* 발자국 걷는 애니메이션 */
+@keyframes footstepWalk {
+  0%, 100% { opacity: 0.15; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 2px #7a1717); }
+}
+.footstep-anim-1 { animation: footstepWalk 1.8s infinite 0s ease-in-out; }
+.footstep-anim-2 { animation: footstepWalk 1.8s infinite 0.45s ease-in-out; }
+.footstep-anim-3 { animation: footstepWalk 1.8s infinite 0.9s ease-in-out; }
+.footstep-anim-4 { animation: footstepWalk 1.8s infinite 1.35s ease-in-out; }
+
+/* 수정구슬 신비로운 발광 */
+@keyframes crystalGlow {
+  0%, 100% { box-shadow: 0 0 25px rgba(122, 23, 23, 0.4), inset 0 0 20px rgba(255, 230, 160, 0.5); }
+  50% { box-shadow: 0 0 45px rgba(180, 83, 9, 0.7), inset 0 0 35px rgba(255, 255, 255, 0.8); }
+}
+.crystal-ball {
+  animation: crystalGlow 4s ease-in-out infinite;
+}
+
+/* 잉크 피어오르는 인트로 */
+@keyframes inkBloom {
+  0% { opacity: 0; transform: scale(0.95) translateY(6px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.incantation-bloom {
+  animation: inkBloom 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 고속도로 타임라인 트랙 구분선 */
+.highway-timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: #7a1717;
+}
+
+/* 루모스 호버 & 달력 이펙트 */
+.lumos-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lumos-hover:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.55), inset 0 0 8px rgba(245, 158, 11, 0.3);
+  border-color: #7f1d1d;
+}
+
+@keyframes lumosGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), inset 0 0 15px rgba(251, 191, 36, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(251, 191, 36, 0.75), inset 0 0 25px rgba(251, 191, 36, 0.4);
+  }
+}
+
+.lumos-active-box {
+  animation: lumosGlowPulse 2.8s infinite ease-in-out;
+}
+
+/* 루모스 시전 인터랙션 & 암전/섬광 애니메이션 */
+@keyframes lumosScreenFlash {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.98;
+    background: radial-gradient(circle at center, #ffffff 15%, #fef3c7 45%, #f59e0b 80%, rgba(180, 83, 9, 0.9) 100%);
+  }
+  100% {
+    opacity: 0;
+    background: transparent;
+  }
+}
+
+.lumos-flash-active {
+  animation: lumosScreenFlash 0.85s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes wandCorePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 45px rgba(217, 119, 6, 0.35);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.95), 0 0 75px rgba(245, 158, 11, 0.6);
+  }
+}
+
+.wand-core-glow {
+  animation: wandCorePulse 2.2s infinite ease-in-out;
+}
+
+@keyframes letterInkEmerge {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.letter-ink-emerge {
+  animation: letterInkEmerge 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.lumos-card-lit {
+  box-shadow: 0 0 50px rgba(245, 158, 11, 0.35), 0 10px 30px rgba(20, 12, 4, 0.8) !important;
+  border-color: #854d0e !important;
+  transition: all 0.6s ease;
+}

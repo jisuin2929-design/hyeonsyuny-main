@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -12,7 +12,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Noto+Serif+KR:wght@400;600;700;900&family=UnifrakturMaguntia&family=IM+Fell+DW+Pica:ital@0;1&family=MedievalSharp&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Noto+Serif+KR:wght@400;500;600;700;900&family=UnifrakturMaguntia&family=IM+Fell+DW+Pica:ital@0;1&family=MedievalSharp&display=swap" rel="stylesheet">
 
   <script src="assets/js/map-tailwind.js"></script>
 
@@ -27,22 +27,22 @@
   <div id="maraudersOverlay" class="fixed inset-0 z-[100] marauders-paper flex flex-col items-center justify-center p-4 cursor-pointer select-none transition-all duration-[2000ms] ease-in-out">
     <div class="relative max-w-xl w-full border-4 border-[#3b2513] p-6 sm:p-10 text-center shadow-[0_0_50px_rgba(20,10,5,0.8)] bg-[#ede0c4]/85 rounded-sm pointer-events-none">
       
-      <div class="absolute -top-3 -left-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
-      <div class="absolute -top-3 -right-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
-      <div class="absolute -bottom-3 -left-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
-      <div class="absolute -bottom-3 -right-3 text-[#5c3e21] text-lg font-cinzel">✦</div>
+      <div class="absolute -top-3 -left-3 text-[#241508] font-medium text-lg font-cinzel">✦</div>
+      <div class="absolute -top-3 -right-3 text-[#241508] font-medium text-lg font-cinzel">✦</div>
+      <div class="absolute -bottom-3 -left-3 text-[#241508] font-medium text-lg font-cinzel">✦</div>
+      <div class="absolute -bottom-3 -right-3 text-[#241508] font-medium text-lg font-cinzel">✦</div>
 
       <!-- State 1: Teaser -->
       <div id="marauderTeaser" class="flex flex-col items-center gap-3">
         <div class="w-16 h-16 rounded-full border-2 border-[#543b22] bg-[#dfcaa5] flex items-center justify-center text-3xl shadow-inner mb-1">🪄</div>
-        <p class="font-cinzel text-xs tracking-widest text-[#735334] uppercase font-bold">
+        <p class="font-cinzel text-xs tracking-widest text-[#241508] font-medium uppercase font-bold">
           Messrs Moony, Wormtail, Padfoot & Prongs
         </p>
         <h2 class="font-prophet text-3xl sm:text-5xl text-[#24170d] tracking-wide leading-tight">
           The Marauder's Map
         </h2>
         <div class="w-24 h-0.5 bg-[#841c1c] mx-auto my-1"></div>
-        <p class="font-serif italic text-xs sm:text-sm text-[#4d3520] max-w-md leading-relaxed">
+        <p class="font-serif italic text-xs sm:text-sm text-[#180e05] font-medium max-w-md leading-relaxed">
           “낡은 마법 양피지가 굳게 접혀 있습니다.<br>
           지팡이 끝을 대고 양피지를 가볍게 터치하세요.”
         </p>
@@ -63,10 +63,10 @@
         <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-snug">
           “나는 천하의 멍텅구리임을 엄숙하게 선언합니다”
         </h3>
-        <p class="font-cinzel text-[11px] sm:text-xs text-[#4d3520] font-bold tracking-wider">
+        <p class="font-cinzel text-[11px] sm:text-xs text-[#180e05] font-medium font-bold tracking-wider">
           “I solemnly swear that I am up to no good.”
         </p>
-        <div class="mt-2 text-[10px] text-[#785b3f] font-serif animate-bounce">
+        <div class="mt-2 text-xs text-[#241508] font-medium font-serif animate-bounce">
           📜 국내와 해외의 비밀 발자국들이 모습을 드러냅니다...
         </div>
       </div>
@@ -77,10 +77,10 @@
         <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-snug">
           “마법의 장난 끝!”
         </h3>
-        <p class="font-cinzel text-[11px] sm:text-xs text-[#4d3520] font-bold tracking-wider">
+        <p class="font-cinzel text-[11px] sm:text-xs text-[#180e05] font-medium font-bold tracking-wider">
           “Mischief Managed.”
         </p>
-        <div class="mt-2 text-[10px] text-[#785b3f] font-serif">
+        <div class="mt-2 text-xs text-[#241508] font-medium font-serif">
           양피지가 다시 백지로 봉인되었습니다.
         </div>
       </div>
@@ -92,7 +92,7 @@
   <!-- 📰 DAILY PROPHET NEWSPAPER HEADER                            -->
   <!-- ============================================================ -->
   <header class="bg-[#e9dac0] border-b-4 border-[#2b1b0e] px-3 sm:px-6 py-2 shadow-2xl relative z-30 shrink-0">
-    <div class="flex items-center justify-between text-[10px] sm:text-xs font-serif font-bold text-[#5a4128] border-b border-[#3b2513]/40 pb-1 mb-1 tracking-wider uppercase">
+    <div class="flex items-center justify-between text-xs sm:text-xs font-serif font-bold text-[#241508] font-semibold border-b border-[#3b2513]/40 pb-1 mb-1 tracking-wider uppercase">
       <div class="flex items-center gap-2">
         <span class="text-[#841c1c] font-black">✦ 마법부 공인 특보 ✦</span>
         <span class="hidden sm:inline">|</span>
@@ -100,7 +100,7 @@
       </div>
       <div class="flex items-center gap-2">
         <span id="headerChronicleTag">1000일간의 연대기</span>
-        <span class="px-1.5 py-0.2 bg-[#841c1c] text-[#fbf7ee] text-[9px] font-bold rounded-sm tracking-widest">11 GALLEONS</span>
+        <span class="px-1.5 py-0.2 bg-[#841c1c] text-[#fbf7ee] text-[11px] font-bold rounded-sm tracking-widest">11 GALLEONS</span>
       </div>
     </div>
 
@@ -113,7 +113,7 @@
           <h1 class="font-prophet text-2xl sm:text-3xl md:text-4xl text-[#1a1106] tracking-tighter leading-none">
             The Marauder's Map
           </h1>
-          <p class="font-headline italic text-[11px] sm:text-xs text-[#523d27] font-semibold tracking-wide">
+          <p class="font-headline italic text-[11px] sm:text-xs text-[#241508] font-semibold font-semibold tracking-wide">
             호그와트 비밀지도: 머글 세계 방랑 일지와 마법 발자국
           </p>
         </div>
@@ -178,7 +178,7 @@
 
       <!-- View Controls (2D vs 3D Globe - Overseas Mode) -->
       <div id="viewControls" class="absolute top-3 left-3 z-20 flex items-center gap-1 bg-[#ede0c4]/90 border-2 border-[#3b2513] p-1 shadow-xl rounded-sm">
-        <span class="text-[10px] font-bold text-[#5c3e21] px-1 font-cinzel">VIEW:</span>
+        <span class="text-xs font-bold text-[#241508] font-medium px-1 font-cinzel">VIEW:</span>
         <button data-proj="2d" class="proj-btn px-2.5 py-1 text-xs font-black rounded-sm bg-[#3b2513] text-[#fbf7ee] shadow transition">
           2D 지도
         </button>
@@ -201,14 +201,14 @@
 
       <!-- Bottom Destinations Index Carousel -->
       <div id="destCarouselContainer" class="absolute bottom-1 sm:bottom-3 inset-x-1 sm:inset-x-4 z-30">
-        <div class="bg-[#2b1a0e] text-[#e8d5b5] px-2 py-0.5 text-[8.5px] sm:text-[10px] font-bold uppercase tracking-wider flex items-center justify-between border-t-2 border-x-2 border-[#543b22] rounded-t-sm shadow-md">
+        <div class="bg-[#2b1a0e] text-[#e8d5b5] px-2 py-0.5 text-[10.5px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-between border-t-2 border-x-2 border-[#543b22] rounded-t-sm shadow-md">
           <span class="flex items-center gap-1 truncate">
             <span>✦</span>
             <span id="carouselHeaderTitle" class="truncate">국제 포트키 대원정 해외 여정 전면 색인</span>
           </span>
           <div class="flex items-center gap-2 shrink-0 ml-1">
-            <span class="text-[#c4a47c] text-[8px] sm:text-[9.5px] font-serif hidden xs:inline opacity-80 select-none">↔ 마우스 드래그 이동</span>
-            <span id="carouselCountBadge" class="hidden text-[#d97706] text-[8px] sm:text-[10px] font-mono shrink-0"></span>
+            <span class="text-[#e8d5b5] text-xs sm:text-[11.5px] font-serif hidden xs:inline opacity-80 select-none">↔ 마우스 드래그 이동</span>
+            <span id="carouselCountBadge" class="hidden text-[#d97706] text-xs sm:text-xs font-mono shrink-0"></span>
           </div>
         </div>
         <div id="destCarousel" class="flex overflow-x-auto gap-1 sm:gap-1.5 p-1 sm:p-2 bg-[#ede0c4]/98 border-2 border-[#2b1a0e] shadow-2xl parchment-scrollbar select-none">
@@ -222,7 +222,7 @@
           <span id="tooltipIcon">🪶</span>
           <span id="tooltipTitle">스팟 명칭</span>
         </div>
-        <div id="tooltipSub" class="text-[#4f3c2b] text-[10px] font-serif">상세 요약</div>
+        <div id="tooltipSub" class="text-[#180e05] font-medium text-xs font-serif">상세 요약</div>
       </div>
 
       <!-- Travel Drawer Backdrop (Click outside to close) -->
@@ -239,27 +239,27 @@
             </div>
             <div>
               <div class="flex items-center gap-1.5">
-                <span id="drawerBadge" class="text-[9px] px-1.5 py-0.2 bg-[#841c1c] text-[#fbf7ee] font-bold tracking-wider">
+                <span id="drawerBadge" class="text-[11px] px-1.5 py-0.2 bg-[#841c1c] text-[#fbf7ee] font-bold tracking-wider">
                   호그와트 공인
                 </span>
-                <span id="drawerMilestone" class="text-[10px] text-[#6d4d2f] font-bold">기록</span>
+                <span id="drawerMilestone" class="text-xs text-[#180e05] font-semibold font-bold">기록</span>
               </div>
               <h3 id="drawerNameKo" class="font-headline font-black text-base sm:text-lg text-[#1f1309] leading-tight mt-0.5">명소 명칭</h3>
-              <p id="drawerNameEn" class="font-cinzel text-[10px] text-[#63482f] tracking-wide">Place English Subtitle</p>
+              <p id="drawerNameEn" class="font-cinzel text-xs text-[#241508] font-medium tracking-wide">Place English Subtitle</p>
             </div>
           </div>
           <button id="closeDrawerBtn" class="text-[#3b2513] hover:text-[#841c1c] font-black text-base p-1" title="닫기">✕</button>
         </div>
 
         <!-- Ministry Stamp -->
-        <div class="flex items-center justify-between text-[9px] text-[#735334] font-bold border-t border-b border-[#3b2513]/30 py-1">
+        <div class="flex items-center justify-between text-[11px] text-[#241508] font-medium font-bold border-t border-b border-[#3b2513]/30 py-1">
           <span>마법부 인가 특파원 수첩</span>
           <span class="text-[#841c1c]">✦ OFFICIAL GAZETTE ✦</span>
         </div>
 
         <!-- Visited Details / Course -->
         <div class="bg-[#f0e3c8] p-2 sm:p-2.5 border-2 border-[#543b22]">
-          <span class="text-[10px] font-black text-[#841c1c] uppercase tracking-wider block mb-1 flex items-center gap-1 font-headline">
+          <span class="text-xs font-black text-[#841c1c] uppercase tracking-wider block mb-1 flex items-center gap-1 font-headline">
             <span>📜</span> 마법 탐방 성격 및 코스
           </span>
           <p id="drawerDesc" class="text-xs text-[#352518] leading-relaxed font-serif drop-cap bg-[#f7efdc] p-2 border border-[#806342]/40">
@@ -269,7 +269,7 @@
 
         <!-- Spots Tags -->
         <div>
-          <span class="text-[10px] font-black text-[#5c4026] block mb-1 font-headline">핵심 잠입 거점 & 키워드</span>
+          <span class="text-xs font-black text-[#5c4026] block mb-1 font-headline">핵심 잠입 거점 & 키워드</span>
           <div id="drawerSpots" class="flex flex-wrap gap-1">
             <!-- Badges -->
           </div>
@@ -278,10 +278,10 @@
         <!-- Travel Letter Section -->
         <div class="border-2 border-[#543b22] bg-[#fbf3dc] p-2.5 rounded-sm">
           <div class="flex items-center justify-between border-b border-[#3b2513]/25 pb-1 mb-1.5">
-            <span class="text-[10px] font-black text-[#841c1c] flex items-center gap-1 font-headline">
+            <span class="text-xs font-black text-[#841c1c] flex items-center gap-1 font-headline">
               <span>✉️</span> 현장에서 띄운 양피지 편지 & 일기
             </span>
-            <button id="editLetterBtn" class="px-1.5 py-0.5 text-[9px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-sm transition cursor-pointer" title="현장 편지 쓰기/수정">
+            <button id="editLetterBtn" class="px-1.5 py-0.5 text-[11px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-sm transition cursor-pointer" title="현장 편지 쓰기/수정">
               <span>✏️ 편지 쓰기/수정</span>
             </button>
           </div>
@@ -293,14 +293,14 @@
         <!-- Moving Photo Gallery -->
         <div class="border-2 border-[#3b2513] bg-[#f4ebd7] p-2 sm:p-2.5">
           <div class="flex items-center justify-between border-b border-[#3b2513]/30 pb-1 mb-2">
-            <span class="text-[10px] font-black text-[#841c1c] flex items-center gap-1 font-headline">
+            <span class="text-xs font-black text-[#841c1c] flex items-center gap-1 font-headline">
               <span>📸</span> 움직이는 마법 보도 사진첩 (<span id="photoCountBadge">0</span>)
             </span>
             <div class="flex items-center gap-1">
-              <button id="openAllPhotosBtn" class="px-1.5 py-0.5 text-[9px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer" title="사진첩 열람">
+              <button id="openAllPhotosBtn" class="px-1.5 py-0.5 text-[11px] bg-[#543b22] hover:bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer" title="사진첩 열람">
                 <span>⊞ 사진첩 열람</span>
               </button>
-              <button id="addMediaPromptBtn" class="px-1.5 py-0.5 text-[9px] bg-[#841c1c] hover:bg-[#6b1414] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer" title="사진첩 편집 및 추가">
+              <button id="addMediaPromptBtn" class="px-1.5 py-0.5 text-[11px] bg-[#841c1c] hover:bg-[#6b1414] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer" title="사진첩 편집 및 추가">
                 <span id="addMediaBtnIcon">✏️</span>
                 <span id="addMediaBtnText">사진첩 편집</span>
               </button>
@@ -313,7 +313,7 @@
           <div id="drawerGalleryGrid" class="hidden">
             <!-- Hidden: Photos are only displayed in the modal when clicking '열람' -->
           </div>
-          <p class="text-[9px] text-[#785b3f] mt-1.5 text-center italic font-serif">
+          <p class="text-[11px] text-[#241508] font-medium mt-1.5 text-center italic font-serif">
             * [열람 ➔]을 클릭하면 전체 사진들을 모아보고 큰 화면으로 감상할 수 있습니다.
           </p>
         </div>
@@ -344,14 +344,14 @@
                 <h4 id="overviewModalTitle" class="font-headline font-black text-sm sm:text-base text-[#1f1309] leading-tight">
                   여행지 마법 보도 사진첩
                 </h4>
-                <span id="overviewModalCount" class="text-[10px] px-2 py-0.5 bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs font-cinzel">
+                <span id="overviewModalCount" class="text-xs px-2 py-0.5 bg-[#841c1c] text-[#fbf7ee] font-bold rounded-xs font-cinzel">
                   전체 0장
                 </span>
-                <span id="overviewAdminBadge" class="hidden text-[9px] px-1.5 py-0.2 bg-[#1e3a24] text-[#a7f3d0] border border-[#064e3b] font-mono font-bold rounded-xs">
+                <span id="overviewAdminBadge" class="hidden text-[11px] px-1.5 py-0.2 bg-[#1e3a24] text-[#a7f3d0] border border-[#064e3b] font-mono font-bold rounded-xs">
                   🔓 편집 모드
                 </span>
               </div>
-              <p class="text-[10px] text-[#6d4d2f] font-serif mt-0.5">
+              <p class="text-xs text-[#180e05] font-semibold font-serif mt-0.5">
                 ✦ 작은 사진을 클릭하면 마법 확대 팝업에서 좌우로 스크롤하며 감상할 수 있습니다 ✦
               </p>
             </div>
@@ -375,7 +375,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="px-3.5 py-1.5 border-t border-[#3b2513]/30 bg-[#fbf5e6] flex items-center justify-between text-[10px] text-[#735334] font-serif">
+        <div class="px-3.5 py-1.5 border-t border-[#3b2513]/30 bg-[#fbf5e6] flex items-center justify-between text-xs text-[#241508] font-medium font-serif">
           <span>예언자 일보 특별 시청각 아카이브</span>
           <span>✦ 사진을 누르면 큰 화면으로 스크롤 감상 ✦</span>
         </div>
@@ -399,7 +399,7 @@
             <span id="lightboxPlaceTitle" class="font-headline font-black text-xs sm:text-sm text-[#1f1309] truncate max-w-[140px] sm:max-w-[260px]">
               여행지 명칭
             </span>
-            <span id="lightboxCounterBadge" class="text-[10px] sm:text-xs font-mono font-bold bg-[#841c1c] text-[#fbf7ee] px-2 py-0.5 rounded-xs shadow-inner">
+            <span id="lightboxCounterBadge" class="text-xs sm:text-xs font-mono font-bold bg-[#841c1c] text-[#fbf7ee] px-2 py-0.5 rounded-xs shadow-inner">
               1 / 1
             </span>
           </div>
@@ -432,7 +432,7 @@
 
         <!-- Bottom Thumbnail Strip (작은 사진 스크롤 레일) -->
         <div class="mt-2 pt-1.5 border-t border-[#3b2513]/25 flex items-center gap-2">
-          <span class="text-[9px] font-bold text-[#6d4d2f] font-serif shrink-0 hidden sm:inline">스크롤 탐색:</span>
+          <span class="text-[11px] font-bold text-[#180e05] font-semibold font-serif shrink-0 hidden sm:inline">스크롤 탐색:</span>
           <div id="lightboxThumbRail" class="flex items-center gap-1.5 overflow-x-auto parchment-scrollbar py-1 px-1 flex-1">
             <!-- Dynamic Mini Thumbnails -->
           </div>
@@ -451,7 +451,7 @@
           </div>
           <button id="closeAdminAuthModalBtn" class="text-xs font-bold text-[#543b22] hover:text-[#841c1c]">✕</button>
         </div>
-        <p class="text-[11px] text-[#6d4d2f] font-serif mb-2 leading-relaxed">
+        <p class="text-[11px] text-[#180e05] font-semibold font-serif mb-2 leading-relaxed">
           예언자 일보 수석 특파원 마법 암호(alohomora)를 입력하시면 사진 대량 추가 및 편지 작성 권한이 활성화됩니다.
         </p>
         <div class="space-y-1.5">
@@ -461,7 +461,7 @@
             placeholder="마법 주문을 입력하세요" 
             class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-1.5 text-xs outline-none font-serif text-[#24170d] focus:border-[#841c1c]"
           />
-          <p id="adminAuthError" class="text-[10px] text-[#841c1c] font-bold hidden">✦ 주문이 일치하지 않습니다.</p>
+          <p id="adminAuthError" class="text-xs text-[#841c1c] font-bold hidden">✦ 주문이 일치하지 않습니다.</p>
         </div>
         <div class="flex items-center justify-end gap-2 mt-3.5 pt-2 border-t border-[#3b2513]/20">
           <button id="cancelAdminAuthBtn" class="px-2.5 py-1 text-xs border border-[#543b22] bg-[#e8d7b7] text-[#2b1809] font-bold">취소</button>
@@ -494,18 +494,18 @@
           <div id="dropZone" class="border-2 border-dashed border-[#8a6843] bg-[#f7efdc] p-5 text-center cursor-pointer hover:bg-[#ebd9b6] hover:border-[#841c1c] transition rounded-xs">
             <span class="text-3xl block mb-1">📸</span>
             <p class="text-xs font-headline font-bold text-[#2e1d0f]">이곳을 클릭하거나 사진 파일들을 끌어다 놓으세요</p>
-            <p class="text-[10px] text-[#6d4d2f] font-serif mt-0.5">여러 장을 한 번에 선택하여 보관할 수 있습니다.</p>
+            <p class="text-xs text-[#180e05] font-semibold font-serif mt-0.5">여러 장을 한 번에 선택하여 보관할 수 있습니다.</p>
             <input id="bulkFileInput" type="file" accept="image/*" multiple class="hidden"/>
           </div>
           <p id="uploadStatusMsg" class="text-[11px] font-bold text-[#841c1c] text-center hidden animate-pulse font-serif"></p>
         </div>
         <div id="urlUploadView" class="hidden space-y-2 text-xs font-serif">
           <div>
-            <label class="block text-[11px] font-bold text-[#523d27] mb-0.5">웹 주소 (URL)</label>
+            <label class="block text-[11px] font-bold text-[#241508] font-semibold mb-0.5">웹 주소 (URL)</label>
             <input id="newMediaUrl" type="text" placeholder="https://..." class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-1.5 text-xs outline-none font-mono"/>
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-[#523d27] mb-0.5">보도 설명 (캡션)</label>
+            <label class="block text-[11px] font-bold text-[#241508] font-semibold mb-0.5">보도 설명 (캡션)</label>
             <input id="newMediaCaption" type="text" placeholder="현장 취재 설명..." class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-1.5 text-xs outline-none"/>
           </div>
           <div class="flex items-center justify-end gap-2 pt-2">
@@ -526,7 +526,7 @@
           <button id="closeLetterModalBtn" class="text-xs font-bold text-[#543b22] hover:text-[#841c1c]">✕</button>
         </div>
         <div>
-          <label class="block text-[11px] font-bold text-[#523d27] mb-1">여행에서 느낀 소중한 감상을 남겨보세요</label>
+          <label class="block text-[11px] font-bold text-[#241508] font-semibold mb-1">여행에서 느낀 소중한 감상을 남겨보세요</label>
           <textarea id="letterInputText" rows="6" class="w-full bg-[#fdf9f0] border-2 border-[#543b22] p-2 text-xs outline-none font-serif leading-relaxed" placeholder="“그곳에서 보낸 시간은 마치 마법 같았어...”"></textarea>
         </div>
         <div class="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-[#3b2513]/20">

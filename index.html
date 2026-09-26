@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -16,229 +16,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=IM+Fell+DW+Pica:ital@0;1&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=UnifrakturMaguntia&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=IM+Fell+DW+Pica:ital@0;1&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=UnifrakturMaguntia&display=swap"
     rel="stylesheet">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            prophet: ['"UnifrakturMaguntia"', 'Cinzel', 'serif'],
-            headline: ['"Playfair Display"', '"Nanum Myeongjo"', '"Noto Serif KR"', 'serif'],
-            serif: ['"Nanum Myeongjo"', '"Noto Serif KR"', 'serif'],
-            myeongjo: ['"Nanum Myeongjo"', 'serif'],
-            cinzel: ['"Cinzel"', 'serif']
-          },
-          colors: {
-            parchment: {
-              50: '#fdfcf9',
-              100: '#f7f1e3',
-              200: '#ede2c8',
-              300: '#dfcaa5',
-              400: '#cca971'
-            },
-            ink: {
-              DEFAULT: '#1c1309',
-              dark: '#110a04',
-              crimson: '#7f1d1d',
-              gold: '#b45309'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Tailwind Theme Config -->
+  <script src="assets/js/index-tailwind.js"></script>
 
-  <style>
-    body {
-      background-color: #120b05;
-      background-image:
-        radial-gradient(#2d1c0e 1px, transparent 1px),
-        radial-gradient(#1e130a 1px, #120b05 1px);
-      background-size: 24px 24px;
-      color: #1c1309;
-      font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .newsprint-sheet {
-      background-color: #f5eedb;
-      background-image:
-        radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.45) 0%, rgba(222, 203, 164, 0.25) 100%),
-        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(40, 24, 10, 0.02) 1px, rgba(40, 24, 10, 0.02) 3px);
-      box-shadow:
-        0 0 0 1px rgba(60, 36, 14, 0.6),
-        0 25px 65px rgba(0, 0, 0, 0.85),
-        inset 0 0 90px rgba(84, 52, 20, 0.28);
-    }
-
-    .news-rule-double {
-      border-top: 3px double #2b1a0d;
-      border-bottom: 1px solid #2b1a0d;
-    }
-
-    @keyframes movingPhotoSepia {
-
-      0%,
-      100% {
-        filter: grayscale(35%) sepia(40%) contrast(1.15) brightness(0.96);
-      }
-
-      50% {
-        filter: grayscale(10%) sepia(20%) contrast(1.2) brightness(1.04);
-      }
-    }
-
-    .magical-portrait {
-      animation: movingPhotoSepia 6s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .magical-portrait::after {
-      content: "";
-      position: absolute;
-      top: -120%;
-      left: -80%;
-      width: 260%;
-      height: 260%;
-      background: linear-gradient(110deg, transparent 35%, rgba(255, 250, 220, 0.25) 50%, transparent 65%);
-      animation: lightSheen 6.5s infinite linear;
-      pointer-events: none;
-    }
-
-    @keyframes lightSheen {
-      0% {
-        transform: translateY(-40%) rotate(22deg);
-      }
-
-      100% {
-        transform: translateY(40%) rotate(22deg);
-      }
-    }
-
-    .drop-cap::first-letter {
-      float: left;
-      font-family: 'Cinzel', serif;
-      font-size: 3.4rem;
-      line-height: 0.82;
-      padding: 4px 8px 2px 0;
-      color: #7f1d1d;
-      font-weight: 900;
-      text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
-    }
-
-    @keyframes prophetMarquee {
-      0% {
-        transform: translateX(100%);
-      }
-
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    .marquee-track {
-      display: inline-block;
-      white-space: nowrap;
-      animation: prophetMarquee 32s linear infinite;
-    }
-
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
-
-    /* Lumos Glow & Calendar Effects */
-    .lumos-hover {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .lumos-hover:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 0 16px rgba(245, 158, 11, 0.55), inset 0 0 8px rgba(245, 158, 11, 0.3);
-      border-color: #7f1d1d;
-    }
-
-    @keyframes lumosGlowPulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), inset 0 0 15px rgba(251, 191, 36, 0.2);
-      }
-
-      50% {
-        box-shadow: 0 0 35px rgba(251, 191, 36, 0.75), inset 0 0 25px rgba(251, 191, 36, 0.4);
-      }
-    }
-
-    .lumos-active-box {
-      animation: lumosGlowPulse 2.8s infinite ease-in-out;
-    }
-
-    /* 루모스 시전 인터랙션 & 암전/섬광 애니메이션 */
-    @keyframes lumosScreenFlash {
-      0% {
-        opacity: 0;
-      }
-
-      18% {
-        opacity: 0.98;
-        background: radial-gradient(circle at center, #ffffff 15%, #fef3c7 45%, #f59e0b 80%, rgba(180, 83, 9, 0.9) 100%);
-      }
-
-      100% {
-        opacity: 0;
-        background: transparent;
-      }
-    }
-
-    .lumos-flash-active {
-      animation: lumosScreenFlash 0.85s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
-    }
-
-    @keyframes wandCorePulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 45px rgba(217, 119, 6, 0.35);
-      }
-
-      50% {
-        transform: scale(1.08);
-        box-shadow: 0 0 40px rgba(251, 191, 36, 0.95), 0 0 75px rgba(245, 158, 11, 0.6);
-      }
-    }
-
-    .wand-core-glow {
-      animation: wandCorePulse 2.2s infinite ease-in-out;
-    }
-
-    @keyframes letterInkEmerge {
-      0% {
-        opacity: 0;
-        filter: blur(5px);
-        transform: translateY(8px);
-      }
-
-      100% {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateY(0);
-      }
-    }
-
-    .letter-ink-emerge {
-      animation: letterInkEmerge 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .lumos-card-lit {
-      box-shadow: 0 0 50px rgba(245, 158, 11, 0.35), 0 10px 30px rgba(20, 12, 4, 0.8) !important;
-      border-color: #854d0e !important;
-      transition: all 0.6s ease;
-    }
-  </style>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body
@@ -261,7 +46,7 @@
       <div class="flex items-center gap-3">
         <span>설원 활강 지수: 최상 • 훠궈 국물 흡입 지수: 1000% 폭발</span>
         <span
-          class="px-2 py-0.5 bg-ink-crimson text-parchment-50 rounded-xs text-[10px] font-cinzel font-black tracking-widest shadow-xs">
+          class="px-2 py-0.5 bg-ink-crimson text-parchment-50 rounded-xs text-xs font-cinzel font-black tracking-widest shadow-xs">
           1,000 GALLEONS
         </span>
       </div>
@@ -269,7 +54,7 @@
 
     <!-- 신문 상단 마스트헤드 (The Daily Prophet) -->
     <header class="text-center py-2 sm:py-4 border-b-4 border-ink relative">
-      <div class="text-[9px] sm:text-[11px] font-cinzel font-black tracking-[0.35em] text-[#6b4c2b] uppercase mb-1">
+      <div class="text-xs sm:text-[11px] font-cinzel font-black tracking-[0.35em] text-[#241508] font-bold uppercase mb-1">
         THE DAILY PROPHET • 1000-DAY ANNIVERSARY SPECIAL BROADCAST
       </div>
 
@@ -282,7 +67,7 @@
       </div>
 
       <div
-        class="flex items-center justify-between text-[10px] sm:text-xs font-myeongjo italic font-bold text-[#5c3e21] mt-2 px-2 border-t border-b border-ink/40 py-1">
+        class="flex items-center justify-between text-xs sm:text-xs font-myeongjo italic font-bold text-[#241508] font-medium mt-2 px-2 border-t border-b border-ink/40 py-1">
         <span>발행인: 지수인 (JI SUIN, Chief Editor)</span>
         <span class="text-ink-crimson font-black tracking-wider not-italic uppercase">“진실만을 마법 양피지에 각인하는 유일한 사랑의
           기록”</span>
@@ -294,7 +79,7 @@
     <div
       class="bg-ink text-parchment-100 py-1.5 px-3 my-3 flex items-center gap-2 text-xs font-serif overflow-hidden shadow-inner">
       <span
-        class="bg-ink-crimson text-white px-2 py-0.5 font-bold font-headline text-[10px] shrink-0 tracking-wider flex items-center gap-1 uppercase">
+        class="bg-ink-crimson text-white px-2 py-0.5 font-bold font-headline text-xs shrink-0 tracking-wider flex items-center gap-1 uppercase">
         <span>⚡</span> 속보 (OWL POST)
       </span>
       <div class="overflow-hidden flex-1 relative h-5">
@@ -319,7 +104,7 @@
           <br><span class="text-ink-crimson">1000일</span> 스토리: 역사적 동행의 전말”
         </h2>
         <p
-          class="font-myeongjo italic text-xs sm:text-[13px] md:text-sm text-[#54391e] mt-1.5 w-full max-w-4xl mx-auto tracking-tight whitespace-normal sm:whitespace-nowrap">
+          class="font-myeongjo italic text-xs sm:text-[13px] md:text-sm text-[#241508] font-semibold mt-1.5 w-full max-w-4xl mx-auto tracking-tight whitespace-normal sm:whitespace-nowrap">
           ‘오러국의 추적을 피해 이어온 달콤한 여정, 마법부도 연상 약사 수인과 연하 예비의사 현수의 영구 결속을 공식 승인하다’
         </p>
       </div>
@@ -336,27 +121,27 @@
               <source src="images/메인페이지/main.mov" type="video/quicktime">
             </video>
             <div
-              class="absolute bottom-2 right-2 bg-ink/80 text-parchment-50 px-2 py-0.5 text-[9px] font-cinzel rounded-xs">
+              class="absolute bottom-2 right-2 bg-ink/80 text-parchment-50 px-2 py-0.5 text-xs font-cinzel rounded-xs">
               MOVING PORTRAIT
             </div>
           </div>
-          <p class="text-[10px] italic text-[#634524] mt-1.5 text-center font-serif leading-tight">
+          <p class="text-xs italic text-[#241508] font-medium mt-1.5 text-center font-serif leading-tight">
             ▲ 최근 마법 법률 강제 집행부 몰래 설원과 맛집 데이트를 즐기던 현장이 포착되었다.
           </p>
         </div>
 
         <!-- 우측: 메인 기사 본문 텍스트 -->
         <div class="md:col-span-6 text-xs sm:text-[14px] leading-relaxed font-myeongjo text-justify">
-          <p class="drop-cap text-[#2c1d0e] mb-2.5">
+          <p class="drop-cap text-[#140c04] font-medium mb-2.5">
             마법부 국제 마법협력부와 예언자 일보 특별 취재반의 보고에 따르면, 1000일 전 마법처럼 시작된 두 사람의 인연이 마침내 <strong class>'1000일'</strong>이라는 전설적인
             마일스톤에 도달했다.
           </p>
-          <p class="text-[#2c1d0e] mb-2.5">
+          <p class="text-[#140c04] font-medium mb-2.5">
             취재 결과, 이들은 빗자루 대신 자동차와 비행기라는 머글들의 운송 수단을 이용해 수많은 도시와 설원을 넘나들었으며, 때로는 알려지지 않은 좁은 골목길의 숨은 맛집을 발굴하는 등 타의 추종을
             불허하는 팀워크를 과시했다.
           </p>
           <div
-            class="text-[#2c1d0e] bg-parchment-200/60 p-2.5 border-l-3 border-ink-crimson leading-normal font-serif mb-2.5">
+            class="text-[#140c04] font-medium bg-parchment-200/60 p-2.5 border-l-3 border-ink-crimson leading-normal font-serif mb-2.5">
             처음 만났을 땐 전문 지식이라곤 설원 위 스노우보드밖에 모르던 <strong class>'보드에 미쳐 있던 두 사람'</strong>이었으나, 1,000일이라는 눈부신 시간 동안 서로를 북돋우며
             각자의 자리에서 멋지게 활약하는 어엿한 프로페셔널로 동반 성장했다.
             <div class="mt-1 text-ink">
@@ -381,32 +166,32 @@
         <div class="flex items-center gap-2 min-w-0">
           <span class="text-2xl text-ink-crimson shrink-0"><i class="fa-solid fa-fire-burner"></i></span>
           <div class="min-w-0">
-            <span class="font-cinzel text-[10px] font-black text-ink-crimson uppercase tracking-widest block">
+            <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-widest block">
               ✦ DAILY PROPHET SPECIAL INVESTIGATION • EXCLUSIVE ✦
             </span>
             <h3
               class="font-headline font-black text-[14px] sm:text-[15px] md:text-base lg:text-lg text-ink leading-tight tracking-tight whitespace-nowrap">
               [단독 특종] “호그와트 연회보다 훠궈!”… 두 마법사의 위험한 ‘하이디라오 결탁’ 전말
             </h3>
-            <p class="font-serif text-[11px] sm:text-xs text-[#5c3e21] font-bold mt-0.5 tracking-tight">
+            <p class="font-serif text-[11px] sm:text-xs text-[#241508] font-medium font-bold mt-0.5 tracking-tight">
               부제: 현수 손잡고 첫 입문했던 수인, 서울 지점 올킬 끝에 마침내 ‘프리미엄 VIP’ 전격 등극!
             </p>
           </div>
         </div>
         <div class="flex flex-col items-end gap-1 self-start sm:self-center shrink-0">
           <span
-            class="px-2 py-0.5 bg-amber-700 text-parchment-50 font-cinzel text-[10px] font-bold rounded-xs shadow-xs text-center w-full">
+            class="px-2 py-0.5 bg-amber-700 text-parchment-50 font-cinzel text-xs font-bold rounded-xs shadow-xs text-center w-full">
             ★ PREMIUM VIP ★
           </span>
           <span
-            class="px-2 py-0.5 bg-ink-crimson text-parchment-50 font-cinzel text-[10px] font-bold rounded-xs shadow-xs text-center w-full">
+            class="px-2 py-0.5 bg-ink-crimson text-parchment-50 font-cinzel text-xs font-bold rounded-xs shadow-xs text-center w-full">
             CULINARY HAZARD
           </span>
         </div>
       </div>
 
       <!-- 본문: 기사 텍스트(좌) + 사진 프레임(우) 2컬럼 레이아웃 -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 font-serif text-xs leading-relaxed text-[#2c1a0e] items-start">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 font-serif text-xs leading-relaxed text-[#140c04] font-medium items-start">
 
         <!-- 좌측: 취재 기사 및 목격자 증언 (7 컬럼) -->
         <div class="md:col-span-7 space-y-2.5">
@@ -414,7 +199,7 @@
             예언자 일보 긴급 잠입 취재반에 따르면, 마법사 현수와 수인이 호그와트 지하 연회장을 팽개치고 머글 세계의 하이디라오 성지에 상습 출몰하여 국물을 흡입하는 충격적인 현장이 발각되었다.
           </p>
           <div
-            class="text-justify font-serif text-[13px] sm:text-[13.5px] leading-relaxed text-[#3a2512] bg-[#f5ecda] p-2.5 border-l-3 border-amber-800">
+            class="text-justify font-serif text-[13px] sm:text-[13.5px] leading-relaxed text-[#140c04] font-medium bg-[#f5ecda] p-2.5 border-l-3 border-amber-800">
             <strong>충격의 비하인드:</strong> 수인은 현수를 만나기 전까지 훠궈의 맛을 전혀 모르던 평범한 입맛의 소유자였다. 그러나 현수의 손을 잡고 하이디라오 문턱을 넘은 순간 잠재된 훠궈
             마법 본능이 눈을 떴고, 대학로·명동·강남·영등포 등 <strong>‘서울 시내 하이디라오 도장 깨기 원정’</strong>을 주도한 끝에 마법 세계 1급 오러 훈장보다 얻기 힘들다는
             <strong>‘하이디라오 PREMIUM VIP’</strong> 등급을 전격 획득했다.
@@ -424,7 +209,7 @@
               <i class="fa-solid fa-quote-left"></i>
               <span>익명의 현장 목격자(머글 서버)의 충격 증언</span>
             </div>
-            <p class="text-[12px] sm:text-[13px] leading-relaxed text-[#2c1a0e]">
+            <p class="text-[12px] sm:text-[13px] leading-relaxed text-[#140c04] font-medium">
               “두 사람은 테이블에 앉자마자 지팡이 대신 능숙한 솜씨로 주문용 태블릿을 광속으로 연타했습니다. 그 후 음식이 도착했을 때 호그와트의 최고위 비행 마법이라도 목격한 양 눈을 반짝이며 박수를
               쳤죠. 마법약 조제에 쓰여야 할 정교한 계량 기술을 <strong>‘강해천소스 황금 배합’</strong>에 쏟아붓는 모습은 가히 경악스러웠습니다. 1000일간 둘의 위장으로 사라진
               소고기와과 푸주, 새우완자와 치즈떡의 총 길이는 런던에서 호그와트 급행열차 철로를 복선으로 깔고도 남을 지경입니다.”
@@ -438,11 +223,11 @@
             <img id="haidilaoNewsPhoto" src="images/메인페이지/haidilao.jpeg" alt="하이디라오 훠궈 현장"
               class="w-full h-full object-cover" />
             <div
-              class="absolute bottom-1.5 right-1.5 bg-ink/85 text-amber-300 px-2 py-0.5 text-[8.5px] font-cinzel font-bold rounded-xs border border-ink/40">
+              class="absolute bottom-1.5 right-1.5 bg-ink/85 text-amber-300 px-2 py-0.5 text-xs font-cinzel font-bold rounded-xs border border-ink/40">
               ★ HAIDILAO PREMIUM VIP ★
             </div>
           </div>
-          <p class="text-[11px] text-center font-serif italic text-[#5c3e21] mt-1.5 leading-tight">
+          <p class="text-[11px] text-center font-serif italic text-[#241508] font-medium mt-1.5 leading-tight">
             ▲ [특종 증거 사진] 현수와 처음 맛본 뒤 영혼을 빼앗긴 마법의 4칸 냄비. 이후 서울 전역 지점 도장 깨기의 서막이 올랐다.
           </p>
 
@@ -559,7 +344,7 @@
 
       <!-- 지도 하단 캡션 안내줄 -->
       <div
-        class="flex flex-col sm:flex-row items-center justify-between text-[10.5px] font-serif text-[#684a29] font-bold pt-2 mt-1 gap-1">
+        class="flex flex-col sm:flex-row items-center justify-between text-xs font-serif text-[#241508] font-semibold font-bold pt-2 mt-1 gap-1">
         <span class="flex items-center gap-1">
           <i class="fa-solid fa-compass text-ink-crimson"></i>
           <span>사건 파일: #01 비운의 정면 추돌 사건 • #02 극과 극 라이딩(절벽파 vs 오솔길파) 탑재</span>
@@ -583,13 +368,13 @@
             <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
               마법부 교통국 인가: 하늘을 나는 머글 자동차 & 빗자루 원정 일지
             </h3>
-            <p class="text-[10.5px] font-serif text-[#5c3e21]">
+            <p class="text-xs font-serif text-[#241508] font-medium">
               * 콘셉트: 론 위즐리의 포드 앵글리아와 대형 투인용 빗자루(또는 포트키)를 타고, 전국 방방곡곡과 세계 맛의 성지를 누비며 도장 깨기 한 미식 로드트립.
             </p>
           </div>
         </div>
         <span
-          class="px-2 py-0.5 bg-ink-crimson text-parchment-50 font-cinzel text-[10px] font-bold rounded-xs shrink-0">
+          class="px-2 py-0.5 bg-ink-crimson text-parchment-50 font-cinzel text-xs font-bold rounded-xs shrink-0">
           HIGHWAY PATROL
         </span>
       </div>
@@ -605,7 +390,7 @@
                 <span class="truncate">[1] 설원행 & 심야 플레이리스트</span>
               </span>
               <span id="playlistStatusBadge"
-                class="text-[9px] font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0">
+                class="text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
                 <span>STREAMING</span>
               </span>
@@ -616,7 +401,7 @@
               class="mb-2 p-2 bg-[#ecdcb9] border border-ink/30 rounded-xs flex items-center justify-between gap-2 shadow-xs">
               <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-1.5">
-                  <span id="currentTrackIndex" class="font-mono text-[9.5px] font-bold text-ink-crimson shrink-0">TRACK
+                  <span id="currentTrackIndex" class="font-mono text-[11px] font-bold text-ink-crimson shrink-0">TRACK
                     01</span>
                   <span id="currentTrackTitle" class="font-headline font-bold text-[11px] text-ink truncate">박효신 -
                     Gift</span>
@@ -626,11 +411,11 @@
                     <div id="playlistProgressBar" class="h-full bg-ink-crimson transition-all duration-300"
                       style="width: 55%;"></div>
                   </div>
-                  <span id="currentTrackTime" class="font-mono text-[9px] text-[#6d4d29] shrink-0">02:35 / 04:40</span>
+                  <span id="currentTrackTime" class="font-mono text-xs text-[#241508] font-medium shrink-0">02:35 / 04:40</span>
                 </div>
               </div>
               <button id="playlistPlayBtn" type="button"
-                class="shrink-0 w-7 h-7 rounded-full bg-ink text-amber-300 hover:bg-ink-crimson hover:text-white transition-colors flex items-center justify-center text-[10px] shadow-xs focus:outline-none"
+                class="shrink-0 w-7 h-7 rounded-full bg-ink text-amber-300 hover:bg-ink-crimson hover:text-white transition-colors flex items-center justify-center text-xs shadow-xs focus:outline-none"
                 title="재생 / 일시정지">
                 <i id="playlistPlayIcon" class="fa-solid fa-play ml-0.5"></i>
               </button>
@@ -643,13 +428,13 @@
                 data-track-index="1" data-title="박효신 - Gift" data-duration="04:40" data-current="02:35"
                 data-progress="55">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-[10px] text-ink-crimson font-bold shrink-0">01</span>
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">박효신 - Gift</span>
-                    <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(드라이브 힐링곡)</span>
+                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(드라이브 힐링곡)</span>
                   </div>
                 </div>
-                <span class="font-mono text-[9px] text-[#6d4d29] shrink-0 ml-1">04:40</span>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
               </button>
 
               <button type="button"
@@ -657,13 +442,13 @@
                 data-track-index="2" data-title="로제 - Messy" data-duration="02:45" data-current="01:10"
                 data-progress="42">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-[10px] text-ink-crimson font-bold shrink-0">02</span>
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">로제 - Messy</span>
-                    <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(힙한 그루브)</span>
+                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(힙한 그루브)</span>
                   </div>
                 </div>
-                <span class="font-mono text-[9px] text-[#6d4d29] shrink-0 ml-1">02:45</span>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
               </button>
 
               <button type="button"
@@ -671,13 +456,13 @@
                 data-track-index="3" data-title="샤키라 - Waka Waka" data-duration="03:22" data-current="01:45"
                 data-progress="52">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-[10px] text-ink-crimson font-bold shrink-0">03</span>
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">샤키라 - Waka Waka</span>
-                    <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(졸음번쩍 댄스)</span>
+                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(졸음번쩍 댄스)</span>
                   </div>
                 </div>
-                <span class="font-mono text-[9px] text-[#6d4d29] shrink-0 ml-1">03:22</span>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
               </button>
 
               <button type="button"
@@ -685,13 +470,13 @@
                 data-track-index="4" data-title="성시경 - 너의 모든 순간" data-duration="04:02" data-current="02:05"
                 data-progress="51">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-[10px] text-ink-crimson font-bold shrink-0">04</span>
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">04</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">성시경 - 너의 모든 순간</span>
-                    <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(심야 낭만 떼창)</span>
+                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(심야 낭만 떼창)</span>
                   </div>
                 </div>
-                <span class="font-mono text-[9px] text-[#6d4d29] shrink-0 ml-1">04:02</span>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:02</span>
               </button>
 
               <button type="button"
@@ -699,13 +484,13 @@
                 data-track-index="5" data-title="아이유 - 밤편지" data-duration="04:13" data-current="01:30"
                 data-progress="35">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-[10px] text-ink-crimson font-bold shrink-0">05</span>
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">05</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">아이유 - 밤편지</span>
-                    <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(감성 자장가)</span>
+                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(감성 자장가)</span>
                   </div>
                 </div>
-                <span class="font-mono text-[9px] text-[#6d4d29] shrink-0 ml-1">04:13</span>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:13</span>
               </button>
 
               <button type="button"
@@ -713,18 +498,18 @@
                 data-track-index="6" data-title="데이식스 - 한 페이지가 될 수 있게" data-duration="03:04" data-current="02:10"
                 data-progress="70">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="font-mono text-[10px] text-ink-crimson font-bold shrink-0">06</span>
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">06</span>
                   <div class="truncate">
                     <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">데이식스 - 한 페이지</span>
-                    <span class="text-[9.5px] text-[#7a5833] ml-1 hidden sm:inline">(도착 5분 전 텐션 폭발)</span>
+                    <span class="text-[11px] text-[#241508] font-medium ml-1 hidden sm:inline">(도착 5분 전 텐션 폭발)</span>
                   </div>
                 </div>
-                <span class="font-mono text-[9px] text-[#6d4d29] shrink-0 ml-1">03:04</span>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:04</span>
               </button>
             </div>
           </div>
 
-          <p class="text-[9.5px] font-serif text-[#6b4c2b] italic mt-2 text-center border-t border-ink/20 pt-1">
+          <p class="text-[11px] font-serif text-[#241508] font-bold italic mt-2 text-center border-t border-ink/20 pt-1">
             * 차창 밖으로 눈보라가 쳐도 둘만의 목청껏 부르는 이동 콘서트장
           </p>
         </div>
@@ -739,7 +524,7 @@
                 <span class="truncate">[2] 미식 마법 암행 평가단(수인 & 현수)의 맛집 미슐랭 가이드</span>
               </span>
               <span
-                class="px-2 py-0.5 bg-ink-crimson text-amber-300 font-cinzel text-[9px] font-bold rounded-xs tracking-wider shrink-0">
+                class="px-2 py-0.5 bg-ink-crimson text-amber-300 font-cinzel text-xs font-bold rounded-xs tracking-wider shrink-0">
                 ★ ALL 5-STAR MICHELIN
               </span>
             </div>
@@ -752,11 +537,11 @@
                 <div>
                   <div class="flex items-center justify-between gap-1">
                     <span class="font-headline font-bold text-ink text-[11.5px] truncate">하이디라오 & 훠궈</span>
-                    <span class="text-amber-700 font-bold text-[10.5px] shrink-0">★★★★★ <span
-                        class="font-mono text-[9px] text-ink">(5.0)</span></span>
+                    <span class="text-amber-700 font-bold text-xs shrink-0">★★★★★ <span
+                        class="font-mono text-xs text-ink">(5.0)</span></span>
                   </div>
-                  <div class="text-[9px] text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
-                  <p class="text-[10px] text-[#5c3e21] mt-0.5 leading-snug">
+                  <div class="text-xs text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
+                  <p class="text-xs text-[#241508] font-medium mt-0.5 leading-snug">
                     토마토탕과 마라 홍탕의 4칸 냄비, 생새우완자 유부피 채우기 신공. 서울 지점 올킬한 전설의 성지.
                   </p>
                 </div>
@@ -768,11 +553,11 @@
                 <div>
                   <div class="flex items-center justify-between gap-1">
                     <span class="font-headline font-bold text-ink text-[11.5px] truncate">수제 딤섬 & 중식</span>
-                    <span class="text-amber-700 font-bold text-[10.5px] shrink-0">★★★★★ <span
-                        class="font-mono text-[9px] text-ink">(5.0)</span></span>
+                    <span class="text-amber-700 font-bold text-xs shrink-0">★★★★★ <span
+                        class="font-mono text-xs text-ink">(5.0)</span></span>
                   </div>
-                  <div class="text-[9px] text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
-                  <p class="text-[10px] text-[#5c3e21] mt-0.5 leading-snug">
+                  <div class="text-xs text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
+                  <p class="text-xs text-[#241508] font-medium mt-0.5 leading-snug">
                     육즙 가득한 샤오롱바오와 멘보샤로 마법약 솥 채우듯 위장을 채워주는 만두 마법.
                   </p>
                 </div>
@@ -784,11 +569,11 @@
                 <div>
                   <div class="flex items-center justify-between gap-1">
                     <span class="font-headline font-bold text-ink text-[11.5px] truncate">세종한우 & 육회비빔밥</span>
-                    <span class="text-amber-700 font-bold text-[10.5px] shrink-0">★★★★★ <span
-                        class="font-mono text-[9px] text-ink">(5.0)</span></span>
+                    <span class="text-amber-700 font-bold text-xs shrink-0">★★★★★ <span
+                        class="font-mono text-xs text-ink">(5.0)</span></span>
                   </div>
-                  <div class="text-[9px] text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
-                  <p class="text-[10px] text-[#5c3e21] mt-0.5 leading-snug">
+                  <div class="text-xs text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
+                  <p class="text-xs text-[#241508] font-medium mt-0.5 leading-snug">
                     입안에서 살살 녹는 최고급 한우 투뿔의 영광. 훈련(?) 후 체력 보충용 궁극의 보약.
                   </p>
                 </div>
@@ -800,11 +585,11 @@
                 <div>
                   <div class="flex items-center justify-between gap-1">
                     <span class="font-headline font-bold text-ink text-[11.5px] truncate">산본 닭발 & 매콤 엽떡</span>
-                    <span class="text-amber-700 font-bold text-[10.5px] shrink-0">★★★★★ <span
-                        class="font-mono text-[9px] text-ink">(5.0)</span></span>
+                    <span class="text-amber-700 font-bold text-xs shrink-0">★★★★★ <span
+                        class="font-mono text-xs text-ink">(5.0)</span></span>
                   </div>
-                  <div class="text-[9px] text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
-                  <p class="text-[10px] text-[#5c3e21] mt-0.5 leading-snug">
+                  <div class="text-xs text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
+                  <p class="text-xs text-[#241508] font-medium mt-0.5 leading-snug">
                     쿨피스 마법진을 필수로 동반해야 하는 스트레스 타파 매운맛 테라피.
                   </p>
                 </div>
@@ -816,11 +601,11 @@
                 <div>
                   <div class="flex items-center justify-between gap-1">
                     <span class="font-headline font-bold text-ink text-[11.5px] truncate">이탈리안 파스타 & 피자</span>
-                    <span class="text-amber-700 font-bold text-[10.5px] shrink-0">★★★★★ <span
-                        class="font-mono text-[9px] text-ink">(5.0)</span></span>
+                    <span class="text-amber-700 font-bold text-xs shrink-0">★★★★★ <span
+                        class="font-mono text-xs text-ink">(5.0)</span></span>
                   </div>
-                  <div class="text-[9px] text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
-                  <p class="text-[10px] text-[#5c3e21] mt-0.5 leading-snug">
+                  <div class="text-xs text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
+                  <p class="text-xs text-[#241508] font-medium mt-0.5 leading-snug">
                     치즈가 쭉 늘어나는 화덕 피자와 꾸덕한 파스타로 로맨틱 분위기 100% 충전.
                   </p>
                 </div>
@@ -832,11 +617,11 @@
                 <div>
                   <div class="flex items-center justify-between gap-1">
                     <span class="font-headline font-bold text-ink text-[11.5px] truncate">오마카세 & 신선한 스시</span>
-                    <span class="text-amber-700 font-bold text-[10.5px] shrink-0">★★★★★ <span
-                        class="font-mono text-[9px] text-ink">(5.0)</span></span>
+                    <span class="text-amber-700 font-bold text-xs shrink-0">★★★★★ <span
+                        class="font-mono text-xs text-ink">(5.0)</span></span>
                   </div>
-                  <div class="text-[9px] text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
-                  <p class="text-[10px] text-[#5c3e21] mt-0.5 leading-snug">
+                  <div class="text-xs text-ink-crimson font-cinzel font-bold">5-STAR ★★★★★</div>
+                  <p class="text-xs text-[#241508] font-medium mt-0.5 leading-snug">
                     셰프님이 한 점씩 쥐어줄 때마다 감탄사가 절로 나오는 입안의 바다 축제.
                   </p>
                 </div>
@@ -844,7 +629,7 @@
             </div>
           </div>
 
-          <p class="text-[9.5px] font-serif text-[#6b4c2b] italic mt-2 text-center border-t border-ink/20 pt-1">
+          <p class="text-[11px] font-serif text-[#241508] font-bold italic mt-2 text-center border-t border-ink/20 pt-1">
             * 특파원 코멘트: "하늘을 나는 자동차가 고장 나도, 빗자루 연료가 떨어져도 맛있는 것만 먹으면 즉시 HP 100% 완충되는 두 마법사의 위대한 미식 비행."
           </p>
         </div>
@@ -866,7 +651,7 @@
           <h3 class="font-headline font-black text-xl sm:text-2xl text-ink">
             WANTED: 심장 무단 점거 및 설원 과실치상 혐의자들
           </h3>
-          <p class="font-serif text-[11px] text-[#5c3e21] mt-0.5">
+          <p class="font-serif text-[11px] text-[#241508] font-medium mt-0.5">
             * 행동 수칙: “발견 시 즉시 따뜻한 포옹과 맛있는 음식으로 제압할 것”
           </p>
         </div>
@@ -882,7 +667,7 @@
                 <source src="images/메인페이지/wanted1.mov" type="video/mp4">
               </video>
               <div
-                class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-[8.5px] py-0.5 text-center z-10">
+                class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-xs py-0.5 text-center z-10">
                 PRISONER NO: #1000-PHARMACIST-SUIN
               </div>
             </div>
@@ -921,7 +706,7 @@
                 <source src="images/메인페이지/wanted2.mov" type="video/mp4">
               </video>
               <div
-                class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-[8.5px] py-0.5 text-center z-10">
+                class="absolute bottom-1 left-1 right-1 bg-ink/90 text-parchment-50 font-mono text-xs py-0.5 text-center z-10">
                 PRISONER NO: #1000-DOCTOR-HYEONSOO
               </div>
             </div>
@@ -962,7 +747,7 @@
           <br>둘을 마주 보게 세워두고 헬멧 착용 상태에서 딱밤 1회씩
           교환 후
           <strong>'앞으로 100년간 매 끼니 반찬과 훠궈 고기를 나눠 먹는 사랑의 공동 종신형'</strong>에 처함.”
-          <div class="mt-1 text-[10px] text-[#6d4d29]">
+          <div class="mt-1 text-xs text-[#241508] font-medium">
             현상금: 1,000 Galleons • 야식 평생 무료 제공권 & 삐쳤을 때 30초 내로 달래주는 긴급 쿠폰
           </div>
         </div>
@@ -982,12 +767,12 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 마법약학 특별 조제 일지 & 성 뭉고 의무기록 (SOAP Chart)
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 성 뭉고 병원 인증: NST 전문 약사 수인 누나 & Student Doctor 현수의 전담 임상 차트
               </p>
             </div>
           </div>
-          <span class="px-2 py-0.5 bg-emerald-900 text-parchment-50 font-cinzel text-[10px] font-bold rounded-xs">
+          <span class="px-2 py-0.5 bg-emerald-900 text-parchment-50 font-cinzel text-xs font-bold rounded-xs">
             OFFICIAL RX
           </span>
         </div>
@@ -1005,11 +790,11 @@
                 당직 후 피곤해서 예민해지거나 토라졌을 때 0.1초 만에 평온을 되찾아주는 특효 진정제.
               </p>
             </div>
-            <div class="bg-[#ebd8b1] p-2 text-[10px] font-serif text-[#2a1a0c] border border-ink/30 space-y-1">
-              <div class="text-[9.5px] leading-relaxed">
+            <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
+              <div class="text-[11px] leading-relaxed">
                 <strong>• 유효 성분:</strong> 조용한 드라이브 30분 + 따뜻한 머리 쓰다듬기 300회.
               </div>
-              <div class="pt-1 border-t border-ink/20 text-[9.5px] leading-relaxed">
+              <div class="pt-1 border-t border-ink/20 text-[11px] leading-relaxed">
                 <strong>• 주의 사항:</strong> 공복 상태에서 잔소리 시 약효 즉시 소멸 및 대형 싸움 발생 우려 (반드시 아래 포션 02 [미식 테라피] 선행 투여 필수).
               </div>
             </div>
@@ -1028,14 +813,14 @@
                 세상에서 가장 강력한 사랑의 묘약이자, 두 사람의 위장을 완벽하게 지배하는 힐링 푸드 처방.
               </p>
             </div>
-            <div class="bg-[#ebd8b1] p-2 text-[10px] font-serif text-[#2a1a0c] border border-ink/30 space-y-1">
-              <div class="text-[9.5px] leading-tight">
+            <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
+              <div class="text-[11px] leading-tight">
                 <strong>• 수인용 맞춤 처방:</strong> 아이스 아메리카노(아아) 원샷 + 달달한 초코 또는 요거트 아이스크림(요아정) / 리조 젤라또로 도파민 충전.
               </div>
-              <div class="text-[9.5px] leading-tight">
+              <div class="text-[11px] leading-tight">
                 <strong>• 현수용 맞춤 처방:</strong> 제순식당 제육볶음 + 바삭한 돈까스 또는 세종한우 &amp; 육회비빔밥으로 든든한 뚝심 충전.
               </div>
-              <div class="pt-1 border-t border-ink/20 text-[9.5px] leading-tight">
+              <div class="pt-1 border-t border-ink/20 text-[11px] leading-tight">
                 <strong>• 공통 향기:</strong> 훠궈 토마토탕/마라 홍탕 냄새, 산본닭발, 간장게장, 엽떡의 만족스러운 잔향. (영구 내성 판정!)
               </div>
             </div>
@@ -1053,11 +838,11 @@
                 과음이나 과로 후 바닥난 체력을 30분 만에 100% 회복시키는 NST 수석 약사 수인 누나의 특효 수액.
               </p>
             </div>
-            <div class="bg-[#ebd8b1] p-2 text-[10px] font-serif text-[#2a1a0c] border border-ink/30 space-y-1">
-              <div class="text-[9.5px] leading-relaxed">
+            <div class="bg-[#ebd8b1] p-2 text-xs font-serif text-[#140c04] font-medium border border-ink/30 space-y-1">
+              <div class="text-[11px] leading-relaxed">
                 <strong>• 처방 비율:</strong> 얼큰한 국물 또는 엽떡 착한맛(매운맛 진정용 쿨피스 포함) + 이온음료 1병 + 등 토닥임 100회.
               </div>
-              <div class="pt-1 border-t border-ink/20 text-[9.5px] leading-relaxed">
+              <div class="pt-1 border-t border-ink/20 text-[11px] leading-relaxed">
                 <strong>• 복약 지도:</strong> 침대에 눕혀 이불 덮어주고 푹 재울 것.
               </div>
             </div>
@@ -1073,7 +858,7 @@
               <span>📋 성 뭉고 의무기록 경과지 [차트 번호: #1000-MD-PHARM] • 전담 약사: 수인 누나</span>
             </span>
             <span
-              class="text-[10px] font-mono text-emerald-900 bg-emerald-100 px-2 py-0.5 border border-emerald-800 rounded-xs font-bold self-start sm:self-auto">생존
+              class="text-xs font-mono text-emerald-900 bg-emerald-100 px-2 py-0.5 border border-emerald-800 rounded-xs font-bold self-start sm:self-auto">생존
               본능 1000% 확인 완료</span>
           </div>
 
@@ -1088,7 +873,7 @@
                 </blockquote>
               </div>
             </div>
-            <div class="bg-parchment-50 p-2.5 border border-ink/20 space-y-1.5 text-[10.5px]">
+            <div class="bg-parchment-50 p-2.5 border border-ink/20 space-y-1.5 text-xs">
               <strong class="text-emerald-800 font-bold block mb-0.5">[O (객관적 관찰 - 전담 약사: 수인)]</strong>
               <div><strong>• 진단명:</strong> 급성 보드 추돌성 경미한 뇌진탕 (Commotio Cerebri by Girlfriend) 및 슬로프 실력 격차 스트레스.</div>
               <div><strong>• 신경학적 검사:</strong> “내가 누구야?” 질문에 0.1초 만에 <em>“세상에서 제일 예쁜 수인이 누나”</em>라고 정상 답변 완료. 덕크니컬 마스터
@@ -1100,12 +885,12 @@
             </div>
           </div>
 
-          <div class="bg-[#ebd9b4] p-2.5 border border-ink/20 text-[10.5px] space-y-1.5">
+          <div class="bg-[#ebd9b4] p-2.5 border border-ink/20 text-xs space-y-1.5">
             <div><strong class="text-ink">[A (임상 평가)]:</strong> 물리적 충격은 상당했으나 사랑의 고대 마법 결계 및 간장게장/육회비빔밥 파워 덕분에 두개골 내 심각한
               이상 없음 판정.</div>
             <div class="space-y-0.5">
               <div><strong class="text-ink">[P (치료 계획)]:</strong></div>
-              <div class="pl-2 space-y-0.5 text-[10px]">
+              <div class="pl-2 space-y-0.5 text-xs">
                 <div>• 절대 안정 및 뇌세포 재생용 특급 야식(산본 닭발 또는 세종한우) 긴급 점적 투여.</div>
                 <div>• 추돌 가해자(수인)가 앞으로 평생 밥 먹을 때 현수 앞접시에 고기 놔주고 머리를 쓰다듬어주며 간호할 것. 해외 원정 보드 타러 갈 때 핫팩과 간식을 상시 조달할 것.
                 </div>
@@ -1128,7 +913,7 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 호그와트 기숙사 점수판 & 1000일 벌점 장부 (House Points)
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 지난 1000일 동안 누적된 다정함의 가산점과 얄미운 벌점 총결산 (기숙사 우승 공동 확정)
               </p>
             </div>
@@ -1147,7 +932,7 @@
               <span><i class="fa-solid fa-circle-plus"></i> 🦁 GRYFFINDOR (+POINTS: 현수의 맛집 조사 & 든든한 응원)</span>
               <span class="text-[11px] font-mono text-emerald-700">GRYFFINDOR PRIDE</span>
             </div>
-            <ul class="text-xs font-serif space-y-2 text-[#2c1d0e]">
+            <ul class="text-xs font-serif space-y-2 text-[#140c04] font-medium">
               <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
                 <span>• 맛있는 거 먹으러 갈 때 데이트 코스와 미식 정보를 밤새워 꼼꼼히 조사하고 골라온 철저한 사전 준비성</span>
                 <span class="font-mono font-bold text-emerald-700 shrink-0">+150 PTS</span>
@@ -1170,7 +955,7 @@
               <span><i class="fa-solid fa-circle-minus"></i> 🐍 SLYTHERIN (-DEMERITS: 운전 전담 & 디저트 누락 사태)</span>
               <span class="text-[11px] font-mono text-ink-crimson">SLYTHERIN MISCHIEF</span>
             </div>
-            <ul class="text-xs font-serif space-y-2 text-[#2c1d0e]">
+            <ul class="text-xs font-serif space-y-2 text-[#140c04] font-medium">
               <li class="flex items-start justify-between gap-2 border-b border-ink/20 pb-1">
                 <span>• "운전은 원래 누나가 짱이지!"라며 장거리 이동 시에도 운전대를 싹 맡겨버린 면허 소지자의 슬리데린식 잔머리</span>
                 <span class="font-mono font-bold text-ink-crimson shrink-0">-80 PTS</span>
@@ -1208,12 +993,12 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 마법 결투 클럽: 평화 협정 조약문 (Duelling Club Peace Treaty)
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 지팡이를 내려놓고 영구 평화를 선포하는 3대 절대 불가침 연애 규칙
               </p>
             </div>
           </div>
-          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-[10px] font-bold rounded-xs">
+          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
             RATIFIED 1000
           </span>
         </div>
@@ -1246,7 +1031,7 @@
         </div>
 
         <div
-          class="mt-3 pt-2 border-t border-ink/30 flex items-center justify-between text-[11px] font-serif text-[#6b4c2b]">
+          class="mt-3 pt-2 border-t border-ink/30 flex items-center justify-between text-[11px] font-serif text-[#241508] font-bold">
           <span>비준: 마법 법률 자문관 공인</span>
           <span class="font-bold text-ink">공동 서명: 수인 누나 ✍️ & Student Doctor 현수 ✍️</span>
         </div>
@@ -1265,12 +1050,12 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 사이빌 트릴로니 교수의 주간 점술 & 타로 (Horoscope)
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 내 수정구슬이 다음 1000일의 영롱한 미래를 환하게 비추고 있다...
               </p>
             </div>
           </div>
-          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-[10px] font-bold rounded-xs">
+          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
             FUTURE PROPHECY
           </span>
         </div>
@@ -1285,7 +1070,7 @@
             <span class="font-cinzel text-[11px] font-bold text-ink-crimson uppercase tracking-wider">
               ORB OF DESTINY
             </span>
-            <p class="font-serif italic text-[10px] text-[#6d4d29] mt-0.5">
+            <p class="font-serif italic text-xs text-[#241508] font-medium mt-0.5">
               “1000일의 빛줄기가 춤추며 다음 모험을 가리킨다.”
             </p>
           </div>
@@ -1294,7 +1079,7 @@
           <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-serif">
 
             <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
-              <span class="text-ink-crimson font-cinzel font-bold text-[10px] block mb-0.5">TAROT I: THE MOUNTAIN</span>
+              <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT I: THE MOUNTAIN</span>
               <h5 class="font-headline font-bold text-xs text-ink mb-1">설원 정복의 운명</h5>
               <p class="text-[#3b2513] text-[11px] leading-relaxed">
                 가까운 시일 내에 새로운 설원과 블랙 다이아몬드 코스를 가뿐히 정복할 기운이 감지됩니다.
@@ -1302,7 +1087,7 @@
             </div>
 
             <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
-              <span class="text-ink-crimson font-cinzel font-bold text-[10px] block mb-0.5">TAROT II: THE FEAST</span>
+              <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT II: THE FEAST</span>
               <h5 class="font-headline font-bold text-xs text-ink mb-1">미식 탐방의 길</h5>
               <p class="text-[#3b2513] text-[11px] leading-relaxed">
                 다음 여행지에서 길을 잃더라도, 둘이 함께 훠궈나 디저트 맛집을 찾아내면 행운으로 반전될 운명입니다.
@@ -1310,7 +1095,7 @@
             </div>
 
             <div class="bg-parchment-50 p-2.5 border border-ink shadow-xs">
-              <span class="text-ink-crimson font-cinzel font-bold text-[10px] block mb-0.5">TAROT III: THE SUN</span>
+              <span class="text-ink-crimson font-cinzel font-bold text-xs block mb-0.5">TAROT III: THE SUN</span>
               <h5 class="font-headline font-bold text-xs text-ink mb-1">영구 행복의 서약</h5>
               <p class="text-[#3b2513] text-[11px] leading-relaxed">
                 1000일 이후에도 마법 같은 행복과 배꼽 빠지는 웃음이 영구 지속될 것이니 어떤 역경도 두렵지 않습니다.
@@ -1334,7 +1119,7 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 예언자 일보 특별 마법 퀴즈: O.W.L. 사랑 능력 평가 시험
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 방문자(Student Doctor 현수)가 직접 풀어보는 인터랙티브 마법 퀴즈
               </p>
             </div>
@@ -1363,7 +1148,7 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 예언자 일보 스페셜 부록: 1000일 기념 마법 낱말 퍼즐 (Crossword)
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 둘만의 추억이 담긴 열쇠를 읽고 빈칸을 완성하세요. 완성 시 숨겨진 마법 메시지가 해금됩니다!
               </p>
             </div>
@@ -1412,7 +1197,7 @@
           <!-- 우측: 퍼즐 힌트 & 완성 메시지 패널 -->
           <div class="md:col-span-5 flex flex-col justify-between h-full bg-[#f4ebd6] p-3 border-2 border-ink">
             <div>
-              <span class="font-cinzel text-[10px] font-bold text-ink-crimson uppercase tracking-wider block mb-1">
+              <span class="font-cinzel text-xs font-bold text-ink-crimson uppercase tracking-wider block mb-1">
                 ✦ CLUES & HIDDEN REVELATION ✦
               </span>
               <div
@@ -1426,7 +1211,7 @@
               class="hidden mt-3 p-3 bg-parchment-50 border-2 border-ink-crimson rounded-xs text-center shadow-md">
               <i class="fa-solid fa-crown text-amber-600 text-xl mb-1"></i>
               <h6 class="font-headline font-black text-sm text-ink-crimson">마법 퍼즐 완성!</h6>
-              <p class="font-myeongjo text-xs text-[#2a1a0c] mt-1 font-bold leading-normal">
+              <p class="font-myeongjo text-xs text-[#140c04] font-medium mt-1 font-bold leading-normal">
                 “1000일 동안 누나 곁에 있어줘서 진심으로 고마웠고, 앞으로 맞이할 수많은 내일도 평생 잘 부탁해 현수야!”
               </p>
             </div>
@@ -1442,14 +1227,14 @@
       <section class="my-3 bg-parchment-100 p-4 sm:p-6 border-2 border-ink shadow-[4px_4px_0_#2b1a0d]">
         <div class="flex items-center justify-between border-b-2 border-ink pb-2 mb-4">
           <div>
-            <span class="font-cinzel text-[10.5px] font-black text-ink-crimson uppercase tracking-widest block">
+            <span class="font-cinzel text-xs font-black text-ink-crimson uppercase tracking-widest block">
               ✦ SPECIAL EDITORIAL ESSAY ✦
             </span>
             <h3 class="font-headline font-black text-xl sm:text-2xl text-ink">
               [특별 사설] 깅깅이에게 보내는 편지 (두니 記)
             </h3>
           </div>
-          <div class="text-right text-[10px] sm:text-[11px] font-serif text-[#6d4b28]">
+          <div class="text-right text-xs sm:text-[11px] font-serif text-[#6d4b28]">
             <span>발신: 멋쟁이 누나 두니!!♥</span><br>
             <span>수신: 내사랑 애깅깅 현수♥</span>
           </div>
@@ -1496,12 +1281,12 @@
             </div>
             <div class="text-[11px] font-serif">
               <span class="font-bold text-ink">공식 밀랍 인장 날인 완료</span><br>
-              <span class="text-[#694825] text-[9.5px]">Seal of Eternal Companionship</span>
+              <span class="text-[#694825] text-[11px]">Seal of Eternal Companionship</span>
             </div>
           </div>
 
           <div class="text-right font-headline text-sm font-bold text-ink">
-            <span class="text-[10px] font-serif block text-[#694825]">예언자 일보 수석 편집장</span>
+            <span class="text-xs font-serif block text-[#694825]">예언자 일보 수석 편집장</span>
             <span class="font-myeongjo italic text-base">지두니 (JI SUIN) 드림</span>
           </div>
         </div>
@@ -1520,12 +1305,12 @@
               <h3 class="font-headline font-black text-lg sm:text-xl text-ink">
                 그린고트 마법 은행: 제 711호 비밀 금고 (Secret Vault)
               </h3>
-              <p class="text-[10.5px] font-serif text-[#5c3e21]">
+              <p class="text-xs font-serif text-[#241508] font-medium">
                 * 금고를 열려면 4자리 마법 비밀번호를 입력하시오
               </p>
             </div>
           </div>
-          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-[10px] font-bold rounded-xs">
+          <span class="px-2 py-0.5 bg-ink text-amber-300 font-cinzel text-xs font-bold rounded-xs">
             HIGH SECURITY
           </span>
         </div>
@@ -1546,7 +1331,7 @@
             </button>
           </div>
 
-          <p class="text-[11px] font-serif text-[#6d4d29]">
+          <p class="text-[11px] font-serif text-[#241508] font-medium">
             * 힌트: 오늘은 우리의 0000일 기념일
           </p>
         </div>
@@ -1559,10 +1344,10 @@
         <!-- 위즐리 형제 장난감 가게 -->
         <div class="border-2 border-dashed border-ink p-2.5 bg-[#ebd7af] text-center">
           <div class="font-prophet text-xl text-ink-crimson mb-0.5">Weasleys' Wizard Wheezes</div>
-          <span class="font-headline font-black text-[10px] text-ink uppercase tracking-wider block mb-1">
+          <span class="font-headline font-black text-xs text-ink uppercase tracking-wider block mb-1">
             위즐리 형제의 장난감 가게 • 1000일 특별 할인
           </span>
-          <p class="text-[10px] font-serif text-[#422c15] leading-tight">
+          <p class="text-xs font-serif text-[#422c15] leading-tight">
             “장거리 비행과 설원 라이딩 피로를 한 방에 날려주는 <strong>'꾀병용 과자 세트'</strong> 50% 반값 특가! <br>다이애건 앨리 93번지 부엉이 특급 발송.”
           </p>
         </div>
@@ -1570,10 +1355,10 @@
         <!-- 올리밴더 지팡이 가게 -->
         <div class="border-2 border-dashed border-ink p-2.5 bg-[#ebd7af] text-center">
           <div class="font-prophet text-xl text-ink-crimson mb-0.5">Ollivanders Wands</div>
-          <span class="font-headline font-black text-[10px] text-ink uppercase tracking-wider block mb-1">
+          <span class="font-headline font-black text-xs text-ink uppercase tracking-wider block mb-1">
             기원전 382년부터 이어진 최고의 지팡이 장인
           </span>
-          <p class="text-[10px] font-serif text-[#422c15] leading-tight">
+          <p class="text-xs font-serif text-[#422c15] leading-tight">
             “1000일간 축적된 사랑과 추억을 심재로 한 커플 맞춤 지팡이 제작 접수 중. <br>지팡이가 주인을 선택합니다.”
           </p>
         </div>
@@ -1586,7 +1371,7 @@
           <span class="font-prophet text-xl text-ink">𝕯</span>
           <span>© The Daily Prophet 1000-Day Special Edition. All Magical Love Reserved.</span>
         </div>
-        <div class="flex items-center gap-3 font-cinzel text-[10px] font-bold">
+        <div class="flex items-center gap-3 font-cinzel text-xs font-bold">
           <span>SEOUL</span>
           <span>•</span>
           <span>SLOPES</span>
@@ -1644,9 +1429,9 @@
           <div class="space-y-1.5 px-4">
             <span
               class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/20 border border-amber-400/50 text-amber-300 font-cinzel text-xs font-bold tracking-widest rounded-full shadow-sm animate-bounce">
-              <i class="fa-solid fa-wand-sparkles text-[10px]"></i>
+              <i class="fa-solid fa-wand-sparkles text-xs"></i>
               <span>TOUCH TO CAST LUMOS</span>
-              <i class="fa-solid fa-wand-sparkles text-[10px]"></i>
+              <i class="fa-solid fa-wand-sparkles text-xs"></i>
             </span>
             <h4 class="font-headline font-bold text-base sm:text-lg text-parchment-100 tracking-wide">
               어둠 속에 비밀 편지가 숨겨져 있습니다
@@ -1658,7 +1443,7 @@
           </div>
         </div>
 
-        <div class="absolute bottom-4 text-[10px] font-mono text-amber-300/50">
+        <div class="absolute bottom-4 text-xs font-mono text-amber-300/50">
           ✦ TOUCH ANYWHERE TO ILLUMINATE ✦
         </div>
       </div>
@@ -1670,7 +1455,7 @@
           <div class="flex items-center gap-2">
             <span class="text-xl text-amber-600 animate-pulse">🪄</span>
             <div>
-              <span id="calModalDateTag" class="text-[10px] font-mono font-bold text-ink-crimson uppercase"></span>
+              <span id="calModalDateTag" class="text-xs font-mono font-bold text-ink-crimson uppercase"></span>
               <h4 id="calModalTitle" class="font-headline font-black text-base sm:text-lg text-ink"></h4>
             </div>
           </div>
@@ -1688,7 +1473,7 @@
           class="aspect-[16/10] sm:aspect-[16/9] bg-[#1a1108] border-2 border-ink overflow-hidden shadow-inner relative rounded-xs">
           <img id="calModalImage" src="" alt="기념 사진" class="w-full h-full object-cover">
           <div
-            class="absolute bottom-1.5 right-2 bg-ink/85 backdrop-blur-xs text-amber-300 text-[9.5px] font-cinzel px-2.5 py-0.5 rounded-xs border border-amber-500/30 flex items-center gap-1">
+            class="absolute bottom-1.5 right-2 bg-ink/85 backdrop-blur-xs text-amber-300 text-[11px] font-cinzel px-2.5 py-0.5 rounded-xs border border-amber-500/30 flex items-center gap-1">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
             <span>LUMOS ILLUMINATED</span>
           </div>
@@ -1702,12 +1487,12 @@
               <i class="fa-solid fa-feather-pointed text-amber-700"></i>
               <span>수인이의 비밀 양피지 편지</span>
             </div>
-            <span class="text-[9px] font-mono text-[#785434] bg-parchment-200/60 px-1.5 py-0.5 rounded-xs">
+            <span class="text-xs font-mono text-[#785434] bg-parchment-200/60 px-1.5 py-0.5 rounded-xs">
               ✦ REVELIO UNLOCKED
             </span>
           </div>
           <p id="calModalLetterText"
-            class="font-myeongjo text-xs sm:text-[13px] leading-relaxed text-[#2c1a0e] text-justify font-medium"></p>
+            class="font-myeongjo text-xs sm:text-[13px] leading-relaxed text-[#140c04] font-medium text-justify font-medium"></p>
         </div>
 
         <!-- 하단 액션 버튼 바 -->
@@ -1742,7 +1527,7 @@
       <h3 class="font-headline font-black text-xl text-ink mb-1">
         그린고트 제 711호 비밀 금고 해금!
       </h3>
-      <p class="text-xs font-serif text-[#6d4d29] mb-4">
+      <p class="text-xs font-serif text-[#241508] font-medium mb-4">
         1,000일간 축적된 사랑의 마법으로 봉인된 영구 유효 쿠폰북이 공개되었습니다.
       </p>
 
@@ -1756,7 +1541,7 @@
             <i class="fa-solid fa-spa"></i>
           </div>
           <strong class="text-ink block text-xs mb-0.5">전신 마법 안마 30분권</strong>
-          <p class="text-[10px] text-[#543b22]">당직이나 실습 후 피곤할 때 언제든 요청 시 즉각 안마 시전</p>
+          <p class="text-xs text-[#543b22]">당직이나 실습 후 피곤할 때 언제든 요청 시 즉각 안마 시전</p>
         </div>
 
         <div
@@ -1766,7 +1551,7 @@
             <i class="fa-solid fa-shield-heart"></i>
           </div>
           <strong class="text-ink block text-xs mb-0.5">무조건 화풀기 면책권</strong>
-          <p class="text-[10px] text-[#543b22]">사소한 일로 삐쳤을 때 제시하면 10초 내로 웃으며 사과하기</p>
+          <p class="text-xs text-[#543b22]">사소한 일로 삐쳤을 때 제시하면 10초 내로 웃으며 사과하기</p>
         </div>
 
         <div
@@ -1776,7 +1561,7 @@
             <i class="fa-solid fa-utensils"></i>
           </div>
           <strong class="text-ink block text-xs mb-0.5">심야 훠궈·야식 프리패스권</strong>
-          <p class="text-[10px] text-[#543b22]">밤 11시 이후 라면이나 훠궈 먹자고 할 때 잔소리 없이 같이 먹기</p>
+          <p class="text-xs text-[#543b22]">밤 11시 이후 라면이나 훠궈 먹자고 할 때 잔소리 없이 같이 먹기</p>
         </div>
 
         <div
@@ -1786,7 +1571,7 @@
             <i class="fa-solid fa-person-snowboarding"></i>
           </div>
           <strong class="text-ink block text-xs mb-0.5">설원 라이딩 1일 노예권</strong>
-          <p class="text-[10px] text-[#543b22]">스노우보드 타는 날 데크 운반부터 누나 인생샷 100장 촬영 전담</p>
+          <p class="text-xs text-[#543b22]">스노우보드 타는 날 데크 운반부터 누나 인생샷 100장 촬영 전담</p>
         </div>
 
       </div>
@@ -1817,529 +1602,9 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 🪄 SCRIPT: Sound, Quiz, Vault, Crossword, Lumos Calendar     -->
+  <!-- 🪄 SCRIPT: Daily Prophet Interaction & Sound Engine          -->
   <!-- ============================================================ -->
-  <script>
-    // -------------------------------------------------------------
-    // 1. Audio Synthesizer (No external audio URLs)
-    // -------------------------------------------------------------
-    let audioCtx = null;
-    let isSoundOn = true;
-    let cachedNoiseBuffer = null;
-
-    function getAudioCtx() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      return audioCtx;
-    }
-
-    function playRustlePageSound() {
-      if (!isSoundOn) return;
-      try {
-        const ctx = getAudioCtx();
-        if (!cachedNoiseBuffer) {
-          const bufferSize = Math.floor(ctx.sampleRate * 0.15);
-          cachedNoiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-          const data = cachedNoiseBuffer.getChannelData(0);
-          for (let i = 0; i < bufferSize; i++) {
-            data[i] = Math.random() * 2 - 1;
-          }
-        }
-        const noise = ctx.createBufferSource();
-        noise.buffer = cachedNoiseBuffer;
-
-        const filter = ctx.createBiquadFilter();
-        filter.type = "bandpass";
-        filter.frequency.setValueAtTime(800, ctx.currentTime);
-        filter.Q.setValueAtTime(2, ctx.currentTime);
-
-        const gain = ctx.createGain();
-        gain.gain.setValueAtTime(0.06, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(ctx.destination);
-        noise.start();
-      } catch (e) { }
-    }
-
-    function playLumosSpellSound() {
-      if (!isSoundOn) return;
-      try {
-        const ctx = getAudioCtx();
-        const now = ctx.currentTime;
-
-        // 1. 지팡이 휘두름 공기 바람 소리 (Whoosh sweep)
-        const bufferSize = Math.floor(ctx.sampleRate * 0.22);
-        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
-        }
-        const whiteNoise = ctx.createBufferSource();
-        whiteNoise.buffer = noiseBuffer;
-        const filter = ctx.createBiquadFilter();
-        filter.type = "bandpass";
-        filter.frequency.setValueAtTime(320, now);
-        filter.frequency.exponentialRampToValueAtTime(2200, now + 0.16);
-        filter.Q.setValueAtTime(3, now);
-        const noiseGain = ctx.createGain();
-        noiseGain.gain.setValueAtTime(0.05, now);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-        whiteNoise.connect(filter);
-        filter.connect(noiseGain);
-        noiseGain.connect(ctx.destination);
-        whiteNoise.start(now);
-
-        // 2. 크리스탈 벨 아르페지오 (C5, G5, C6, E6, G6, C7)
-        const freqs = [523.25, 783.99, 1046.50, 1318.51, 1567.98, 2093.00];
-        freqs.forEach((freq, idx) => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = "sine";
-          const startTime = now + 0.04 + idx * 0.055;
-          osc.frequency.setValueAtTime(freq, startTime);
-          gain.gain.setValueAtTime(0.001, startTime);
-          gain.gain.exponentialRampToValueAtTime(0.1, startTime + 0.03);
-          gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.55);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(startTime);
-          osc.stop(startTime + 0.58);
-        });
-      } catch (e) { }
-    }
-
-    function playNoxSpellSound() {
-      if (!isSoundOn) return;
-      try {
-        const ctx = getAudioCtx();
-        const now = ctx.currentTime;
-        // 부드럽게 하강하는 톤 (불꽃이 사르르 꺼지는 느낌)
-        const freqs = [1046.50, 783.99, 659.25, 440.00]; // C6, G5, E5, A4
-        freqs.forEach((freq, idx) => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = "sine";
-          const startTime = now + idx * 0.06;
-          osc.frequency.setValueAtTime(freq, startTime);
-          gain.gain.setValueAtTime(0.001, startTime);
-          gain.gain.exponentialRampToValueAtTime(0.05, startTime + 0.02);
-          gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.35);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(startTime);
-          osc.stop(startTime + 0.38);
-        });
-      } catch (e) { }
-    }
-
-    function showMessageBox(text, icon = "🪄") {
-      const msgModal = document.getElementById("msgModal");
-      const msgModalText = document.getElementById("msgModalText");
-      const msgModalIcon = document.getElementById("msgModalIcon");
-      if (msgModal && msgModalText) {
-        msgModalText.textContent = text;
-        if (msgModalIcon) msgModalIcon.textContent = icon;
-        msgModal.classList.remove("hidden");
-      }
-    }
-
-    // Modal Close
-    document.getElementById("msgModalCloseBtn")?.addEventListener("click", () => {
-      document.getElementById("msgModal")?.classList.add("hidden");
-    });
-
-    // -------------------------------------------------------------
-    // 2. Sound Toggle & Map Fullscreen
-    // -------------------------------------------------------------
-    const mapSoundBtn = document.getElementById("mapSoundBtn");
-    const mapSoundLabel = document.getElementById("mapSoundLabel");
-    if (mapSoundBtn) {
-      mapSoundBtn.addEventListener("click", () => {
-        isSoundOn = !isSoundOn;
-        if (mapSoundLabel) mapSoundLabel.textContent = isSoundOn ? "마법 음향 ON" : "마법 음향 OFF";
-        mapSoundBtn.classList.toggle("opacity-60", !isSoundOn);
-        if (isSoundOn) playLumosSpellSound();
-        const mapFrame = document.getElementById("maraudersMapFrame");
-        if (mapFrame && mapFrame.contentWindow) {
-          try {
-            mapFrame.contentWindow.postMessage({ type: "MAP_SOUND_TOGGLE", isSoundOn }, "*");
-          } catch (e) { }
-        }
-      });
-    }
-
-    const toggleMapFullscreenBtn = document.getElementById("toggleMapFullscreenBtn");
-    const mapIframeWrapper = document.getElementById("mapIframeWrapper");
-    const mapFsLabel = document.getElementById("mapFsLabel");
-    let isMapFs = false;
-
-    if (toggleMapFullscreenBtn && mapIframeWrapper) {
-      toggleMapFullscreenBtn.addEventListener("click", () => {
-        isMapFs = !isMapFs;
-        playLumosSpellSound();
-        if (isMapFs) {
-          mapIframeWrapper.classList.add("fixed", "inset-2", "z-50", "!max-h-none", "!min-h-0", "shadow-[0_0_80px_rgba(0,0,0,0.95)]");
-          if (mapFsLabel) mapFsLabel.textContent = "신문 크기로 축소";
-          toggleMapFullscreenBtn.classList.add("bg-ink-crimson");
-          document.body.style.overflow = "hidden";
-        } else {
-          mapIframeWrapper.classList.remove("fixed", "inset-2", "z-50", "!max-h-none", "!min-h-0", "shadow-[0_0_80px_rgba(0,0,0,0.95)]");
-          if (mapFsLabel) mapFsLabel.textContent = "전체화면 확대";
-          toggleMapFullscreenBtn.classList.remove("bg-ink-crimson");
-          document.body.style.overflow = "";
-        }
-      });
-    }
-
-    // -------------------------------------------------------------
-    // 3. [신규] 1000일 양피지 달력 & 편지함 모달 (Lumos Interaction)
-    // -------------------------------------------------------------
-    const calendarCards = document.querySelectorAll(".calendar-card");
-    const calendarModal = document.getElementById("calendarModal");
-    const calModalCard = document.getElementById("calModalCard");
-    const calDarkVeil = document.getElementById("calDarkVeil");
-    const lumosFlashEffect = document.getElementById("lumosFlashEffect");
-    const calModalLetterBox = document.getElementById("calModalLetterBox");
-    const calModalTitle = document.getElementById("calModalTitle");
-    const calModalDateTag = document.getElementById("calModalDateTag");
-    const calModalImage = document.getElementById("calModalImage");
-    const calModalLetterText = document.getElementById("calModalLetterText");
-    const closeCalendarModalBtn = document.getElementById("closeCalendarModalBtn");
-    const closeCalModalDarkBtn = document.getElementById("closeCalModalDarkBtn");
-    const confirmCalendarModalBtn = document.getElementById("confirmCalendarModalBtn");
-    const calToggleNoxBtn = document.getElementById("calToggleNoxBtn");
-
-    let isLumosLit = false;
-
-    // 어둠 상태로 리셋
-    function resetLumosToDark() {
-      isLumosLit = false;
-      if (calDarkVeil) {
-        calDarkVeil.classList.remove("opacity-0", "pointer-events-none", "scale-105");
-        calDarkVeil.classList.add("opacity-100", "pointer-events-auto", "scale-100");
-      }
-      if (calModalCard) {
-        calModalCard.classList.remove("lumos-card-lit");
-      }
-      if (calModalLetterBox) {
-        calModalLetterBox.classList.remove("letter-ink-emerge");
-      }
-    }
-
-    // 루모스 주문 시전 (어두웠다가 번쩍 켜짐!)
-    function castLumosSpell() {
-      if (isLumosLit) return;
-      isLumosLit = true;
-
-      // 1. 소리 재생
-      playLumosSpellSound();
-
-      // 2. 모바일 진동 (지원 시)
-      if (navigator.vibrate) {
-        try { navigator.vibrate(40); } catch (e) { }
-      }
-
-      // 3. 전체화면 루모스 섬광 효과
-      if (lumosFlashEffect) {
-        lumosFlashEffect.classList.remove("lumos-flash-active");
-        void lumosFlashEffect.offsetWidth; // Trigger reflow
-        lumosFlashEffect.classList.add("lumos-flash-active");
-        setTimeout(() => {
-          lumosFlashEffect.classList.remove("lumos-flash-active");
-        }, 900);
-      }
-
-      // 4. 어둠의 베일 걷히기
-      if (calDarkVeil) {
-        calDarkVeil.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
-        calDarkVeil.classList.add("opacity-0", "pointer-events-none", "scale-105");
-      }
-
-      // 5. 모달 카드 점등 효과 및 편지 잉크 애니메이션
-      if (calModalCard) {
-        calModalCard.classList.add("lumos-card-lit");
-      }
-      if (calModalLetterBox) {
-        setTimeout(() => {
-          calModalLetterBox.classList.add("letter-ink-emerge");
-        }, 150);
-      }
-    }
-
-    // 녹스 주문 (다시 불 끄기)
-    function castNoxSpell() {
-      if (!isLumosLit) return;
-      playNoxSpellSound();
-      resetLumosToDark();
-    }
-
-    // 카드 클릭 시 모달 열기 (어둠 상태로 시작)
-    calendarCards.forEach(card => {
-      card.addEventListener("click", () => {
-        const title = card.getAttribute("data-title") || "마법의 순간";
-        const date = card.getAttribute("data-date") || "1000 DAYS";
-        const img = card.getAttribute("data-img") || "";
-        const letter = card.getAttribute("data-letter") || "";
-
-        if (calModalTitle) calModalTitle.textContent = title;
-        if (calModalDateTag) calModalDateTag.textContent = date;
-        if (calModalImage) calModalImage.src = img;
-        if (calModalLetterText) calModalLetterText.textContent = letter;
-
-        resetLumosToDark();
-        playRustlePageSound();
-        if (calendarModal) {
-          calendarModal.classList.remove("hidden");
-          document.body.style.overflow = "hidden";
-        }
-      });
-    });
-
-    // 어둠의 베일 터치/클릭 시 루모스 시전!
-    if (calDarkVeil) {
-      calDarkVeil.addEventListener("click", (e) => {
-        if (e.target === closeCalModalDarkBtn || closeCalModalDarkBtn?.contains(e.target)) return;
-        castLumosSpell();
-      });
-    }
-
-    // 다시 어둠 속으로 (Nox 토글)
-    if (calToggleNoxBtn) {
-      calToggleNoxBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        castNoxSpell();
-      });
-    }
-
-    // 모달 닫기
-    const closeCalModal = () => {
-      if (calendarModal) {
-        calendarModal.classList.add("hidden");
-        document.body.style.overflow = "";
-      }
-      playNoxSpellSound();
-      resetLumosToDark();
-    };
-
-    if (closeCalendarModalBtn) closeCalendarModalBtn.addEventListener("click", closeCalModal);
-    if (closeCalModalDarkBtn) closeCalModalDarkBtn.addEventListener("click", closeCalModal);
-    if (confirmCalendarModalBtn) confirmCalendarModalBtn.addEventListener("click", closeCalModal);
-
-    // 모달 배경 클릭 시 닫기
-    calendarModal?.addEventListener("click", (e) => {
-      if (e.target === calendarModal) {
-        closeCalModal();
-      }
-    });
-
-    // ESC 키로 닫기
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && calendarModal && !calendarModal.classList.contains("hidden")) {
-        closeCalModal();
-      }
-    });
-
-    // -------------------------------------------------------------
-    // 4. O.W.L. Interactive Quiz
-    // -------------------------------------------------------------
-    const quizQuestions = [
-      {
-        q: "1. 스키장에서 넘어진 상대를 구하는 가장 올바른 마법 주문은?",
-        options: [
-          "“아씨오 핫초코!” 주문으로 따뜻한 음료 대령하기",
-          "혼자 일어날 때까지 기다리며 스마트폰으로 웃긴 영상 찍기",
-          "손잡아 일으켜 세워주고 엉덩이 눈 털어주며 안아주기",
-          "“밑에서 만나자!”며 혼자 슈웅 날아가기"
-        ],
-        ans: 2
-      },
-      {
-        q: "2. 하이디라오 훠궈 집에서 영혼을 지키는 가장 완벽한 대처법은?",
-        options: [
-          "다이어트해야하니까 채소만 시키기",
-          "강해천소스 황금 비율로 듬뿍 제조하고 고기랑 완자랑 잔뜩 시켜서 배 터지게 먹기",
-          "마라탕 매운맛 최고 단계 먹고 땀 흘리며 울기",
-          "수타면 쇼 구경만 하고 면은 안 먹기"
-        ],
-        ans: 1
-      },
-      {
-        q: "3. 두니가 '보고 싶다'고 메신저로 연속 20번 도배할 때 현수의 모범 대처는?",
-        options: [
-          "알림 끄고 모른 척 알렌의 서재 켜기",
-          "“나도 지금 보고 싶어 사랑해” 답장하고 하트 날리기",
-          "“수인아 집착이 심하다”며 아즈카반 판결문 캡처해 보내기",
-          "읽고 1시간 뒤에 'ㅇㅇ' 보내기"
-        ],
-        ans: 1
-      },
-      {
-        q: "4. 앞으로 남은 100년의 사랑 공동 종신형 동안 가장 중요한 규칙은?",
-        options: [
-          "공복 상태에서 절대 싸우지 말고 달달구리한 맛있는 거부터 입에 넣기",
-          "스키장에서 두니버리고 혼자 빠르게 내려가기",
-          "불리할 때마다 기억상실증 연기하면서 헬스장으로 도망가기",
-          "‘누나’라고 안부르고 평생 능글거리기"
-        ],
-        ans: 0
-      }
-    ];
-
-    let quizScore = 0;
-    const answeredMap = {};
-
-    function renderQuiz() {
-      const container = document.getElementById("quizContainer");
-      if (!container) return;
-      container.innerHTML = "";
-
-      quizQuestions.forEach((item, qIdx) => {
-        const qBox = document.createElement("div");
-        qBox.className = "bg-parchment-50 p-2.5 sm:p-3 border border-ink shadow-xs";
-
-        const qTitle = document.createElement("h5");
-        qTitle.className = "font-bold text-ink mb-1.5 text-xs";
-        qTitle.textContent = item.q;
-        qBox.appendChild(qTitle);
-
-        const optList = document.createElement("div");
-        optList.className = "space-y-1";
-
-        item.options.forEach((optText, oIdx) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "w-full text-left p-1.5 bg-[#fbf5e8] hover:bg-[#ebd9b4] border border-ink/30 rounded-xs text-[11px] transition cursor-pointer";
-          btn.textContent = `${oIdx + 1}) ${optText}`;
-
-          btn.addEventListener("click", () => {
-            if (answeredMap[qIdx] !== undefined) return;
-            answeredMap[qIdx] = oIdx;
-
-            if (oIdx === item.ans) {
-              btn.className = "w-full text-left p-1.5 bg-[#d4edda] text-[#155724] border border-[#28a745] font-bold rounded-xs text-[11px]";
-              quizScore += 1;
-              playLumosSpellSound();
-            } else {
-              btn.className = "w-full text-left p-1.5 bg-[#f8d7da] text-[#721c24] border border-[#dc3545] font-bold rounded-xs text-[11px]";
-              playRustlePageSound();
-            }
-
-            const badge = document.getElementById("quizScoreBadge");
-            if (badge) badge.textContent = `점수: ${quizScore} / ${quizQuestions.length}`;
-
-            if (Object.keys(answeredMap).length === quizQuestions.length) {
-              if (quizScore >= 3) {
-                showMessageBox("🎉 O.W.L. 시험 최고 등급 [O: 특출함(Outstanding)] 획득! 1000일간 다져진 완벽한 파트너입니다!", "🏆");
-              } else {
-                showMessageBox("성적표: [A: 기대 이하]! 수인 누나에게 더 많은 맛있는 간식과 애정 표현이 시급합니다!", "📜");
-              }
-            }
-          });
-
-          optList.appendChild(btn);
-        });
-
-        qBox.appendChild(optList);
-        container.appendChild(qBox);
-      });
-    }
-
-    renderQuiz();
-
-    // -------------------------------------------------------------
-    // 5. Crossword Puzzle Check
-    // -------------------------------------------------------------
-    const checkCrosswordBtn = document.getElementById("checkCrosswordBtn");
-    const cwSuccessBox = document.getElementById("cwSuccessBox");
-
-    if (checkCrosswordBtn) {
-      checkCrosswordBtn.addEventListener("click", () => {
-        const c1 = (document.getElementById("cw1")?.value || "").trim();
-        const c2 = (document.getElementById("cw2")?.value || "").trim();
-        const c3 = (document.getElementById("cw3")?.value || "").trim();
-        const c4 = (document.getElementById("cw4")?.value || "").trim();
-
-        const isC1 = c1.includes("스키장") || c1.includes("슬로프");
-        const isC2 = c2.includes("디저트") || c2.includes("빵집") || c2.includes("카페");
-        const isC3 = c3.includes("스노우보드") || c3.includes("스노보드");
-        const isC4 = c4 === "1000" || c4 === "천";
-
-        if (isC1 && isC2 && isC3 && isC4) {
-          playLumosSpellSound();
-          if (cwSuccessBox) cwSuccessBox.classList.remove("hidden");
-          showMessageBox("✨ 낱말 퍼즐 완벽 정답! 수인이의 1000일 마법 메시지가 해금되었습니다!", "👑");
-        } else {
-          playRustlePageSound();
-          showMessageBox("다시 한번 지혜를 모아보세요! (힌트: 스키장 / 디저트 / 스노우보드 / 1000)", "💡");
-        }
-      });
-    }
-
-    // -------------------------------------------------------------
-    // 6. Gringotts Vault Passcode
-    // -------------------------------------------------------------
-    const openVaultBtn = document.getElementById("openVaultBtn");
-    const vaultPasscode = document.getElementById("vaultPasscode");
-    const vaultModal = document.getElementById("vaultModal");
-    const closeVaultModalBtn = document.getElementById("closeVaultModalBtn");
-    const confirmVaultBtn = document.getElementById("confirmVaultBtn");
-    const vaultDial = document.getElementById("vaultDial");
-
-    if (openVaultBtn && vaultPasscode) {
-      openVaultBtn.addEventListener("click", () => {
-        const val = vaultPasscode.value.trim();
-        if (val === "1000") {
-          playLumosSpellSound();
-          if (vaultDial) vaultDial.style.transform = "rotate(360deg)";
-          setTimeout(() => {
-            if (vaultModal) vaultModal.classList.remove("hidden");
-          }, 350);
-        } else {
-          playRustlePageSound();
-          showMessageBox("알로호모라 실패! 암호가 틀립니다. (힌트: 오늘 우리가 기념하는 날짜의 수)", "🔒");
-        }
-      });
-
-      vaultPasscode.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") openVaultBtn.click();
-      });
-    }
-
-    const closeVault = () => {
-      if (vaultModal) vaultModal.classList.add("hidden");
-      playRustlePageSound();
-    };
-
-    if (closeVaultModalBtn) closeVaultModalBtn.addEventListener("click", closeVault);
-    if (confirmVaultBtn) confirmVaultBtn.addEventListener("click", closeVault);
-
-    // -------------------------------------------------------------
-    // 7. 메인 마법 초상화 동영상 재생 속도 (0.8배속) 설정
-    // -------------------------------------------------------------
-    const mainPortraitVid = document.getElementById("mainMovingPortraitVideo");
-    if (mainPortraitVid) {
-      const applySlowPlayback = () => {
-        mainPortraitVid.playbackRate = 0.8;
-      };
-      mainPortraitVid.addEventListener("loadedmetadata", applySlowPlayback);
-      mainPortraitVid.addEventListener("play", applySlowPlayback);
-      applySlowPlayback();
-    }
-
-    // Subtle rustle sound on click
-    document.addEventListener("click", (e) => {
-      if (e.target.closest("button") || e.target.closest("a")) {
-        playRustlePageSound();
-      }
-    });
-  </script>
+  <script src="assets/js/index.js"></script>
 </body>
 
 </html>
