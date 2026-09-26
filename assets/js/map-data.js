@@ -668,7 +668,7 @@ const OVERSEAS_SPOTS = [
   },
   {
     id: "osaka",
-    nameKo: "일본 오사카 (도톤보리·USJ·고베)",
+    nameKo: "일본 오사카(USJ·고베)",
     nameEn: "Osaka & Kobe, Japan",
     badge: "2025.03",
     milestone: "봄 미식 & 문화 탐방",
@@ -676,9 +676,9 @@ const OVERSEAS_SPOTS = [
     coords: [135.5023, 34.6937],
     callout: { dx: 14, dy: 16, textAnchor: "start" },
     cities: ["오사카", "도톤보리", "USJ", "고베"],
-    spots: ["도톤보리 네온사인", "유니버설 스튜디오 USJ", "슈퍼 닌텐도 월드", "고베 하버랜드 야경"],
-    desc: "봄기운이 가득했던 오사카와 고베. 도톤보리의 활기찬 미식부터 USJ 마법 세계와 닌텐도 월드, 고베 하버랜드의 로맨틱한 항만 야경까지 누빈 여정.",
-    letter: "“글리코상 앞에서 익살맞게 포즈도 취하고, USJ 호그와트 성에서 마시던 버터맥주와 마리오 카트 레이싱! 고베 바닷바람을 맞으며 바라본 붉은 노을까지 잊지 못할 봄날의 시간들.”",
+    spots: ["카이센동 맛집", "유니버셜 스튜디오 USJ", "슈퍼 닌텐도 월드", "고베 하버랜드"],
+    desc: "음식으로 시작하여 음식으로 끝난 여행. 규카츠부터 카이센동까지, 해리포터 마법 세계와 마리오 카트, 고베 하버랜드의 지브리샵까지 누빈 여정.",
+    letter: "“규카츠도 카이센동도 장어덮밥도 토마토라멘도 마지막 스시오마카세도 전부다 최고의 맛도리, 유니버셜가서 온갖 놀이기구는 다 타고 어렸을 때보다 더 잘 즐겼을 하루! 가보고 싶었던 고베 하버랜드에 데려가준 현수에게도 감사.”",
     photos: (function () {
       var OSAKA_BASE = "images/여행지/일본_오사카/";
       var raw = createMediaItems([
@@ -696,8 +696,8 @@ const OVERSEAS_SPOTS = [
         "IMG_8385.JPEG": "오사카 우메다 도심 입성 & 활기찬 거리",
         "IMG_8445.JPEG": "기타하마 강변 골목 산책과 저녁 풍경",
         "IMG_8550.JPEG": "도톤보리 글리코상 네온사인과 활기찬 밤거리",
-        "IMG_2608.JPEG": "유니버설 스튜디오 재팬(USJ) 입성!",
-        "IMG_8659.JPEG": "USJ 마법 학교 호그와트 성과 호수 풍경",
+        "IMG_2608.JPEG": "유니버셜 스튜디오 재팬 입성!",
+        "IMG_8659.JPEG": "호그와트 성과 호수 풍경",
         "IMG_2622.JPEG": "USJ 버터맥주와 마법 지팡이의 추억",
         "IMG_8826.JPEG": "슈퍼 닌텐도 월드 마리오 카트 레이싱",
         "IMG_8899.JPEG": "피치 공주 성과 알록달록 버섯 왕국",
@@ -744,15 +744,15 @@ const OVERSEAS_SPOTS = [
     callout: { dx: 14, dy: -8, textAnchor: "start" },
     cities: ["도쿄"],
     spots: ["시부야 스크램블", "도쿄타워 야경", "신주쿠", "긴자"],
-    desc: "도쿄의 화려한 여름밤 야경과 트렌디한 골목길, 다채로운 도심 문화를 탐방했던 여행.",
-    letter: "“붉은 도쿄타워 아래서 마신 시원한 음료와, 끝없이 교차하는 시부야 스크램블 속에서 느꼈던 도쿄만의 두근거리는 에너지!”",
+    desc: "수인이의 도쿄여행을 되돌아보는 시부야, 다채로운 도심 문화를 탐방했던 여행.",
+    letter: "“역시나 맛있는 음식과 끝없이 교차하는 시부야 스크램블, 하지만 우리에겐 너무 더웠던 도쿄...”",
     photos: (function () {
       var TOKYO_BASE = "images/여행지/일본_도쿄/";
       var raw = createMediaItems(["IMG_5660.jpeg", "IMG_5680.jpeg"]);
 
       var customCaptions = {
-        "IMG_5660.jpeg": "도쿄 전통 장어덮밥(우나쥬) & 갓 구운 계란말이 만찬",
-        "IMG_5680.jpeg": "시부야 스크램블 교차로 뷰 & 시원한 음료 타임"
+        "IMG_5660.jpeg": "도쿄 전통 장어덮밥 & 갓 구운 계란말이",
+        "IMG_5680.jpeg": "시부야 스크램블 교차로 & 스타벅스 츠타야"
       };
 
       var count = 0;
@@ -770,17 +770,17 @@ const OVERSEAS_SPOTS = [
   },
   {
     id: "canada",
-    nameKo: "캐나다 (옐로나이프, 휘슬러)",
-    nameEn: "Canada (Yellowknife · Whistler)",
+    nameKo: "캐나다 (옐로나이프, 휘슬러, 빅토리아, 밴쿠버)",
+    nameEn: "Canada (Yellowknife · Whistler, Victoria, Vancouver)",
     badge: "2025.12",
     milestone: "로키 설경 & 오로라 대탐험",
     flag: "🇨🇦",
     coords: [-119.5, 54.0],
     callout: { dx: 14, dy: 0, textAnchor: "start" },
     cities: ["옐로나이프", "휘슬러", "빅토리아", "밴쿠버"],
-    spots: ["옐로나이프 오로라 빌리지", "휘슬러 블랙콤 스키", "밴쿠버 개스타운"],
+    spots: ["옐로나이프 오로라 빌리지", "휘슬러 블랙콤 스키장", "밴쿠버 개스타운", "빅토리아 부차트 가든"],
     desc: "북극권 밤하늘에서 초록빛 커튼을 흔드는 오로라와 세계적인 설산 휘슬러, 밴쿠버까지 누빈 캐나다 윈터 대탐험.",
-    letter: "“영하 30도 혹한 속에서 밤하늘 전체가 초록빛 물결로 춤추던 옐로나이프의 오로라... 평생 잊지 못할 가슴 벅찬 마법의 순간.”",
+    letter: "“영하 30도 혹한 속에서 초록빛 물결로 춤추던 옐로나이프의 오로라와 자연 하얀색 마스카라... 그리구 세계 2대?? 스키장!”",
     subAlbums: [
       {
         id: "yellowknife",
@@ -793,14 +793,14 @@ const OVERSEAS_SPOTS = [
         id: "whistler",
         name: "휘슬러",
         tag: "🏂 휘슬러",
-        desc: "세계 최고 수준의 휘슬러 블랙콤 파우더 라이딩",
+        desc: "우리도 맛봤다. 휘슬러 블랙콤 스키장 파우더.",
         cover: "images/여행지/캐나다_옐로나이프_휘슬러/IMG_5710.JPEG"
       },
       {
         id: "vancouver",
         name: "밴쿠버 & 빅토리아",
         tag: "🇨🇦 밴쿠버",
-        desc: "밴쿠버 개스타운 & 태평양 연안의 아름다운 항구",
+        desc: "밴쿠버 개스타운 & 태평양 연안의 아름다운 항구... 빅토리아 의사당과 크리스마스 조명.",
         cover: "images/여행지/캐나다_옐로나이프_휘슬러/IMG_7149.JPEG"
       }
     ],
@@ -846,7 +846,7 @@ const OVERSEAS_SPOTS = [
         } else if (item.category === "yellowknife") {
           catIdx = ++yCount;
           if (/1996|2007|2011/.test(name)) cap = "밤하늘을 수놓은 신비로운 초록빛 오로라 폭풍";
-          else if (/5807|5808/.test(name)) cap = "영하 30도의 밤, 둘만의 오로라 헌팅 기념";
+          else if (/5807|5808/.test(name)) cap = "영하 30도의 밤, 둘만의 오로라";
           else if (/5836|5872/.test(name)) cap = "눈 덮인 북극 숲과 춤추는 오로라 커튼";
           else cap = "옐로나이프 오로라 비경 No." + catIdx;
         } else if (item.category === "whistler") {
@@ -889,26 +889,26 @@ const OVERSEAS_SPOTS = [
     callout: { dx: 14, dy: 2, textAnchor: "start" },
     cities: ["우붓", "누사페니다", "스미냑"],
     spots: ["우붓 계단식 논과 정글", "누사페니다 켈링킹비치 절벽", "스미냑 선셋 비치"],
-    desc: "정글 감성의 우붓, 경이로운 바다 절벽의 누사페니다 섬, 트렌디한 해변과 황홀한 노을의 스미냑까지 만끽한 신들의 섬 발리 일주.",
-    letter: "\"정글 새소리를 들으며 깨어나던 우붓의 아침, 켈링킹비치의 웅장한 절벽, 스미냑 비치베드에 누워 바라본 붉은 노을의 평화로움.\"",
+    desc: "정글 감성의 우붓, 만타가 많다 누사페니다 섬, 무제한 서핑과 황홀한 노을의 스미냑까지! 신들의 섬 발리 일주.",
+    letter: "\"원숭이가 잔뜩 많은 우붓의 숲, 켈링킹비치의 웅장한 절벽, 누사페니다에서 만난 만타가오리들, 스미냑 비치클럽에 누워 바라본 붉은 노을.\"",
     subAlbums: [
       {
         id: "ubud",
-        name: "우붓 사진첩",
+        name: "우붓",
         tag: "🌿 우붓",
-        desc: "우붓 정글 & 계곡의 싱그러운 휴양",
+        desc: "우붓 정글에서의 싱그러운 휴양",
         cover: "images/여행지/인도네시아_발리/IMG_7450.JPEG"
       },
       {
         id: "nusa_penida",
-        name: "누사페니다 사진첩",
+        name: "누사페니다",
         tag: "🦕 누사페니다",
-        desc: "누사페니다 켈링킹비치 절벽 & 바다 비경",
+        desc: "누사페니다 켈링킹비치 절벽 & 만타 투어",
         cover: "images/여행지/인도네시아_발리/DJI_20260720130535_0009_D.jpeg"
       },
       {
         id: "seminyak",
-        name: "스미냑 사진첩",
+        name: "스미냑",
         tag: "🌅 스미냑",
         desc: "스미냑 붉은 선셋 비치 & 비치클럽 휴양",
         cover: "images/여행지/인도네시아_발리/IMG_2614.JPEG"
