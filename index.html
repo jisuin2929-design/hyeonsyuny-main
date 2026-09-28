@@ -418,106 +418,110 @@
               <span id="playlistStatusBadge"
                 class="text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                <span>STREAMING</span>
+                <span id="statusText">STANDBY</span>
               </span>
             </div>
 
-            <!-- 미니 오디오 플레이어 컨트롤러 UI -->
-            <div
-              class="mb-2 p-2 bg-[#ecdcb9] border border-ink/30 rounded-xs flex items-center justify-between gap-2 shadow-xs">
-              <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-1.5">
-                  <span id="currentTrackIndex" class="font-mono text-[11px] font-bold text-ink-crimson shrink-0">TRACK
-                    01</span>
-                  <span id="currentTrackTitle" class="font-headline font-bold text-[11px] text-ink truncate">박효신 -
-                    Gift</span>
-                </div>
-                <div class="flex items-center gap-2 mt-0.5">
-                  <div class="flex-1 h-1.5 bg-[#dfcb9f] border border-ink/20 rounded-full overflow-hidden">
-                    <div id="playlistProgressBar" class="h-full bg-ink-crimson transition-all duration-300"
-                      style="width: 55%;"></div>
+            <!-- 공유 오디오 엘리먼트 -->
+            <audio id="audioPlayer" preload="auto"></audio>
+
+            <!-- 🌟 향상된 앨범 화면 및 재생 컨트롤러 UI (상단 고정 플레이어 박스) -->
+            <div class="mb-2 p-2 bg-[#ecdcb9] border border-ink/30 rounded-xs relative overflow-hidden transition-all shadow-xs">
+              
+              <!-- 재생 중일 때 나타나는 배경 비주얼라이저/앨범아트 영역 -->
+              <div class="flex items-center gap-2 mb-2 pb-2 border-b border-ink/20">
+                <!-- 회전하는 레코드 음반 앨범아트 -->
+                <div class="relative w-10 h-10 shrink-0 flex items-center justify-center bg-ink rounded-full border border-amber-200/50 shadow-inner">
+                  <div id="albumDisc" class="absolute inset-0 rounded-full border border-dashed border-amber-100/30"></div>
+                  <div class="w-3.5 h-3.5 bg-ink-crimson rounded-full z-10 border border-white flex items-center justify-center">
+                    <div class="w-1.5 h-1.5 bg-ink rounded-full"></div>
                   </div>
-                  <span id="currentTrackTime" class="font-mono text-xs text-[#241508] font-medium shrink-0">02:35 /
-                    04:40</span>
+                  <div class="absolute inset-1 rounded-full border border-amber-900/40"></div>
+                </div>
+
+                <!-- 현재 곡 정보 및 이퀄라이저 -->
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between">
+                    <span id="currentTrackIndex" class="font-mono text-[10px] font-bold text-ink-crimson">TRACK 01</span>
+                    <div id="visualizer" class="hidden items-end gap-0.5 h-3.5 px-1">
+                      <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-1"></span>
+                      <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-2"></span>
+                      <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-3"></span>
+                    </div>
+                  </div>
+                  <div id="currentTrackTitle" class="font-headline font-bold text-xs text-ink truncate mt-0.5">Gift - 박효신</div>
                 </div>
               </div>
-              <button id="playlistPlayBtn" type="button"
-                class="shrink-0 w-7 h-7 rounded-full bg-ink text-amber-300 hover:bg-ink-crimson hover:text-white transition-colors flex items-center justify-center text-xs shadow-xs focus:outline-none"
-                title="재생 / 일시정지">
-                <i id="playlistPlayIcon" class="fa-solid fa-play ml-0.5"></i>
-              </button>
+
+              <!-- 프로그레스 바 및 시간 표시 -->
+              <div class="flex items-center gap-2">
+                <div class="flex-1 h-1.5 bg-[#dfcb9f] border border-ink/20 rounded-full overflow-hidden cursor-pointer" id="progressBarContainer">
+                  <div id="playlistProgressBar" class="h-full bg-ink-crimson transition-all duration-100" style="width: 0%;"></div>
+                </div>
+                <span id="currentTrackTime" class="font-mono text-[11px] text-[#241508] font-medium shrink-0">00:00 / 04:40</span>
+              </div>
+
+              <!-- 컨트롤러 하단 재생 버튼 -->
+              <div class="mt-2 flex justify-end">
+                <button id="playlistPlayBtn" type="button"
+                  class="px-2.5 py-0.5 rounded-full bg-ink text-amber-300 hover:bg-ink-crimson hover:text-white transition-colors flex items-center gap-1 text-[11px] shadow-xs focus:outline-none font-bold">
+                  <i id="playlistPlayIcon" class="fa-solid fa-play ml-0.5"></i>
+                  <span id="playBtnText">재생</span>
+                </button>
+              </div>
             </div>
 
-            <!-- 📻 실제 음악 플레이어 화면 (곡 재생 시 등장) -->
-            <div id="playlistPlayerContainer"
-              class="hidden mb-2 rounded-xs overflow-hidden border-2 border-ink bg-black aspect-video relative shadow-md">
-              <iframe id="playlistIframe" class="w-full h-full" src="" title="고속도로 드라이브 음악 플레이어"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-            </div>
-
-            <!-- 트랙 목록 (3곡 - 스크롤 없이 한눈에 표출) -->
+            <!-- 트랙 목록 (4곡) -->
             <div id="playlistTracks" class="space-y-1.5 text-xs font-serif">
-              <div class="flex items-center gap-1">
-                <button type="button"
-                  class="playlist-track-item flex-1 text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none ring-1 ring-ink-crimson/50"
-                  data-track-index="1" data-title="박효신 - Gift" data-duration="04:40" data-current="00:00"
-                  data-progress="0" data-yt="s5_21jE4kNo">
-                  <div class="flex items-center gap-1.5 min-w-0">
-                    <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
-                    <div class="truncate">
-                      <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">박효신 - Gift</span>
-                    </div>
+              
+              <!-- 1번 트랙 -->
+              <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group cursor-pointer"
+                   data-track-index="1" data-track-no="TRACK 01" data-title="Gift - 박효신" data-duration="04:40" data-src="gift.mp3">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
+                  <div class="truncate">
+                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">Gift - 박효신</span>
                   </div>
-                  <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
-                </button>
-                <a href="https://www.youtube.com/watch?v=s5_21jE4kNo" target="_blank" rel="noopener noreferrer"
-                  class="shrink-0 px-2 py-1 bg-[#f5ebd6] hover:bg-ink-crimson hover:text-white border border-ink/20 text-ink-crimson rounded-xs text-xs transition flex items-center gap-1"
-                  title="YouTube에서 원곡 열기">
-                  <i class="fa-brands fa-youtube text-red-600 group-hover:text-white"></i>
-                </a>
+                </div>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
               </div>
 
-              <div class="flex items-center gap-1">
-                <button type="button"
-                  class="playlist-track-item flex-1 text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                  data-track-index="2" data-title="로제 - Messy" data-duration="02:45" data-current="00:00"
-                  data-progress="0" data-yt="ia2Ph61bYzc">
-                  <div class="flex items-center gap-1.5 min-w-0">
-                    <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
-                    <div class="truncate">
-                      <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">로제 - Messy</span>
-                    </div>
+              <!-- 2번 트랙 -->
+              <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group cursor-pointer"
+                   data-track-index="2" data-track-no="TRACK 02" data-title="Messy - 로제 (ROSÉ) (From F1® The Movie)" data-duration="02:45" data-src="messy.mp3">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
+                  <div class="truncate">
+                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">Messy - 로제 (ROSÉ) (From F1® The Movie)</span>
                   </div>
-                  <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
-                </button>
-                <a href="https://www.youtube.com/watch?v=ia2Ph61bYzc" target="_blank" rel="noopener noreferrer"
-                  class="shrink-0 px-2 py-1 bg-[#f5ebd6] hover:bg-ink-crimson hover:text-white border border-ink/20 text-ink-crimson rounded-xs text-xs transition flex items-center gap-1"
-                  title="YouTube에서 원곡 열기">
-                  <i class="fa-brands fa-youtube text-red-600 group-hover:text-white"></i>
-                </a>
+                </div>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
               </div>
 
-              <div class="flex items-center gap-1">
-                <button type="button"
-                  class="playlist-track-item flex-1 text-left flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none"
-                  data-track-index="3" data-title="샤키라 - Waka Waka" data-duration="03:22" data-current="00:00"
-                  data-progress="0" data-yt="pRpeEdMmmQ0">
-                  <div class="flex items-center gap-1.5 min-w-0">
-                    <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
-                    <div class="truncate">
-                      <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">샤키라 - Waka Waka</span>
-                    </div>
+              <!-- 3번 트랙 -->
+              <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group cursor-pointer"
+                   data-track-index="3" data-track-no="TRACK 03" data-title="Waka Waka - Shakira (This Time For Africa)" data-duration="03:22" data-src="waka_waka.mp3">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
+                  <div class="truncate">
+                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">Waka Waka - Shakira (This Time For Africa)</span>
                   </div>
-                  <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
-                </button>
-                <a href="https://www.youtube.com/watch?v=pRpeEdMmmQ0" target="_blank" rel="noopener noreferrer"
-                  class="shrink-0 px-2 py-1 bg-[#f5ebd6] hover:bg-ink-crimson hover:text-white border border-ink/20 text-ink-crimson rounded-xs text-xs transition flex items-center gap-1"
-                  title="YouTube에서 원곡 열기">
-                  <i class="fa-brands fa-youtube text-red-600 group-hover:text-white"></i>
-                </a>
+                </div>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
               </div>
+
+              <!-- 4번 트랙 -->
+              <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group cursor-pointer"
+                   data-track-index="4" data-track-no="TRACK 04" data-title="천일동안 - 박완규" data-duration="05:10" data-src="천년동안.mp3">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">04</span>
+                  <div class="truncate">
+                    <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">천일동안 - 박완규</span>
+                  </div>
+                </div>
+                <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">05:10</span>
+              </div>
+
             </div>
 
             <!-- 🚗 드라이브 필수 수칙 & 간식 팁 (하단 여백을 아기자기하게 채워주는 미니 카드) -->
