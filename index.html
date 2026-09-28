@@ -528,6 +528,115 @@
               </div>
             </div>
         </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const trackCards = document.querySelectorAll('.track-card');
+            const statusBadge = document.getElementById('playlistStatusBadge');
+            const statusText = document.getElementById('statusText');
+            
+            // 상단 컨트롤러 요소들
+            const currentTrackIndexEl = document.getElementById('currentTrackIndex');
+            const currentTrackTitleEl = document.getElementById('currentTrackTitle');
+            const currentTrackTimeEl = document.getElementById('currentTrackTime');
+            const playlistProgressBar = document.getElementById('playlistProgressBar');
+            const playlistPlayBtn = document.getElementById('playlistPlayBtn');
+            const playlistPlayIcon = document.getElementById('playlistPlayIcon');
+            const playBtnText = document.getElementById('playBtnText');
+            const albumDisc = document.getElementById('albumDisc');
+            const visualizer = document.getElementById('visualizer');
+
+            let activeCard = trackCards[0]; // 기본 첫 번째 곡 선택
+            let isPlaying = false;
+
+            // 초기 첫 곡 정보 세팅
+            audioPlayer.src = activeCard.getAttribute('data-src');
+            currentTrackIndexEl.textContent = activeCard.getAttribute('data-track-no');
+            currentTrackTitleEl.textContent = activeCard.getAttribute('data-title');
+
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return "00:00";
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+
+            function setPlayingState(playing) {
+                isPlaying = playing;
+                if (playing) {
+                    playlistPlayIcon.className = "fa-solid fa-pause ml-0.5";
+                    playBtnText.textContent = "일시정지";
+                    statusText.textContent = "STREAMING";
+                    statusBadge.querySelector('span').className = "inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse";
+                    albumDisc.classList.add('animate-spin-slow');
+                    visualizer.classList.remove('hidden');
+                    visualizer.classList.add('flex');
+                } else {
+                    playlistPlayIcon.className = "fa-solid fa-play ml-0.5";
+                    playBtnText.textContent = "재생";
+                    statusText.textContent = "PAUSED";
+                    statusBadge.querySelector('span').className = "inline-block w-1.5 h-1.5 rounded-full bg-amber-600";
+                    albumDisc.classList.remove('animate-spin-slow');
+                    visualizer.classList.remove('flex');
+                    visualizer.classList.add('hidden');
+                }
+            }
+
+            // 상단 재생/일시정지 버튼 이벤트
+            playlistPlayBtn.addEventListener('click', () => {
+                if (!audioPlayer.src) return;
+                if (audioPlayer.paused) {
+                    audioPlayer.play().then(() => setPlayingState(true)).catch(e => console.log(e));
+                } else {
+                    audioPlayer.pause();
+                    setPlayingState(false);
+                }
+            });
+
+            // 각 트랙 클릭 시 해당 곡으로 전환 및 상단 컨트롤러 연동
+            trackCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const src = card.getAttribute('data-src');
+                    const trackNo = card.getAttribute('data-track-no');
+                    const title = card.getAttribute('data-title');
+
+                    trackCards.forEach(c => c.classList.remove('ring-2', 'ring-ink-crimson', 'bg-[#ebd9b4]'));
+                    card.classList.add('ring-2', 'ring-ink-crimson', 'bg-[#ebd9b4]');
+
+                    activeCard = card;
+                    currentTrackIndexEl.textContent = trackNo;
+                    currentTrackTitleEl.textContent = title;
+                    playlistProgressBar.style.width = '0%';
+
+                    audioPlayer.src = src;
+                    audioPlayer.play().then(() => {
+                        setPlayingState(true);
+                    }).catch(err => {
+                        console.log("재생 오류:", err);
+                    });
+                });
+            });
+
+            // 오디오 재생 위치 업데이트
+            audioPlayer.addEventListener('timeupdate', () => {
+                if (audioPlayer.duration) {
+                    const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    playlistProgressBar.style.width = `${percent}%`;
+                    const currentFormatted = formatTime(audioPlayer.currentTime);
+                    const durationStr = activeCard ? activeCard.getAttribute('data-duration') : formatTime(audioPlayer.duration);
+                    currentTrackTimeEl.textContent = `${currentFormatted} / ${durationStr}`;
+                }
+            });
+
+            // 곡 종료 처리
+            audioPlayer.addEventListener('ended', () => {
+                setPlayingState(false);
+                playlistProgressBar.style.width = '0%';
+                statusText.textContent = "STANDBY";
+                statusBadge.querySelector('span').className = "inline-block w-1.5 h-1.5 rounded-full bg-emerald-600";
+            });
+        });
+    </script>
              <!-- 🚗 드라이브 필수 수칙 & 간식 팁 (하단 여백을 아기자기하게 채워주는 미니 카드) -->
             <div class="mt-2 p-2 bg-[#f4ebd6] border border-ink/25 rounded-xs text-[11px] font-serif text-[#2b1a0d]">
               <div
