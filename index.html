@@ -406,121 +406,127 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-3.5 items-stretch">
-    <!-- 드라이브 플레이리스트 UI (콤팩트 가로폭 & 알찬 구성) -->
-    <div class="md:col-span-5 lg:col-span-5 bg-parchment-50 p-2.5 sm:p-3 border-2 border-ink shadow-xs flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between border-b border-ink/30 pb-1.5 mb-2 gap-1.5">
-          <span class="font-headline font-bold text-xs sm:text-[13px] text-ink flex items-center gap-1.5 min-w-0">
-            <i class="fa-solid fa-compact-disc text-ink-crimson shrink-0"></i>
-            <span class="break-keep font-black">[1] 설원행 & 심야 플레이리스트</span>
-          </span>
-          <span id="playlistStatusBadge"
-            class="text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0">
-            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-            <span id="statusText">STANDBY</span>
-          </span>
-        </div>
+            <!-- 드라이브 플레이리스트 UI -->
+            <div class="md:col-span-12 bg-parchment-50 p-3 sm:p-4 border-2 border-ink shadow-xl flex flex-col justify-between rounded-lg">
+              <div>
+                <!-- 스트리밍 헤더 상태 -->
+                <div class="flex items-center justify-between border-b border-ink/30 pb-2 mb-3 gap-1.5">
+                  <span class="font-headline font-bold text-xs sm:text-[13px] text-ink flex items-center gap-1.5 min-w-0">
+                    <i class="fa-solid fa-compact-disc text-ink-crimson shrink-0"></i>
+                    <span class="break-keep font-black">[1] 설원행 & 심야 플레이리스트</span>
+                  </span>
+                  <span id="playlistStatusBadge"
+                    class="text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                    <span id="statusText">STANDBY</span>
+                  </span>
+                </div>
 
-        <!-- 공유 오디오 엘리먼트 -->
-        <audio id="audioPlayer" preload="auto"></audio>
+                <!-- 공유 오디오 엘리먼트 -->
+                <audio id="audioPlayer" preload="auto"></audio>
 
-        <!-- 🌟 향상된 앨범 화면 및 재생 컨트롤러 UI (상단 고정 플레이어 박스) -->
-        <div class="mb-2 p-2.5 bg-[#ecdcb9] border border-ink/30 rounded-xs relative overflow-hidden transition-all shadow-xs">
-          
-          <!-- 재생 중일 때 나타나는 배경 비주얼라이저/앨범아트 영역 -->
-          <div class="flex items-center gap-2.5 mb-2 pb-2 border-b border-ink/20">
-            <!-- 회전하는 레코드 음반 앨범아트 -->
-            <div class="relative w-10 h-10 shrink-0 flex items-center justify-center bg-ink rounded-full border border-amber-200/50 shadow-inner">
-              <div id="albumDisc" class="absolute inset-0 rounded-full border border-dashed border-amber-100/30"></div>
-              <div class="w-3.5 h-3.5 bg-ink-crimson rounded-full z-10 border border-white flex items-center justify-center">
-                <div class="w-1 h-1 bg-ink rounded-full"></div>
-              </div>
-              <div class="absolute inset-1 rounded-full border border-amber-900/40"></div>
-            </div>
+                <!-- 🌟 향상된 앨범 화면 및 재생 컨트롤러 UI (상단 고정 플레이어 박스) -->
+                <div class="mb-3 p-3 bg-[#ecdcb9] border-2 border-ink/40 rounded-md shadow-sm relative overflow-hidden transition-all">
+                  
+                  <!-- 재생 중일 때 나타나는 배경 비주얼라이저/앨범아트 영역 -->
+                  <div class="flex items-center gap-3 mb-2.5 pb-2.5 border-b border-ink/20">
+                    <!-- 회전하는 레코드 음반 앨범아트 -->
+                    <div class="relative w-12 h-12 shrink-0 flex items-center justify-center bg-ink rounded-full border border-amber-200/50 shadow-inner">
+                      <div id="albumDisc" class="absolute inset-0 rounded-full border-2 border-dashed border-amber-100/30"></div>
+                      <div class="w-4 h-4 bg-ink-crimson rounded-full z-10 border border-white flex items-center justify-center">
+                        <div class="w-1.5 h-1.5 bg-ink rounded-full"></div>
+                      </div>
+                      <!-- 레코드판 그루브 라인 -->
+                      <div class="absolute inset-1 rounded-full border border-amber-900/40"></div>
+                    </div>
 
-            <!-- 현재 곡 정보 및 이퀄라이저 -->
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center justify-between">
-                <span id="currentTrackIndex" class="font-mono text-[11px] font-bold text-ink-crimson">TRACK 01</span>
-                <!-- 오디오 이퀄라이저 바 -->
-                <div id="visualizer" class="hidden items-end gap-0.5 h-3.5 px-1">
-                  <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-1"></span>
-                  <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-2"></span>
-                  <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-3"></span>
+                    <!-- 현재 곡 정보 및 음원 파형 표시기 -->
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center justify-between">
+                        <span id="currentTrackIndex" class="font-mono text-[11px] font-bold text-ink-crimson">TRACK 01</span>
+                        <!-- 오디오 이퀄라이저 바 (재생 시 애니메이션 활성화) -->
+                        <div id="visualizer" class="hidden items-end gap-0.5 h-4 px-1">
+                          <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-1"></span>
+                          <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-2"></span>
+                          <span class="w-1 bg-ink-crimson rounded-full visualizer-bar-3"></span>
+                        </div>
+                      </div>
+                      <div id="currentTrackTitle" class="font-headline font-bold text-xs sm:text-sm text-ink truncate mt-0.5">박효신 - Gift</div>
+                    </div>
+                  </div>
+
+                  <!-- 프로그레스 바 및 시간 표시 -->
+                  <div class="flex items-center gap-2">
+                    <div class="flex-1 h-2 bg-[#dfcb9f] border border-ink/20 rounded-full overflow-hidden cursor-pointer" id="progressBarContainer">
+                      <div id="playlistProgressBar" class="h-full bg-ink-crimson transition-all duration-100" style="width: 0%;"></div>
+                    </div>
+                    <span id="currentTrackTime" class="font-mono text-[11px] text-[#241508] font-medium shrink-0">00:00 / 04:40</span>
+                  </div>
+
+                  <!-- 컨트롤러 하단 재생 버튼 -->
+                  <div class="mt-2.5 flex justify-end">
+                    <button id="playlistPlayBtn" type="button"
+                      class="px-3 py-1 rounded-full bg-ink text-amber-300 hover:bg-ink-crimson hover:text-white transition-colors flex items-center gap-1.5 text-xs shadow-xs focus:outline-none font-bold">
+                      <i id="playlistPlayIcon" class="fa-solid fa-play ml-0.5"></i>
+                      <span id="playBtnText">재생</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 트랙 리스트 영역 (4곡) -->
+                <div id="playlistTracks" class="space-y-2">
+                  
+                  <!-- 트랙 1 -->
+                  <div class="track-card bg-[#ecdcb9] border border-ink/30 rounded-xs p-2.5 flex items-center justify-between gap-2 shadow-xs transition-all hover:ring-1 hover:ring-ink-crimson cursor-pointer"
+                       data-track-index="1" data-track-no="TRACK 01" data-title="박효신 - Gift" data-duration="04:40" data-src="gift.mp3">
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-mono text-[11px] font-bold text-ink-crimson shrink-0">TRACK 01</span>
+                        <span class="font-headline font-bold text-[11px] text-ink truncate">박효신 - Gift</span>
+                      </div>
+                    </div>
+                    <span class="font-mono text-xs text-[#241508] font-medium shrink-0">04:40</span>
+                  </div>
+
+                  <!-- 트랙 2 -->
+                  <div class="track-card bg-[#ecdcb9] border border-ink/30 rounded-xs p-2.5 flex items-center justify-between gap-2 shadow-xs transition-all hover:ring-1 hover:ring-ink-crimson cursor-pointer"
+                       data-track-index="2" data-track-no="TRACK 02" data-title="로제 (ROSÉ) - Messy (From F1® The Movie)" data-duration="02:45" data-src="messy.mp3">
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-mono text-[11px] font-bold text-ink-crimson shrink-0">TRACK 02</span>
+                        <span class="font-headline font-bold text-[11px] text-ink truncate">로제 (ROSÉ) - Messy (From F1® The Movie)</span>
+                      </div>
+                    </div>
+                    <span class="font-mono text-xs text-[#241508] font-medium shrink-0">02:45</span>
+                  </div>
+
+                  <!-- 트랙 3 -->
+                  <div class="track-card bg-[#ecdcb9] border border-ink/30 rounded-xs p-2.5 flex items-center justify-between gap-2 shadow-xs transition-all hover:ring-1 hover:ring-ink-crimson cursor-pointer"
+                       data-track-index="3" data-track-no="TRACK 03" data-title="Shakira - Waka Waka (This Time For Africa)" data-duration="03:22" data-src="waka_waka.mp3">
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-mono text-[11px] font-bold text-ink-crimson shrink-0">TRACK 03</span>
+                        <span class="font-headline font-bold text-[11px] text-ink truncate">Shakira - Waka Waka (This Time For Africa)</span>
+                      </div>
+                    </div>
+                    <span class="font-mono text-xs text-[#241508] font-medium shrink-0">03:22</span>
+                  </div>
+
+                  <!-- 트랙 4 -->
+                  <div class="track-card bg-[#ecdcb9] border border-ink/30 rounded-xs p-2.5 flex items-center justify-between gap-2 shadow-xs transition-all hover:ring-1 hover:ring-ink-crimson cursor-pointer"
+                       data-track-index="4" data-track-no="TRACK 04" data-title="박완규 - 천일동안" data-duration="05:10" data-src="천년동안.mp3">
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-mono text-[11px] font-bold text-ink-crimson shrink-0">TRACK 04</span>
+                        <span class="font-headline font-bold text-[11px] text-ink truncate">박완규 - 천일동안</span>
+                      </div>
+                    </div>
+                    <span class="font-mono text-xs text-[#241508] font-medium shrink-0">05:10</span>
+                  </div>
+
                 </div>
               </div>
-              <div id="currentTrackTitle" class="font-headline font-bold text-[11px] text-ink truncate mt-0.5">Gift - 박효신</div>
             </div>
-          </div>
-
-          <!-- 프로그레스 바 및 시간 표시 -->
-          <div class="flex items-center gap-2">
-            <div class="flex-1 h-1.5 bg-[#dfcb9f] border border-ink/20 rounded-full overflow-hidden cursor-pointer" id="progressBarContainer">
-              <div id="playlistProgressBar" class="h-full bg-ink-crimson transition-all duration-100" style="width: 0%;"></div>
-            </div>
-            <span id="currentTrackTime" class="font-mono text-[11px] text-[#241508] font-medium shrink-0">00:00 / 04:40</span>
-          </div>
-
-          <!-- 컨트롤러 하단 재생 버튼 -->
-          <div class="mt-2 flex justify-end">
-            <button id="playlistPlayBtn" type="button"
-              class="px-2.5 py-0.5 rounded-full bg-ink text-amber-300 hover:bg-ink-crimson hover:text-white transition-colors flex items-center gap-1 text-[11px] shadow-xs focus:outline-none font-bold">
-              <i id="playlistPlayIcon" class="fa-solid fa-play ml-0.5"></i>
-              <span id="playBtnText">재생</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- 트랙 목록 (4곡) -->
-        <div id="playlistTracks" class="space-y-1.5 text-xs font-serif">
-          
-          <!-- 트랙 1 -->
-          <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none cursor-pointer"
-               data-track-index="1" data-track-no="TRACK 01" data-title="Gift - 박효신" data-duration="04:40" data-src="gift.mp3">
-            <div class="flex items-center gap-1.5 min-w-0">
-              <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">01</span>
-              <div class="truncate">
-                <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">Gift - 박효신</span>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">04:40</span>
-          </div>
-
-          <!-- 트랙 2 -->
-          <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none cursor-pointer"
-               data-track-index="2" data-track-no="TRACK 02" data-title="Messy - 로제 (ROSÉ) (From F1® The Movie)" data-duration="02:45" data-src="messy.mp3">
-            <div class="flex items-center gap-1.5 min-w-0">
-              <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">02</span>
-              <div class="truncate">
-                <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">Messy - 로제 (ROSÉ) (From F1® The Movie)</span>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">02:45</span>
-          </div>
-
-          <!-- 트랙 3 -->
-          <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none cursor-pointer"
-               data-track-index="3" data-track-no="TRACK 03" data-title="Waka Waka - Shakira (This Time For Africa)" data-duration="03:22" data-src="waka_waka.mp3">
-            <div class="flex items-center gap-1.5 min-w-0">
-              <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">03</span>
-              <div class="truncate">
-                <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">Waka Waka - Shakira (This Time For Africa)</span>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">03:22</span>
-          </div>
-
-          <!-- 트랙 4 -->
-          <div class="track-card flex items-center justify-between py-1 px-1.5 sm:px-2 bg-[#f5ebd6] hover:bg-[#ebd9b4] border border-ink/20 rounded-xs transition-all group focus:outline-none cursor-pointer"
-               data-track-index="4" data-track-no="TRACK 04" data-title="천일동안 - 박완규" data-duration="05:10" data-src="천년동안.mp3">
-            <div class="flex items-center gap-1.5 min-w-0">
-              <span class="font-mono text-xs text-ink-crimson font-bold shrink-0">04</span>
-              <div class="truncate">
-                <span class="font-bold text-ink text-[11px] group-hover:text-ink-crimson">천일동안 - 박완규</span>
-              </div>
-            </div>
-            <span class="font-mono text-xs text-[#241508] font-medium shrink-0 ml-1">05:10</span>
-          </div>
         </div>
              <!-- 🚗 드라이브 필수 수칙 & 간식 팁 (하단 여백을 아기자기하게 채워주는 미니 카드) -->
             <div class="mt-2 p-2 bg-[#f4ebd6] border border-ink/25 rounded-xs text-[11px] font-serif text-[#2b1a0d]">
