@@ -983,6 +983,203 @@ document.addEventListener("click", (e) => {
   }
 });
 
+// -------------------------------------------------------------
+// 11. 펜시브 기억 저장소 · 패트로누스 수업 · 소망의 거울
+// -------------------------------------------------------------
+// 펜시브 기억 병 목록
+// 새 기억을 넣으려면 아래 배열에 항목을 하나 추가하세요.
+//   cat   : 선반 탭 이름 (pensieveCategories 중 하나)
+//   icon  : 병 위에 뜨는 이모지
+//   label : 병 아래 짧은 이름 (6글자 안팎)
+//   date  : 대야 위쪽 작은 글씨 (날짜·D+일수)
+//   title : 기억 제목
+//   text  : 기억 내용
+//   image : (선택) 사진 경로. 예: "images/펜시브/christmas-2024.jpg"
+const pensieveCategories = ["기념일", "크리스마스", "발렌타인", "화이트데이", "생일", "졸업·가운", "스키장", "추억 사건"];
+
+const pensieveMemories = [
+  // ---------------- 기념일 (D+1 = 2024.01.01) ----------------
+  { cat: "기념일", icon: "💯", label: "100일", date: "D+100 · 2024.04.09", title: "부엉이가 물어다 준 100일",
+    text: "호그와트 입학 통지서가 도착하듯, 둘만의 세계로 들어가는 문이 활짝 열린 첫 번째 세 자리 숫자의 날." },
+  { cat: "기념일", icon: "🚂", label: "200일", date: "D+200 · 2024.07.18", title: "9와 3/4 승강장 통과",
+    text: "벽을 향해 달려가면 정말 다른 세상이 열린다는 걸 확인한 200일. 이제 서로의 일상이라는 급행열차에 자연스럽게 함께 타고 있다." },
+  { cat: "기념일", icon: "🎩", label: "300일", date: "D+300 · 2024.10.26", title: "분류 모자의 판정",
+    text: "모자가 고민할 필요도 없이 외쳤다. \"같은 기숙사!\" 300일 만에 공식적으로 같은 테이블에 앉게 된 두 사람." },
+  { cat: "기념일", icon: "🧹", label: "400일", date: "D+400 · 2025.02.03", title: "첫 퀴디치 시즌 완주",
+    text: "설원 위 빗자루(스노보드) 시즌을 함께 치러 낸 400일. 수색꾼과 몰이꾼처럼 각자 자리에서 호흡을 맞추는 법을 익혔다." },
+  { cat: "기념일", icon: "⏳", label: "500일", date: "D+500 · 2025.05.14", title: "1000일의 딱 절반",
+    text: "시간 돌리개를 돌리지 않아도 지나온 길이 반짝이고, 남은 길은 더 기대되는 500일." },
+  { cat: "기념일", icon: "🏘️", label: "600일", date: "D+600 · 2025.08.22", title: "허가서 없는 호그스미드",
+    text: "보호자 서명 없이도 어디든 함께 놀러 갈 수 있는 사이. 600일째에도 다음 여행지 목록은 계속 길어지는 중." },
+  { cat: "기념일", icon: "🍺", label: "700일", date: "D+700 · 2025.11.30", title: "세 개의 빗자루에서 건배",
+    text: "따뜻한 버터비어 잔을 부딪치듯 서로를 축하한 700일. 겨울이 오고, 또 둘의 스키 시즌이 시작됐다." },
+  { cat: "기념일", icon: "🔥", label: "800일", date: "D+800 · 2026.03.10", title: "불사조의 눈물",
+    text: "힘든 날에도 불사조 눈물처럼 서로의 상처를 낫게 해 준 800일. 바빠도 마음만은 늘 가장 가까이에 있었다." },
+  { cat: "기념일", icon: "🔮", label: "900일", date: "D+900 · 2026.06.18", title: "완성되어 가는 예언",
+    text: "1000일을 향한 예언이 거의 다 쓰인 900일. 마지막 100일 카운트다운이 시작됐다." },
+  { cat: "기념일", icon: "✨", label: "1000일", date: "D+1000 · 2026.09.26", title: "그리고 1000일",
+    text: "수많은 도시와 설원과 맛집을 지나 도착한 1000번째 날. 이 기억 선반은 아직 반밖에 차지 않았다. 나머지는 다음 1000일이 채울 것이다." },
+
+  // ---------------- 크리스마스 ----------------
+  { cat: "크리스마스", icon: "🎄", label: "첫 번째", date: "D-7 · 2023.12.25", title: "첫 번째 크리스마스",
+    text: "공식 1일보다 일주일 앞섰던 크리스마스. 마법부 기록에는 아직 없지만 펜시브는 똑똑히 기억한다. 위즐리 부인의 손뜨개 스웨터처럼 포근했던 시작." },
+  { cat: "크리스마스", icon: "❄️", label: "두 번째", date: "D+360 · 2024.12.25", title: "두 번째 크리스마스",
+    text: "연회장 천장에서 마법 눈이 내리듯, 처음으로 연인으로 맞은 크리스마스는 둘이라서 더 반짝였다." },
+  { cat: "크리스마스", icon: "🎁", label: "세 번째", date: "D+725 · 2025.12.25", title: "세 번째 크리스마스",
+    text: "세 번째 크리스마스. 이제 서로의 선물 취향쯤은 레질리먼시 없이도 다 안다." },
+
+  // ---------------- 발렌타인데이 ----------------
+  { cat: "발렌타인", icon: "💝", label: "첫 번째", date: "D+45 · 2024.02.14", title: "첫 번째 발렌타인",
+    text: "록허트가 큐피드 난쟁이를 풀어놓았던 그날처럼 온 세상이 분홍빛이던 첫 발렌타인. 만난 지 겨우 45일째였다." },
+  { cat: "발렌타인", icon: "🍫", label: "두 번째", date: "D+411 · 2025.02.14", title: "두 번째 발렌타인",
+    text: "아모텐시아보다 달콤한 초콜릿 한 상자. 두 번째라 덜 떨릴 줄 알았는데 여전히 설렜다." },
+  { cat: "발렌타인", icon: "💌", label: "세 번째", date: "D+776 · 2026.02.14", title: "세 번째 발렌타인",
+    text: "노래하는 발렌타인 카드 대신, 진심을 꾹꾹 눌러 담은 세 번째 발렌타인." },
+
+  // ---------------- 화이트데이 ----------------
+  { cat: "화이트데이", icon: "🍬", label: "첫 번째", date: "D+74 · 2024.03.14", title: "첫 번째 화이트데이",
+    text: "허니듀크 사탕 진열대를 통째로 옮겨 온 듯 달콤했던 첫 화이트데이." },
+  { cat: "화이트데이", icon: "🍭", label: "두 번째", date: "D+439 · 2025.03.14", title: "두 번째 화이트데이",
+    text: "버티 보트 젤리빈 중에서도 제일 달콤한 맛만 골라 받은 것 같은 하루." },
+  { cat: "화이트데이", icon: "🤍", label: "세 번째", date: "D+804 · 2026.03.14", title: "세 번째 화이트데이",
+    text: "800일 기념일 나흘 뒤에 찾아온 세 번째 화이트데이. 받은 사탕보다 같이 웃은 시간이 더 달았다." },
+
+  // ---------------- 생일 ----------------
+  { cat: "생일", icon: "🎂", label: "수인 #1", date: "수인의 첫 번째 생일", title: "수인 누나의 첫 번째 생일",
+    text: "해그리드의 삐뚤빼뚤한 생일 케이크처럼, 서툴러도 정성만은 가득했던 첫 생일 축하." },
+  { cat: "생일", icon: "🎂", label: "수인 #2", date: "수인의 두 번째 생일", title: "수인 누나의 두 번째 생일",
+    text: "촛불 앞에서 빌었던 소원이 무엇이었는지는 이 펜시브만 알고 있다." },
+  { cat: "생일", icon: "🎂", label: "수인 #3", date: "수인의 세 번째 생일", title: "수인 누나의 세 번째 생일",
+    text: "해마다 한 살씩 더 예뻐지는 마법은 마법부도 아직 해독하지 못했다." },
+  { cat: "생일", icon: "🧁", label: "현수 #1", date: "현수의 첫 번째 생일", title: "현수의 첫 번째 생일",
+    text: "열한 살 해리가 처음으로 진짜 생일 축하를 받았던 것처럼, 누나와 함께한 첫 생일." },
+  { cat: "생일", icon: "🧁", label: "현수 #2", date: "현수의 두 번째 생일", title: "현수의 두 번째 생일",
+    text: "한 살을 더 먹어도 연하남 현수의 귀여움 담당 자리는 변함없다." },
+  { cat: "생일", icon: "🧁", label: "현수 #3", date: "현수의 세 번째 생일", title: "현수의 세 번째 생일",
+    text: "공부와 실습에 지친 와중에도, 오늘 하루만큼은 무조건 주인공." },
+
+  // ---------------- 졸업식 & 화이트코트 세리머니 ----------------
+  { cat: "졸업·가운", icon: "🎓", label: "수인 졸업", date: "수인의 졸업식", title: "수인 누나의 졸업식 (N.E.W.T. 만점 수료)",
+    text: "학사모를 쓴 수인 누나가 진짜 마법약 전문가로 세상에 나가는 날. 가장 먼저 달려와 축하해 준 사람은 현수." },
+  { cat: "졸업·가운", icon: "🥼", label: "화이트코트", date: "현수의 화이트코트 세리머니", title: "현수의 화이트코트 세리머니",
+    text: "올리밴더스에서 지팡이가 주인을 고르듯, 흰 가운이 현수를 선택한 날. 그 모습을 바라보던 누나의 광대는 그대로 승천했다." },
+
+  // ---------------- 스키장 ----------------
+  { cat: "스키장", icon: "💥", label: "정면 추돌", date: "SLOPE CASE #01", title: "비운의 정면 추돌 사건",
+    text: "엣지 제어에 실패한 수인이 그대로 직진, 현수와 정면으로 쿵. 의무실 투어 끝에 들은 첫마디는 \"세상에서 제일 예쁜 수인이 누나\"였다." },
+  { cat: "스키장", icon: "🏂", label: "휘닉스파크", date: "평창 휘닉스파크 · 홈 시즌", title: "우리의 겨울 베이스캠프",
+    text: "헤아릴 수 없이 찾았던 휘닉스파크. 매서운 칼바람도 신나게 활주하던 열정 앞에서는 시원하기만 했고, 야간 보딩 뒤 먹던 따끈한 간식은 영원한 겨울의 맛이다." },
+  { cat: "스키장", icon: "⛰️", label: "용평", date: "평창 용평리조트 · 발왕산", title: "발왕산 설산 탐험",
+    text: "발왕산 정상의 차가운 눈꽃 바람을 맞으며 섰던 그날의 설렘. 휘팍과는 또 다른 웅장한 산세를 함께 마주하며 눈 위를 달렸다." },
+  { cat: "스키장", icon: "🗻", label: "니세코", date: "2024.04 · 일본 니세코", title: "첫 해외 원정 파우더 라이딩",
+    text: "4월에도 남아 있던 니세코의 파우더를 가르던 기억. 다음엔 눈 내리는 하늘을 보며 뜨끈한 온천까지 하고 오자고 약속했다.",
+    image: "images/여행지/일본_니세코_오타루_삿포로/IMG_4351.JPEG" },
+  { cat: "스키장", icon: "🇨🇭", label: "그린델발트", date: "2025.01 · 스위스 그린델발트", title: "아이거 북벽 아래에서의 보딩",
+    text: "아이거 북벽을 바라보며 알프스 설원을 가로지른 날. 체르마트의 황금빛 마테호른과 함께 평생 잊지 못할 겨울 대장정.",
+    image: "images/여행지/스위스/그린델발트/IMG_1579.JPEG" },
+  { cat: "스키장", icon: "🇨🇦", label: "휘슬러", date: "2025.12 · 캐나다 휘슬러", title: "세계 2대 스키장 정복",
+    text: "우리도 맛봤다, 휘슬러 블랙콤의 파우더. 영하 30도 옐로나이프의 오로라까지 품고 돌아온 캐나다 윈터 대탐험." },
+  { cat: "스키장", icon: "🔀", label: "절벽 vs 오솔길", date: "SLOPE CASE #02", title: "극과 극 라이딩",
+    text: "보드 잘 탄다고 상급자 절벽 코스로 슝 날아가 버린 현수, 초급 오솔길에서 전향 연습하다 꽈당 넘어지는 수인. 그래도 리프트는 꼭 같이 탔다." },
+
+  // ---------------- 추억 사건 ----------------
+  { cat: "추억 사건", icon: "🍲", label: "첫 4칸 냄비", date: "MEMORY · THE FIRST HOTPOT", title: "처음 마주한 4칸 냄비",
+    text: "훠궈 맛도 모르던 수인이 현수 손에 이끌려 하이디라오에 처음 들어간 날. 토마토탕 한 숟갈에 잠들어 있던 훠궈 마법 본능이 깨어났다." },
+  { cat: "추억 사건", icon: "👑", label: "VIP 등극", date: "MEMORY · PREMIUM VIP", title: "서울 하이디라오 도장 깨기 완료",
+    text: "대학로, 명동, 강남, 영등포까지. 지점을 하나씩 격파한 끝에 1급 오러 훈장보다 귀하다는 PREMIUM VIP 등급을 손에 넣었다." },
+  { cat: "추억 사건", icon: "🎤", label: "심야 떼창", date: "MEMORY · MIDNIGHT HIGHWAY", title: "설원행 심야 떼창 드라이브",
+    text: "아이스아메리카노와 홈런볼을 싣고 달리던 밤의 고속도로. Waka Waka를 목청껏 부르며 졸음운전을 원천 차단했던 둘만의 이동 콘서트장." }
+];
+
+const pensieveShelf = document.getElementById("pensieveShelf");
+const pensieveTabs = document.getElementById("pensieveTabs");
+const pensieveBasin = document.getElementById("pensieveBasin");
+
+function showPensieveMemory(index) {
+  const memory = pensieveMemories[index];
+  if (!memory) return;
+  pensieveShelf.querySelectorAll(".memory-vial").forEach((v) => {
+    v.classList.toggle("is-active", Number(v.dataset.memory) === index);
+  });
+  document.getElementById("pensieveDate").textContent = memory.date;
+  document.getElementById("pensieveTitle").textContent = memory.title;
+  document.getElementById("pensieveText").textContent = memory.text;
+  const img = document.getElementById("pensieveImage");
+  if (memory.image) {
+    img.src = memory.image;
+    img.alt = memory.title;
+    img.classList.remove("hidden");
+  } else {
+    img.removeAttribute("src");
+    img.classList.add("hidden");
+  }
+  pensieveBasin.classList.remove("is-swirling");
+  void pensieveBasin.offsetWidth;
+  pensieveBasin.classList.add("is-swirling");
+}
+
+function renderPensieveShelf(category) {
+  pensieveTabs.querySelectorAll(".pensieve-tab").forEach((t) => {
+    const active = t.dataset.cat === category;
+    t.classList.toggle("is-active", active);
+    t.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  pensieveShelf.innerHTML = "";
+  pensieveMemories.forEach((memory, index) => {
+    if (memory.cat !== category) return;
+    const vial = document.createElement("button");
+    vial.type = "button";
+    vial.className = "memory-vial";
+    vial.dataset.memory = String(index);
+    vial.innerHTML = '<span class="vial-glass">🫙<span class="vial-icon"></span></span><span class="vial-label"></span>';
+    vial.querySelector(".vial-icon").textContent = memory.icon || "";
+    vial.querySelector(".vial-label").textContent = memory.label;
+    pensieveShelf.appendChild(vial);
+  });
+}
+
+if (pensieveShelf && pensieveTabs && pensieveBasin) {
+  pensieveCategories.forEach((cat) => {
+    const count = pensieveMemories.filter((m) => m.cat === cat).length;
+    if (!count) return;
+    const tab = document.createElement("button");
+    tab.type = "button";
+    tab.className = "pensieve-tab";
+    tab.dataset.cat = cat;
+    tab.setAttribute("role", "tab");
+    tab.textContent = `${cat} ${count}`;
+    pensieveTabs.appendChild(tab);
+  });
+  const countEl = document.getElementById("pensieveCount");
+  if (countEl) countEl.textContent = `보관된 기억 병 ${pensieveMemories.length}개`;
+
+  pensieveTabs.addEventListener("click", (e) => {
+    const tab = e.target.closest(".pensieve-tab");
+    if (tab) renderPensieveShelf(tab.dataset.cat);
+  });
+  pensieveShelf.addEventListener("click", (e) => {
+    const vial = e.target.closest(".memory-vial");
+    if (vial) showPensieveMemory(Number(vial.dataset.memory));
+  });
+  renderPensieveShelf(pensieveCategories[0]);
+}
+
+const castPatronusBtn = document.getElementById("castPatronusBtn");
+if (castPatronusBtn) {
+  castPatronusBtn.addEventListener("click", () => {
+    const section = castPatronusBtn.closest("section");
+    section.classList.add("patronus-casting");
+    playLumosSpellSound();
+    setTimeout(() => section.classList.remove("patronus-casting"), 2600);
+  });
+}
+
+document.querySelectorAll(".erised-mirror").forEach((mirror) => {
+  mirror.addEventListener("click", () => {
+    mirror.classList.toggle("is-revealed");
+  });
+});
+
 // 초기화
 window.addEventListener("DOMContentLoaded", () => {
   renderQuiz();
