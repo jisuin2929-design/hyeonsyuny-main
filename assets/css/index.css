@@ -439,10 +439,10 @@ input {
 }
 .memory-vial .vial-label {
   font-family: "Noto Serif KR", serif;
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 700;
   color: #fde68a;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 .pensieve-basin {
   min-height: 180px;
@@ -458,21 +458,32 @@ input {
   100% { filter: blur(0) brightness(1); }
 }
 
-/* ------------------------------------------------------------- */
-/* 패트로누스 수업                                                  */
-/* ------------------------------------------------------------- */
 .patronus-form {
+  display: inline-block;
+  filter: grayscale(100%) brightness(1.25) sepia(100%) hue-rotate(165deg) saturate(380%) drop-shadow(0 0 12px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 25px rgba(147, 197, 253, 0.6));
   transition: filter 0.6s ease, transform 0.6s ease;
+  animation: patronusHover 3s ease-in-out infinite alternate;
+}
+@keyframes patronusHover {
+  0% {
+    filter: grayscale(100%) brightness(1.2) sepia(100%) hue-rotate(165deg) saturate(350%) drop-shadow(0 0 10px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 22px rgba(147, 197, 253, 0.5));
+    transform: translateY(0);
+  }
+  100% {
+    filter: grayscale(100%) brightness(1.4) sepia(100%) hue-rotate(168deg) saturate(420%) drop-shadow(0 0 18px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 32px rgba(186, 230, 253, 0.75));
+    transform: translateY(-5px);
+  }
 }
 .patronus-memory {
   transition: opacity 0.5s ease;
 }
 .patronus-casting .patronus-form {
-  filter: grayscale(1) brightness(1.8) drop-shadow(0 0 12px #bfdbfe) drop-shadow(0 0 24px #e0f2fe);
-  transform: scale(1.15);
+  filter: grayscale(100%) brightness(1.9) sepia(100%) hue-rotate(165deg) saturate(500%) drop-shadow(0 0 25px #38bdf8) drop-shadow(0 0 50px #93c5fd) drop-shadow(0 0 75px #bae6fd) !important;
+  transform: scale(1.15) translateY(-8px) !important;
+  animation: none;
 }
 .patronus-casting .patronus-card {
-  box-shadow: 0 0 18px rgba(191, 219, 254, 0.9);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.8), 0 0 45px rgba(191, 219, 254, 0.6);
 }
 
 /* ------------------------------------------------------------- */
@@ -553,9 +564,9 @@ input {
 
 /* 펜시브 선반 탭과 병 아이콘 */
 .pensieve-tab {
-  padding: 3px 9px;
+  padding: 4px 10px;
   font-family: "Noto Serif KR", serif;
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #fde68a;
   background: transparent;
