@@ -35,7 +35,7 @@ OVERSEAS_SPOTS.push({
       name: "그린델발트",
       tag: "🏡 그린델발트",
       desc: "아이거 북벽을 보며 보드타기",
-      cover: "images/여행지/스위스/그린델발트/IMG_4037.JPEG"
+      cover: "images/여행지/스위스/그린델발트/IMG_4037.JPG"
     },
     {
       id: "interlaken",

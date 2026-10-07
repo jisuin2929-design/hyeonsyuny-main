@@ -46,147 +46,73 @@ OVERSEAS_SPOTS.push({
       {
         category: "niseko",
         files: [
-          "IMG_3899.JPEG", "IMG_4119.JPEG", "IMG_4123.JPEG", "IMG_4134.JPEG",
-          "IMG_4150.JPEG", "IMG_4188.JPEG", "IMG_4210.JPEG", "IMG_4211.JPEG",
-          "IMG_4217.JPEG", "IMG_4222.JPEG", "IMG_4243.JPEG", "IMG_4251.JPEG",
-          "IMG_4263.JPEG", "IMG_4275.JPEG", "IMG_4319.JPEG", "IMG_4323.JPEG",
-          "IMG_4351.JPEG", "IMG_4369.JPEG", "IMG_4370.JPEG", "IMG_4413.JPEG",
-          "IMG_4419.JPEG", "IMG_4437.JPEG", "IMG_4442.JPEG", "IMG_4449.JPEG",
-          "IMG_4452.JPEG", "IMG_4456.JPEG", "IMG_4461.JPEG", "IMG_4482.JPEG",
-          "IMG_4489.JPEG", "IMG_4490.JPEG", "IMG_4507.JPEG", "IMG_4517.JPEG",
-          "IMG_4523.JPEG", "IMG_4541.JPEG", "IMG_4542.JPEG", "IMG_4550.JPEG",
-          "IMG_4553.JPEG", "IMG_4562.JPEG", "IMG_4589.JPEG", "IMG_4591.JPEG",
-          "IMG_4600.JPEG", "IMG_4611.JPEG", "IMG_4614.JPEG", "IMG_4617.JPEG",
-          "IMG_4626.JPEG", "IMG_4631.JPEG", "IMG_4640.JPEG", "IMG_4654.JPEG",
-          "IMG_4658.JPEG", "IMG_4659.JPEG", "IMG_4664.JPEG", "IMG_4680.JPEG",
-          "IMG_4682.JPEG", "IMG_4701.JPEG", "IMG_4708.JPEG", "IMG_4724.JPEG",
-          "IMG_4734.JPEG", "IMG_4754.JPEG", "IMG_4759.JPEG", "IMG_4761.JPEG",
-          "IMG_4766.JPEG", "IMG_4769.JPEG", "IMG_4770.JPEG", "IMG_4779.JPEG",
-          "IMG_4780.JPEG", "IMG_4798.JPEG", "IMG_4800.JPEG", "IMG_4803.JPEG",
-          "IMG_4815.JPEG", "IMG_4821.JPEG", "IMG_4833.JPEG", "IMG_4836.JPEG",
-          "IMG_4840.JPEG", "IMG_4842.JPEG", "IMG_4849.JPEG", "IMG_4855.JPEG",
-          "IMG_4861.JPEG", "IMG_4869.JPEG", "IMG_4874.JPEG", "IMG_4876.JPEG",
-          "IMG_4879.JPEG", "IMG_4896.JPEG", "IMG_4901.JPEG", "IMG_4905.JPEG",
-          "IMG_4908.JPEG", "IMG_4917.JPEG", "IMG_4920.JPEG", "IMG_4922.JPEG",
-          "IMG_4923.JPEG", "IMG_4924.JPEG", "IMG_4925.JPEG", "IMG_4926.JPEG",
-          "IMG_4929.JPEG", "IMG_4930.JPEG", "IMG_4933.JPEG", "IMG_4934.JPEG",
-          "IMG_4939.JPEG", "IMG_4941.JPEG", "IMG_4943.JPEG", "IMG_4944.JPEG",
-          "IMG_4948.JPEG", "IMG_4949.JPEG", "IMG_4951.JPEG", "IMG_4953.JPEG",
-          "IMG_4962.JPEG", "IMG_4963.JPEG", "IMG_4964.JPEG", "IMG_4965.JPEG",
-          "IMG_4968.JPEG", "IMG_4970.JPEG", "IMG_4971.JPEG", "IMG_4972.JPEG",
-          "IMG_4973.JPEG", "IMG_4974.JPEG", "IMG_4978.JPEG", "IMG_4980.JPEG",
-          "IMG_4981.JPEG", "IMG_4982.JPEG", "IMG_4984.JPEG", "IMG_4986.JPEG",
-          "IMG_4989.JPEG", "IMG_4992.JPEG", "IMG_4994.JPEG", "IMG_4995.JPEG",
-          "IMG_4996.JPEG", "IMG_5001.JPEG", "IMG_5002.JPEG", "IMG_5006.JPEG",
-          "IMG_5007.JPEG", "IMG_5009.JPEG", "IMG_5010.JPEG", "IMG_5011.JPEG",
-          "IMG_5012.JPEG", "IMG_5013.JPEG", "IMG_5015.JPEG", "IMG_5016.JPEG",
-          "IMG_5018.JPEG", "IMG_5019.JPEG", "IMG_5020.JPEG", "IMG_5022.JPEG",
-          "IMG_5023.JPEG", "IMG_5024.JPEG", "IMG_5025.JPEG", "IMG_5026.JPEG",
-          "IMG_5027.JPEG", "IMG_5028.JPEG", "IMG_5029.JPEG", "IMG_5030.JPEG",
-          "IMG_5031.JPEG", "IMG_5032.JPEG", "IMG_5033.JPEG", "IMG_5034.JPEG",
-          "IMG_5035.JPEG", "IMG_5036.JPEG", "IMG_5037.JPEG", "IMG_5038.JPEG",
-          "IMG_5039.JPEG", "IMG_5040.JPEG", "IMG_5041.JPEG", "IMG_5042.JPEG",
-          "IMG_5043.JPEG", "IMG_5044.JPEG", "IMG_5045.JPEG", "IMG_5046.JPEG",
-          "IMG_5047.JPEG", "IMG_5048.JPEG", "IMG_5049.JPEG", "IMG_5050.JPEG",
-          "IMG_5051.JPEG", "IMG_5052.JPEG", "IMG_5053.JPEG", "IMG_5054.JPEG",
-          "IMG_5055.JPEG", "IMG_5056.JPEG", "IMG_5057.JPEG", "IMG_5058.JPEG",
-          "IMG_5059.JPEG", "IMG_5060.JPEG", "IMG_5061.JPEG", "IMG_5062.JPEG",
-          "IMG_5063.JPEG", "IMG_5064.JPEG", "IMG_5065.JPEG", "IMG_5066.JPEG",
-          "IMG_5067.JPEG", "IMG_5068.JPEG", "IMG_5069.JPEG", "IMG_5070.JPEG",
-          "IMG_5071.JPEG", "IMG_5072.JPEG", "IMG_5073.JPEG", "IMG_5074.JPEG",
-          "IMG_5075.JPEG", "IMG_5076.JPEG", "IMG_5077.JPEG", "IMG_5078.JPEG",
-          "IMG_5079.JPEG", "IMG_5080.JPEG", "IMG_5081.JPEG", "IMG_5082.JPEG",
-          "IMG_5083.JPEG", "IMG_5084.JPEG", "IMG_5085.JPEG", "IMG_5086.JPEG",
-          "IMG_5087.JPEG", "IMG_5088.JPEG", "IMG_5089.JPEG", "IMG_5090.JPEG",
-          "IMG_5091.JPEG", "IMG_5092.JPEG", "IMG_5093.JPEG", "IMG_5094.JPEG",
-          "IMG_5095.JPEG", "IMG_5096.JPEG", "IMG_5097.JPEG", "IMG_5098.JPEG",
-          "IMG_5099.JPEG", "IMG_5100.JPEG"
+          "IMG_8368.JPEG", "IMG_8448.JPEG", "IMG_8470.JPEG", "IMG_8483.JPEG",
+          "IMG_8526.JPEG", "IMG_8532.JPEG", "IMG_8537.JPEG", "IMG_8542.JPEG",
+          "IMG_8544.JPEG", "IMG_8546.JPEG", "IMG_8569.JPG", "IMG_8597.JPEG",
+          "IMG_8606.JPEG", "IMG_8620.JPEG", "IMG_8626.JPEG", "IMG_8678.JPEG",
+          "IMG_8685.JPEG", "IMG_4140.MP4", "IMG_8696.JPEG", "IMG_4238.JPEG",
+          "IMG_8727.JPEG", "IMG_8731.JPEG", "IMG_8744.JPEG", "IMG_4284.JPEG",
+          "IMG_8760.JPG", "IMG_8765.JPEG", "IMG_8773.JPEG", "IMG_8785.JPEG",
+          "IMG_8790.JPEG", "IMG_8814.JPEG", "IMG_8837.JPEG", "IMG_4328.JPEG",
+          "IMG_4351.JPEG", "IMG_8974.JPG", "IMG_8999.JPEG", "IMG_9002.JPEG"
         ]
       },
       {
         category: "otaru",
         files: [
-          "IMG_9053.JPEG", "IMG_9061.JPEG", "IMG_9062.JPEG", "IMG_9063.JPEG",
-          "IMG_9065.JPEG", "IMG_9066.JPEG", "IMG_9070.JPEG", "IMG_9072.JPEG",
-          "IMG_9073.JPEG", "IMG_9074.JPEG", "IMG_9077.JPEG", "IMG_9080.JPEG",
-          "IMG_9081.JPEG", "IMG_9082.JPEG", "IMG_9083.JPEG", "IMG_9084.JPEG",
-          "IMG_9085.JPEG", "IMG_9086.JPEG", "IMG_9087.JPEG", "IMG_9088.JPEG",
-          "IMG_9089.JPEG", "IMG_9090.JPEG", "IMG_9091.JPEG", "IMG_9092.JPEG",
-          "IMG_9093.JPEG", "IMG_9094.JPEG", "IMG_9095.JPEG", "IMG_9096.JPEG",
-          "IMG_9097.JPEG", "IMG_9098.JPEG", "IMG_9099.JPEG", "IMG_9100.JPEG"
+          "IMG_9020.JPEG", "IMG_9053.JPEG", "IMG_4388.JPEG", "IMG_4402.JPEG",
+          "IMG_4413.JPEG", "IMG_9126.JPEG", "IMG_9135.JPEG", "IMG_4434.JPEG",
+          "IMG_9138.JPEG", "IMG_9150.JPEG", "IMG_9151.JPEG", "IMG_9162.JPEG",
+          "IMG_9173.JPEG", "IMG_9179.JPEG", "IMG_4515.JPEG", "IMG_9217.JPEG",
+          "IMG_4557.JPG"
         ]
       },
       {
         category: "sapporo",
         files: [
-          "IMG_9361.JPEG", "IMG_9362.JPEG", "IMG_9363.JPEG", "IMG_9364.JPEG",
-          "IMG_9365.JPEG", "IMG_9366.JPEG", "IMG_9367.JPEG", "IMG_9368.JPEG",
-          "IMG_9369.JPEG", "IMG_9370.JPEG", "IMG_9371.JPEG", "IMG_9372.JPEG",
-          "IMG_9373.JPEG", "IMG_9374.JPEG", "IMG_9375.JPEG", "IMG_9376.JPEG",
-          "IMG_9377.JPEG", "IMG_9378.JPEG", "IMG_9379.JPEG", "IMG_9380.JPEG",
-          "IMG_9381.JPEG", "IMG_9382.JPEG", "IMG_9383.JPEG", "IMG_9384.JPEG",
-          "IMG_9385.JPEG", "IMG_9386.JPEG", "IMG_9387.JPEG", "IMG_9388.JPEG",
-          "IMG_9389.JPEG", "IMG_9390.JPEG", "IMG_9391.JPEG", "IMG_9392.JPEG"
+          "IMG_9237.JPEG", "IMG_9260.JPEG", "IMG_9275.JPEG", "IMG_9284.JPEG",
+          "IMG_9286.JPEG", "IMG_9292.JPEG", "IMG_9303.JPEG", "IMG_9342.JPEG",
+          "IMG_9361.JPEG", "IMG_4667.JPEG", "IMG_4717.JPEG", "IMG_9422.JPEG",
+          "IMG_4782.JPEG", "IMG_4918.JPEG", "IMG_9508.JPEG"
         ]
       }
     ]);
 
+    var customCaptions = {};
     var nCount = 0, oCount = 0, sCount = 0;
-    return raw.map(function (item) {
+    return raw.map(function (item, idx) {
       var catIdx = 0;
       var cap = "";
       var name = item.name;
 
-      if (item.category === "niseko") {
+      if (customCaptions[name]) {
+        cap = customCaptions[name];
+      } else if (item.category === "niseko") {
         catIdx = ++nCount;
-        if (/3899|4119|4123/.test(name)) cap = "신치토세 공항 도착 & 니세코 설국으로 가는 길";
-        else if (/4134|4150|4188/.test(name)) cap = "미드타운 니세코 체크인 & 창밖의 새하얀 설경";
-        else if (/4210|4211|4217|4222/.test(name)) cap = "니세코 그랜드 히라후 베이스 도착 & 장비 점검";
-        else if (/4243|4251|4263|4275/.test(name)) cap = "곤돌라 타고 오르는 홋카이도 설산 파노라마";
-        else if (/4319|4323|4351/.test(name)) cap = "요테이산(양제산) 뷰를 마주하며 달리는 파우더 슬로프";
-        else if (/4369|4370|4413|4419/.test(name)) cap = "봄에도 눈부신 니세코 설원 위 둘만의 질주";
-        else if (/4437|4442|4449|4452/.test(name)) cap = "정상 휴게소에서 맛보는 따뜻한 코코아 & 핫도그";
-        else if (/4456|4461|4482/.test(name)) cap = "짜릿한 급경사 파우더 코스 정복의 순간";
-        else if (/4489|4490|4507/.test(name)) cap = "눈 덮인 자작나무 숲길 트리런 탐험";
-        else if (/4517|4523|4541/.test(name)) cap = "슬로프 위 눈부신 햇살과 둘만의 행복한 미소";
-        else if (/4542|4550|4553/.test(name)) cap = "오후 라이딩 & 황금빛으로 물드는 설산 능선";
-        else if (/4562|4589|4591/.test(name)) cap = "베이스로 내려오는 마지막 런의 아쉬움과 뿌듯함";
-        else if (/4600|4611|4614/.test(name)) cap = "굿찬 시내 이동 & 현지 로컬 마트 털기";
-        else if (/4617|4626|4631/.test(name)) cap = "박현수 셰프의 특제 야식 요리 교실 오픈";
-        else if (/4640|4654|4658/.test(name)) cap = "미드타운 라운지에서 따뜻한 차 한 잔의 여유";
-        else if (/4659|4664|4680/.test(name)) cap = "니세코 둘째 날 아침 & 다시 설산으로 출발";
-        else if (/4682|4701|4708/.test(name)) cap = "히라후 정상 리프트 탑승 & 더 넓어진 시야";
-        else if (/4724|4734|4754/.test(name)) cap = "끝없이 펼쳐진 홋카이도의 하얀 대자연 파노라마";
-        else if (/4759|4761|4766/.test(name)) cap = "설원 위에 남긴 우리 둘의 발자국과 보드 자국";
-        else if (/4769|4770|4779/.test(name)) cap = "신나는 활주 & 카메라를 향해 브이!";
-        else if (/4780|4798|4800/.test(name)) cap = "오후 눈꽃 쉼터에서 나눈 달콤한 휴식";
-        else if (/4803|4815|4821/.test(name)) cap = "마지막 슬로프 질주 & 니세코 원정 피날레";
-        else if (/4833|4836|4840/.test(name)) cap = "장비 정리 & 니세코 빌리지의 평화로운 오후";
-        else if (/4842|4849|4855/.test(name)) cap = "온천욕 후 시원한 홋카이도 우유 한 잔";
-        else if (/4861|4869|4874/.test(name)) cap = "굿찬역 근처 로컬 이자카야의 맛있는 저녁";
-        else if (/4876|4879|4896/.test(name)) cap = "니세코 밤하늘을 수놓은 차가운 별빛들";
-        else cap = "니세코 파우더 설원 비경 No." + catIdx;
+        if (/8368|8448|8470|8483/.test(name)) cap = "홋카이도 설국을 향한 출발 & 치토세 도착";
+        else if (/8526|8532|8537|8542|8544|8546/.test(name)) cap = "미드타운 니세코 체크인 & 첫 편의점";
+        else if (/8569|8597|8606|8620|8626|8678|8685/.test(name)) cap = "니세코 그랜드 히라후 파우더 활주";
+        else if (item.type === "video" || /4140/.test(name)) cap = "니세코 설원 파우더 스노 질주 영상";
+        else if (/8696|4238|8727|8731|8744|4284|8760|8765|8773|8785|8790/.test(name)) cap = "요테이산 설경 파노라마와 정상 라이딩";
+        else if (/8814|8837/.test(name)) cap = "니세코 눈 덮인 거리와 따끈한 저녁";
+        else if (/4328|4351|8974|8999|9002/.test(name)) cap = "니세코 설산 카페 & 아쉬운 작별";
+        else cap = "니세코 파우더 설원 No." + catIdx;
       } else if (item.category === "otaru") {
         catIdx = ++oCount;
-        if (/9053|9061|9062/.test(name)) cap = "오타루 운하 도착 & 잔잔한 수면에 비친 붉은 벽돌 창고";
-        else if (/9063|9065|9066/.test(name)) cap = "오타루 수산시장 삼각시장 카이센동 명가 방문";
-        else if (/9070|9072|9073/.test(name)) cap = "신선함 폭발! 성게알·연어알 듬뿍 카이센동 먹방";
-        else if (/9074|9077|9080/.test(name)) cap = "오타루 오르골당 본관 입성 & 신비로운 멜로디";
-        else if (/9081|9082|9083/.test(name)) cap = "반짝이는 유리공예와 수천 개의 앤틱 오르골 구경";
-        else if (/9084|9085|9086/.test(name)) cap = "증기시계 정각 알림 & 사카이마치 거리 산책";
-        else if (/9087|9088|9089/.test(name)) cap = "르타오 본점 더블프로마쥬 치즈케이크 디저트 타임";
-        else if (/9090|9091|9092/.test(name)) cap = "오타루 운하의 푸른 황혼과 가스등 낭만 야경";
-        else cap = "오타루 감성 골목 탐방 No." + catIdx;
+        if (/9020|9053/.test(name)) cap = "낭만의 항구 도시 오타루 입성";
+        else if (/4388|4402|4413/.test(name)) cap = "오타루 사카이마치 유리공방 & 오르골당";
+        else if (/9126|9135|4434|9138|9150|9151|9162|9173|9179/.test(name)) cap = "오타루 운하의 황혼과 레트로 가스등 불빛";
+        else if (/4515|9217|4557/.test(name)) cap = "오타루 낭만 디너 & 르타오 디저트 타임";
+        else if (item.type === "video") cap = "오타루 운하 감성 영상";
+        else cap = "오타루 운하와 감성 거리 No." + catIdx;
       } else {
         catIdx = ++sCount;
-        if (/9361|9362|9363/.test(name)) cap = "삿포로 시내 입성 & 스스키노 니카상 네온사인";
-        else if (/9364|9365|9366/.test(name)) cap = "인생 돈까스 맛집! 두툼한 히레카츠 정식 만찬";
-        else if (/9367|9368|9369/.test(name)) cap = "오도리 공원 산책 & 삿포로 TV타워 뷰";
-        else if (/9370|9371|9372/.test(name)) cap = "삿포로 미소라멘 거리 골목 탐방 & 진한 국물";
-        else if (/9373|9374|9375/.test(name)) cap = "다누키코지 상점가 쇼핑 & 홋카이도 특산품 기념품";
-        else if (/9376|9377|9378/.test(name)) cap = "삿포로 클래식 생맥주 한 잔과 함께한 밤";
-        else if (/9379|9380|9381/.test(name)) cap = "신치토세 공항 로이스 초콜릿 & 귀국길 추억";
-        else cap = "삿포로 미식 도시 탐방 No." + catIdx;
+        if (/9237|9260|9275/.test(name)) cap = "삿포로 도심 입성 & 스스키노 거리";
+        else if (/9284|9286|9292|9303|9342|9361|4667/.test(name)) cap = "오도리 공원 & 삿포로 번화가 골목 탐방";
+        else if (/4717|9422|4782|4918/.test(name)) cap = "삿포로 시내 미식 투어";
+        else if (/9508/.test(name)) cap = "신치토세 공항 귀국길 소중한 추억";
+        else if (item.type === "video") cap = "삿포로 도심 영상";
+        else cap = "삿포로 미식과 도심 산책 No." + catIdx;
       }
 
       return {
