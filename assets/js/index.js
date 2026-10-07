@@ -540,9 +540,10 @@ const currentTrackIndex = document.getElementById("currentTrackIndex");
 const currentTrackTitle = document.getElementById("currentTrackTitle");
 const currentTrackTime = document.getElementById("currentTrackTime");
 const playlistProgressBar = document.getElementById("playlistProgressBar");
-const playlistTrackItems = document.querySelectorAll(".playlist-track-item");
-const playlistPlayerContainer = document.getElementById("playlistPlayerContainer");
-const playlistIframe = document.getElementById("playlistIframe");
+const playlistTrackItems = document.querySelectorAll("#playlistTracks .track-card");
+const playlistAudio = document.getElementById("audioPlayer");
+const playlistPlayerContainer = null;
+const playlistIframe = null;
 
 let currentActiveTrackBtn = playlistTrackItems[0] || null;
 let isPlaylistPlaying = false;
@@ -562,21 +563,18 @@ function formatSeconds(sec) {
   return `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
 }
 
-function startPlaylistProgress(totalDurationStr) {
-  if (playlistProgressTimer) clearInterval(playlistProgressTimer);
-  const totalSec = parseDurationToSeconds(totalDurationStr);
-  currentTrackSeconds = 0;
+function updatePlaylistProgress() {
+  if (!playlistAudio) return;
+  const total = playlistAudio.duration || 0;
+  const cur = playlistAudio.currentTime || 0;
+  const percent = total ? Math.min((cur / total) * 100, 100) : 0;
+  if (playlistProgressBar) playlistProgressBar.style.width = `${percent}%`;
+  if (currentTrackTime) currentTrackTime.textContent = `${formatSeconds(cur)} / ${total ? formatSeconds(total) : "--:--"}`;
+}
 
-  playlistProgressTimer = setInterval(() => {
-    if (!isPlaylistPlaying) return;
-    currentTrackSeconds += 1;
-    if (currentTrackSeconds > totalSec) {
-      currentTrackSeconds = 0;
-    }
-    const percent = Math.min((currentTrackSeconds / totalSec) * 100, 100);
-    if (playlistProgressBar) playlistProgressBar.style.width = `${percent}%`;
-    if (currentTrackTime) currentTrackTime.textContent = `${formatSeconds(currentTrackSeconds)} / ${totalDurationStr}`;
-  }, 1000);
+function startPlaylistProgress() {
+  if (playlistProgressTimer) clearInterval(playlistProgressTimer);
+  playlistProgressTimer = setInterval(updatePlaylistProgress, 500);
 }
 
 function playTrack(btn) {
@@ -600,10 +598,13 @@ function playTrack(btn) {
   if (currentTrackTime) currentTrackTime.textContent = `00:00 / ${duration}`;
   if (playlistProgressBar) playlistProgressBar.style.width = `0%`;
 
-  // 1. 실제 음악 오디오 영상 스트림 로드 & 재생
-  if (playlistIframe && ytId) {
-    if (playlistPlayerContainer) playlistPlayerContainer.classList.remove("hidden");
-    playlistIframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&enablejsapi=1`;
+  // 1. mp3 로드 & 재생
+  const src = btn.getAttribute("data-src");
+  if (playlistAudio && src) {
+    const resolved = new URL(src, document.baseURI).href;
+    if (playlistAudio.src !== resolved) playlistAudio.src = src;
+    playlistAudio.currentTime = 0;
+    playlistAudio.play().catch((e) => console.warn("재생 실패:", e));
   }
 
   // 2. 배경 마법 BGM(Hedwig's Theme MP3)은 노래와 겹치지 않도록 자동 일시정지
@@ -622,7 +623,7 @@ function playTrack(btn) {
     playlistStatusBadge.className = "text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0";
   }
 
-  startPlaylistProgress(duration);
+  startPlaylistProgress();
 }
 
 function pausePlaylistTrack() {
@@ -638,12 +639,30 @@ function pausePlaylistTrack() {
     playlistStatusBadge.className = "text-xs font-mono text-amber-800 font-bold flex items-center gap-1 shrink-0";
   }
 
-  if (playlistIframe && playlistIframe.contentWindow) {
-    try {
-      playlistIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
-    } catch (e) { }
-  }
+  if (playlistAudio) playlistAudio.pause();
 }
+
+// 일시정지 후 재생 버튼: 같은 곡이면 이어서 재생
+function resumePlaylistTrack() {
+  if (playlistAudio && playlistAudio.src && playlistAudio.currentTime > 0 && !playlistAudio.ended) {
+    playlistAudio.play().catch(() => { });
+    isPlaylistPlaying = true;
+    playlistPlayIcon?.classList.replace("fa-play", "fa-pause");
+    if (playlistStatusBadge) {
+      playlistStatusBadge.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span><span>PLAYING NOW</span>`;
+      playlistStatusBadge.className = "text-xs font-mono text-emerald-800 font-bold flex items-center gap-1 shrink-0";
+    }
+    startPlaylistProgress();
+    return true;
+  }
+  return false;
+}
+
+playlistAudio?.addEventListener("ended", () => {
+  const list = Array.from(playlistTrackItems);
+  const next = list[(list.indexOf(currentActiveTrackBtn) + 1) % list.length];
+  playTrack(next);
+});
 
 playlistTrackItems.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -655,6 +674,7 @@ playlistPlayBtn?.addEventListener("click", () => {
   if (isPlaylistPlaying) {
     pausePlaylistTrack();
   } else {
+    if (resumePlaylistTrack()) return;
     if (currentActiveTrackBtn) {
       playTrack(currentActiveTrackBtn);
     } else if (playlistTrackItems.length > 0) {
