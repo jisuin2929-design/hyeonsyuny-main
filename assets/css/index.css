@@ -7,6 +7,8 @@ body {
   background-size: 24px 24px;
   color: #140c04;
   font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+  font-size: 15px;
+  line-height: 1.6;
   font-weight: 500;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
@@ -304,10 +306,10 @@ input {
 
 @media (min-width: 640px) {
   .cw-board {
-    grid-template-columns: repeat(7, 42px);
-    grid-template-rows: repeat(5, 42px);
+    grid-template-columns: repeat(7, 45px);
+    grid-template-rows: repeat(5, 45px);
     gap: 4px;
-    padding: 12px;
+    padding: 14px;
   }
 }
 
