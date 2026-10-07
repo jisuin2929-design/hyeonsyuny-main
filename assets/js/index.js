@@ -239,12 +239,12 @@ if (!bgmAudio) {
   bgmAudio = new Audio(BGM_SRC);
   bgmAudio.id = "mainBgmAudio";
   bgmAudio.loop = true;
-  bgmAudio.preload = "auto";
+  bgmAudio.preload = "metadata";
   document.body.appendChild(bgmAudio);
 } else {
   bgmAudio.loop = true;
 }
-bgmAudio.volume = 0.45;
+bgmAudio.volume = 0.30; // 배경 BGM 볼륨 70% 수준으로 조절 (기존 0.45)
 
 // 해리포터 테마곡 재생
 function startBgm() {
@@ -542,6 +542,12 @@ const currentTrackTime = document.getElementById("currentTrackTime");
 const playlistProgressBar = document.getElementById("playlistProgressBar");
 const playlistTrackItems = document.querySelectorAll("#playlistTracks .track-card");
 const playlistAudio = document.getElementById("audioPlayer");
+if (playlistAudio) {
+  playlistAudio.volume = 0.70; // 플레이리스트 음원 기본 볼륨 70%로 조절 (기존 100%)
+}
+const albumRecord = document.getElementById("albumRecord");
+const playlistHeaderDisc = document.getElementById("playlistHeaderDisc");
+const visualizer = document.getElementById("visualizer");
 const playlistPlayerContainer = null;
 const playlistIframe = null;
 
@@ -549,6 +555,26 @@ let currentActiveTrackBtn = playlistTrackItems[0] || null;
 let isPlaylistPlaying = false;
 let playlistProgressTimer = null;
 let currentTrackSeconds = 0;
+
+function setDiscSpinning(spinning) {
+  if (spinning) {
+    albumRecord?.classList.add("spin-disc");
+    albumRecord?.classList.remove("spin-disc-paused");
+    playlistHeaderDisc?.classList.add("spin-disc");
+    playlistHeaderDisc?.classList.remove("spin-disc-paused");
+    if (visualizer) {
+      visualizer.classList.remove("hidden");
+      visualizer.classList.add("flex");
+    }
+  } else {
+    albumRecord?.classList.add("spin-disc-paused");
+    playlistHeaderDisc?.classList.add("spin-disc-paused");
+    if (visualizer) {
+      visualizer.classList.add("hidden");
+      visualizer.classList.remove("flex");
+    }
+  }
+}
 
 function parseDurationToSeconds(str) {
   if (!str) return 240;
@@ -603,6 +629,7 @@ function playTrack(btn) {
   if (playlistAudio && src) {
     const resolved = new URL(src, document.baseURI).href;
     if (playlistAudio.src !== resolved) playlistAudio.src = src;
+    playlistAudio.volume = 0.70;
     playlistAudio.currentTime = 0;
     playlistAudio.play().catch((e) => console.warn("재생 실패:", e));
   }
@@ -612,8 +639,9 @@ function playTrack(btn) {
     stopBgm();
   }
 
-  // 3. UI 상태 업데이트
+  // 3. UI 상태 업데이트 (CD 회전 시작 및 비주얼라이저 활성화)
   isPlaylistPlaying = true;
+  setDiscSpinning(true);
   if (playlistPlayIcon) {
     playlistPlayIcon.classList.remove("fa-play");
     playlistPlayIcon.classList.add("fa-pause");
@@ -630,6 +658,7 @@ function pausePlaylistTrack() {
   isPlaylistPlaying = false;
   if (playlistProgressTimer) clearInterval(playlistProgressTimer);
 
+  setDiscSpinning(false);
   if (playlistPlayIcon) {
     playlistPlayIcon.classList.remove("fa-pause");
     playlistPlayIcon.classList.add("fa-play");
@@ -647,6 +676,7 @@ function resumePlaylistTrack() {
   if (playlistAudio && playlistAudio.src && playlistAudio.currentTime > 0 && !playlistAudio.ended) {
     playlistAudio.play().catch(() => { });
     isPlaylistPlaying = true;
+    setDiscSpinning(true);
     playlistPlayIcon?.classList.replace("fa-play", "fa-pause");
     if (playlistStatusBadge) {
       playlistStatusBadge.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span><span>PLAYING NOW</span>`;
@@ -663,6 +693,8 @@ playlistAudio?.addEventListener("ended", () => {
   const next = list[(list.indexOf(currentActiveTrackBtn) + 1) % list.length];
   playTrack(next);
 });
+playlistAudio?.addEventListener("play", () => setDiscSpinning(true));
+playlistAudio?.addEventListener("pause", () => setDiscSpinning(false));
 
 playlistTrackItems.forEach((btn) => {
   btn.addEventListener("click", () => {
