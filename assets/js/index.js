@@ -719,20 +719,20 @@ function renderQuiz() {
 
   quizQuestions.forEach((item, qIdx) => {
     const qBox = document.createElement("div");
-    qBox.className = "bg-parchment-50 p-2.5 sm:p-3 border border-ink shadow-xs";
+    qBox.className = "bg-parchment-50 p-3 sm:p-4 border border-ink shadow-xs";
 
     const qTitle = document.createElement("h5");
-    qTitle.className = "font-bold text-ink mb-1.5 text-xs";
+    qTitle.className = "font-bold text-ink mb-2 text-xs sm:text-sm";
     qTitle.textContent = item.q;
     qBox.appendChild(qTitle);
 
     const optList = document.createElement("div");
-    optList.className = "space-y-1";
+    optList.className = "space-y-1.5";
 
     item.options.forEach((optText, oIdx) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "w-full text-left p-1.5 bg-[#fbf5e8] hover:bg-[#ebd9b4] border border-ink/30 rounded-xs text-xs font-medium transition cursor-pointer";
+      btn.className = "w-full text-left py-2 px-2.5 bg-[#fbf5e8] hover:bg-[#ebd9b4] border border-ink/30 rounded-xs text-xs sm:text-[13px] font-medium transition cursor-pointer";
       btn.textContent = `${oIdx + 1}) ${optText}`;
 
       btn.addEventListener("click", () => {
@@ -740,11 +740,11 @@ function renderQuiz() {
         answeredMap[qIdx] = oIdx;
 
         if (oIdx === item.ans) {
-          btn.className = "w-full text-left p-1.5 bg-[#d4edda] text-[#155724] border border-[#28a745] font-bold rounded-xs text-xs";
+          btn.className = "w-full text-left py-2 px-2.5 bg-[#d4edda] text-[#155724] border border-[#28a745] font-bold rounded-xs text-xs sm:text-[13px]";
           quizScore += 1;
           playLumosSpellSound();
         } else {
-          btn.className = "w-full text-left p-1.5 bg-[#f8d7da] text-[#721c24] border border-[#dc3545] font-bold rounded-xs text-xs";
+          btn.className = "w-full text-left py-2 px-2.5 bg-[#f8d7da] text-[#721c24] border border-[#dc3545] font-bold rounded-xs text-xs sm:text-[13px]";
           playRustlePageSound();
         }
 
