@@ -999,3 +999,16 @@ input {
   box-shadow: 0 8px 20px rgba(43, 26, 13, 0.25);
 }
 
+
+/* 폰 화면: 코너 제목 옆 배지가 제목을 좁게 밀어내지 않도록 배지를 제목 아래 줄로 내림 */
+@media (max-width: 639px) {
+  section > .flex.justify-between.border-b-2 {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  section > .flex.justify-between.border-b-2 > :first-child {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
