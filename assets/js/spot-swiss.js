@@ -35,14 +35,14 @@ OVERSEAS_SPOTS.push({
       name: "그린델발트",
       tag: "🏡 그린델발트",
       desc: "아이거 북벽을 보며 보드타기",
-      cover: "images/여행지/스위스/그린델발트/IMG_4037.JPEG"
+      cover: "images/여행지/스위스/그린델발트&인터라켄/IMG_4037.JPG"
     },
     {
       id: "interlaken",
       name: "인터라켄",
       tag: "🏞️ 인터라켄",
       desc: "하늘에서 바라보는 예쁜 호수와 인터라켄",
-      cover: "images/여행지/스위스/인터라켄/IMG_3914.jpeg"
+      cover: "images/여행지/스위스/그린델발트&인터라켄/IMG_3914.jpeg"
     },
     {
       id: "lucerne",
@@ -63,7 +63,7 @@ OVERSEAS_SPOTS.push({
     var SWISS_BASE = "images/여행지/스위스/";
     var raw = createMediaItems([
       {
-        folder: "그린델발트",
+        folder: "그린델발트&인터라켄",
         category: "grindelwald",
         files: [
           "IMG_2981.MP4", "IMG_3037.MP4", "IMG_2985.JPEG", "IMG_1453.JPEG",
@@ -110,7 +110,7 @@ OVERSEAS_SPOTS.push({
         ]
       },
       {
-        folder: "인터라켄",
+        folder: "그린델발트&인터라켄",
         category: "interlaken",
         files: [
           "GOPR1561.JPG", "GOPR4574.JPG", "GOPR4587.JPG", "IMG_1846.jpeg",
