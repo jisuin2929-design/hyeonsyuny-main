@@ -17,58 +17,43 @@ OVERSEAS_SPOTS.push({
   letter: "“사파리 기린이랑 인사하던 현수. 망고스틴에 폭 빠져버린 현수. 동남아를 좋아하는 수인. 즈엉동 야시장에서 먹던 가리비 구이와 망고의 달콤함.”",
   photos: (function () {
     var PHUQUOC_BASE = "images/여행지/베트남_푸꾸옥/";
-    var raw = createMediaItems([
-      "IMG_6149.JPEG", "IMG_6153.JPEG", "IMG_4907.JPG", "IMG_3096.JPEG",
-      "IMG_4903.JPG", "IMG_2984.jpeg", "IMG_3062.jpeg", "IMG_3300.jpeg",
-      "IMG_3585.JPEG", "IMG_3609.JPEG", "IMG_3645.JPEG", "IMG_3664.JPEG",
-      "IMG_6385.JPEG", "IMG_6391.JPEG", "IMG_4926.JPG", "IMG_4923.JPG",
-      "IMG_4563.JPG", "dji_fly_0_0_0_1721367542267_video_cache.MP4",
-      "dji_fly_0_0_0_1721367542272_video_cache.mp4", "IMG_7070.MP4",
-      "IMG_7186.JPEG"
-    ]);
 
-    var customCaptions = {};
-    var count = 0;
-    return raw.map(function (item) {
-      var cap = "";
-      var name = item.name;
-      count++;
-      if (customCaptions[name]) {
-        cap = customCaptions[name];
-      } else if (/6149|6153|4907|3096|4903/.test(name)) {
-        cap = "푸꾸옥 도착 & 풀사이드 힐링";
-      } else if (/2984/.test(name)) {
-        cap = "빈펄 사파리 아기 코끼리와의 교감";
-      } else if (/3062/.test(name)) {
-        cap = "기린 레스토랑에서 기린에게 당근 간식 주기";
-      } else if (/3300/.test(name)) {
-        cap = "푸꾸옥 빈원더스 워터파크 물놀이";
-      } else if (/3585|3609|3645|3664/.test(name)) {
-        cap = "200일 기념 선셋타운 최고급 레스토랑!!";
-      } else if (/6385|6391|4926|4923/.test(name)) {
-        cap = "섬나라에서의 이탈리아 음식";
-      } else if (/4563/.test(name)) {
-        cap = "리조트 앞 푸른 바다와 해변 풍경";
-      } else if (/dji.*267/.test(name)) {
-        cap = "🎬 [영상] 사오비치 푸른 물살을 가르는 제트스키 드론 활주";
-      } else if (/dji.*272/.test(name)) {
-        cap = "🎬 [영상] 에메랄드빛 바다 위 짜릿한 제트스키 하이라이트";
-      } else if (/7070/.test(name)) {
-        cap = "🎬 [영상] 현슈니의 두근두근 첫 남국 바캉스";
-      } else if (/7186/.test(name)) {
-        cap = "눈부시게 아름다웠던 풀빌라 숙소와 정원 풍경";
-      } else if (item.type === "video") {
-        cap = "🎬 [영상] 푸꾸옥 에메랄드 바다 현장 스케치";
-      } else {
-        cap = "푸꾸옥에서 만난 눈부신 여름날의 휴양";
-      }
+    // 🌴 푸꾸옥 사진 & 멘트 목록
+    var phuquocPhotos = {
+      "IMG_6149.JPEG": "푸꾸옥 도착 & 에메랄드빛 풀사이드 첫 힐링",
+      "IMG_6153.JPEG": "프리미어 빌리지 풀빌라 리조트 전경 & 아늑한 휴식",
+      "IMG_4907.JPG": "야자수 그늘 아래서 즐기는 여유로운 남국 바캉스",
+      "IMG_3096.JPEG": "푸른 바다를 바라보며 마시는 시원한 열대 과일 주스",
+      "IMG_4903.JPG": "현수가 푹 빠져버린 달콤한 생 망고스틴 한 바구니!",
+      "IMG_2984.jpeg": "빈펄 사파리 아기 코끼리와의 다정한 교감",
+      "IMG_3062.jpeg": "기린 레스토랑에서 기린에게 직접 건넨 당근 간식",
+      "IMG_3300.jpeg": "푸꾸옥 빈원더스 워터파크에서의 짜릿한 물놀이",
+      "IMG_3585.JPEG": "200일 기념 선셋타운 최고급 레스토랑 디너 코스",
+      "IMG_3609.JPEG": "붉게 물드는 남국의 노을을 바라보며 나눈 축배",
+      "IMG_3645.JPEG": "선셋타운 밤하늘을 수놓은 환상적인 불꽃놀이 쇼",
+      "IMG_3664.JPEG": "로맨틱한 조명 아래서 남긴 200일 기념 커플 샷",
+      "IMG_6385.JPEG": "섬나라에서 맛본 정통 이탈리안 피자와 파스타",
+      "IMG_6391.JPEG": "즈엉동 야시장의 싱싱한 가리비 구이와 해산물 만찬",
+      "IMG_4926.JPG": "마사지 샵에서 시원하게 피로를 날려버린 힐링 타임",
+      "IMG_4923.JPG": "동남아 감성 물씬 풍기는 푸꾸옥 골목길 산책",
+      "IMG_4563.JPG": "리조트 전용 비치와 에메랄드빛 해변 산책로",
+      "dji_fly_0_0_0_1721367542267_video_cache.MP4": "🎬 [영상] 사오비치 푸른 물살을 가르는 제트스키 드론 활주",
+      "dji_fly_0_0_0_1721367542272_video_cache.mp4": "🎬 [영상] 에메랄드빛 바다 위 짜릿한 제트스키 하이라이트",
+      "IMG_7070.MP4": "🎬 [영상] 현슈니의 두근두근 첫 남국 바캉스 기록",
+      "IMG_7186.JPEG": "눈부시게 아름다웠던 풀빌라 숙소와 정원의 마지막 아침"
+    };
 
-      return {
-        type: item.type,
-        url: PHUQUOC_BASE + item.name,
-        caption: cap,
-        name: item.name
-      };
-    });
+    var result = [];
+    for (var name in phuquocPhotos) {
+      if (!phuquocPhotos.hasOwnProperty(name)) continue;
+      var isVid = /\.(mp4|mov)$/i.test(name);
+      result.push({
+        type: isVid ? "video" : "image",
+        url: PHUQUOC_BASE + name,
+        caption: phuquocPhotos[name],
+        name: name
+      });
+    }
+    return result;
   })()
 });

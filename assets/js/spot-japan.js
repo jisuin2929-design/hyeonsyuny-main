@@ -15,7 +15,7 @@ OVERSEAS_SPOTS.push({
   callout: { dx: 14, dy: -6, textAnchor: "start" },
   cities: ["니세코", "오타루", "삿포로"],
   spots: ["그랜드 히라후 스키장", "미드타운 니세코", "요테이산 설경", "굿찬역과 박현수 셰프", "오타루 카이센동", "귀여운 오르골들", "삿포로 돈까스"],
-  desc: "우리 둘의 첫 원정 파우더 라이딩.새하얀 설경이 남아있던 니세코의 파우더부터 카이센동이 환상적인 오타루 운하, 돈까스가 맛있는 삿포로 시내까지 홋카이도의 봄과 겨울 매력을 모두 만끽한 여정.",
+  desc: "우리 둘의 첫 원정 파우더 라이딩. 새하얀 설경이 남아있던 니세코의 파우더부터 카이센동이 환상적인 오타루 운하, 돈까스가 맛있는 삿포로 시내까지 홋카이도의 봄과 겨울 매력을 모두 만끽한 여정.",
   letter: "“4월에도 남아있던 니세코의 파우더를 가르던 기억, 그치만 한겨울에 또 가보고 싶은 아쉬움. 다음엔 눈내리는 하늘을 보며 뜨끈한 온천을 하고오자요”",
   subAlbums: [
     {
@@ -42,87 +42,105 @@ OVERSEAS_SPOTS.push({
   ],
   photos: (function () {
     var NISEKO_BASE = "images/여행지/일본_니세코_오타루_삿포로/";
-    var raw = createMediaItems([
-      {
-        category: "niseko",
-        files: [
-          "IMG_8368.JPEG", "IMG_8448.JPEG", "IMG_8470.JPEG", "IMG_8483.JPEG",
-          "IMG_8526.JPEG", "IMG_8532.JPEG", "IMG_8537.JPEG", "IMG_8542.JPEG",
-          "IMG_8544.JPEG", "IMG_8546.JPEG", "IMG_8569.JPG", "IMG_8597.JPEG",
-          "IMG_8606.JPEG", "IMG_8620.JPEG", "IMG_8626.JPEG", "IMG_8678.JPEG",
-          "IMG_8685.JPEG", "IMG_4140.MP4", "IMG_8696.JPEG", "IMG_4238.JPEG",
-          "IMG_8727.JPEG", "IMG_8731.JPEG", "IMG_8744.JPEG", "IMG_4284.JPEG",
-          "IMG_8760.JPG", "IMG_8765.JPEG", "IMG_8773.JPEG", "IMG_8785.JPEG",
-          "IMG_8790.JPEG", "IMG_8814.JPEG", "IMG_8837.JPEG", "IMG_4328.JPEG",
-          "IMG_4351.JPEG", "IMG_8974.JPG", "IMG_8999.JPEG", "IMG_9002.JPEG"
-        ]
-      },
-      {
-        category: "otaru",
-        files: [
-          "IMG_9020.JPEG", "IMG_9053.JPEG", "IMG_4388.JPEG", "IMG_4402.JPEG",
-          "IMG_4413.JPEG", "IMG_9126.JPEG", "IMG_9135.JPEG", "IMG_4434.JPEG",
-          "IMG_9138.JPEG", "IMG_9150.JPEG", "IMG_9151.JPEG", "IMG_9162.JPEG",
-          "IMG_9173.JPEG", "IMG_9179.JPEG", "IMG_4515.JPEG", "IMG_9217.JPEG",
-          "IMG_4557.JPG"
-        ]
-      },
-      {
-        category: "sapporo",
-        files: [
-          "IMG_9237.JPEG", "IMG_9260.JPEG", "IMG_9275.JPEG", "IMG_9284.JPEG",
-          "IMG_9286.JPEG", "IMG_9292.JPEG", "IMG_9303.JPEG", "IMG_9342.JPEG",
-          "IMG_9361.JPEG", "IMG_4667.JPEG", "IMG_4717.JPEG", "IMG_9422.JPEG",
-          "IMG_4782.JPEG", "IMG_4918.JPEG", "IMG_9508.JPEG"
-        ]
+
+    // 🏂 1. 니세코 사진 & 멘트
+    var nisekoPhotos = {
+      "IMG_8368.JPEG": "홋카이도 설국을 향한 설레는 출발 & 신치토세 공항 도착",
+      "IMG_8448.JPEG": "하얗게 눈 덮인 홋카이도 고속도로를 달려 니세코로 향하는 길",
+      "IMG_8470.JPEG": "차창 밖으로 끝없이 펼쳐진 자작나무 숲과 겨울 설경",
+      "IMG_8483.JPEG": "웅장한 요테이산이 시야에 들어오는 니세코 입성 순간",
+      "IMG_8526.JPEG": "미드타운 니세코 호텔 도착 & 아늑한 로비 체크인",
+      "IMG_8532.JPEG": "일본 편의점에서 털어온 따끈따끈한 야식과 맥주 한잔",
+      "IMG_8537.JPEG": "스노보드 부츠 피팅 & 내일 파우더 라이딩 장비 세팅",
+      "IMG_8542.JPEG": "창밖으로 소복이 쌓이는 함박눈을 보며 설레는 첫날밤",
+      "IMG_8544.JPEG": "니세코 빌리지의 포근한 불빛과 차가운 밤공기 산책",
+      "IMG_8546.JPEG": "아침 일찍 든든하게 라멘으로 에너지 충전 완료!",
+      "IMG_8569.JPG": "니세코 그랜드 히라후 스키장 베이스 도착 & 리프트 탑승",
+      "IMG_8597.JPEG": "세계 최고의 설질을 자랑하는 니세코 샴페인 파우더 눈!",
+      "IMG_8606.JPEG": "보드 바인딩을 단단히 묶고 파우더 설원 질주 준비 완료",
+      "IMG_8620.JPEG": "솜사탕처럼 부드러운 천연 파우더 위를 가르는 환상의 턴",
+      "IMG_8626.JPEG": "설원 위로 눈보라를 일으키며 달리는 다이내믹 라이딩",
+      "IMG_8678.JPEG": "슬로프 정상에서 알프스 부럽지 않은 요테이산 뷰와 함께",
+      "IMG_8685.JPEG": "구름 한 점 없이 파란 하늘과 새하얀 만년설의 파노라마",
+      "IMG_4140.MP4": "🎬 [영상] 니세코 설원 파우더 스노 질주 영상",
+      "IMG_8696.JPEG": "에조 후지라 불리는 아름다운 요테이산 배경 기념샷",
+      "IMG_4238.JPEG": "설산 쉼터에서 맛보는 따끈한 일본식 커리와 라멘",
+      "IMG_8727.JPEG": "자작나무 사이를 요리조리 빠져나가는 짜릿한 트리런 코스",
+      "IMG_8731.JPEG": "넘어져도 눈이 푹신해서 그저 웃음만 나오는 파우더 천국",
+      "IMG_8744.JPEG": "오후 햇살을 받으며 달리는 여유로운 크루징 라이딩",
+      "IMG_4284.JPEG": "보드 들고 나란히 서서 활짝 웃는 둘만의 인생샷",
+      "IMG_8760.JPG": "끝없는 슬로프를 내려오며 온몸으로 만끽한 스릴",
+      "IMG_8765.JPEG": "황혼빛에 붉게 물들어가는 요테이산 능선의 비경",
+      "IMG_8773.JPEG": "마지막 런을 마치고 베이스에 도착해 나눈 하이파이브",
+      "IMG_8785.JPEG": "굿찬역 근처 선술집에서 박현수 셰프와 함께한 맛있는 저녁",
+      "IMG_8790.JPEG": "눈 맞으며 즐기는 노천 온천에서 하루의 피로 녹이기",
+      "IMG_8814.JPEG": "눈 덮인 니세코 전통 목조 거리의 고즈넉한 정취",
+      "IMG_8837.JPEG": "따뜻한 사케 한 잔과 함께 나눈 오늘 라이딩 무용담",
+      "IMG_4328.JPEG": "산 정상 테라스 카페에서 따뜻한 커피 한 잔의 여유",
+      "IMG_4351.JPEG": "니세코의 환상적인 설경을 가슴에 품고 아쉬운 작별",
+      "IMG_8974.JPG": "니세코를 떠나 다음 여정 오타루를 향해 달리는 길",
+      "IMG_8999.JPEG": "해안선을 따라 펼쳐진 겨울 바다와 설산의 조화",
+      "IMG_9002.JPEG": "오타루 시내로 들어서며 만난 레트로한 거리 풍경"
+    };
+
+    // 🕯️ 2. 오타루 사진 & 멘트
+    var otaruPhotos = {
+      "IMG_9020.JPEG": "낭만의 항구 도시 오타루 입성 & 운하 주변 산책",
+      "IMG_9053.JPEG": "붉은 벽돌 창고들이 늘어선 오타루 운하의 클래식한 풍경",
+      "IMG_4388.JPEG": "오타루 수산시장에서 맛본 신선한 성게알 카이센동 만찬",
+      "IMG_4402.JPEG": "입안 가득 바다 내음이 퍼지는 극상의 해산물 덮밥",
+      "IMG_4413.JPEG": "사카이마치 거리의 반짝이는 유리공예 숍 구경",
+      "IMG_9126.JPEG": "오타루 오르골당 본관 입구의 상징, 앤틱 증기시계",
+      "IMG_9135.JPEG": "수천 개의 영롱한 오르골 멜로디가 울려 퍼지는 오르골당 내부",
+      "IMG_4434.JPEG": "귀엽고 아기자기한 캐릭터 오르골을 고르는 행복한 시간",
+      "IMG_9138.JPEG": "어스름이 깔리며 가스등 불빛이 하나둘 켜지는 오타루 운하",
+      "IMG_9150.JPEG": "운하 수면에 반영되는 가스등의 황홀하고 로맨틱한 불빛",
+      "IMG_9151.JPEG": "영화 '러브레터'의 감성이 고스란히 묻어나는 운하 산책길",
+      "IMG_9162.JPEG": "가스등 아래에서 다정하게 남긴 둘만의 겨울 인생샷",
+      "IMG_9173.JPEG": "조용한 눈길을 걸으며 나눈 따뜻한 온기",
+      "IMG_9179.JPEG": "오타루 유명 디저트 숍 르타오(LeTAO) 본점 방문",
+      "IMG_4515.JPEG": "입에서 사르르 녹아내리는 전설의 더블 프로마쥬 치즈케이크",
+      "IMG_9217.JPEG": "따뜻한 홍차와 달콤한 치즈케이크로 완성한 디저트 힐링",
+      "IMG_4557.JPG": "낭만 가득했던 오타루의 하루를 뒤로하고 삿포로로 이동"
+    };
+
+    // 🍜 3. 삿포로 사진 & 멘트
+    var sapporoPhotos = {
+      "IMG_9237.JPEG": "홋카이도의 중심, 번화한 삿포로 도심 입성",
+      "IMG_9260.JPEG": "삿포로의 밤을 화려하게 밝히는 스스키노 니카상 네온사인",
+      "IMG_9275.JPEG": "삿포로 시내 번화가 골목의 활기찬 야경 산책",
+      "IMG_9284.JPEG": "삿포로 유명 로컬 돈까스 맛집 도착 & 웨이팅의 설렘",
+      "IMG_9286.JPEG": "육즙이 팡팡 터지는 두툼한 프리미엄 히레카츠 한 상",
+      "IMG_9292.JPEG": "바삭한 튀김옷과 부드러운 고기가 어우러진 인생 돈까스",
+      "IMG_9303.JPEG": "삿포로 클래식 생맥주 한 잔과 곁들인 환상적인 저녁",
+      "IMG_9342.JPEG": "하얗게 눈 덮인 도심 속 휴식처 오도리 공원 산책",
+      "IMG_9361.JPEG": "오도리 공원 너머로 우뚝 솟은 삿포로 TV타워 뷰",
+      "IMG_4667.JPEG": "삿포로 시내 백화점과 아기자기한 캐릭터 숍 탐방",
+      "IMG_4717.JPEG": "진하고 구수한 맛이 일품인 삿포로 미소라멘 한 그릇",
+      "IMG_9422.JPEG": "타누키코지 상점가 골목길을 걸으며 기념품 쇼핑",
+      "IMG_4782.JPEG": "시원한 삿포로 겨울 공기를 마시며 즐긴 마지막 밤",
+      "IMG_4918.JPEG": "호텔에서 짐을 챙기며 나눈 홋카이도 원정의 추억들",
+      "IMG_9508.JPEG": "신치토세 공항에서 로이스 초콜릿과 과자를 사며 귀국길 출발"
+    };
+
+    var result = [];
+    function add(map, cat) {
+      for (var name in map) {
+        if (!map.hasOwnProperty(name)) continue;
+        var isVid = /\.(mp4|mov)$/i.test(name);
+        result.push({
+          type: isVid ? "video" : "image",
+          url: NISEKO_BASE + name,
+          caption: map[name],
+          category: cat,
+          name: name
+        });
       }
-    ]);
-
-    var customCaptions = {};
-    var nCount = 0, oCount = 0, sCount = 0;
-    return raw.map(function (item, idx) {
-      var catIdx = 0;
-      var cap = "";
-      var name = item.name;
-
-      if (customCaptions[name]) {
-        cap = customCaptions[name];
-      } else if (item.category === "niseko") {
-        catIdx = ++nCount;
-        if (/8368|8448|8470|8483/.test(name)) cap = "홋카이도 설국을 향한 출발 & 치토세 도착";
-        else if (/8526|8532|8537|8542|8544|8546/.test(name)) cap = "미드타운 니세코 체크인 & 첫 편의점";
-        else if (/8569|8597|8606|8620|8626|8678|8685/.test(name)) cap = "니세코 그랜드 히라후 파우더 활주";
-        else if (item.type === "video" || /4140/.test(name)) cap = "니세코 설원 파우더 스노 질주 영상";
-        else if (/8696|4238|8727|8731|8744|4284|8760|8765|8773|8785|8790/.test(name)) cap = "요테이산 설경 파노라마와 정상 라이딩";
-        else if (/8814|8837/.test(name)) cap = "니세코 눈 덮인 거리와 따끈한 저녁";
-        else if (/4328|4351|8974|8999|9002/.test(name)) cap = "니세코 설산 카페 & 아쉬운 작별";
-        else cap = "니세코 설산 슬로프의 아름다운 파노라마";
-      } else if (item.category === "otaru") {
-        catIdx = ++oCount;
-        if (/9020|9053/.test(name)) cap = "낭만의 항구 도시 오타루 입성";
-        else if (/4388|4402|4413/.test(name)) cap = "오타루 사카이마치 유리공방 & 오르골당";
-        else if (/9126|9135|4434|9138|9150|9151|9162|9173|9179/.test(name)) cap = "오타루 운하의 황혼과 레트로 가스등 불빛";
-        else if (/4515|9217|4557/.test(name)) cap = "오타루 낭만 디너 & 르타오 디저트 타임";
-        else if (item.type === "video") cap = "오타루 운하 감성 영상";
-        else cap = "낭만 가득한 오타루 감성 골목 산책길";
-      } else {
-        catIdx = ++sCount;
-        if (/9237|9260|9275/.test(name)) cap = "삿포로 도심 입성 & 스스키노 거리";
-        else if (/9284|9286|9292|9303|9342|9361|4667/.test(name)) cap = "오도리 공원 & 삿포로 번화가 골목 탐방";
-        else if (/4717|9422|4782|4918/.test(name)) cap = "삿포로 시내 미식 투어";
-        else if (/9508/.test(name)) cap = "신치토세 공항 귀국길 소중한 추억";
-        else if (item.type === "video") cap = "삿포로 도심 영상";
-        else cap = "맛과 멋이 가득한 삿포로 도심 탐방";
-      }
-
-      return {
-        type: item.type,
-        url: NISEKO_BASE + item.name,
-        caption: cap,
-        category: item.category,
-        name: item.name
-      };
-    });
+    }
+    add(nisekoPhotos, "niseko");
+    add(otaruPhotos, "otaru");
+    add(sapporoPhotos, "sapporo");
+    return result;
   })()
 });
 
@@ -142,17 +160,8 @@ OVERSEAS_SPOTS.push({
   letter: "“규카츠도 카이센동도 장어덮밥도 토마토라멘도 마지막 스시오마카세도 전부다 최고의 맛도리, 유니버셜가서 온갖 놀이기구는 다 타고 어렸을 때보다 더 잘 즐겼을 하루! 가보고 싶었던 고베 하버랜드에 데려가준 현수에게도 감사.”",
   photos: (function () {
     var OSAKA_BASE = "images/여행지/일본_오사카/";
-    var raw = createMediaItems([
-      "IMG_8359.JPEG", "IMG_8385.JPEG", "IMG_8445.JPEG", "IMG_8550.JPEG",
-      "IMG_2608.JPEG", "IMG_8659.JPEG", "IMG_2622.JPEG", "IMG_8826.JPEG",
-      "IMG_8899.JPEG", "IMG_2654.JPEG", "IMG_2684.JPEG", "IMG_8991.JPEG",
-      "IMG_9064.JPEG", "IMG_2760.JPEG", "IMG_9242.JPEG", "IMG_9296.JPEG",
-      "IMG_9348.JPEG", "IMG_9358.JPEG", "IMG_9405.JPEG", "IMG_9428.JPEG",
-      "IMG_9437.JPEG", "IMG_2835.JPEG", "IMG_9517.JPEG", "IMG_9552.JPEG",
-      "IMG_9570.JPEG", "IMG_9665.JPEG"
-    ]);
-
-    var customCaptions = {
+    // 🎡 오사카 & 고베 사진 & 멘트
+    var osakaPhotos = {
       "IMG_8359.JPEG": "간사이 국제공항 도착 & 설레는 오사카 여행의 시작",
       "IMG_8385.JPEG": "오사카 우메다 도심 입성 & 활기찬 거리",
       "IMG_8445.JPEG": "기타하마 강변 골목 산책과 저녁 풍경",
@@ -181,17 +190,18 @@ OVERSEAS_SPOTS.push({
       "IMG_9665.JPEG": "소중하고 행복했던 봄날의 오사카 여행 마무리"
     };
 
-    var count = 0;
-    return raw.map(function (item) {
-      count++;
-      var cap = customCaptions[item.name] || "오사카 & 고베의 소중한 순간";
-      return {
-        type: item.type,
-        url: OSAKA_BASE + item.name,
-        caption: cap,
-        name: item.name
-      };
-    });
+    var result = [];
+    for (var name in osakaPhotos) {
+      if (!osakaPhotos.hasOwnProperty(name)) continue;
+      var isVid = /\.(mp4|mov)$/i.test(name);
+      result.push({
+        type: isVid ? "video" : "image",
+        url: OSAKA_BASE + name,
+        caption: osakaPhotos[name],
+        name: name
+      });
+    }
+    return result;
   })()
 });
 
@@ -211,23 +221,23 @@ OVERSEAS_SPOTS.push({
   letter: "“역시나 맛있는 음식과 끝없이 교차하는 시부야 스크램블, 하지만 우리에겐 너무 더웠던 도쿄...”",
   photos: (function () {
     var TOKYO_BASE = "images/여행지/일본_도쿄/";
-    var raw = createMediaItems(["IMG_5660.jpeg", "IMG_5680.jpeg"]);
-
-    var customCaptions = {
+    // 🗼 도쿄 사진 & 멘트
+    var tokyoPhotos = {
       "IMG_5660.jpeg": "도쿄 전통 장어덮밥 & 갓 구운 계란말이",
       "IMG_5680.jpeg": "시부야 스크램블 교차로 & 스타벅스 츠타야"
     };
 
-    var count = 0;
-    return raw.map(function (item) {
-      count++;
-      var cap = customCaptions[item.name] || "도쿄 도심의 다채로운 풍경";
-      return {
-        type: item.type,
-        url: TOKYO_BASE + item.name,
-        caption: cap,
-        name: item.name
-      };
-    });
+    var result = [];
+    for (var name in tokyoPhotos) {
+      if (!tokyoPhotos.hasOwnProperty(name)) continue;
+      var isVid = /\.(mp4|mov)$/i.test(name);
+      result.push({
+        type: isVid ? "video" : "image",
+        url: TOKYO_BASE + name,
+        caption: tokyoPhotos[name],
+        name: name
+      });
+    }
+    return result;
   })()
 });

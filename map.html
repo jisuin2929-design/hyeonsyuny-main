@@ -52,9 +52,9 @@
   <!-- 🪄 HOGWARTS MARAUDER'S MAP FULL-SCREEN OVERLAY               -->
   <!-- ============================================================ -->
   <div id="maraudersOverlay"
-    class="fixed inset-0 z-[100] marauders-paper flex flex-col items-center justify-center p-4 cursor-pointer select-none transition-all duration-[2000ms] ease-in-out">
+    class="fixed inset-0 z-[100] marauders-paper flex flex-col items-center justify-center p-3 sm:p-4 cursor-pointer select-none transition-all duration-[2000ms] ease-in-out">
     <div
-      class="relative max-w-xl w-full border-4 border-[#3b2513] p-6 sm:p-10 text-center shadow-[0_0_50px_rgba(20,10,5,0.8)] bg-[#ede0c4]/85 rounded-sm pointer-events-none">
+      class="relative max-w-2xl w-full border-4 border-[#3b2513] p-5 sm:p-8 md:p-10 text-center shadow-[0_0_50px_rgba(20,10,5,0.8)] bg-[#ede0c4]/90 rounded-sm pointer-events-none">
 
       <div class="absolute -top-3 -left-3 text-[#241508] font-medium text-lg font-cinzel">✦</div>
       <div class="absolute -top-3 -right-3 text-[#241508] font-medium text-lg font-cinzel">✦</div>
@@ -85,34 +85,34 @@
       </div>
 
       <!-- State 2: Active Spell -->
-      <div id="marauderSpell" class="hidden flex flex-col items-center gap-2 incantation-reveal">
+      <div id="marauderSpell" class="hidden flex flex-col items-center gap-2 incantation-reveal w-full">
         <div class="flex items-center justify-center gap-3 text-2xl text-[#841c1c] my-1">
           <span>🐾</span><span>👣</span><span>🐾</span><span>👣</span>
         </div>
-        <p class="font-cinzel text-xs tracking-widest text-[#841c1c] font-black uppercase">
+        <p class="font-cinzel text-xs tracking-widest text-[#841c1c] font-black uppercase text-center">
           ✦ 마법의 주문이 잉크로 피어오릅니다 ✦
         </p>
-        <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-snug">
-          “나는 천하의 멍텅구리임을 엄숙하게 선언합니다”
+        <h3 class="font-headline italic text-[15px] xs:text-lg sm:text-2xl font-black text-[#661111] leading-relaxed sm:leading-snug break-keep text-center max-w-full px-2">
+          “나는 천하의 멍텅구리임을 엄숙히 선언합니다”
         </h3>
-        <p class="font-cinzel text-[11px] sm:text-xs text-[#180e05] font-medium font-bold tracking-wider">
+        <p class="font-cinzel text-[10px] sm:text-xs text-[#180e05] font-bold tracking-wider break-keep text-center">
           “I solemnly swear that I am up to no good.”
         </p>
-        <div class="mt-2 text-xs text-[#241508] font-medium font-serif animate-bounce">
+        <div class="mt-2 text-[11px] sm:text-xs text-[#241508] font-medium font-serif animate-bounce break-keep text-center">
           📜 국내와 해외의 비밀 발자국들이 모습을 드러냅니다...
         </div>
       </div>
 
       <!-- State 3: Mischief Managed -->
-      <div id="marauderCloseSpell" class="hidden flex flex-col items-center gap-2 incantation-reveal">
+      <div id="marauderCloseSpell" class="hidden flex flex-col items-center gap-2 incantation-reveal w-full">
         <div class="text-3xl text-[#841c1c] my-1">✨ 📜 ✨</div>
-        <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-snug">
+        <h3 class="font-headline italic text-lg sm:text-2xl font-black text-[#661111] leading-relaxed sm:leading-snug break-keep text-center">
           “마법의 장난 끝!”
         </h3>
-        <p class="font-cinzel text-[11px] sm:text-xs text-[#180e05] font-medium font-bold tracking-wider">
+        <p class="font-cinzel text-[10px] sm:text-xs text-[#180e05] font-bold tracking-wider break-keep text-center">
           “Mischief Managed.”
         </p>
-        <div class="mt-2 text-xs text-[#241508] font-medium font-serif">
+        <div class="mt-2 text-[11px] sm:text-xs text-[#241508] font-medium font-serif break-keep text-center">
           양피지가 다시 백지로 봉인되었습니다.
         </div>
       </div>
