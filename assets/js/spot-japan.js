@@ -165,7 +165,7 @@ OVERSEAS_SPOTS.push({
         else if (/4842|4849|4855/.test(name)) cap = "온천욕 후 시원한 홋카이도 우유 한 잔";
         else if (/4861|4869|4874/.test(name)) cap = "굿찬역 근처 로컬 이자카야의 맛있는 저녁";
         else if (/4876|4879|4896/.test(name)) cap = "니세코 밤하늘을 수놓은 차가운 별빛들";
-        else cap = "니세코 파우더 설원 비경 No." + catIdx;
+        else cap = "니세코 설산 슬로프의 아름다운 파노라마";
       } else if (item.category === "otaru") {
         catIdx = ++oCount;
         if (/9053|9061|9062/.test(name)) cap = "오타루 운하 도착 & 잔잔한 수면에 비친 붉은 벽돌 창고";
@@ -176,7 +176,7 @@ OVERSEAS_SPOTS.push({
         else if (/9084|9085|9086/.test(name)) cap = "증기시계 정각 알림 & 사카이마치 거리 산책";
         else if (/9087|9088|9089/.test(name)) cap = "르타오 본점 더블프로마쥬 치즈케이크 디저트 타임";
         else if (/9090|9091|9092/.test(name)) cap = "오타루 운하의 푸른 황혼과 가스등 낭만 야경";
-        else cap = "오타루 감성 골목 탐방 No." + catIdx;
+        else cap = "낭만 가득한 오타루 감성 골목 산책길";
       } else {
         catIdx = ++sCount;
         if (/9361|9362|9363/.test(name)) cap = "삿포로 시내 입성 & 스스키노 니카상 네온사인";
@@ -186,7 +186,7 @@ OVERSEAS_SPOTS.push({
         else if (/9373|9374|9375/.test(name)) cap = "다누키코지 상점가 쇼핑 & 홋카이도 특산품 기념품";
         else if (/9376|9377|9378/.test(name)) cap = "삿포로 클래식 생맥주 한 잔과 함께한 밤";
         else if (/9379|9380|9381/.test(name)) cap = "신치토세 공항 로이스 초콜릿 & 귀국길 추억";
-        else cap = "삿포로 미식 도시 탐방 No." + catIdx;
+        else cap = "맛과 멋이 가득한 삿포로 도심 탐방";
       }
 
       return {
@@ -258,7 +258,7 @@ OVERSEAS_SPOTS.push({
     var count = 0;
     return raw.map(function (item) {
       count++;
-      var cap = customCaptions[item.name] || ("오사카 & 고베 보도 사진 No." + count);
+      var cap = customCaptions[item.name] || "오사카 & 고베의 소중한 순간";
       return {
         type: item.type,
         url: OSAKA_BASE + item.name,
@@ -295,7 +295,7 @@ OVERSEAS_SPOTS.push({
     var count = 0;
     return raw.map(function (item) {
       count++;
-      var cap = customCaptions[item.name] || ("도쿄 도심 탐방 No." + count);
+      var cap = customCaptions[item.name] || "도쿄 도심의 다채로운 풍경";
       return {
         type: item.type,
         url: TOKYO_BASE + item.name,

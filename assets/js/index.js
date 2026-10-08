@@ -1097,16 +1097,14 @@ const pensieveMemories = [
     text: "800일 기념일 나흘 뒤에 찾아온 세 번째 화이트데이. 받은 사탕보다 같이 웃은 시간이 더 달았다." },
 
   // ---------------- 생일 ----------------
-  { cat: "생일", icon: "🎂", label: "수인 #1", date: "수인의 첫 번째 생일", title: "수인 누나의 첫 번째 생일",
-    text: "해그리드의 삐뚤빼뚤한 생일 케이크처럼, 서툴러도 정성만은 가득했던 첫 생일 축하." },
-  { cat: "생일", icon: "🎂", label: "수인 #2", date: "수인의 두 번째 생일", title: "수인 누나의 두 번째 생일",
-    text: "촛불 앞에서 빌었던 소원이 무엇이었는지는 이 펜시브만 알고 있다." },
-  { cat: "생일", icon: "🎂", label: "수인 #3", date: "수인의 세 번째 생일", title: "수인 누나의 세 번째 생일",
-    text: "해마다 한 살씩 더 예뻐지는 마법은 마법부도 아직 해독하지 못했다." },
   { cat: "생일", icon: "🧁", label: "현수 #1", date: "현수의 첫 번째 생일", title: "현수의 첫 번째 생일",
     text: "열한 살 해리가 처음으로 진짜 생일 축하를 받았던 것처럼, 누나와 함께한 첫 생일." },
+  { cat: "생일", icon: "🎂", label: "수인 #1", date: "수인의 첫 번째 생일", title: "수인 누나의 첫 번째 생일",
+    text: "해그리드의 삐뚤빼뚤한 생일 케이크처럼, 서툴러도 정성만은 가득했던 첫 생일 축하." },
   { cat: "생일", icon: "🧁", label: "현수 #2", date: "현수의 두 번째 생일", title: "현수의 두 번째 생일",
     text: "한 살을 더 먹어도 연하남 현수의 귀여움 담당 자리는 변함없다." },
+  { cat: "생일", icon: "🎂", label: "수인 #2", date: "수인의 두 번째 생일", title: "수인 누나의 두 번째 생일",
+    text: "촛불 앞에서 빌었던 소원이 무엇이었는지는 이 펜시브만 알고 있다." },
   { cat: "생일", icon: "🧁", label: "현수 #3", date: "현수의 세 번째 생일", title: "현수의 세 번째 생일",
     text: "공부와 실습에 지친 와중에도, 오늘 하루만큼은 무조건 주인공." },
 
@@ -1228,7 +1226,11 @@ if (castPatronusBtn) {
 
 document.querySelectorAll(".erised-mirror").forEach((mirror) => {
   mirror.addEventListener("click", () => {
+    const willReveal = !mirror.classList.contains("is-revealed");
     mirror.classList.toggle("is-revealed");
+    if (willReveal && typeof playLumosSpellSound === "function") {
+      playLumosSpellSound();
+    }
   });
 });
 

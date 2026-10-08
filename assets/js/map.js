@@ -64,8 +64,7 @@
     let currentRotation = [-150, 0];
     let zoomBehavior;
     let currentZoomScale = 1;
-    let isAdminMode = false;
-    const ADMIN_PASSPHRASE = "alohomora";
+
 
     // IndexedDB for Unlimited Photos
     const DB_NAME = "DailyProphetTravelDB_v2";
@@ -90,27 +89,7 @@
       });
     }
 
-    function savePhotoToDB(item) {
-      return new Promise((resolve, reject) => {
-        if (!dbInstance) return resolve(null);
-        const tx = dbInstance.transaction([DB_STORE], "readwrite");
-        const store = tx.objectStore(DB_STORE);
-        const req = store.add(item);
-        req.onsuccess = () => resolve(req.result);
-        req.onerror = () => reject(req.error);
-      });
-    }
 
-    function deletePhotoFromDB(id) {
-      return new Promise((resolve, reject) => {
-        if (!dbInstance) return resolve(null);
-        const tx = dbInstance.transaction([DB_STORE], "readwrite");
-        const store = tx.objectStore(DB_STORE);
-        const req = store.delete(id);
-        req.onsuccess = () => resolve(true);
-        req.onerror = () => reject(req.error);
-      });
-    }
 
     function getPhotosFromDB(destId) {
       return new Promise((resolve) => {
@@ -836,9 +815,6 @@
               <span class="absolute top-1 left-1 px-1 py-0.2 bg-[#1b1008]/85 text-[#fbf7ee] text-[8px] font-mono font-bold rounded-xs flex items-center gap-0.5 shadow z-3">
                 ${p.type === 'video' ? '▶ 영상' : '📸 사진'}
               </span>
-              ${p.id ? `
-                <button class="delete-photo-btn ${isAdminMode ? '' : 'hidden'} absolute top-1 right-1 w-5 h-5 bg-[#841c1c]/90 hover:bg-[#841c1c] text-[#fbf7ee] rounded-xs text-[10px] flex items-center justify-center shadow transition z-10" data-dbid="${p.id}" title="사진 삭제">🗑️</button>
-              ` : ''}
               <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#140b04]/90 via-[#140b04]/60 to-transparent p-1 pt-3 opacity-90 group-hover:opacity-100 transition z-3">
                 <p class="text-[9px] text-[#fbf7ee] font-serif truncate leading-tight">${p.caption}</p>
               </div>
@@ -867,7 +843,7 @@
                 <span class="text-[10px] text-[#6d4d2f] font-serif truncate max-w-[200px] sm:max-w-none">${album.desc}</span>
               </div>
               <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
-                ${albumPhotos.length > 0 ? albumPhotos.map(renderOverviewCard).join("") : '<div class="col-span-full py-4 text-center text-xs text-[#735334]/80 italic font-serif">등록된 보도 사진이 없습니다. (사진을 추가해보세요!)</div>'}
+                ${albumPhotos.length > 0 ? albumPhotos.map(renderOverviewCard).join("") : '<div class="col-span-full py-4 text-center text-xs text-[#735334]/80 italic font-serif">등록된 보도 사진이 없습니다.</div>'}
               </div>
             </div>
           `;
@@ -886,7 +862,7 @@
                   <span class="text-xs sm:text-sm font-headline font-black text-[#1f1309]">추가 보도 기록</span>
                   <span class="text-[10px] bg-[#841c1c] text-[#fbf7ee] font-mono px-1.5 py-0.5 rounded-xs font-bold">${otherPhotos.length}장</span>
                 </div>
-                <span class="text-[10px] text-[#6d4d2f] font-serif">현장 특파원 추가 수집 사진</span>
+                <span class="text-[10px] text-[#6d4d2f] font-serif">추가 보도 사진 기록</span>
               </div>
               <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
                 ${otherPhotos.map(renderOverviewCard).join("")}
@@ -908,8 +884,7 @@
 
       // Card click events -> open 2nd step scrollable lightbox & hover preview
       gridEl.querySelectorAll(".overview-photo-card").forEach(card => {
-        card.addEventListener("click", (e) => {
-          if (e.target.closest(".delete-photo-btn")) return;
+        card.addEventListener("click", () => {
           const gidx = parseInt(card.getAttribute("data-gidx"), 10);
           openScrollablePhotoLightbox(spot, combined, gidx);
         });
@@ -921,20 +896,6 @@
             v.currentTime = 0.1;
           });
         }
-      });
-
-      // Handle delete photo inside overview modal
-      gridEl.querySelectorAll(".delete-photo-btn").forEach(btn => {
-        btn.addEventListener("click", async (e) => {
-          e.stopPropagation();
-          const dbId = parseInt(btn.getAttribute("data-dbid"), 10);
-          if (dbId) {
-            await deletePhotoFromDB(dbId);
-            showToast("보도 사진이 삭제되었습니다.");
-            openPhotoOverviewModal(spot, targetCategory);
-            renderDrawerPhotos(spot);
-          }
-        });
       });
 
       // Display overview modal
@@ -1132,21 +1093,6 @@
       openAllPhotosBtn.addEventListener("click", () => {
         if (selectedSpot) {
           openPhotoOverviewModal(selectedSpot, 'all');
-        }
-      });
-    }
-
-    const overviewEditPhotosBtn = document.getElementById("overviewEditPhotosBtn");
-    if (overviewEditPhotosBtn) {
-      overviewEditPhotosBtn.addEventListener("click", () => {
-        if (isAdminMode) {
-          openAddMediaModal();
-        } else {
-          pendingAdminAction = 'addMedia';
-          document.getElementById("adminPasswordInput").value = "";
-          document.getElementById("adminAuthError").classList.add("hidden");
-          document.getElementById("adminAuthModal").classList.remove("hidden");
-          document.getElementById("adminPasswordInput").focus();
         }
       });
     }
@@ -1770,260 +1716,14 @@
           e.target.closest(".dest-card") ||
           e.target.closest("#spotSearch") ||
           e.target.closest("#searchDropdown") ||
-          e.target.closest("#adminToggleBtn") ||
           e.target.closest("#photoLightbox") ||
           e.target.closest("#photoOverviewModal") ||
-          e.target.closest("#adminAuthModal") ||
-          e.target.closest("#addMediaModal") ||
-          e.target.closest("#letterModal") ||
           e.target.closest("#maraudersOverlay")
         ) {
           return;
         }
         closeDrawer();
       }
-    });
-
-    let pendingAdminAction = null;
-
-    function openAddMediaModal() {
-      if (!selectedSpot) {
-        showToast("먼저 여행지를 선택해주세요.");
-        return;
-      }
-      const categorySelectWrap = document.getElementById("mediaCategorySelectWrap");
-      const categorySelect = document.getElementById("mediaCategorySelect");
-      if (categorySelectWrap && categorySelect) {
-        if (selectedSpot.subAlbums && selectedSpot.subAlbums.length > 0) {
-          categorySelectWrap.classList.remove("hidden");
-          categorySelect.innerHTML = selectedSpot.subAlbums.map(a => `
-            <option value="${a.id}">${a.name} (${a.tag})</option>
-          `).join("");
-        } else {
-          categorySelectWrap.classList.add("hidden");
-          categorySelect.innerHTML = `<option value="">기본 앨범</option>`;
-        }
-      }
-      document.getElementById("uploadStatusMsg").classList.add("hidden");
-      document.getElementById("addMediaModal").classList.remove("hidden");
-    }
-
-    function updateAdminUI() {
-      const adminBtn = document.getElementById("adminToggleBtn");
-      const icon = document.getElementById("adminToggleIcon");
-      const addMediaBtn = document.getElementById("addMediaPromptBtn");
-      const addMediaBtnIcon = document.getElementById("addMediaBtnIcon");
-      const addMediaBtnText = document.getElementById("addMediaBtnText");
-      const overviewAdminBadge = document.getElementById("overviewAdminBadge");
-
-      if (isAdminMode) {
-        if (adminBtn) adminBtn.className = "w-6 h-6 rounded-full bg-[#1e3a24] hover:bg-[#2d5234] text-[#a7f3d0] border border-[#064e3b] flex items-center justify-center transition shrink-0 opacity-90 shadow-sm";
-        if (icon) icon.textContent = "🔓";
-        if (addMediaBtn) {
-          addMediaBtn.className = "px-1.5 py-0.5 text-[9px] bg-[#1e3a24] hover:bg-[#2d5234] text-[#a7f3d0] border border-[#064e3b] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer";
-        }
-        if (addMediaBtnIcon) addMediaBtnIcon.textContent = "🔓";
-        if (addMediaBtnText) addMediaBtnText.textContent = "사진 추가/관리";
-        if (overviewAdminBadge) overviewAdminBadge.classList.remove("hidden");
-      } else {
-        if (adminBtn) adminBtn.className = "w-6 h-6 rounded-full bg-[#3b2513]/15 hover:bg-[#841c1c]/80 text-[#543b22] hover:text-[#fbf7ee] border border-[#543b22]/30 flex items-center justify-center transition shrink-0 opacity-40 hover:opacity-100";
-        if (icon) icon.textContent = "🔒";
-        if (addMediaBtn) {
-          addMediaBtn.className = "px-1.5 py-0.5 text-[9px] bg-[#841c1c] hover:bg-[#6b1414] text-[#fbf7ee] font-bold rounded-xs flex items-center gap-0.5 transition shadow-xs cursor-pointer";
-        }
-        if (addMediaBtnIcon) addMediaBtnIcon.textContent = "✏️";
-        if (addMediaBtnText) addMediaBtnText.textContent = "사진첩 편집";
-        if (overviewAdminBadge) overviewAdminBadge.classList.add("hidden");
-      }
-
-      document.querySelectorAll(".delete-photo-btn").forEach(b => {
-        if (isAdminMode) b.classList.remove("hidden");
-        else b.classList.add("hidden");
-      });
-    }
-
-    document.getElementById("adminToggleBtn").addEventListener("click", () => {
-      if (isAdminMode) {
-        isAdminMode = false;
-        updateAdminUI();
-        showToast("🔒 방문자 모드로 전환되었습니다.");
-      } else {
-        pendingAdminAction = null;
-        document.getElementById("adminPasswordInput").value = "";
-        document.getElementById("adminAuthError").classList.add("hidden");
-        document.getElementById("adminAuthModal").classList.remove("hidden");
-        document.getElementById("adminPasswordInput").focus();
-      }
-    });
-
-    function verifyAdminPass() {
-      if (document.getElementById("adminPasswordInput").value.trim() === ADMIN_PASSPHRASE) {
-        isAdminMode = true;
-        updateAdminUI();
-        document.getElementById("adminAuthModal").classList.add("hidden");
-        playMagicChime();
-        showToast("🔓 특파원 편집 권한이 승인되었습니다!");
-        if (pendingAdminAction === 'addMedia') {
-          pendingAdminAction = null;
-          openAddMediaModal();
-        } else if (pendingAdminAction === 'editLetter') {
-          pendingAdminAction = null;
-          if (selectedSpot) {
-            document.getElementById("letterInputText").value = selectedSpot.letter || "";
-            document.getElementById("letterModal").classList.remove("hidden");
-          }
-        }
-      } else {
-        document.getElementById("adminAuthError").classList.remove("hidden");
-      }
-    }
-
-    document.getElementById("submitAdminAuthBtn").addEventListener("click", verifyAdminPass);
-    document.getElementById("adminPasswordInput").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") verifyAdminPass();
-    });
-    document.getElementById("closeAdminAuthModalBtn").addEventListener("click", () => document.getElementById("adminAuthModal").classList.add("hidden"));
-    document.getElementById("cancelAdminAuthBtn").addEventListener("click", () => document.getElementById("adminAuthModal").classList.add("hidden"));
-
-    const addMediaModal = document.getElementById("addMediaModal");
-    document.getElementById("addMediaPromptBtn").addEventListener("click", () => {
-      if (isAdminMode) {
-        openAddMediaModal();
-      } else {
-        pendingAdminAction = 'addMedia';
-        document.getElementById("adminPasswordInput").value = "";
-        document.getElementById("adminAuthError").classList.add("hidden");
-        document.getElementById("adminAuthModal").classList.remove("hidden");
-        document.getElementById("adminPasswordInput").focus();
-      }
-    });
-    document.getElementById("closeAddMediaModalBtn").addEventListener("click", () => addMediaModal.classList.add("hidden"));
-    document.getElementById("cancelAddMediaBtn").addEventListener("click", () => addMediaModal.classList.add("hidden"));
-
-    const dropZone = document.getElementById("dropZone");
-    const bulkFileInput = document.getElementById("bulkFileInput");
-    dropZone.addEventListener("click", () => bulkFileInput.click());
-
-    bulkFileInput.addEventListener("change", async (e) => {
-      if (!selectedSpot || !e.target.files.length) return;
-      const status = document.getElementById("uploadStatusMsg");
-      status.classList.remove("hidden");
-      status.textContent = `사진 ${e.target.files.length}장을 저장 중...`;
-
-      const categorySelect = document.getElementById("mediaCategorySelect");
-      const category = (categorySelect && !categorySelect.parentElement.classList.contains("hidden")) ? categorySelect.value : undefined;
-
-      let count = 0;
-      for (const file of Array.from(e.target.files)) {
-        if (!file.type.startsWith("image/")) continue;
-        await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = async (evt) => {
-            const photoData = {
-              destId: selectedSpot.id,
-              type: "image",
-              url: evt.target.result,
-              caption: file.name.replace(/\.[^/.]+$/, "")
-            };
-            if (category) photoData.category = category;
-            await savePhotoToDB(photoData);
-            count++;
-            resolve();
-          };
-          reader.readAsDataURL(file);
-        });
-      }
-      status.textContent = `${count}장의 사진이 보관소에 저장되었습니다!`;
-      await renderDrawerPhotos(selectedSpot);
-      const overviewModal = document.getElementById("photoOverviewModal");
-      if (overviewModal && !overviewModal.classList.contains("hidden")) {
-        openPhotoOverviewModal(selectedSpot, category || 'all');
-      }
-      setTimeout(() => {
-        addMediaModal.classList.add("hidden");
-        showToast(`${count}장의 사진이 성공적으로 등록되었습니다!`);
-      }, 700);
-    });
-
-    // Tab switching in Media Modal
-    const tabLocalFileBtn = document.getElementById("tabLocalFileBtn");
-    const tabWebUrlBtn = document.getElementById("tabWebUrlBtn");
-    const bulkUploadView = document.getElementById("bulkUploadView");
-    const urlUploadView = document.getElementById("urlUploadView");
-
-    tabLocalFileBtn.addEventListener("click", () => {
-      tabLocalFileBtn.className = "flex-1 py-1.5 text-xs font-black text-[#841c1c] border-b-2 border-[#841c1c] bg-[#ede0c4]";
-      tabWebUrlBtn.className = "flex-1 py-1.5 text-xs font-bold text-[#5c4026] hover:bg-[#ede0c4]/60 transition";
-      bulkUploadView.classList.remove("hidden");
-      urlUploadView.classList.add("hidden");
-    });
-
-    tabWebUrlBtn.addEventListener("click", () => {
-      tabWebUrlBtn.className = "flex-1 py-1.5 text-xs font-black text-[#841c1c] border-b-2 border-[#841c1c] bg-[#ede0c4]";
-      tabLocalFileBtn.className = "flex-1 py-1.5 text-xs font-bold text-[#5c4026] hover:bg-[#ede0c4]/60 transition";
-      urlUploadView.classList.remove("hidden");
-      bulkUploadView.classList.add("hidden");
-    });
-
-    document.getElementById("saveNewMediaBtn").addEventListener("click", async () => {
-      if (!selectedSpot) return;
-      const urlInput = document.getElementById("newMediaUrl");
-      const captionInput = document.getElementById("newMediaCaption");
-      const url = urlInput.value.trim();
-      const caption = captionInput.value.trim() || "보도 아카이브";
-
-      if (!url) {
-        showToast("유효한 웹 주소를 입력하세요.");
-        return;
-      }
-
-      const categorySelect = document.getElementById("mediaCategorySelect");
-      const category = (categorySelect && !categorySelect.parentElement.classList.contains("hidden")) ? categorySelect.value : undefined;
-
-      const photoData = {
-        destId: selectedSpot.id,
-        type: "image",
-        url: url,
-        caption: caption
-      };
-      if (category) photoData.category = category;
-
-      await savePhotoToDB(photoData);
-
-      urlInput.value = "";
-      captionInput.value = "";
-      addMediaModal.classList.add("hidden");
-      await renderDrawerPhotos(selectedSpot);
-      const overviewModal = document.getElementById("photoOverviewModal");
-      if (overviewModal && !overviewModal.classList.contains("hidden")) {
-        openPhotoOverviewModal(selectedSpot, category || 'all');
-      }
-      showToast("새로운 보도 사진 링크가 등록되었습니다!");
-    });
-
-    // Letter editing
-    const letterModal = document.getElementById("letterModal");
-    document.getElementById("editLetterBtn").addEventListener("click", () => {
-      if (!selectedSpot) return;
-      if (isAdminMode) {
-        document.getElementById("letterInputText").value = selectedSpot.letter || "";
-        letterModal.classList.remove("hidden");
-      } else {
-        pendingAdminAction = 'editLetter';
-        document.getElementById("adminPasswordInput").value = "";
-        document.getElementById("adminAuthError").classList.add("hidden");
-        document.getElementById("adminAuthModal").classList.remove("hidden");
-        document.getElementById("adminPasswordInput").focus();
-      }
-    });
-    document.getElementById("closeLetterModalBtn").addEventListener("click", () => letterModal.classList.add("hidden"));
-    document.getElementById("cancelLetterBtn").addEventListener("click", () => letterModal.classList.add("hidden"));
-    document.getElementById("saveLetterBtn").addEventListener("click", () => {
-      if (!selectedSpot) return;
-      selectedSpot.letter = document.getElementById("letterInputText").value.trim();
-      document.getElementById("drawerLetterContent").textContent = selectedSpot.letter || "“작성된 편지가 없습니다.”";
-      letterModal.classList.add("hidden");
-      showToast("현장 편지가 성공적으로 저장되었습니다!");
     });
 
     window.addEventListener("resize", () => {
@@ -2038,7 +1738,6 @@
     async function loadData() {
       try {
         await initDB();
-        updateAdminUI();
 
         // 1. World Geometries
         const res = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");

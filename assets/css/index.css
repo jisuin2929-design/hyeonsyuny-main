@@ -419,33 +419,43 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 6px 2px;
+  justify-content: center;
+  gap: 8px;
+  min-height: 96px;
+  padding: 14px 8px 12px;
   background: rgba(247, 241, 227, 0.08);
   border: 1px solid rgba(253, 230, 138, 0.35);
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .memory-vial:hover,
 .memory-vial.is-active {
-  background: rgba(226, 232, 240, 0.18);
-  box-shadow: 0 0 10px rgba(226, 232, 240, 0.55);
-  transform: translateY(-2px);
+  background: rgba(226, 232, 240, 0.2);
+  border-color: #fde68a;
+  box-shadow: 0 0 12px rgba(226, 232, 240, 0.6);
+  transform: translateY(-3px);
 }
 .memory-vial .vial-glass {
-  font-size: 1.6rem;
-  filter: drop-shadow(0 0 4px rgba(226, 232, 240, 0.8));
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(226, 232, 240, 0.85));
 }
 .memory-vial .vial-label {
   font-family: "Noto Serif KR", serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: #fde68a;
   line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
 }
 .pensieve-basin {
-  min-height: 180px;
+  min-height: 220px;
   background: radial-gradient(ellipse at center, #64748b 0%, #334155 45%, #1e1b16 100%);
   box-shadow: inset 0 0 30px rgba(226, 232, 240, 0.35);
 }
@@ -487,105 +497,379 @@ input {
 }
 
 /* ------------------------------------------------------------- */
-/* 소망의 거울                                                     */
 /* ------------------------------------------------------------- */
+/* 소망의 거울 (The Mirror of Erised)                            */
+/* ------------------------------------------------------------- */
+.erised-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .erised-mirror {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 10px 8px;
-  background: linear-gradient(180deg, #b45309, #78350f);
-  border: 3px solid #140c04;
-  border-radius: 90px 90px 4px 4px;
-  box-shadow: 3px 3px 0 #2b1a0d;
+  padding: 12px 14px 10px;
+  background: linear-gradient(135deg, #d4af37 0%, #aa771c 18%, #fbf5b7 38%, #c59b27 60%, #7c4a03 85%, #d4af37 100%);
+  border: 3.5px solid #1a0f05;
+  border-radius: 140px 140px 6px 6px;
+  box-shadow: 
+    0 8px 24px rgba(43, 26, 13, 0.28),
+    4px 4px 0 #2b1a0d,
+    inset 0 2px 4px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.45);
   cursor: pointer;
   text-align: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+.erised-mirror:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 28px rgba(180, 130, 40, 0.45),
+    4px 4px 0 #2b1a0d,
+    inset 0 2px 4px rgba(255, 255, 255, 0.85),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.erised-mirror:active {
+  transform: translateY(0);
+}
+
+/* Award Plaque Styling - realistic 3D plaque */
+.award-plaque {
+  background: linear-gradient(135deg, #f5e6c4 0%, #e0cba8 40%, #d4b98f 70%, #c5a57a 100%);
+  border: 4px solid #bfa052;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.6), 0 8px 12px rgba(0,0,0,0.4);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.award-plaque::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, rgba(255,255,255,0.08), rgba(255,255,255,0.08) 4px, transparent 4px, transparent 8px);
+  pointer-events: none;
+}
+.award-icon {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+/* 상단 고딕 첨탑 장식 */
+.erised-arch-crown {
+  width: 32px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2px;
+  margin-bottom: 2px;
+}
+
+.erised-crown-gem {
+  color: #fef08a;
+  font-size: 15px;
+  text-shadow: 0 0 6px #d4af37, 0 1px 2px #000;
+}
+
+/* 상단 황금 명문 리본 패널 (I show not your face but your heart's desire) */
+.erised-inscription-banner {
+  width: 94%;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  background: radial-gradient(ellipse at center, #241407 0%, #120902 100%);
+  border: 1.5px solid #d4af37;
+  border-radius: 20px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(255, 255, 255, 0.25);
+}
+
 .erised-inscription {
+  display: block;
   font-family: "Cinzel", serif;
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #fde68a;
-  margin: 6px 12px 6px;
-  line-height: 1.3;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #fef08a;
+  text-shadow: 0 0 8px rgba(254, 240, 138, 0.7), 0 1px 2px #000;
+  line-height: 1.35;
 }
+
+@media (min-width: 640px) {
+  .erised-inscription {
+    font-size: 12px;
+  }
+}
+
+/* 거울 유리 래퍼 및 내부 몰딩 프레임 */
+.erised-glass-wrapper {
+  width: 100%;
+  position: relative;
+  border-radius: 112px 112px 4px 4px;
+  padding: 4px;
+  background: linear-gradient(180deg, #593508, #2a1708);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
 .erised-glass {
   position: relative;
   display: flex;
   width: 100%;
-  min-height: 150px;
+  min-height: 255px;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  background: linear-gradient(135deg, #cbd5e1 0%, #f8fafc 45%, #94a3b8 100%);
-  border: 2px solid #140c04;
-  border-radius: 70px 70px 2px 2px;
+  border-radius: 108px 108px 2px 2px;
   overflow: hidden;
+  background: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 20%, #f1f5f9 45%, #94a3b8 70%, #64748b 100%);
+  border: 2px solid #1a0f05;
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.45);
 }
+
+/* 거울 표면 반사광 오버레이 (대각선 하이라이트) */
+.erised-glass-sheen {
+  position: absolute;
+  inset: -60% -60%;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.35) 47%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.2) 53%, transparent 60%);
+  pointer-events: none;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.erised-mirror:hover .erised-glass-sheen {
+  transform: translate(25%, 25%);
+}
+
+/* 기본 상태: 거울 표면 힌트 */
 .erised-hint {
-  font-family: "Noto Serif KR", serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: #1e293b;
-  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 16px;
+  text-align: center;
+  z-index: 2;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
+.erised-hint-icon {
+  font-size: 34px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+  animation: erisedFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes erisedFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.erised-hint-title {
+  font-family: "Noto Serif KR", serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .erised-hint-title {
+    font-size: 17.5px;
+  }
+}
+
+.erised-hint-sub {
+  font-family: "Noto Serif KR", serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 3.5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.65);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* 소망 공개 상태 */
 .erised-wish {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  padding: 18px 14px 10px;
-  font-family: "Noto Serif KR", serif;
-  font-size: 11.5px;
-  line-height: 1.5;
-  color: #140c04;
+  justify-content: space-between;
+  padding: 20px 16px 14px;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 253, 245, 0.98) 0%, rgba(247, 237, 215, 0.98) 100%);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 25px rgba(180, 130, 60, 0.25);
   text-align: left;
-  background: rgba(253, 246, 227, 0.94);
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transform: scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
 }
-.erised-wish b {
-  color: #7f1d1d;
+
+.erised-mirror.is-revealed .erised-wish {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.erised-mirror.is-revealed .erised-hint {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.erised-wish-header {
   text-align: center;
-  margin-bottom: 2px;
+  border-bottom: 1.5px solid rgba(180, 83, 9, 0.3);
+  padding-bottom: 7px;
+  margin-bottom: 6px;
 }
-.erised-mirror.is-revealed .erised-wish { opacity: 1; }
-.erised-mirror.is-revealed .erised-hint { opacity: 0; }
-.erised-name {
+
+.erised-wish-badge {
+  display: inline-block;
   font-family: "Cinzel", serif;
   font-size: 11px;
-  font-weight: 700;
-  color: #fef3c7;
-  margin-top: 6px;
+  font-weight: 800;
+  color: #b45309;
+  letter-spacing: 0.1em;
+  background: rgba(254, 243, 199, 0.9);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  padding: 1.5px 8px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+
+.erised-wish-title {
+  display: block;
+  font-family: "Noto Serif KR", serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #7f1d1d;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .erised-wish-title {
+    font-size: 17px;
+  }
+}
+
+.erised-wish-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "Noto Serif KR", serif;
+  font-size: 14px;
+  color: #1e1309;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .erised-wish-list {
+    font-size: 14.5px;
+  }
+}
+
+.erised-wish-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.erised-bullet {
+  color: #d97706;
+  font-size: 13px;
+  line-height: 1.55;
+  flex-shrink: 0;
+}
+
+.erised-wish-footer {
+  text-align: center;
+  font-family: "Noto Serif KR", serif;
+  font-size: 11.5px;
+  color: #78350f;
+  opacity: 0.85;
+  font-weight: 600;
+  padding-top: 6px;
+}
+
+/* 하단 앤틱 황금 명판 */
+.erised-plaque {
+  margin-top: 10px;
+  padding: 5px 16px;
+  background: linear-gradient(180deg, #fef08a 0%, #d4af37 25%, #aa771c 75%, #78350f 100%);
+  border: 2px solid #1a0f05;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.erised-name {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1a0f05;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+@media (min-width: 640px) {
+  .erised-name {
+    font-size: 14px;
+  }
+}
+
+/* 고딕 받침대 발 */
+.erised-pedestal {
+  width: 75%;
+  height: 8px;
+  background: linear-gradient(180deg, #85531d 0%, #3e2107 100%);
+  border: 2px solid #1a0f05;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
+  margin-top: -1px;
 }
 
 /* 펜시브 선반 탭과 병 아이콘 */
 .pensieve-tab {
-  padding: 4px 10px;
+  padding: 5px 13px;
   font-family: "Noto Serif KR", serif;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
   color: #fde68a;
   background: transparent;
   border: 1px solid rgba(253, 230, 138, 0.45);
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
-.pensieve-tab:hover { background: rgba(253, 230, 138, 0.12); }
+.pensieve-tab:hover {
+  background: rgba(253, 230, 138, 0.15);
+  transform: translateY(-1px);
+}
 .pensieve-tab.is-active {
   background: #fde68a;
   color: #2b1a0d;
+  box-shadow: 0 0 8px rgba(253, 230, 138, 0.4);
 }
 .memory-vial .vial-glass { position: relative; }
 .memory-vial .vial-icon {
   position: absolute;
-  right: -10px;
-  top: -6px;
-  font-size: 0.85rem;
+  right: -12px;
+  top: -8px;
+  font-size: 0.95rem;
   filter: none;
 }
 
@@ -633,3 +917,85 @@ input {
   display: inline-block;
   animation: visualizerBar 0.85s ease-in-out infinite 0.3s;
 }
+
+/* ===================================================== */
+/* 📜 마법 결투 클럽 조약문 & 수기 서명 스타일 */
+/* ===================================================== */
+.font-signature {
+  font-family: 'Caveat', cursive;
+}
+
+.font-korean-signature {
+  font-family: 'Nanum Pen Script', cursive;
+}
+
+.treaty-scroll-border {
+  border: 3px double #2b1a0d;
+  background-color: #f7edd7;
+  background-image: 
+    radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.7) 0%, rgba(240, 222, 185, 0.3) 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160, 120, 60, 0.04) 2px, rgba(160, 120, 60, 0.04) 4px);
+}
+
+.wax-seal-badge {
+  background: radial-gradient(circle at 35% 35%, #b91c1c 0%, #881337 55%, #4c0519 100%);
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.6);
+  border: 2px dashed rgba(253, 224, 71, 0.6);
+}
+
+.treaty-article-card {
+  transition: all 0.25s ease;
+}
+
+.treaty-article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(43, 26, 13, 0.15);
+}
+
+/* ============================================================ */
+/* ⛓️ 현상수배(WANTED) 예언자 일보 신문 배경 및 아즈카반 스타일 */
+/* ============================================================ */
+.wanted-newspaper-bg {
+  position: relative;
+  background-color: #dfcb9f;
+  background-image: 
+    linear-gradient(rgba(247, 238, 220, 0.35), rgba(225, 203, 165, 0.45)),
+    url('../../images/메인페이지/wanted_prophet_bg.jpg');
+  background-size: cover;
+  background-position: center 15%;
+  background-repeat: no-repeat;
+  box-shadow: 
+    0 0 0 2px #2b1a0d,
+    4px 4px 0 #2b1a0d,
+    inset 0 0 60px rgba(43, 26, 13, 0.4);
+  overflow: hidden;
+}
+
+.wanted-newspaper-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(43, 26, 13, 0.3) 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(40, 25, 10, 0.025) 3px, rgba(40, 25, 10, 0.025) 6px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wanted-newspaper-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+.wanted-prisoner-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wanted-prisoner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(43, 26, 13, 0.25);
+}
+

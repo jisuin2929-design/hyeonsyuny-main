@@ -50,17 +50,17 @@ OVERSEAS_SPOTS.push({
       } else if (/4563/.test(name)) {
         cap = "리조트 앞 푸른 바다와 해변 풍경";
       } else if (/dji.*267/.test(name)) {
-        cap = "사오비치 제트스키 드론 영상 1";
+        cap = "🎬 [영상] 사오비치 푸른 물살을 가르는 제트스키 드론 활주";
       } else if (/dji.*272/.test(name)) {
-        cap = "사오비치 제트스키 드론 영상 2";
+        cap = "🎬 [영상] 에메랄드빛 바다 위 짜릿한 제트스키 하이라이트";
       } else if (/7070/.test(name)) {
-        cap = "현슈니의 첫 바캉스";
+        cap = "🎬 [영상] 현슈니의 두근두근 첫 남국 바캉스";
       } else if (/7186/.test(name)) {
-        cap = "최고로 이쁜 숙소";
+        cap = "눈부시게 아름다웠던 풀빌라 숙소와 정원 풍경";
       } else if (item.type === "video") {
-        cap = "푸꾸옥 현장 마법 영상 No." + count;
+        cap = "🎬 [영상] 푸꾸옥 에메랄드 바다 현장 스케치";
       } else {
-        cap = "푸꾸옥 남국 바캉스 No." + count;
+        cap = "푸꾸옥에서 만난 눈부신 여름날의 휴양";
       }
 
       return {
