@@ -1,5 +1,8 @@
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+try { $host.UI.RawUI.WindowTitle = "호그와트 1000일 기념 로컬 미리보기 서버" } catch {}
+
 $ports = @(8080, 8081, 8082, 8085)
-$rootDir = (Get-Location).Path
+$rootDir = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
 
 $listener = $null
 $activePort = $null
@@ -23,7 +26,17 @@ if (-not $listener) {
     exit 1
 }
 
-Write-Output "Static server listening at http://localhost:$activePort/"
+Write-Host "========================================================" -ForegroundColor Cyan
+Write-Host "  호그와트 1000일 기념 사이트 로컬 서버 동작 중!" -ForegroundColor Green
+Write-Host "  루트 디렉터리: $rootDir" -ForegroundColor Gray
+Write-Host "  접속 주소: http://localhost:$activePort/" -ForegroundColor Yellow
+Write-Host "  (서버를 종료하려면 이 창을 닫으세요)" -ForegroundColor Gray
+Write-Host "========================================================" -ForegroundColor Cyan
+
+# 서버가 확실히 구동된 후 브라우저 자동 오픈
+try {
+    Start-Process "http://localhost:$activePort/"
+} catch {}
 
 $mimeTypes = @{
     ".html" = "text/html; charset=utf-8"
