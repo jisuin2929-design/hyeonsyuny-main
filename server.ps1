@@ -29,8 +29,12 @@ if (-not $listener) {
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host "  호그와트 1000일 기념 사이트 로컬 서버 동작 중!" -ForegroundColor Green
 Write-Host "  루트 디렉터리: $rootDir" -ForegroundColor Gray
-Write-Host "  접속 주소: http://localhost:$activePort/" -ForegroundColor Yellow
-Write-Host "  (서버를 종료하려면 이 창을 닫으세요)" -ForegroundColor Gray
+Write-Host ""
+Write-Host "  [1] 일반 브라우저:  http://localhost:$activePort/" -ForegroundColor Yellow
+Write-Host "  [2] Simple Browser: http://127.0.0.1:$activePort/" -ForegroundColor Magenta
+Write-Host "      (단축키: Ctrl + Shift + P -> 'Simple Browser' 검색)" -ForegroundColor DarkYellow
+Write-Host ""
+Write-Host "  * 서버를 종료하려면 이 창을 닫으세요." -ForegroundColor Gray
 Write-Host "========================================================" -ForegroundColor Cyan
 
 # 서버가 확실히 구동된 후 브라우저 자동 오픈
