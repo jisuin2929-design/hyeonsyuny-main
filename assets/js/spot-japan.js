@@ -96,7 +96,7 @@ OVERSEAS_SPOTS.push({
         else if (/8696|4238|8727|8731|8744|4284|8760|8765|8773|8785|8790/.test(name)) cap = "요테이산 설경 파노라마와 정상 라이딩";
         else if (/8814|8837/.test(name)) cap = "니세코 눈 덮인 거리와 따끈한 저녁";
         else if (/4328|4351|8974|8999|9002/.test(name)) cap = "니세코 설산 카페 & 아쉬운 작별";
-        else cap = "니세코 파우더 설원 No." + catIdx;
+        else cap = "니세코 설산 슬로프의 아름다운 파노라마";
       } else if (item.category === "otaru") {
         catIdx = ++oCount;
         if (/9020|9053/.test(name)) cap = "낭만의 항구 도시 오타루 입성";
@@ -104,7 +104,7 @@ OVERSEAS_SPOTS.push({
         else if (/9126|9135|4434|9138|9150|9151|9162|9173|9179/.test(name)) cap = "오타루 운하의 황혼과 레트로 가스등 불빛";
         else if (/4515|9217|4557/.test(name)) cap = "오타루 낭만 디너 & 르타오 디저트 타임";
         else if (item.type === "video") cap = "오타루 운하 감성 영상";
-        else cap = "오타루 운하와 감성 거리 No." + catIdx;
+        else cap = "낭만 가득한 오타루 감성 골목 산책길";
       } else {
         catIdx = ++sCount;
         if (/9237|9260|9275/.test(name)) cap = "삿포로 도심 입성 & 스스키노 거리";
@@ -112,7 +112,7 @@ OVERSEAS_SPOTS.push({
         else if (/4717|9422|4782|4918/.test(name)) cap = "삿포로 시내 미식 투어";
         else if (/9508/.test(name)) cap = "신치토세 공항 귀국길 소중한 추억";
         else if (item.type === "video") cap = "삿포로 도심 영상";
-        else cap = "삿포로 미식과 도심 산책 No." + catIdx;
+        else cap = "맛과 멋이 가득한 삿포로 도심 탐방";
       }
 
       return {
@@ -184,7 +184,7 @@ OVERSEAS_SPOTS.push({
     var count = 0;
     return raw.map(function (item) {
       count++;
-      var cap = customCaptions[item.name] || ("오사카 & 고베 보도 사진 No." + count);
+      var cap = customCaptions[item.name] || "오사카 & 고베의 소중한 순간";
       return {
         type: item.type,
         url: OSAKA_BASE + item.name,
@@ -221,7 +221,7 @@ OVERSEAS_SPOTS.push({
     var count = 0;
     return raw.map(function (item) {
       count++;
-      var cap = customCaptions[item.name] || ("도쿄 도심 탐방 No." + count);
+      var cap = customCaptions[item.name] || "도쿄 도심의 다채로운 풍경";
       return {
         type: item.type,
         url: TOKYO_BASE + item.name,

@@ -35,14 +35,14 @@ OVERSEAS_SPOTS.push({
       name: "그린델발트",
       tag: "🏡 그린델발트",
       desc: "아이거 북벽을 보며 보드타기",
-      cover: "images/여행지/스위스/그린델발트/IMG_4037.JPG"
+      cover: "images/여행지/스위스/그린델발트&인터라켄/IMG_4037.JPG"
     },
     {
       id: "interlaken",
       name: "인터라켄",
       tag: "🏞️ 인터라켄",
       desc: "하늘에서 바라보는 예쁜 호수와 인터라켄",
-      cover: "images/여행지/스위스/인터라켄/IMG_3914.jpeg"
+      cover: "images/여행지/스위스/그린델발트&인터라켄/IMG_3914.jpeg"
     },
     {
       id: "lucerne",
@@ -63,7 +63,7 @@ OVERSEAS_SPOTS.push({
     var SWISS_BASE = "images/여행지/스위스/";
     var raw = createMediaItems([
       {
-        folder: "그린델발트",
+        folder: "그린델발트&인터라켄",
         category: "grindelwald",
         files: [
           "IMG_2981.MP4", "IMG_3037.MP4", "IMG_2985.JPEG", "IMG_1453.JPEG",
@@ -110,7 +110,7 @@ OVERSEAS_SPOTS.push({
         ]
       },
       {
-        folder: "인터라켄",
+        folder: "그린델발트&인터라켄",
         category: "interlaken",
         files: [
           "GOPR1561.JPG", "GOPR4574.JPG", "GOPR4587.JPG", "IMG_1846.jpeg",
@@ -151,8 +151,8 @@ OVERSEAS_SPOTS.push({
         else if (/0706|0710|2152|2188|7663|2205|7661|2219|2227|2231|2236|2263|2277|2318|2375|2381|2392|2426|2430|2470|2473/.test(name)) cap = "체르마트 만년설 슬로프 활주 & 빙하 파라다이스";
         else if (/0742|0746|7662|0757|7664/.test(name)) cap = "마테호른을 등 뒤로 한 눈부신 기념 촬영";
         else if (/2554|2558|0767|2636/.test(name)) cap = "체르마트 낭만 디너와 알프스 골목 산책";
-        else if (item.type === "video") cap = "체르마트 마테호른 설산 질주 영상";
-        else cap = "체르마트 마테호른 비경 No." + catIdx;
+        else if (item.type === "video") cap = "🎬 [영상] 체르마트 마테호른 설산 질주";
+        else cap = "마테호른이 품은 체르마트 알프스 설원 비경";
       } else if (item.category === "grindelwald") {
         catIdx = ++gCount;
         if (/2985|2995|3002|1453/.test(name)) cap = "그린델발트 도착 & 아늑한 샬레의 밤";
@@ -160,32 +160,32 @@ OVERSEAS_SPOTS.push({
         else if (/3078|3096|3153|3171|1533|1555/.test(name)) cap = "피르스트 클리프워크 & 설산 액티비티";
         else if (/3193|3212|3215|3329|3357|3411|3446|3476|3540|1579|1636|1679|1703/.test(name)) cap = "그린델발트 눈꽃 힐링과 클라이네 샤이덱";
         else if (/3603|3689|3812|4037|2464/.test(name)) cap = "그린델발트에서의 따스한 겨울 휴식";
-        else if (item.type === "video") cap = "그린델발트 샬레 & 설경 영상";
-        else cap = "그린델발트 동화 마을 No." + catIdx;
+        else if (item.type === "video") cap = "🎬 [영상] 그린델발트 샬레 & 설경 현장";
+        else cap = "아이거 북벽 아래 그림 같은 그린델발트 풍경";
       } else if (item.category === "jungfrau") {
         catIdx = ++jCount;
         if (/0850|0863|0873|0879|0880/.test(name)) cap = "아이거 익스프레스 케이블카 & 산악열차 등반";
         else if (/0894|0999|1050|1057|1169|1223|1267|1376|1389|1432|1435/.test(name)) cap = "유럽의 지붕 융프라우요흐 스핑크스 전망대 & 얼음궁전";
         else if (/2939|2949|2954|2958|2970|2998/.test(name)) cap = "융프라우 만년설 고원 설경 & 빙하 하산길";
-        else if (item.type === "video") cap = "융프라우요흐 만년설 영상 기록";
-        else cap = "만년설 융프라우요흐 No." + catIdx;
+        else if (item.type === "video") cap = "🎬 [영상] 융프라우요흐 만년설 영상 기록";
+        else cap = "만년설이 눈부신 유럽의 지붕 융프라우요흐";
       } else if (item.category === "interlaken") {
         catIdx = ++inCount;
-        if (/GOPR/.test(name)) cap = "인터라켄 상공 패러글라이딩 액티비티";
+        if (/GOPR/.test(name)) cap = "🎬 [영상] 인터라켄 상공 패러글라이딩 액티비티";
         else if (/1846|3914|3919/.test(name)) cap = "인터라켄 마을 풍경 & 에메랄드빛 툰·브리엔츠 호수";
         else if (/3923|3941/.test(name)) cap = "인터라켄 알프스 산책로의 맑은 공기";
-        else cap = "인터라켄 호수와 알프스 No." + catIdx;
+        else cap = "에메랄드 호수와 설산이 어우러진 인터라켄 낭만";
       } else if (item.category === "lucerne") {
         catIdx = ++lCount;
         if (/1945|4179/.test(name)) cap = "루체른 구시가지 골목과 아름다운 호반";
         else if (/4229|4302/.test(name)) cap = "유럽에서 가장 오래된 목조 다리 카펠교";
         else if (/4429|4469/.test(name)) cap = "루체른 호수의 백조들과 낭만적인 오후";
-        else cap = "루체른 카펠교와 호반 낭만 No." + catIdx;
+        else cap = "중세의 낭만이 흐르는 루체른 카펠교와 호반";
       } else {
         catIdx = ++zuCount;
         if (/2017/.test(name)) cap = "취리히 구시가지 리마트 강변 산책";
         else if (/5130/.test(name)) cap = "취리히 시내와 낭만적인 기념품 탐방";
-        else cap = "취리히 구시가지와 호반 산책 No." + catIdx;
+        else cap = "리마트 강변을 따라 걷는 고즈넉한 취리히 구시가지";
       }
 
       var itemUrl = item.url ? item.url : (SWISS_BASE + item.folder + "/" + item.name);

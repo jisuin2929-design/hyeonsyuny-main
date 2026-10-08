@@ -104,7 +104,7 @@ OVERSEAS_SPOTS.push({
         else if (/1638|1732|7434|7450|06346/.test(name)) cap = "우붓 정글 숲속 힐링 & 시원한 수영";
         else if (/7517|1978|7739|7766|2020|2028|2039|2054|2147/.test(name)) cap = "우붓 로컬 카페 & 감성 가득한 저녁 산책";
         else if (item.type === "video") cap = "우붓 정글 & 계곡 영상 기록";
-        else cap = "우붓 열대 정글 힐링 No." + catIdx;
+        else cap = "싱그러운 우붓 열대 정글에서의 여유로운 힐링";
       } else if (item.category === "nusa_penida") {
         catIdx = ++nCount;
         if (/2180|2203/.test(name)) cap = "누사페니다 섬 도착 & 에메랄드 항구";
@@ -115,7 +115,7 @@ OVERSEAS_SPOTS.push({
         else if (/2421|2439|2444/.test(name)) cap = "누사페니다 아침 오션뷰";
         else if (/2496|8329|2518|8391|2538|2545/.test(name)) cap = "누사페니다 크리스탈 부이 해변";
         else if (item.type === "video") cap = "누사페니다 켈링킹비치 드론 영상";
-        else cap = "누사페니다 신비로운 절벽 비경 No." + catIdx;
+        else cap = "누사페니다 에메랄드빛 해안과 웅장한 비경";
       } else {
         catIdx = ++sCount;
         if (/2550|2579|2589|2614|2620|2640|2652|2767/.test(name)) cap = "스미냑 해변의 황홀한 붉은 선셋";
@@ -128,7 +128,7 @@ OVERSEAS_SPOTS.push({
         else if (/3621|3624|3627|3641/.test(name)) cap = "발리 마지막 밤의 축배";
         else if (/3651/.test(name)) cap = "인천공항 귀국길 소중한 추억";
         else if (item.type === "video") cap = "스미냑 선셋 & 비치클럽 영상";
-        else cap = "스미냑 선셋 & 해변 휴양 No." + catIdx;
+        else cap = "스미냑 해변의 황홀한 노을과 낭만적인 휴양";
       }
       return {
         type: item.type,
